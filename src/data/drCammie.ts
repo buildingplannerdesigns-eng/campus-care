@@ -5,6 +5,20 @@ export const drCammieCopy = {
       "Make lasting change through intergenerational trauma expertise — for individuals, couples, families, and communities.",
     primaryCta: "Show Me How",
   },
+  heroFeatures: [
+    {
+      icon: "timer" as const,
+      label: "Expert-Led Workshops & Training You Can Apply Immediately",
+    },
+    {
+      icon: "document" as const,
+      label: "Practical Tools for Individuals, Couples, Families & Communities",
+    },
+    {
+      icon: "checkmark" as const,
+      label: "A Proven Path to Healing, Resilience & Collective Action",
+    },
+  ],
   intro: {
     greeting: "Hey, I'm Dr. Cammie Connor",
     title: "Intergenerational Trauma Expert & Founder of ACT Healing",

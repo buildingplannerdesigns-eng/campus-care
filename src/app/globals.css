@@ -60,3 +60,48 @@ textarea:focus-visible {
   animation: logo-marquee 32s linear infinite;
   will-change: transform;
 }
+
+@keyframes icon-blink {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  40% {
+    opacity: 0.15;
+    transform: scale(0.92);
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+  }
+}
+
+.icon-blink {
+  animation: icon-blink 2s ease-in-out infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform, filter;
+}
+
+.icon-blink-soft {
+  animation: icon-blink 2.2s ease-in-out infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-blink,
+  .icon-blink-soft {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

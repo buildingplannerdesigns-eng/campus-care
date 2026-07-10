@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DrCammieHero } from "@/components/DrCammieHero";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMarquee } from "@/components/LogoMarquee";
+import { HeroFeatureBar } from "@/components/dr-cammie/HeroFeatureBar";
 import {
   StefClosingCta,
   StefFeaturedQuotes,
@@ -40,6 +41,8 @@ export default function DrCammieConnorPage() {
         videoSrc={copy.video.videoSrc || undefined}
         videoPoster={copy.video.poster || undefined}
       />
+
+      <HeroFeatureBar items={copy.heroFeatures} />
 
       <LogoMarquee title="Trusted by communities and partners" />
 
