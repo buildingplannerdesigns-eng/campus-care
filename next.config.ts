@@ -51,6 +51,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/mail",
+        destination: "https://mail.hostinger.com",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
