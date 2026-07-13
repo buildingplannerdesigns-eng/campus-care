@@ -1,19 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { pointOfContact } from "@/data/team";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
+  { href: "/act", label: "ACT" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/programs", label: "Professional Courses" },
-  { href: "/team", label: "The Team" },
+  { href: "/courses", label: "Courses" },
+  { href: "/blog", label: "Blog" },
   { href: "/payments", label: "Payments" },
-  { href: "/diaspora-vr", label: "Diaspora VR" },
+  { href: "/campus-care", label: "Campus Care" },
   { href: "/contact", label: "Contact Us" },
 ];
 
@@ -29,7 +30,7 @@ function getSocialBrandHoverClass(label: string): string {
   return "hover:text-black";
 }
 
-const HERO_ROUTES = ["/dr-cammie-connor"];
+const HERO_ROUTES = ["/act"];
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -76,8 +77,8 @@ export function SiteHeader() {
             {pointOfContact.email && (
               <a
                 href={`mailto:${pointOfContact.email}`}
-                aria-label="Email"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-white/95 transition hover:border-ember/60 hover:bg-white/15 hover:text-white"
+                aria-label="Info email"
+                className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1.5 text-white/95 transition hover:border-white/70 hover:bg-white hover:text-[#0c3f84]"
               >
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 6h16v12H4z" strokeLinecap="round" strokeLinejoin="round" />
@@ -87,11 +88,25 @@ export function SiteHeader() {
               </a>
             )}
 
+            {pointOfContact.supportEmail && (
+              <a
+                href={`mailto:${pointOfContact.supportEmail}`}
+                aria-label="Support email"
+                className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1.5 text-white/95 transition hover:border-white/70 hover:bg-white hover:text-[#0c3f84]"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 6h16v12H4z" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="m4 7 8 6 8-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span>{pointOfContact.supportEmail}</span>
+              </a>
+            )}
+
             {pointOfContact.phone && phoneHref && (
               <a
                 href={phoneHref}
                 aria-label="Telephone"
-                className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1.5 text-white/95 transition hover:border-white hover:bg-white/15 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-3 py-1.5 text-white/95 transition hover:border-white/70 hover:bg-white hover:text-[#0c3f84]"
               >
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path
@@ -145,13 +160,11 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-6 lg:py-4">
           {/* Logo */}
           <Link href="/" className="group flex shrink-0 items-center">
-            <Image
-              src="/images/logo.jpg"
-              alt="Campus Care 2.0 logo"
-              width={72}
-              height={72}
-              className="h-12 w-auto rounded-full ring-2 ring-transparent transition group-hover:ring-ember/40 sm:h-14 md:h-16"
+            <BrandLogo
+              size="sm"
               priority
+              alt="Campus Care 2.0 logo"
+              className="ring-2 ring-transparent transition group-hover:ring-ember/40 !h-12 !w-12 sm:!h-14 sm:!w-14 md:!h-16 md:!w-16"
             />
           </Link>
 
@@ -225,8 +238,8 @@ export function SiteHeader() {
                 {pointOfContact.email && (
                   <a
                     href={`mailto:${pointOfContact.email}`}
-                    aria-label="Email"
-                    className="inline-flex items-center gap-2 rounded-none border border-sanctuary-700 px-3 py-2 text-sm text-parchment/75 transition hover:border-[#0c3f84] hover:text-[#0c3f84]"
+                    aria-label="Info email"
+                    className="inline-flex items-center gap-2 rounded-none border border-sanctuary-700 px-3 py-2 text-sm text-parchment/75 transition hover:border-[#b4c8dd] hover:bg-white hover:text-[#0c3f84]"
                   >
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M4 6h16v12H4z" strokeLinecap="round" strokeLinejoin="round" />
@@ -235,11 +248,24 @@ export function SiteHeader() {
                     <span>{pointOfContact.email}</span>
                   </a>
                 )}
+                {pointOfContact.supportEmail && (
+                  <a
+                    href={`mailto:${pointOfContact.supportEmail}`}
+                    aria-label="Support email"
+                    className="inline-flex items-center gap-2 rounded-none border border-sanctuary-700 px-3 py-2 text-sm text-parchment/75 transition hover:border-[#b4c8dd] hover:bg-white hover:text-[#0c3f84]"
+                  >
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 6h16v12H4z" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="m4 7 8 6 8-6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span>{pointOfContact.supportEmail}</span>
+                  </a>
+                )}
                 {pointOfContact.phone && phoneHref && (
                   <a
                     href={phoneHref}
                     aria-label="Telephone"
-                    className="inline-flex items-center gap-2 rounded-none border border-sanctuary-700 px-3 py-2 text-sm text-parchment/75 transition hover:border-[#0c3f84] hover:text-[#0c3f84]"
+                    className="inline-flex items-center gap-2 rounded-none border border-sanctuary-700 px-3 py-2 text-sm text-parchment/75 transition hover:border-[#b4c8dd] hover:bg-white hover:text-[#0c3f84]"
                   >
                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path

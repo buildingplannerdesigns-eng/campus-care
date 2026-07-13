@@ -3,7 +3,7 @@ import { getBlogSlugs } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
-  const routes = ["", "/about", "/solutions", "/programs", "/team", "/payments", "/diaspora-vr", "/blog", "/contact"];
+  const routes = ["", "/about", "/act", "/solutions", "/courses", "/payments", "/campus-care", "/blog", "/contact"];
   const blogSlugs = await getBlogSlugs();
 
   const staticRoutes = routes.map((route) => ({

@@ -36,10 +36,12 @@ src/
 |----------------|-------------------------------------------------------------|
 | `/`            | Home — hero, mission, Campus Care 2.0 intro, evidence       |
 | `/about`       | About Us — mission, guiding statement, therapeutic services |
+| `/act`         | ACT — Dr. Cammie Connor                                     |
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
-| `/programs`    | Campus Care 2.0 deep dive — 5 Core Elements, ecosystem, data|
-| `/team`        | Meet the Team + point of contact                            |
+| `/courses`     | Courses — Campus Care 2.0 deep dive                         |
+| `/blog`        | Blog                                                         |
 | `/payments`    | Donations via Donorbox                                         |
+| `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
 
 ## Integrations (wired, awaiting credentials)
@@ -59,10 +61,8 @@ runs end-to-end locally.
 
 ## Content notes for the client
 
-- The **Nature Element** description on `/programs` is a placeholder — the source
+- The **Nature Element** description on `/courses` is a placeholder — the source
   document didn't include copy for it. Please confirm the final language.
-- **Professional Courses** was listed as a page title in the source doc but had no
-  content yet; add a route under `src/app/` once copy is ready.
 - Preferred external links (footer + `/about`) are pulled from
   `Links to preferred links.docx`: patricewashington.com and ReflectXR.
 

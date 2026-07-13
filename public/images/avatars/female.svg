@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Female avatar">
+  <rect width="200" height="200" fill="#dbe7f2"/>
+  <circle cx="100" cy="100" r="100" fill="#c5d6e8"/>
+  <circle cx="100" cy="78" r="36" fill="#8a6a55"/>
+  <path d="M52 78c0-28 20-52 48-52s48 24 48 52c0 8-2 16-5 22-10-14-26-22-43-22s-33 8-43 22c-3-6-5-14-5-22z" fill="#5c4336"/>
+  <ellipse cx="100" cy="86" rx="30" ry="34" fill="#e8c4a8"/>
+  <path d="M48 178c8-36 28-54 52-54s44 18 52 54" fill="#0c3f84"/>
+  <circle cx="88" cy="84" r="3.5" fill="#3d2a22"/>
+  <circle cx="112" cy="84" r="3.5" fill="#3d2a22"/>
+  <path d="M92 98c4 5 12 5 16 0" fill="none" stroke="#b07a5c" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

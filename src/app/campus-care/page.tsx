@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { PrimaryButton, SecondaryButton, Section, SectionHeading } from "@/components/ui";
+import { BrandLogo } from "@/components/BrandLogo";
+import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
 
 export const metadata: Metadata = {
-	title: "Diaspora VR",
+	title: "Campus Care",
 	description:
-		"Diaspora VR is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
+		"Campus Care is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
 };
 
 const evidenceStats = [
@@ -71,31 +72,29 @@ const xrImages = [
 export default function DiasporaVRPage() {
 	return (
 		<>
-			<section className="relative isolate overflow-hidden border-b border-sanctuary-700/30 bg-[#07141f] text-white">
-				<div className="absolute inset-0">
+			<section className="border-b border-sanctuary-700/30 bg-white">
+				<div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-16 text-center md:py-24">
+					<BrandLogo size="lg" priority alt="Campus Care logo" />
+					<p className="mt-8 font-mono text-xs uppercase tracking-[0.28em] text-[#0c3f84]">Campus Care</p>
+					<h1 className="mt-4 max-w-4xl text-balance font-display text-4xl leading-[1.05] text-[#113f6c] md:text-6xl lg:text-[4.25rem]">
+						Immersive healing through creativity, reflection, and connection.
+					</h1>
+					<p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#355879] md:text-base">
+						A virtual reality experience designed to support mental wellness for students, communities, and care teams.
+					</p>
+				</div>
+			</section>
+
+			<section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
+				<div className="relative aspect-[16/7] min-h-[320px] w-full md:min-h-[460px] lg:min-h-[560px]">
 					<Image
 						src={xrImages[0].src}
 						alt={xrImages[0].alt}
 						fill
 						sizes="100vw"
-						priority
 						className="object-cover"
+						priority
 					/>
-					<div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,31,0.5)_0%,rgba(7,20,31,0.72)_55%,rgba(7,20,31,0.84)_100%)]" />
-				</div>
-
-				<div className="relative mx-auto flex min-h-[72vh] max-w-5xl flex-col items-center justify-center px-6 py-24 text-center md:min-h-[78vh] md:py-28 lg:min-h-[84vh]">
-					<p className="font-mono text-xs uppercase tracking-[0.28em] text-ember/90">Diaspora VR</p>
-					<h1 className="mt-4 max-w-4xl text-balance font-display text-4xl leading-[1.05] md:text-6xl lg:text-[4.25rem]">
-						Immersive healing through creativity, reflection, and connection.
-					</h1>
-					<p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
-						A virtual reality experience designed to support mental wellness for students, communities, and care teams.
-					</p>
-					<div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-						<PrimaryButton href="mailto:info@campuscare.com">Schedule a Demo</PrimaryButton>
-						<SecondaryButton href="#beta">Join the Beta</SecondaryButton>
-					</div>
 				</div>
 			</section>
 
@@ -199,24 +198,23 @@ export default function DiasporaVRPage() {
 				</div>
 			</Section>
 
-			<Section className="border-t border-sanctuary-700/60 bg-sanctuary-900" id="beta">
+			<Section className="border-t border-sanctuary-700/60 bg-sanctuary-900" id="contact">
 				<div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
 					<div>
-						<SectionHeading eyebrow="Join the Beta" heading="Become a beta tester and experience Diaspora VR" />
+						<SectionHeading eyebrow="Get in Touch" heading="Connect with the Campus Care team" />
 						<p className="mt-5 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-							Diaspora VR is built for organizations and healthcare teams looking to expand creative wellness tools, increase self-expression, and transform the experience of care.
+							Campus Care is built for organizations and healthcare teams looking to expand creative wellness tools, increase self-expression, and transform the experience of care.
 						</p>
 						<div className="mt-8 flex flex-wrap gap-4">
-							<PrimaryButton href="mailto:info@campuscare.com">Apply</PrimaryButton>
-							<SecondaryButton href="/contact">Contact the Team</SecondaryButton>
+							<PrimaryButton href="/contact">Contact Us</PrimaryButton>
 						</div>
 					</div>
 
 					<div className="rounded-[1.75rem] border border-sanctuary-700 bg-white p-6 shadow-sm md:p-8">
-						<p className="text-xs uppercase tracking-[0.18em] text-parchment/45">Browse the brochure</p>
+						<p className="text-xs uppercase tracking-[0.18em] text-parchment/45">Send a message</p>
 						<h3 className="mt-3 font-display text-2xl">Contact the team</h3>
 						<p className="mt-2 text-sm leading-relaxed text-parchment/70">
-							Reach out for the brochure, a demo, or a conversation about implementing Diaspora VR in your organization.
+							Reach out for the brochure, a conversation about implementing Campus Care, or partnership questions.
 						</p>
 						<div className="mt-6">
 							<ContactForm />
@@ -256,8 +254,7 @@ export default function DiasporaVRPage() {
 									Discover a new approach to creativity, connection, and self-expression.
 								</p>
 								<div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-									<PrimaryButton href="mailto:info@campuscare.com">Schedule a Demo</PrimaryButton>
-									<SecondaryButton href="/contact">Contact Us</SecondaryButton>
+									<PrimaryButton href="/contact">Contact Us</PrimaryButton>
 								</div>
 							</div>
 						</div>

@@ -30,9 +30,9 @@ export function DrCammieHero({
 }: DrCammieHeroProps) {
   return (
     <section className="relative bg-white pb-10 md:pb-14">
-      {/* Dark gradient band — bottom padding hosts the top half of the mockup */}
+      {/* Dark gradient band — modest bottom padding for the smaller desktop mockup */}
       <div
-        className="bg-cover bg-center pb-44 md:pb-72 lg:pb-96"
+        className="bg-cover bg-center pb-36 md:pb-44 lg:pb-52"
         style={{
           backgroundImage:
             "linear-gradient(rgba(18, 28, 42, 0.62), rgba(18, 28, 42, 0.62)), linear-gradient(160deg, #1a3348 0%, #2a5570 45%, #1e3d35 100%)",
@@ -92,16 +92,14 @@ export function DrCammieHero({
         </div>
       </div>
 
-      {/* Featured video — top half sits on the dark band, bottom half on white.
-          Negative margin is always smaller than the band's bottom padding, so it
-          never touches the hero text, and normal flow keeps the next section clear. */}
-      <div className="relative z-10 mx-auto -mt-28 w-full max-w-5xl px-4 sm:px-6 md:-mt-56 lg:-mt-80">
+      {/* Featured video — silver desktop monitor, centered and contained */}
+      <div className="relative z-10 mx-auto -mt-24 w-full max-w-[920px] px-5 sm:px-8 md:-mt-32 lg:-mt-36">
         <DesktopVideoMockup
           title={videoTitle ?? headline}
           embedUrl={videoEmbedUrl}
           videoSrc={videoSrc}
           poster={videoPoster}
-          urlBar="campuscare.com / dr-cammie-connor"
+          urlBar="campuscare.com / act"
         />
       </div>
     </section>

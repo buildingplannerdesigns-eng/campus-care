@@ -1,12 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LogoMarquee } from "@/components/LogoMarquee";
-import { ElementCard } from "@/components/ElementCard";
-import { AudienceOutcomeCard } from "@/components/AudienceOutcomeCard";
+import { BrandLogo } from "@/components/BrandLogo";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
-import { coreElements } from "@/data/elements";
-import { mentalHealthStats } from "@/data/stats";
-import { audienceOutcomes } from "@/data/audiences";
 import { siteCopy } from "@/data/copy";
 
 function ArrowIcon() {
@@ -55,22 +51,14 @@ function HomeCta({
 }
 
 export default function HomePage() {
-  const { hero, mission, campusCare, whyItExists, guidingStatement } = siteCopy;
+  const { hero, mission, guidingStatement } = siteCopy;
 
   return (
     <>
-      {/* Hero — Persistent Technology style: logo left, text right */}
-      <section className="border-b border-[#eeeae4] bg-white">
+      <section className="border-b border-[#eeeae4]">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 md:grid-cols-[1.15fr_0.85fr] md:gap-16 md:py-20 lg:gap-20 lg:py-24">
           <div className="flex justify-center md:justify-end">
-            <Image
-              src="/images/logo.jpg"
-              alt="ACT Healing logo"
-              width={500}
-              height={500}
-              className="h-auto w-full max-w-[280px] md:max-w-[380px] lg:max-w-[460px]"
-              priority
-            />
+            <BrandLogo size="xl" priority alt="ACT Healing logo" />
           </div>
 
           <div className="text-center md:text-left">
@@ -81,187 +69,244 @@ export default function HomePage() {
             <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-relaxed text-[#333] md:mx-0 md:text-lg">
               {hero.tagline}
             </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+              <HomeCta href="/campus-care">Explore Campus Care</HomeCta>
+              <HomeCta href="/contact" variant="outline">
+                Contact Us
+              </HomeCta>
+            </div>
           </div>
         </div>
       </section>
 
       <LogoMarquee title="Trusted by communities and partners" />
 
-      {/* Video showcase — desktop mockup */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-10 text-center">
+          <div className="mb-8 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">See It in Action</p>
             <h2 className="mt-3 font-display text-3xl italic text-parchment md:text-4xl">
               Campus Care 2.0 in Motion
             </h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-parchment/65">
+              A short look at the immersive wellness experience.
+            </p>
           </div>
           <DesktopVideoMockup title={hero.videoTitle} urlBar="campuscare.com" />
         </div>
       </section>
 
-      {/* Mission quote */}
-      <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <div className="mx-auto mb-8 h-px w-16 bg-water/40" />
-          <blockquote className="font-display text-3xl italic leading-snug text-parchment md:text-4xl lg:text-5xl">
+      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <blockquote className="font-display text-3xl italic leading-snug text-parchment md:text-4xl">
             {mission.heading}
           </blockquote>
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-parchment/70 md:text-lg">
-            {mission.body}
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
+            {guidingStatement}
           </p>
         </div>
       </section>
 
-      {/* Campus Care intro + Why */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-14 px-6 md:grid-cols-2 md:items-start md:gap-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-water">
-              {campusCare.kicker}
+      {/* Campus Care */}
+      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="font-display text-3xl italic text-[#0e4f88] md:text-4xl">Campus Care</p>
+          <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
+            Immersive wellness for campuses and care teams
+          </h2>
+          <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
+          <div className="mx-auto mt-6 max-w-2xl space-y-4">
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              Campus Care 2.0 is an immersive wellness platform designed to support student mental health
+              with culturally affirming digital experiences.
             </p>
-            <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl">
-              {campusCare.headline}
-            </h2>
-            <div className="mt-5 h-px w-16 bg-water/40" />
-            <p className="mt-5 leading-relaxed text-parchment/70">{campusCare.body}</p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <HomeCta href="/contact">{campusCare.primaryCta}</HomeCta>
-              <HomeCta href="/programs" variant="outline">
-                {campusCare.secondaryCta}
-              </HomeCta>
-            </div>
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              It expands creative reflection, connection, and access to care for organizations ready to grow
+              restorative wellness.
+            </p>
           </div>
-          <div className="bg-white p-8 shadow-[0_18px_38px_rgba(0,0,0,0.06)] ring-1 ring-[#eeeae4] md:p-10">
-            <h3 className="font-display text-2xl text-parchment">{whyItExists.heading}</h3>
-            <div className="mt-3 h-px w-12 bg-water/40" />
-            <div className="mt-6 space-y-5">
-              {whyItExists.body.map((paragraph, i) => (
-                <p key={i} className="text-sm leading-relaxed text-parchment/70 md:text-[0.95rem]">
-                  {paragraph}
+          <div className="mt-9 flex justify-center">
+            <HomeCta href="/campus-care">Explore Campus Care</HomeCta>
+          </div>
+        </div>
+      </section>
+
+      {/* ACT — Stefanie-inspired intro with portrait */}
+      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
+            <div className="order-2 text-center md:order-1 md:text-left">
+              <h2 className="font-display text-4xl leading-[1.1] text-[#113f6c] md:text-5xl lg:text-[3.25rem]">
+                Hi Friend! I&apos;m Dr. Connor
+              </h2>
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#5b6d7f]">
+                Intergenerational trauma expert &amp; founder of ACT Healing
+              </p>
+              <div className="mx-auto mt-6 space-y-4 md:mx-0">
+                <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+                  For years, I&apos;ve helped individuals, couples, families, and communities heal from
+                  patterns that no longer serve them — with culturally grounded care and practical tools
+                  for lasting change.
                 </p>
-              ))}
+                <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+                  Through speaking, workshops, coaching, and Campus Care 2.0, my work is built to help you
+                  transform pain into purpose and ACT on what matters most.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+                <HomeCta href="/act">Explore ACT</HomeCta>
+              </div>
+            </div>
+
+            <div className="order-1 mx-auto w-full max-w-md md:order-2 md:max-w-none">
+              <div className="relative">
+                <div className="absolute -left-3 -top-3 hidden h-full w-full border border-[#0e4f88]/25 md:block" aria-hidden />
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#eef2ef] shadow-[0_24px_50px_rgba(17,63,108,0.14)]">
+                  <Image
+                    src="/images/team/dr.cammie.jpg"
+                    alt="Dr. Connor"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 90vw, 40vw"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Five Core Elements */}
-      <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
+      {/* 5 Elements tidbit */}
+      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">
-              The Diaspora VR Sanctuary
-            </p>
-            <h2 className="mt-4 font-display text-4xl leading-snug text-parchment md:text-5xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">The Diaspora VR Sanctuary</p>
+            <h2 className="mt-3 font-display text-3xl italic text-parchment md:text-4xl">
               The 5 Core Elements™
             </h2>
-            <p className="mt-4 font-display text-xl italic text-parchment/75 md:text-2xl">
-              Why have we built the Sanctuary?
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-parchment/65">
+              Ancient pathways, reimagined as five immersive digital environments for restorative wellness.
             </p>
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-              Because true restorative wellness extends beyond traditional office counseling. By
-              weaving ancient Afrocentric healing traditions with advanced digital biometrics, the
-              Diaspora VR Sanctuary translates ancient pathways into five responsive digital
-              environments.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <HomeCta href="/programs">Explore the Elements</HomeCta>
-            </div>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {coreElements.map((element, idx) => (
-              <div
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { key: "water", label: "Water", focus: "Regulation", image: "/images/elements/water.webp", accent: "#7FC4DE" },
+              { key: "fire", label: "Fire", focus: "Release", image: "/images/elements/fire.jpg", accent: "#FF9D4D" },
+              { key: "earth", label: "Earth", focus: "Grounding", image: "/images/elements/earth.jpg", accent: "#C99A66" },
+              { key: "mineral", label: "Mineral", focus: "Perspective", image: "/images/elements/minerals.jpg", accent: "#A8B3D6" },
+              { key: "nature", label: "Nature", focus: "Renewal", image: "/images/elements/nature.jpg", accent: "#A3C98A" },
+            ].map((element, index) => (
+              <Link
                 key={element.key}
-                className={idx === coreElements.length - 1 ? "lg:col-start-2" : undefined}
+                href="/courses"
+                className={`group relative overflow-hidden border border-[#e8e4df] bg-[#faf9f7] transition hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(17,63,108,0.12)] ${
+                  index === 4 ? "col-span-2 sm:col-span-1" : ""
+                }`}
               >
-                <ElementCard element={element} />
-              </div>
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src={element.image}
+                    alt={`${element.label} element`}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f2d45]/85 via-[#0f2d45]/25 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-3 text-left md:p-4">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
+                      0{index + 1} · {element.focus}
+                    </p>
+                    <p className="mt-1 font-display text-xl italic text-white md:text-2xl">{element.label}</p>
+                    <span
+                      className="mt-3 block h-[3px] w-10"
+                      style={{ backgroundColor: element.accent }}
+                      aria-hidden
+                    />
+                  </div>
+                </div>
+              </Link>
             ))}
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <HomeCta href="/courses">Explore the Elements</HomeCta>
           </div>
         </div>
       </section>
 
-      {/* Audience outcomes */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">
-              Therapeutic Services
+      {/* Courses */}
+      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="font-display text-3xl italic text-[#0e4f88] md:text-4xl">Courses</p>
+          <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
+            Programs built for lasting change
+          </h2>
+          <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
+          <div className="mx-auto mt-6 max-w-2xl space-y-4">
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              From professional courses to campus-ready frameworks, our programs translate ACT Healing into
+              practical pathways.
             </p>
-            <h2 className="mt-4 font-display text-3xl italic text-parchment md:text-4xl">
-              Individuals, Couples, Families &amp; Community
-            </h2>
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              Explore the five core elements and tools designed to help communities regulate stress and build
+              resilience.
+            </p>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {audienceOutcomes.map((item) => (
-              <AudienceOutcomeCard key={item.audience} item={item} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-12 flex flex-col items-center gap-6 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">
-                The Evidence
-              </p>
-              <h2 className="mt-3 font-display text-3xl text-parchment md:text-4xl">
-                Mental Health, By the Numbers
-              </h2>
-            </div>
-            <Link
-              href="/programs"
-              className="group inline-flex items-center text-xs font-semibold uppercase tracking-[0.15em] text-[#0e4f88] underline decoration-[#0e4f88]/30 underline-offset-4"
-            >
-              View Research
-              <ArrowIcon />
-            </Link>
-          </div>
-          <div className="grid gap-px bg-[#eeeae4] sm:grid-cols-2 lg:grid-cols-3">
-            {mentalHealthStats.map((stat) => (
-              <div key={stat.stat + stat.source} className="bg-[#faf9f7] p-8">
-                <p className="font-display text-5xl font-light text-water">{stat.stat}</p>
-                <p className="mt-4 text-sm leading-relaxed text-parchment/80">{stat.description}</p>
-                <a
-                  href={stat.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-xs text-parchment/45 underline decoration-dotted underline-offset-4 hover:text-water"
-                >
-                  {stat.source}
-                </a>
-              </div>
-            ))}
+          <div className="mt-9 flex justify-center">
+            <HomeCta href="/courses">View Courses</HomeCta>
           </div>
         </div>
       </section>
 
-      {/* Closing CTA — dark band bookending the hero */}
+      {/* Payments */}
+      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="font-display text-3xl italic text-[#0e4f88] md:text-4xl">Payments</p>
+          <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
+            Support the work of healing and campus wellness
+          </h2>
+          <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
+          <div className="mx-auto mt-6 max-w-2xl space-y-4">
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              Your gift helps expand ACT Healing programs and bring Campus Care 2.0 to more students and
+              communities.
+            </p>
+            <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
+              Give once or set up ongoing support — every contribution moves this mission forward.
+            </p>
+          </div>
+          <div className="mt-9 flex justify-center">
+            <HomeCta href="/payments">Make a Payment</HomeCta>
+          </div>
+        </div>
+      </section>
+
       <section
-        className="py-24 text-center md:py-32"
+        className="py-20 text-center md:py-24"
         style={{
           backgroundImage:
             "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), linear-gradient(160deg, #1a3348 0%, #2a5570 45%, #1e3d35 100%)",
         }}
       >
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">
-            Get Started
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Get Started</p>
+          <p className="mx-auto mt-5 max-w-2xl font-display text-2xl italic leading-snug text-white md:text-3xl">
+            Ready to bring healing, transformation, and campus wellness into your community?
           </p>
-          <h2 className="mt-5 font-display text-3xl italic leading-snug text-white md:text-5xl">
-            {guidingStatement}
-          </h2>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <p className="mx-auto mt-4 max-w-md text-sm text-white/70">
+            Reach out or meet Dr. Connor to begin the conversation.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <HomeCta href="/contact" variant="light">
-              Request a Campus Demo
+              Contact Us
             </HomeCta>
-            <HomeCta href="/programs" variant="outline">
-              Read the Clinical Whitepaper
+            <HomeCta href="/act" variant="outline">
+              Meet Dr. Connor
+            </HomeCta>
+            <HomeCta href="/payments" variant="outline">
+              Make a Payment
             </HomeCta>
           </div>
         </div>

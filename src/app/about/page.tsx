@@ -80,7 +80,7 @@ export default function AboutPage() {
       <Section className="border-t border-sanctuary-700/60">
         <SectionHeading eyebrow="Meet the Team" heading="The People Behind the Work" />
         <p className="mt-4 max-w-2xl text-parchment/70">
-          Tap any card to open a separate premium profile with the person’s details, social links, and role in the work.
+          Tap any card to open a profile with their details, email, and social links.
         </p>
         <div className="mt-10">
           <TeamDetailsDrawer teamMembers={team} />

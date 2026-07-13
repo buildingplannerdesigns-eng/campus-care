@@ -58,6 +58,11 @@ const nextConfig: NextConfig = {
         destination: "https://mail.hostinger.com",
         permanent: true,
       },
+      { source: "/dr-cammie-connor", destination: "/act", permanent: true },
+      { source: "/programs", destination: "/courses", permanent: true },
+      { source: "/diaspora-vr", destination: "/campus-care", permanent: true },
+      { source: "/team", destination: "/about", permanent: true },
+      { source: "/reflect-xr", destination: "/campus-care", permanent: true },
     ];
   },
 };

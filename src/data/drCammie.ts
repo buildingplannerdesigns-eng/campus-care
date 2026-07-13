@@ -41,7 +41,7 @@ export const drCammieCopy = {
       description:
         "I'll teach you how to break intergenerational patterns in this hands-on, step-by-step workshop experience.",
       cta: "View Workshops",
-      href: "/programs",
+      href: "/courses",
     },
     {
       number: "02",
@@ -49,7 +49,7 @@ export const drCammieCopy = {
       description:
         "Invite Dr. Cammie to inspire your audience with faith-led, trauma-informed training on healing, resilience, and collective action.",
       cta: "Request Speaking",
-      href: "mailto:cammie@campuscare.com",
+      href: "mailto:cconner@actcampuscare.com",
     },
     {
       number: "03",
@@ -65,7 +65,7 @@ export const drCammieCopy = {
       description:
         "Learn how to scale healing institutionally with a culturally grounded, bio-responsive VR platform built for HBCU students.",
       cta: "Request a Campus Demo",
-      href: "/programs",
+      href: "/courses",
     },
   ],
   showMe: "Let me show you how.",
@@ -121,13 +121,13 @@ export const drCammieCopy = {
         title: "Workshops & Group Coaching",
         subtitle: "Interactive sessions to break generational patterns",
         cta: "Explore Programs",
-        href: "/programs",
+        href: "/courses",
       },
       {
         title: "Speaking & Keynotes",
         subtitle: "Inspire your audience with trauma-informed training",
         cta: "Book Dr. Cammie",
-        href: "mailto:cammie@campuscare.com",
+        href: "mailto:cconner@actcampuscare.com",
       },
       {
         title: "Therapy & 1:1 Coaching",
@@ -147,69 +147,86 @@ export const drCammieCopy = {
     {
       quote:
         "Dr. Cammie's expertise in intergenerational trauma helped me break patterns I'd carried for decades.",
-      attribution: "Workshop Participant",
+      attribution: "Amara Johnson",
       reference: "ACT Healing Community",
+      image: "/images/avatars/female.svg",
     },
     {
       quote:
         "Finally an approach that sees the whole person — culturally grounded, compassionate, and deeply transformative.",
-      attribution: "Therapy Client",
+      attribution: "Chris Alvarez",
       reference: "Individual Counseling",
+      image: "/images/avatars/male.svg",
     },
     {
       quote:
         "Campus Care 2.0 brings Dr. Cammie's clinical foundation to scale — giving students a sanctuary that builds real resilience.",
-      attribution: "Student Affairs Leader",
+      attribution: "Keisha Morgan",
       reference: "HBCU Wellness Initiative",
+      image: "/images/avatars/female.svg",
     },
   ],
   testimonials: [
     {
       headline: "Dr. Cammie helped me break patterns I'd carried for decades",
       brand: "ACT Healing Community",
-      name: "Workshop Participant",
+      name: "Maya Thompson",
       quote:
         "Dr. Cammie's expertise in intergenerational trauma helped me break patterns I'd carried for decades. Her approach is compassionate, culturally grounded, and deeply transformative.",
+      image: "/images/avatars/female.svg",
     },
     {
       headline: "I strengthened my relationships and found my purpose again",
       brand: "Individual Counseling",
-      name: "Therapy Client",
+      name: "Jordan Ellis",
       quote:
         "The clarity and cultural understanding Dr. Cammie brings to every session created a safe space for real healing.",
+      image: "/images/avatars/male.svg",
     },
     {
       headline: "Campus Care 2.0 honors students' lived experiences",
       brand: "HBCU Wellness Initiative",
-      name: "Campus Partner",
+      name: "Aisha Brooks",
       quote:
         "Campus Care 2.0 brings Dr. Cammie's clinical foundation to scale — giving students a sanctuary that builds real resilience.",
+      image: "/images/avatars/female.svg",
     },
     {
       headline: "Her workshops changed how our organization approaches wellness",
       brand: "Community Organization",
-      name: "Program Director",
+      name: "Daniel Okonkwo",
       quote:
         "Dr. Cammie's speaking and workshop facilitation gave our team practical tools for trauma-informed care.",
+      image: "/images/avatars/male.svg",
     },
     {
       headline: "Finally an approach that sees the whole person",
       brand: "Couples Counseling",
-      name: "Couples Client",
+      name: "Nina & Marcus Reed",
       quote:
         "We learned to break cycles we'd repeated for generations. The culturally grounded approach made all the difference.",
+      image: "/images/avatars/female.svg",
     },
     {
       headline: "ACT Healing transformed our campus wellness strategy",
       brand: "Campus Care 2.0 Partner",
-      name: "Student Affairs Leader",
+      name: "Precious Osei",
       quote:
-        "The Diaspora VR Sanctuary gives our students a space that feels supportive, anonymous, and culturally affirming.",
+        "The ACT Healing gives our students a space that feels supportive, anonymous, and culturally affirming.",
+      image: "/images/team/precious.jpeg",
+    },
+    {
+      headline: "ACT work that creates lasting change",
+      brand: "Founder · Celestial Web Solutions",
+      name: "Paul",
+      quote:
+        "Dr. Cammie's ACT work meets people where they are — breaking generational patterns with compassion, cultural grounding, and real transformation for individuals, families, and communities.",
+      image: "/images/team/founder-waliu.png",
     },
   ],
   closingCta: {
     lines: ["Learn How to Consistently", "Heal & Transform", "For Individuals, Couples, Families & Communities"],
     cta: "Work With Dr. Cammie",
-    href: "mailto:cammie@campuscare.com",
+    href: "mailto:cconner@actcampuscare.com",
   },
 } as const;

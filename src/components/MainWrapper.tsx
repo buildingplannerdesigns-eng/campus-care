@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { MotionPage } from "@/components/MotionProvider";
 
-const HERO_ROUTES = ["/dr-cammie-connor"];
+const HERO_ROUTES = ["/act"];
 
 export function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

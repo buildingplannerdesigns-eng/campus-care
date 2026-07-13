@@ -26,6 +26,13 @@ export default function ContactPage() {
                 </a>
               </li>
             )}
+            {pointOfContact.supportEmail && (
+              <li>
+                <a href={`mailto:${pointOfContact.supportEmail}`} className="hover:text-ember">
+                  {pointOfContact.supportEmail}
+                </a>
+              </li>
+            )}
             {pointOfContact.phone && <li>{pointOfContact.phone}</li>}
             {pointOfContact.location && <li>{pointOfContact.location}</li>}
             {pointOfContact.availableForTravel && (

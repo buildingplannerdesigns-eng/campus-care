@@ -47,36 +47,12 @@ function TeamDetailsPanel({ member, onClose }: { member: TeamMember; onClose: ()
         onClick={onClose}
       />
 
-      <div className="relative flex h-[92svh] w-full max-w-[980px] translate-x-0 overflow-hidden border-l border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-transform duration-300 ease-out md:h-auto md:max-h-[90vh] md:min-h-[620px] md:grid md:grid-cols-[0.92fr_1.08fr]">
-        <div className="relative min-h-[260px] bg-[#eef2ef] md:min-h-full">
-          {member.image ? (
-            <Image
-              src={member.image}
-              alt={`${member.name} photo`}
-              fill
-              className="object-contain object-center p-2 md:p-0"
-              sizes="(max-width: 768px) 100vw, 40vw"
-            />
-          ) : (
-            <div className="flex h-full min-h-[260px] items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white md:min-h-full">
-              <span className="font-display text-7xl italic">{member.name.charAt(0)}</span>
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c3f84]/90 via-[#0f3d70]/52 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-4 text-white md:p-8">
-            <div className="max-w-[34rem] border border-[#88aedd]/50 bg-[#0c3f84]/74 p-3 backdrop-blur-[2px] md:p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/85 [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]">Team Member</p>
-              <h3 className="mt-2 font-display text-2xl leading-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.55)] md:text-5xl">{member.name}</h3>
-              <p className="mt-1 max-w-[28rem] text-xs uppercase tracking-[0.14em] text-white/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.55)] md:text-sm">{member.role}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative flex flex-col overflow-y-auto bg-[#faf9f7] p-6 md:p-8 lg:p-10">
+      <div className="relative w-full max-w-lg overflow-hidden border border-white/15 bg-[#faf9f7] shadow-[0_30px_80px_rgba(0,0,0,0.35)] md:mr-6 md:max-h-[85vh] md:rounded-sm">
+        <div className="relative flex max-h-[92svh] flex-col overflow-y-auto p-6 md:p-8">
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center border border-[#d8ded9] bg-white text-[#0c3f84] transition hover:bg-[#0c3f84] hover:text-white"
+            className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center border border-[#d8ded9] bg-white text-[#0c3f84] transition hover:bg-[#0c3f84] hover:text-white"
             aria-label="Close team details"
           >
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -84,9 +60,30 @@ function TeamDetailsPanel({ member, onClose }: { member: TeamMember; onClose: ()
             </svg>
           </button>
 
-          <div className="pr-12 md:pr-14">
+          <div className="flex flex-col items-center text-center">
+            <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-[#d8ded9] bg-[#eef2ef] shadow-sm sm:h-32 sm:w-32">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={`${member.name} photo`}
+                  fill
+                  className="object-cover object-center"
+                  sizes="128px"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white">
+                  <span className="font-display text-4xl italic">{member.name.charAt(0)}</span>
+                </div>
+              )}
+            </div>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
+            <h3 className="mt-2 font-display text-3xl leading-tight text-[#113f6c] md:text-4xl">{member.name}</h3>
+            <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#5b6d7f] md:text-sm">{member.role}</p>
+          </div>
+
+          <div className="mt-6 border-t border-[#d8ded9] pt-6">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Profile</p>
-            <p className="mt-4 text-sm leading-relaxed text-[#355879] md:text-base">{member.bio}</p>
+            <p className="mt-3 text-sm leading-relaxed text-[#355879] md:text-base">{member.bio}</p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -98,45 +95,54 @@ function TeamDetailsPanel({ member, onClose }: { member: TeamMember; onClose: ()
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#4e6f95]">Focus</p>
               <p className="mt-2 text-sm text-[#113f6c]">Clinical care, strategy, and community support</p>
             </div>
+            {member.email && (
+              <div className="border border-[#d8ded9] bg-white p-4 sm:col-span-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#4e6f95]">Email</p>
+                <a
+                  href={`mailto:${member.email}`}
+                  className="mt-2 block text-sm text-[#113f6c] transition hover:text-[#0c3f84]"
+                >
+                  {member.email}
+                </a>
+              </div>
+            )}
           </div>
 
           {member.socialLinks && (
-            <div className="mt-8 pb-2">
-              <div className="flex flex-col gap-3">
-                {member.socialLinks.linkedin && (
-                  <a
-                    href={member.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-[#0A66C2] hover:text-[#0A66C2]"
-                    aria-label={`${member.name} LinkedIn`}
-                  >
-                    <SocialIcon platform="linkedin" />
-                  </a>
-                )}
-                {member.socialLinks.x && (
-                  <a
-                    href={member.socialLinks.x}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-black hover:text-black"
-                    aria-label={`${member.name} X`}
-                  >
-                    <SocialIcon platform="x" />
-                  </a>
-                )}
-                {member.socialLinks.instagram && (
-                  <a
-                    href={member.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-[#E4405F] hover:text-[#E4405F]"
-                    aria-label={`${member.name} Instagram`}
-                  >
-                    <SocialIcon platform="instagram" />
-                  </a>
-                )}
-              </div>
+            <div className="mt-8 flex flex-wrap gap-3 pb-2">
+              {member.socialLinks.linkedin && (
+                <a
+                  href={member.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-[#0A66C2] hover:text-[#0A66C2]"
+                  aria-label={`${member.name} LinkedIn`}
+                >
+                  <SocialIcon platform="linkedin" />
+                </a>
+              )}
+              {member.socialLinks.x && (
+                <a
+                  href={member.socialLinks.x}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-black hover:text-black"
+                  aria-label={`${member.name} X`}
+                >
+                  <SocialIcon platform="x" />
+                </a>
+              )}
+              {member.socialLinks.instagram && (
+                <a
+                  href={member.socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-11 w-11 items-center justify-center border border-[#d8ded9] bg-white text-[#113f6c] transition hover:border-[#E4405F] hover:text-[#E4405F]"
+                  aria-label={`${member.name} Instagram`}
+                >
+                  <SocialIcon platform="instagram" />
+                </a>
+              )}
             </div>
           )}
         </div>
@@ -156,52 +162,44 @@ export function TeamDetailsDrawer({ teamMembers }: { teamMembers: TeamMember[] }
             key={member.name}
             type="button"
             onClick={() => setActiveMember(member)}
-            className="group overflow-hidden border border-[#d7dfda] bg-white text-left shadow-[0_12px_32px_rgba(11,31,52,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(11,31,52,0.14)]"
+            className="group border border-[#d7dfda] bg-white p-5 text-left shadow-[0_12px_32px_rgba(11,31,52,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(11,31,52,0.14)] md:p-6"
           >
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#eef3ef]">
-              {member.image ? (
-                <Image
-                  src={member.image}
-                  alt={`${member.name} photo`}
-                  fill
-                  className="object-contain object-center transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white">
-                  <span className="font-display text-6xl italic">{member.name.charAt(0)}</span>
-                </div>
-              )}
+            <div className="flex items-start gap-4">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-[#d7dfda] bg-[#eef3ef] sm:h-24 sm:w-24">
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt={`${member.name} photo`}
+                    fill
+                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    sizes="96px"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white">
+                    <span className="font-display text-3xl italic">{member.name.charAt(0)}</span>
+                  </div>
+                )}
+              </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f34]/22 via-[#0b1f34]/6 to-transparent" />
-              <div className="absolute inset-x-0 top-0 flex justify-end p-4">
-                <span className="inline-flex h-10 w-10 items-center justify-center border border-white/30 bg-white/10 text-white backdrop-blur-sm transition group-hover:bg-white group-hover:text-[#0c3f84]">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
+                <h3 className="mt-1 font-display text-xl text-[#113f6c] sm:text-2xl">{member.name}</h3>
+                <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#5b6d7f]">{member.role}</p>
               </div>
             </div>
 
-            <div className="flex min-h-[190px] flex-col p-5 md:p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
-              <h3 className="mt-2 font-display text-2xl text-[#113f6c]">{member.name}</h3>
-              <p className="mt-1 text-sm uppercase tracking-[0.14em] text-[#5b6d7f]">{member.role}</p>
-              <div className="mt-4 flex gap-4">
-                <p className="min-w-0 flex-1 text-sm leading-relaxed text-[#355879]">
-                  {member.bio ?? "Open this profile to learn more about their role and impact."}
-                </p>
-              </div>
+            <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-[#355879]">
+              {member.bio ?? "Open this profile to learn more about their role and impact."}
+            </p>
 
-              <span className="group mt-5 inline-flex items-center self-start text-xs font-semibold uppercase tracking-[0.16em] text-[#0c3f84]">
-                View Profile
-                <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
-                  <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
+            <span className="mt-5 inline-flex items-center text-xs font-semibold uppercase tracking-[0.16em] text-[#0c3f84]">
+              View Profile
+              <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
+                <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
               </span>
-            </div>
+            </span>
           </button>
         ))}
       </div>

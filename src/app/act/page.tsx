@@ -5,21 +5,20 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroFeatureBar } from "@/components/dr-cammie/HeroFeatureBar";
 import {
   StefClosingCta,
-  StefFeaturedQuotes,
   StefFeatureSection,
   StefHiFriend,
   StefImagineSection,
   StefIntro,
   StefOffersSection,
   StefOverwhelmAndSteps,
+  StefQuoteCarousel,
   StefStorySection,
-  StefTestimonials,
 } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
 import { pointOfContact } from "@/data/team";
 
 export const metadata: Metadata = {
-  title: "Dr. Cammie Connor",
+  title: "ACT — Dr. Cammie Connor",
   description:
     "Dr. Cammie Connor — intergenerational trauma expert, speaker, workshop facilitator, and founder of ACT Healing & Campus Care 2.0.",
 };
@@ -35,7 +34,7 @@ export default function DrCammieConnorPage() {
         primaryCta={copy.hero.primaryCta}
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
-        secondaryCtaHref="mailto:cammie@campuscare.com"
+        secondaryCtaHref="mailto:cconner@actcampuscare.com"
         videoTitle={copy.video.title}
         videoEmbedUrl={copy.video.embedUrl || undefined}
         videoSrc={copy.video.videoSrc || undefined}
@@ -57,9 +56,10 @@ export default function DrCammieConnorPage() {
 
       <StefFeatureSection feature={copy.feature} />
 
-      <StefFeaturedQuotes quotes={copy.featuredQuotes} />
-
-      <StefTestimonials testimonials={copy.testimonials} />
+      <StefQuoteCarousel
+        featuredQuotes={copy.featuredQuotes}
+        testimonials={copy.testimonials}
+      />
 
       <StefStorySection story={copy.story} />
 
@@ -83,11 +83,11 @@ export default function DrCammieConnorPage() {
             </p>
             <div className="mt-8 space-y-3 text-sm text-parchment/75">
               <a
-                href="mailto:cammie@campuscare.com"
+                href="mailto:cconner@actcampuscare.com"
                 className="flex items-center gap-3 rounded-none border border-[#e8e4df] bg-white px-4 py-3 transition hover:border-water hover:text-water"
               >
                 <span className="font-semibold text-parchment">Email:</span>
-                <span>cammie@campuscare.com</span>
+                <span>cconner@actcampuscare.com</span>
               </a>
               {pointOfContact.phone && (
                 <a

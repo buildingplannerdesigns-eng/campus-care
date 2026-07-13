@@ -31,6 +31,7 @@ export interface TeamMember {
     instagram?: string;
   };
   email?: string;
+  supportEmail?: string;
   phone?: string;
   location?: string;
   availableForTravel?: boolean;

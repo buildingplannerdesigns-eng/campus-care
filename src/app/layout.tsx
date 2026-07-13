@@ -3,6 +3,7 @@ import {
   Cormorant_Garamond,
   Montserrat,
   IBM_Plex_Mono,
+  Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -28,6 +29,13 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "500"],
+  display: "swap",
+});
+
+const scriptHand = Great_Vibes({
+  subsets: ["latin"],
+  variable: "--font-script",
+  weight: ["400"],
   display: "swap",
 });
 
@@ -58,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${displaySerif.variable} ${bodySans.variable} ${plexMono.variable}`}
+      className={`scroll-smooth ${displaySerif.variable} ${bodySans.variable} ${plexMono.variable} ${scriptHand.variable}`}
     >
       <body className="font-body bg-sanctuary-950 text-parchment antialiased">
         <SiteHeader />

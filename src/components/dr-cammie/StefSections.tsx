@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
-import { QuoteBlock } from "@/components/dr-cammie/QuoteBlock";
+import { QuoteCarousel, type QuoteSlide } from "@/components/dr-cammie/QuoteCarousel";
 
 function ArrowIcon() {
   return (
@@ -61,13 +62,14 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
               className="relative aspect-[4/5] overflow-hidden shadow-[0_24px_50px_rgba(31,92,115,0.14)]"
               style={{ background: "linear-gradient(180deg, #d9d4cc 0%, #b8b0a8 100%)" }}
             >
-              {/* Replace with real portrait: public/images/dr-cammie-portrait.jpg */}
-              <div className="flex h-full flex-col items-center justify-center text-[#8a8378]">
-                <div className="flex h-32 w-32 items-center justify-center rounded-full bg-white/60 font-display text-5xl italic text-[#6b6459]">
-                  CC
-                </div>
-                <p className="mt-4 text-[10px] uppercase tracking-[0.3em]">Dr. Cammie Connor</p>
-              </div>
+              {/* Portrait */}
+              <Image
+                src="/images/team/dr.cammie.jpg"
+                alt="Dr. Cammie"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 90vw, 40vw"
+              />
             </div>
           </div>
 
@@ -218,65 +220,32 @@ export function StefFeatureSection({ feature }: { feature: typeof import("@/data
 }
 
 /* ------------------------------------------------------------------ */
-/* Featured pull quotes                                                */
+/* Quotations carousel — Stefanie Gass style with auto-scroll          */
 /* ------------------------------------------------------------------ */
 
-export function StefFeaturedQuotes({
-  quotes,
-}: {
-  quotes: typeof import("@/data/drCammie").drCammieCopy.featuredQuotes;
-}) {
-  return (
-    <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
-      <div className="mx-auto max-w-6xl space-y-16 px-6 md:space-y-20">
-        {quotes.map((item) => (
-          <QuoteBlock
-            key={item.quote}
-            quote={item.quote}
-            attribution={item.attribution}
-            reference={item.reference}
-            size="medium"
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Testimonials — Stef-style mosaic grid of headline cards             */
-/* ------------------------------------------------------------------ */
-
-export function StefTestimonials({
+export function StefQuoteCarousel({
+  featuredQuotes,
   testimonials,
 }: {
+  featuredQuotes: typeof import("@/data/drCammie").drCammieCopy.featuredQuotes;
   testimonials: typeof import("@/data/drCammie").drCammieCopy.testimonials;
 }) {
-  return (
-    <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
-      <div className="mb-12 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-parchment/45">Kind Words</p>
-        <h2 className="mt-3 font-display text-3xl italic text-parchment md:text-4xl">
-          Stories of Healing &amp; Transformation
-        </h2>
-      </div>
-      <div className="mx-auto max-w-6xl columns-1 gap-7 px-6 md:columns-2 lg:columns-3">
-        {testimonials.map((t) => (
-          <article
-            key={t.name + t.headline}
-            className="mb-7 break-inside-avoid bg-[#faf9f7] p-7 shadow-[0_14px_30px_rgba(0,0,0,0.05)] ring-1 ring-[#eeeae4] md:p-8"
-          >
-            <h3 className="font-display text-xl leading-snug text-parchment md:text-2xl">{t.headline}</h3>
-            <p className="mt-5 text-sm italic leading-relaxed text-parchment/70">&ldquo;{t.quote}&rdquo;</p>
-            <div className="mt-6 border-t border-[#e8e4df] pt-4">
-              <p className="text-sm font-semibold text-parchment">{t.name}</p>
-              <p className="mt-0.5 text-[11px] uppercase tracking-[0.15em] text-parchment/50">{t.brand}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
+  const slides: QuoteSlide[] = [
+    ...featuredQuotes.map((item) => ({
+      name: item.attribution,
+      brand: item.reference,
+      quote: item.quote,
+      image: item.image,
+    })),
+    ...testimonials.map((item) => ({
+      name: item.name,
+      brand: item.brand,
+      quote: item.quote,
+      image: item.image,
+    })),
+  ];
+
+  return <QuoteCarousel slides={slides} autoPlayMs={6500} />;
 }
 
 /* ------------------------------------------------------------------ */
@@ -293,9 +262,15 @@ export function StefStorySection({ story }: { story: typeof import("@/data/drCam
           </p>
         ))}
         <div className="mt-12 border-y border-[#ddd8d0] py-10">
-          <p className="font-display text-2xl italic leading-snug text-parchment md:text-3xl">
-            &ldquo;{story.calloutQuote}&rdquo;
+          <span className="block font-display text-6xl leading-none text-[#0c3f84]/18 md:text-7xl" aria-hidden>
+            &ldquo;
+          </span>
+          <p className="-mt-4 font-display text-2xl italic leading-snug text-parchment md:text-3xl">
+            {story.calloutQuote}
           </p>
+          <span className="mt-1 inline-block font-display text-4xl leading-none text-[#0c3f84]/18" aria-hidden>
+            &rdquo;
+          </span>
         </div>
         <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-water">{story.callout}</p>
       </div>

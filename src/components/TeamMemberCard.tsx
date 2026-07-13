@@ -27,74 +27,70 @@ function SocialIcon({ platform }: { platform: "linkedin" | "x" | "instagram" }) 
 
 export function TeamMemberCard({ member }: { member: TeamMember }) {
   return (
-    <article className="group overflow-hidden rounded-none border border-[#d7dfda] bg-white shadow-[0_12px_32px_rgba(11,31,52,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(11,31,52,0.14)]">
-      <div className="relative aspect-[4/5] overflow-hidden bg-[#eef3ef]">
-        {member.image ? (
-          <Image
-            src={member.image}
-            alt={`${member.name} photo`}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        ) : (
-          <div
-            className="h-full w-full bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)]"
-            aria-hidden
-          />
-        )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f34]/80 via-[#0b1f34]/20 to-transparent" />
-
-        <div className="absolute inset-x-0 bottom-0 p-5">
-          <h3 className="font-display text-2xl text-white">{member.name}</h3>
-          <p className="mt-1 text-sm text-white/80">{member.role}</p>
+    <article className="group border border-[#d7dfda] bg-white p-5 shadow-[0_12px_32px_rgba(11,31,52,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(11,31,52,0.14)] md:p-6">
+      <div className="flex items-start gap-4">
+        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-[#d7dfda] bg-[#eef3ef] sm:h-24 sm:w-24">
+          {member.image ? (
+            <Image
+              src={member.image}
+              alt={`${member.name} photo`}
+              fill
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              sizes="96px"
+            />
+          ) : (
+            <div
+              className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white"
+              aria-hidden
+            >
+              <span className="font-display text-3xl italic">{member.name.charAt(0)}</span>
+            </div>
+          )}
         </div>
 
-        <div className="absolute inset-0 flex items-end bg-[#0c3f84]/92 p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <div className="w-full">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/65">About</p>
-            {member.bio && (
-              <p className="mt-2 text-sm leading-relaxed text-white/88">{member.bio}</p>
-            )}
-            {member.socialLinks && (
-              <div className="mt-5 flex flex-wrap items-center gap-2">
-                {member.socialLinks.linkedin && (
-                  <a
-                    href={member.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} LinkedIn`}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/30 text-white/85 transition hover:border-[#0A66C2] hover:bg-white hover:text-[#0A66C2]"
-                  >
-                    <SocialIcon platform="linkedin" />
-                  </a>
-                )}
-                {member.socialLinks.x && (
-                  <a
-                    href={member.socialLinks.x}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} X`}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/30 text-white/85 transition hover:border-black hover:bg-white hover:text-black"
-                  >
-                    <SocialIcon platform="x" />
-                  </a>
-                )}
-                {member.socialLinks.instagram && (
-                  <a
-                    href={member.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} Instagram`}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-none border border-white/30 text-white/85 transition hover:border-[#E4405F] hover:bg-white hover:text-[#E4405F]"
-                  >
-                    <SocialIcon platform="instagram" />
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
+        <div className="min-w-0 flex-1">
+          <h3 className="font-display text-xl text-[#113f6c] sm:text-2xl">{member.name}</h3>
+          <p className="mt-1 text-sm text-[#5b6d7f]">{member.role}</p>
+          {member.bio && (
+            <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-[#355879]">{member.bio}</p>
+          )}
+          {member.socialLinks && (
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {member.socialLinks.linkedin && (
+                <a
+                  href={member.socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} LinkedIn`}
+                  className="inline-flex h-9 w-9 items-center justify-center border border-[#d7dfda] text-[#113f6c] transition hover:border-[#0A66C2] hover:text-[#0A66C2]"
+                >
+                  <SocialIcon platform="linkedin" />
+                </a>
+              )}
+              {member.socialLinks.x && (
+                <a
+                  href={member.socialLinks.x}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} X`}
+                  className="inline-flex h-9 w-9 items-center justify-center border border-[#d7dfda] text-[#113f6c] transition hover:border-black hover:text-black"
+                >
+                  <SocialIcon platform="x" />
+                </a>
+              )}
+              {member.socialLinks.instagram && (
+                <a
+                  href={member.socialLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${member.name} Instagram`}
+                  className="inline-flex h-9 w-9 items-center justify-center border border-[#d7dfda] text-[#113f6c] transition hover:border-[#E4405F] hover:text-[#E4405F]"
+                >
+                  <SocialIcon platform="instagram" />
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </article>
