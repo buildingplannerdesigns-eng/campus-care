@@ -18,10 +18,12 @@ const securityHeaders = [
       "frame-ancestors 'none'; " +
       "frame-src 'self' https://donorbox.org; " +
       "form-action 'self'; " +
-      "img-src 'self' data: https://cdn.sanity.io https://images.unsplash.com; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "style-src 'self' 'unsafe-inline'; " +
       "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+      "worker-src 'self'; " +
+      "manifest-src 'self'; " +
       "connect-src 'self' https://api.resend.com https://cdn.sanity.io;",
   },
 ];

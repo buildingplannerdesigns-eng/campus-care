@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { StefQuoteCarousel } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
 import { audienceOutcomes } from "@/data/audiences";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Solutions",
   description:
     "Book ACT Healing for therapy, workshops, and campus interventions — culturally grounded care that helps people heal, grow, and ACT on purpose.",
-};
+  path: "/solutions",
+  keywords: ["therapy", "campus interventions", "couples counseling", "family therapy"],
+});
 
 function ArrowIcon() {
   return (

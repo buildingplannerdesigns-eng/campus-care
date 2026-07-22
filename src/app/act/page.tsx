@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { DrCammieHero } from "@/components/DrCammieHero";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -16,12 +15,21 @@ import {
 } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
 import { pointOfContact } from "@/data/team";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "ACT — Dr. Cammie Connor",
   description:
     "Dr. Cammie Connor — intergenerational trauma expert, speaker, workshop facilitator, and founder of ACT Healing & Campus Care 2.0.",
-};
+  path: "/act",
+  keywords: [
+    "Dr. Cammie Connor",
+    "speaker",
+    "workshops",
+    "coaching",
+    "intergenerational trauma expert",
+  ],
+});
 
 export default function DrCammieConnorPage() {
   const copy = drCammieCopy;

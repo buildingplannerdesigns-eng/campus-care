@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui";
 import { ContactForm } from "@/components/ContactForm";
 import { pointOfContact } from "@/data/team";
 import { siteCopy } from "@/data/copy";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contact Us",
-  description: "Stay in touch with Dr. Cammie and Campus Care 2.0.",
-};
+  description: "Stay in touch with Dr. Connor and Campus Care 2.0 — therapy, speaking, workshops, and campus partnerships.",
+  path: "/contact",
+  keywords: ["contact ACT Healing", "book consultation", "campus demo"],
+});
 
 export default function ContactPage() {
   return (

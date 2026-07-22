@@ -1,16 +1,18 @@
-import type { Metadata } from "next";
 import { Section, SectionHeading, PrimaryButton } from "@/components/ui";
 import { AudienceOutcomeCard } from "@/components/AudienceOutcomeCard";
 import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
 import { audienceOutcomes } from "@/data/audiences";
 import { team } from "@/data/team";
 import { siteCopy } from "@/data/copy";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "About Us",
   description:
     "ACT Healing empowers individuals, couples, families, and communities to heal from past wounds and build lasting resilience.",
-};
+  path: "/about",
+  keywords: ["about ACT Healing", "Agents of Change and Transformation", "team"],
+});
 
 export default function AboutPage() {
   return (

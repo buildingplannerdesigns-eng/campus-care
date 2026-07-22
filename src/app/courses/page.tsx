@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Section, SectionHeading, PrimaryButton, SecondaryButton, Eyebrow } from "@/components/ui";
 import { ElementCard } from "@/components/ElementCard";
 import { OperationStep } from "@/components/OperationStep";
@@ -7,12 +6,15 @@ import { coreElements } from "@/data/elements";
 import { operationSteps } from "@/data/operations";
 import { mentalHealthStats } from "@/data/stats";
 import { siteCopy } from "@/data/copy";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Courses — Campus Care 2.0",
+export const metadata = pageMetadata({
+  title: "Courses",
   description:
     "Campus Care 2.0: The Diaspora VR Sanctuary — five core elements, a bio-responsive ecosystem, and the evidence behind it.",
-};
+  path: "/courses",
+  keywords: ["5 core elements", "Water Fire Earth Mineral Nature", "professional courses"],
+});
 
 export default function CoursesPage() {
   return (

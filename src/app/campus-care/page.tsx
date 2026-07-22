@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { BrandLogo } from "@/components/BrandLogo";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-	title: "Campus Care",
-	description:
-		"Campus Care is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
-};
+export const metadata = pageMetadata({
+  title: "Campus Care",
+  description:
+    "Campus Care is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
+  path: "/campus-care",
+  keywords: ["Diaspora VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy"],
+});
 
 const evidenceStats = [
 	{
