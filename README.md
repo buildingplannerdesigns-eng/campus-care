@@ -39,15 +39,20 @@ src/
 | `/act`         | ACT — Dr. Cammie Connor                                     |
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
 | `/courses`     | Courses — Campus Care 2.0 deep dive                         |
-| `/blog`        | Blog                                                         |
+| `/blog`        | Blog (Sanity CMS + fallback posts)                          |
+| `/studio`      | Sanity Studio — edit site content                           |
 | `/payments`    | Donations via Donorbox                                         |
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
 
 ## Integrations (wired, awaiting credentials)
 
-- **Sanity CMS** (`src/lib/sanity.ts`) — swap the static content in `src/data/` for
-  live queries once `NEXT_PUBLIC_SANITY_PROJECT_ID` is set.
+- **Sanity CMS** — edit live content at `/studio` once `NEXT_PUBLIC_SANITY_PROJECT_ID` is set.
+  - Blog posts, authors, categories
+  - Team members (About page)
+  - Site settings (homepage hero/mission, contact details)
+  - 5 Core Elements (Courses page)
+  - Static fallbacks in `src/data/` keep the site running without credentials
 - **Supabase** (`src/lib/supabase.ts`) — `recordDonation()` inserts into a `donations`
   table (suggested schema in the file's comments).
 - **Donorbox** (`NEXT_PUBLIC_DONORBOX_CAMPAIGN_URL`)
@@ -56,7 +61,15 @@ src/
 - **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`)
   — bot protection for the contact form with server-side token verification.
 
-Until env vars are set, these fall back to `console.info` logging so the site still
+### Sanity quick start
+
+1. Create a project at [sanity.io/manage](https://www.sanity.io/manage)
+2. Copy the project ID into `.env.local` as `NEXT_PUBLIC_SANITY_PROJECT_ID`
+3. Run `npm run dev` and open [http://localhost:3000/studio](http://localhost:3000/studio)
+4. Log in with Sanity, then add **Site Settings**, **Blog Posts**, **Team Members**, and **Core Elements**
+5. Publish — the site revalidates about every 60 seconds
+
+Until env vars are set, these fall back to `src/data/` and `console.info` logging so the site still
 runs end-to-end locally.
 
 ## Content notes for the client

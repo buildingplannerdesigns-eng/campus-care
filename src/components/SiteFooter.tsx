@@ -127,6 +127,15 @@ export function SiteFooter() {
               <span className="hidden text-[#94a9bf] sm:inline" aria-hidden>
                 |
               </span>
+              <Link
+                href="/studio"
+                className="text-[10px] uppercase tracking-[0.2em] text-[#0c3f84]/80 transition hover:text-[#0c3f84]"
+              >
+                Edit Site
+              </Link>
+              <span className="hidden text-[#94a9bf] sm:inline" aria-hidden>
+                |
+              </span>
               <a
                 href="https://celestialwebsolutions.net/campus-care"
                 target="_blank"

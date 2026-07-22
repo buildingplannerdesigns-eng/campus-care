@@ -4,13 +4,7 @@ import {
   type BlogPortableTextChild,
   type BlogPost,
 } from "@/data/blogFallback";
-import { isSanityConfigured, sanityClient } from "@/lib/sanity";
-
-type SanityImage = {
-  asset?: {
-    _ref?: string;
-  };
-};
+import { isSanityConfigured, sanityClient, urlForImage } from "@/lib/sanity";
 
 type SanityBlock = {
   _type?: string;
@@ -30,25 +24,11 @@ type RawBlogPost = {
   publishedAt?: string;
   author?: string;
   category?: string;
-  mainImage?: SanityImage;
-  coverImage?: SanityImage;
-  heroImage?: SanityImage;
+  mainImage?: unknown;
+  coverImage?: unknown;
+  heroImage?: unknown;
   body?: SanityBlock[];
 };
-
-function buildSanityImageUrl(image?: SanityImage): string | undefined {
-  const ref = image?.asset?._ref;
-  if (!ref || !ref.startsWith("image-")) return undefined;
-
-  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
-  if (!projectId) return undefined;
-
-  const [, id, dimensions, format] = ref.split("-");
-  if (!id || !dimensions || !format) return undefined;
-
-  return `https://cdn.sanity.io/images/${projectId}/${dataset}/${id}-${dimensions}.${format}`;
-}
 
 function extractBodyParagraphs(blocks?: SanityBlock[]): string[] {
   if (!Array.isArray(blocks)) return [];
@@ -72,7 +52,7 @@ function normalizePortableBlocks(blocks?: SanityBlock[]): BlogPortableBlock[] {
     .filter((block) => block?._type === "block")
     .map((block, index) => ({
       _key: block._key ?? `block-${index}`,
-      _type: "block",
+      _type: "block" as const,
       style: block.style ?? "normal",
       listItem: block.listItem,
       level: block.level,
@@ -116,9 +96,9 @@ function normalizePost(post: RawBlogPost, index: number): BlogPost {
     author: post.author?.trim() || "Campus Care Team",
     category: post.category?.trim() || "Update",
     imageUrl:
-      buildSanityImageUrl(post.mainImage) ||
-      buildSanityImageUrl(post.coverImage) ||
-      buildSanityImageUrl(post.heroImage) ||
+      urlForImage(post.mainImage as never) ||
+      urlForImage(post.coverImage as never) ||
+      urlForImage(post.heroImage as never) ||
       fallbackBlogPosts[index % fallbackBlogPosts.length].imageUrl,
   };
 }
@@ -151,6 +131,30 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  if (isSanityConfigured() && sanityClient) {
+    try {
+      const post = await sanityClient.fetch<RawBlogPost | null>(
+        `*[_type in ["post", "blogPost", "blog"] && slug.current == $slug][0]{
+          _id,
+          title,
+          "slug": slug.current,
+          excerpt,
+          "publishedAt": coalesce(publishedAt, _createdAt),
+          "author": coalesce(author->name, "Campus Care Team"),
+          "category": coalesce(category->title, "Update"),
+          mainImage,
+          coverImage,
+          heroImage,
+          body
+        }`,
+        { slug }
+      );
+      if (post?.slug) return normalizePost(post, 0);
+    } catch {
+      // fall through to list lookup / fallback
+    }
+  }
+
   const posts = await getBlogPosts();
   return posts.find((post) => post.slug === slug) ?? null;
 }

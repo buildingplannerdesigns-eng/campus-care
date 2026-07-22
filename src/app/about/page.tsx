@@ -2,9 +2,11 @@ import { Section, SectionHeading, PrimaryButton } from "@/components/ui";
 import { AudienceOutcomeCard } from "@/components/AudienceOutcomeCard";
 import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
 import { audienceOutcomes } from "@/data/audiences";
-import { team } from "@/data/team";
-import { siteCopy } from "@/data/copy";
+import { getEditableSiteCopy } from "@/lib/content/siteCopy";
+import { getTeamMembers } from "@/lib/content/team";
 import { pageMetadata } from "@/lib/seo";
+
+export const revalidate = 60;
 
 export const metadata = pageMetadata({
   title: "About Us",
@@ -14,7 +16,9 @@ export const metadata = pageMetadata({
   keywords: ["about ACT Healing", "Agents of Change and Transformation", "team"],
 });
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [copy, teamMembers] = await Promise.all([getEditableSiteCopy(), getTeamMembers()]);
+
   return (
     <>
       <Section className="pt-20">
@@ -26,10 +30,10 @@ export default function AboutPage() {
                 Agents of Change and Transformation
               </h1>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
-                {siteCopy.mission.heading}
+                {copy.mission.heading}
               </p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/78 md:text-base">
-                {siteCopy.mission.body}
+                {copy.mission.body}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <PrimaryButton href="/contact">Work With Us</PrimaryButton>
@@ -40,7 +44,7 @@ export default function AboutPage() {
               <div className="w-full border border-[#d7dfda] bg-white p-6 md:p-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Our Guiding Statement</p>
                 <blockquote className="mt-4 font-display text-3xl italic leading-tight text-[#113f6c] md:text-4xl">
-                  {siteCopy.guidingStatement}
+                  {copy.guidingStatement}
                 </blockquote>
                 <p className="mt-5 text-sm leading-relaxed text-[#355879]">
                   We build healing-centered experiences that honor the whole person and translate trauma-informed care into practical support.
@@ -73,7 +77,7 @@ export default function AboutPage() {
       <Section className="border-t border-sanctuary-700/60">
         <SectionHeading heading="Rooted in Intergenerational Trauma Expertise" />
         <p className="mt-6 max-w-2xl text-parchment/70">
-          Dr. Cammie&apos;s expertise in intergenerational trauma helps break the thought
+          Dr. Connor&apos;s expertise in intergenerational trauma helps break the thought
           patterns that are not serving purpose — informing every module inside Campus
           Care 2.0.
         </p>
@@ -85,7 +89,7 @@ export default function AboutPage() {
           Tap any card to open a profile with their details, email, and social links.
         </p>
         <div className="mt-10">
-          <TeamDetailsDrawer teamMembers={team} />
+          <TeamDetailsDrawer teamMembers={teamMembers} />
         </div>
       </Section>
 

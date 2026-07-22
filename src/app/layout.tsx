@@ -6,10 +6,7 @@ import {
   Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { MainWrapper } from "@/components/MainWrapper";
-import { PwaRegister } from "@/components/PwaRegister";
+import { SiteChrome } from "@/components/SiteChrome";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
@@ -201,10 +198,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SiteHeader />
-        <MainWrapper>{children}</MainWrapper>
-        <SiteFooter />
-        <PwaRegister />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

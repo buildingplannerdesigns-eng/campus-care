@@ -2,11 +2,13 @@ import { Section, SectionHeading, PrimaryButton, SecondaryButton, Eyebrow } from
 import { ElementCard } from "@/components/ElementCard";
 import { OperationStep } from "@/components/OperationStep";
 import { StatCard } from "@/components/StatCard";
-import { coreElements } from "@/data/elements";
 import { operationSteps } from "@/data/operations";
 import { mentalHealthStats } from "@/data/stats";
 import { siteCopy } from "@/data/copy";
+import { getCoreElements } from "@/lib/content/elements";
 import { pageMetadata } from "@/lib/seo";
+
+export const revalidate = 60;
 
 export const metadata = pageMetadata({
   title: "Courses",
@@ -16,7 +18,9 @@ export const metadata = pageMetadata({
   keywords: ["5 core elements", "Water Fire Earth Mineral Nature", "professional courses"],
 });
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const coreElements = await getCoreElements();
+
   return (
     <>
       <Section className="pt-20">

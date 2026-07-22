@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 import { getBlogPostBySlug, getBlogPosts, getBlogSlugs } from "@/lib/blog";
 import type { BlogPortableBlock } from "@/data/blogFallback";
 
+export const revalidate = 60;
+
 type PageProps = {
   params: Promise<{ slug: string }>;
 };

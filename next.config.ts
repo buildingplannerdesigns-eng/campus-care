@@ -21,10 +21,10 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "style-src 'self' 'unsafe-inline'; " +
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; " +
-      "worker-src 'self'; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
+      "worker-src 'self' blob:; " +
       "manifest-src 'self'; " +
-      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
+      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
   },
 ];
 
@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
   // Pin tracing to this project — avoids wrong root when another lockfile exists upstream
   outputFileTracingRoot: path.join(process.cwd()),
   reactStrictMode: true,
+  transpilePackages: ["next-sanity", "sanity", "@sanity/vision"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io" },

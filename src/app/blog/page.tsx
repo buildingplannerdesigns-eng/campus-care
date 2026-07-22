@@ -1,13 +1,17 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import { getBlogPosts } from "@/lib/blog";
 
-export const metadata: Metadata = {
-  title: "Blog - Campus Care 2.0",
+export const revalidate = 60;
+
+export const metadata = pageMetadata({
+  title: "Blog",
   description:
     "Insights, stories, and research updates from Campus Care 2.0 and the Diaspora VR Sanctuary.",
-};
+  path: "/blog",
+  keywords: ["Campus Care blog", "HBCU wellness", "ACT Healing insights"],
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
 

@@ -4,6 +4,9 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { BrandLogo } from "@/components/BrandLogo";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { siteCopy } from "@/data/copy";
+import { getEditableSiteCopy } from "@/lib/content/siteCopy";
+
+export const revalidate = 60;
 
 function ArrowIcon() {
   return (
@@ -50,8 +53,12 @@ function HomeCta({
   );
 }
 
-export default function HomePage() {
-  const { hero, mission, guidingStatement } = siteCopy;
+export default async function HomePage() {
+  const editable = await getEditableSiteCopy();
+  const { mission: fallbackMission } = siteCopy;
+  const hero = editable.hero;
+  const mission = editable.mission;
+  const guidingStatement = editable.guidingStatement;
 
   return (
     <>
@@ -99,7 +106,7 @@ export default function HomePage() {
       <section className="border-t border-[#eeeae4] bg-white py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <blockquote className="font-display text-3xl italic leading-snug text-parchment md:text-4xl">
-            {mission.heading}
+            {mission.heading || fallbackMission.heading}
           </blockquote>
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
             {guidingStatement}
