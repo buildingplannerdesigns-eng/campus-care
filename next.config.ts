@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
   // Pin tracing to this project — avoids wrong root when another lockfile exists upstream
   outputFileTracingRoot: path.join(process.cwd()),
   reactStrictMode: true,
-  transpilePackages: ["next-sanity", "sanity", "@sanity/vision"],
+  transpilePackages: ["next-sanity", "sanity"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io" },

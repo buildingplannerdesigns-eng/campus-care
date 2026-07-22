@@ -1,7 +1,6 @@
-import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { apiVersion, dataset, projectId } from "./src/sanity/env";
+import { dataset, projectId } from "./src/sanity/env";
 import { schemaTypes } from "./src/sanity/schemaTypes";
 import { structure } from "./src/sanity/structure";
 
@@ -13,7 +12,8 @@ export default defineConfig({
   projectId: configuredProjectId,
   dataset,
   basePath: "/studio",
-  plugins: [structureTool({ structure }), visionTool({ defaultApiVersion: apiVersion })],
+  // Vision plugin omitted — @sanity/vision requires React APIs not available in this Next 15 build.
+  plugins: [structureTool({ structure })],
   schema: {
     types: schemaTypes,
   },
