@@ -35,10 +35,8 @@ export default function DrCammieConnorPage() {
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
         secondaryCtaHref="mailto:cconner@actcampuscare.com"
-        videoTitle={copy.video.title}
-        videoEmbedUrl={copy.video.embedUrl || undefined}
-        videoSrc={copy.video.videoSrc || undefined}
-        videoPoster={copy.video.poster || undefined}
+        headshotSrc="/images/team/dr.cammie.jpg"
+        headshotAlt="Dr. Connor"
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />

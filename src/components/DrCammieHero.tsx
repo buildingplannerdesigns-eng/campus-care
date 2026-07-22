@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 
 type DrCammieHeroProps = {
   headline: string;
@@ -9,10 +9,8 @@ type DrCammieHeroProps = {
   secondaryCta?: string;
   secondaryCtaHref?: string;
   minimalText?: boolean;
-  videoTitle?: string;
-  videoEmbedUrl?: string;
-  videoSrc?: string;
-  videoPoster?: string;
+  headshotSrc?: string;
+  headshotAlt?: string;
 };
 
 export function DrCammieHero({
@@ -23,14 +21,12 @@ export function DrCammieHero({
   secondaryCta,
   secondaryCtaHref,
   minimalText = false,
-  videoTitle,
-  videoEmbedUrl,
-  videoSrc,
-  videoPoster,
+  headshotSrc = "/images/team/dr.cammie.jpg",
+  headshotAlt = "Dr. Connor",
 }: DrCammieHeroProps) {
   return (
     <section className="relative bg-white pb-10 md:pb-14">
-      {/* Dark gradient band — modest bottom padding for the smaller desktop mockup */}
+      {/* Dark gradient band — modest bottom padding for the overlapping headshot */}
       <div
         className="bg-cover bg-center pb-36 md:pb-44 lg:pb-52"
         style={{
@@ -39,40 +35,35 @@ export function DrCammieHero({
         }}
       >
         {/* Centered headline stack — mirrors stefaniegass.com hero */}
-        <div className={`relative mx-auto flex flex-col items-center justify-center px-5 text-center sm:px-6 ${minimalText ? "max-w-4xl pt-32 md:pt-40" : "max-w-5xl pt-36 md:pt-44"}`}>
-        <h1 className={`font-display text-white ${minimalText ? "text-[2.2rem] leading-[1.05] sm:text-[2.7rem] md:text-5xl lg:text-6xl" : "text-[2rem] italic leading-[1.1] sm:text-[2.35rem] md:text-6xl lg:text-[4.1rem] lg:leading-[1.02]"}`}>
-          {headline}
-        </h1>
-        <p className={`max-w-2xl text-white/85 ${minimalText ? "mt-3 text-base md:text-lg" : "mt-4 font-display text-lg sm:text-xl md:mt-5 md:text-2xl"}`}>
-          {subhead}
-        </p>
-        <div className={`flex flex-wrap items-center justify-center gap-3 ${minimalText ? "mt-6" : "mt-8"}`}>
-          <Link
-            href={primaryCtaHref}
-            className="group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-7 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88] sm:px-10 sm:py-3.5 sm:text-sm"
+        <div
+          className={`relative mx-auto flex flex-col items-center justify-center px-5 text-center sm:px-6 ${
+            minimalText ? "max-w-4xl pt-32 md:pt-40" : "max-w-5xl pt-36 md:pt-44"
+          }`}
+        >
+          <h1
+            className={`font-display text-white ${
+              minimalText
+                ? "text-[2.2rem] leading-[1.05] sm:text-[2.7rem] md:text-5xl lg:text-6xl"
+                : "text-[2rem] italic leading-[1.1] sm:text-[2.35rem] md:text-6xl lg:text-[4.1rem] lg:leading-[1.02]"
+            }`}
           >
-            {primaryCta}
-            <span
-              className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
-              aria-hidden
-            >
-              <svg
-                className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 group-active:translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
-          </Link>
-
-          {secondaryCta && secondaryCtaHref && (
+            {headline}
+          </h1>
+          <p
+            className={`max-w-2xl text-white/85 ${
+              minimalText
+                ? "mt-3 text-base md:text-lg"
+                : "mt-4 font-display text-lg sm:text-xl md:mt-5 md:text-2xl"
+            }`}
+          >
+            {subhead}
+          </p>
+          <div className={`flex flex-wrap items-center justify-center gap-3 ${minimalText ? "mt-6" : "mt-8"}`}>
             <Link
-              href={secondaryCtaHref}
-              className="group inline-flex items-center justify-center rounded-none border border-white/45 bg-white/10 px-7 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88] sm:px-10 sm:py-3.5 sm:text-sm"
+              href={primaryCtaHref}
+              className="group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-7 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88] sm:px-10 sm:py-3.5 sm:text-sm"
             >
-              {secondaryCta}
+              {primaryCta}
               <span
                 className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
                 aria-hidden
@@ -87,20 +78,50 @@ export function DrCammieHero({
                 </svg>
               </span>
             </Link>
-          )}
-        </div>
+
+            {secondaryCta && secondaryCtaHref && (
+              <Link
+                href={secondaryCtaHref}
+                className="group inline-flex items-center justify-center rounded-none border border-white/45 bg-white/10 px-7 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88] sm:px-10 sm:py-3.5 sm:text-sm"
+              >
+                {secondaryCta}
+                <span
+                  className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
+                  aria-hidden
+                >
+                  <svg
+                    className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 group-active:translate-x-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Featured video — silver desktop monitor, centered and contained */}
-      <div className="relative z-10 mx-auto -mt-24 w-full max-w-[920px] px-5 sm:px-8 md:-mt-32 lg:-mt-36">
-        <DesktopVideoMockup
-          title={videoTitle ?? headline}
-          embedUrl={videoEmbedUrl}
-          videoSrc={videoSrc}
-          poster={videoPoster}
-          urlBar="campuscare.com / act"
-        />
+      {/* Headshot — overlaps the dark hero band */}
+      <div className="relative z-10 mx-auto -mt-28 flex justify-center px-5 sm:px-8 md:-mt-36 lg:-mt-40">
+        <div className="relative">
+          <div
+            className="absolute -left-3 -top-3 hidden h-full w-full border border-[#0e4f88]/25 md:block"
+            aria-hidden
+          />
+          <div className="relative h-56 w-56 overflow-hidden rounded-full shadow-[0_24px_50px_rgba(17,63,108,0.22)] ring-[6px] ring-white sm:h-64 sm:w-64 md:h-72 md:w-72">
+            <Image
+              src={headshotSrc}
+              alt={headshotAlt}
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="(max-width: 640px) 224px, (max-width: 768px) 256px, 288px"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

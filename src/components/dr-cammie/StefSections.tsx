@@ -65,7 +65,7 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
               {/* Portrait */}
               <Image
                 src="/images/team/dr.cammie.jpg"
-                alt="Dr. Cammie"
+                alt="Dr. Connor"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 40vw"
