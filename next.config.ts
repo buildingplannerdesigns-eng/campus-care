@@ -65,6 +65,8 @@ const nextConfig: NextConfig = {
       { source: "/diaspora-vr", destination: "/campus-care", permanent: true },
       { source: "/team", destination: "/about", permanent: true },
       { source: "/reflect-xr", destination: "/campus-care", permanent: true },
+      { source: "/studio", destination: "/", permanent: false },
+      { source: "/studio/:path*", destination: "/", permanent: false },
     ];
   },
 };

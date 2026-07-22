@@ -40,7 +40,6 @@ src/
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
 | `/courses`     | Courses — Campus Care 2.0 deep dive                         |
 | `/blog`        | Blog (Sanity CMS + fallback posts)                          |
-| `/studio`      | CMS entry — links to Sanity Studio / Manage                 |
 | `/payments`    | Donations via Donorbox                                         |
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
@@ -53,7 +52,7 @@ src/
   - Site settings (homepage hero/mission, contact details)
   - 5 Core Elements (Courses page)
   - Static fallbacks in `src/data/` keep the site running without credentials
-  - `/studio` on the website links to your Studio (embedded Studio is not bundled into the Next.js build)
+  - Edit content locally with `npm run sanity` (or a hosted Sanity Studio URL)
 - **Supabase** (`src/lib/supabase.ts`) — `recordDonation()` inserts into a `donations`
   table (suggested schema in the file's comments).
 - **Donorbox** (`NEXT_PUBLIC_DONORBOX_CAMPAIGN_URL`)
@@ -68,7 +67,7 @@ src/
 2. Copy the project ID into `.env.local` as `NEXT_PUBLIC_SANITY_PROJECT_ID`
 3. Run the Studio locally with `npm run sanity` (or deploy with `npm run sanity:deploy`)
 4. Optionally set `NEXT_PUBLIC_SANITY_STUDIO_URL` to your hosted Studio URL
-5. Open `/studio` on the website for quick links, then publish Blog, Team, Site Settings, and Core Elements
+5. Open Sanity Studio locally (`npm run sanity`) or your hosted Studio, then publish Blog, Team, Site Settings, and Core Elements
 6. The public site revalidates about every 60 seconds
 
 Until env vars are set, pages fall back to `src/data/` content.
