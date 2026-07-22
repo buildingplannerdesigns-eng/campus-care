@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { BrandLogo } from "@/components/BrandLogo";
+import { triggerPwaInstall } from "@/components/PwaRegister";
 
 const lookAroundLinks = [
   { href: "/", label: "Home" },
@@ -115,7 +116,17 @@ export function SiteFooter() {
               All Rights Reserved
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => triggerPwaInstall()}
+                className="text-[10px] uppercase tracking-[0.2em] text-[#0c3f84]/80 transition hover:text-[#0c3f84]"
+              >
+                Install App
+              </button>
+              <span className="hidden text-[#94a9bf] sm:inline" aria-hidden>
+                |
+              </span>
               <a
                 href="https://celestialwebsolutions.net/campus-care"
                 target="_blank"

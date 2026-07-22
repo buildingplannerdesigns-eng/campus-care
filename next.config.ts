@@ -16,15 +16,15 @@ const securityHeaders = [
       "default-src 'self'; " +
       "base-uri 'self'; " +
       "frame-ancestors 'none'; " +
-      "frame-src 'self' https://donorbox.org; " +
+      "frame-src 'self' https://donorbox.org https://www.googletagmanager.com; " +
       "form-action 'self'; " +
-      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "style-src 'self' 'unsafe-inline'; " +
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; " +
       "worker-src 'self'; " +
       "manifest-src 'self'; " +
-      "connect-src 'self' https://api.resend.com https://cdn.sanity.io;",
+      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
   },
 ];
 

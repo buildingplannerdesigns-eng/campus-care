@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MainWrapper } from "@/components/MainWrapper";
 import { PwaRegister } from "@/components/PwaRegister";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
 
@@ -195,6 +196,7 @@ export default function RootLayout({
       className={`scroll-smooth ${displaySerif.variable} ${bodySans.variable} ${plexMono.variable} ${scriptHand.variable}`}
     >
       <body className="font-body bg-sanctuary-950 text-parchment antialiased">
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
