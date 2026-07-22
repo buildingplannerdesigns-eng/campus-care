@@ -383,13 +383,13 @@ export function StefImagineSection({
 export function StefClosingCta({ closing }: { closing: typeof import("@/data/drCammie").drCammieCopy.closingCta }) {
   return (
     <section
-      className="py-24 text-center md:py-32"
+      className="relative overflow-hidden bg-cover bg-center py-24 text-center md:py-32"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), linear-gradient(160deg, #1a3348 0%, #2a5570 45%, #1e3d35 100%)",
+          "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), url('/images/team/background.connor.jpg')",
       }}
     >
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="relative z-10 mx-auto max-w-3xl px-6">
         <div className="space-y-1 font-display text-4xl italic leading-tight text-white md:text-5xl">
           {closing.lines.map((line) => (
             <p key={line}>{line}</p>
