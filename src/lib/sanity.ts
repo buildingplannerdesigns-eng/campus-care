@@ -3,7 +3,7 @@ import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { createClient } from "@sanity/client";
 
 /**
- * Sanity CMS client for content the Campus Care team edits in /studio:
+ * Sanity CMS client for content the Campus Care team edits in Sanity Studio:
  * blog posts, team bios, core elements, and site settings.
  * Until NEXT_PUBLIC_SANITY_PROJECT_ID is set, pages use src/data fallbacks.
  */

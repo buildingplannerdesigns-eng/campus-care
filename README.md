@@ -40,19 +40,20 @@ src/
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
 | `/courses`     | Courses — Campus Care 2.0 deep dive                         |
 | `/blog`        | Blog (Sanity CMS + fallback posts)                          |
-| `/studio`      | Sanity Studio — edit site content                           |
+| `/studio`      | CMS entry — links to Sanity Studio / Manage                 |
 | `/payments`    | Donations via Donorbox                                         |
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
 
 ## Integrations (wired, awaiting credentials)
 
-- **Sanity CMS** — edit live content at `/studio` once `NEXT_PUBLIC_SANITY_PROJECT_ID` is set.
+- **Sanity CMS** — edit live content via Sanity Studio (`npm run sanity` or hosted Studio).
   - Blog posts, authors, categories
   - Team members (About page)
   - Site settings (homepage hero/mission, contact details)
   - 5 Core Elements (Courses page)
   - Static fallbacks in `src/data/` keep the site running without credentials
+  - `/studio` on the website links to your Studio (embedded Studio is not bundled into the Next.js build)
 - **Supabase** (`src/lib/supabase.ts`) — `recordDonation()` inserts into a `donations`
   table (suggested schema in the file's comments).
 - **Donorbox** (`NEXT_PUBLIC_DONORBOX_CAMPAIGN_URL`)
@@ -65,12 +66,12 @@ src/
 
 1. Create a project at [sanity.io/manage](https://www.sanity.io/manage)
 2. Copy the project ID into `.env.local` as `NEXT_PUBLIC_SANITY_PROJECT_ID`
-3. Run `npm run dev` and open [http://localhost:3000/studio](http://localhost:3000/studio)
-4. Log in with Sanity, then add **Site Settings**, **Blog Posts**, **Team Members**, and **Core Elements**
-5. Publish — the site revalidates about every 60 seconds
+3. Run the Studio locally with `npm run sanity` (or deploy with `npm run sanity:deploy`)
+4. Optionally set `NEXT_PUBLIC_SANITY_STUDIO_URL` to your hosted Studio URL
+5. Open `/studio` on the website for quick links, then publish Blog, Team, Site Settings, and Core Elements
+6. The public site revalidates about every 60 seconds
 
-Until env vars are set, these fall back to `src/data/` and `console.info` logging so the site still
-runs end-to-end locally.
+Until env vars are set, pages fall back to `src/data/` content.
 
 ## Content notes for the client
 
