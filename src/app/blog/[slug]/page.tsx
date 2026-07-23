@@ -227,12 +227,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) {
     return {
       title: "Blog Post Not Found - Campus Care 2.0",
+      robots: { index: false, follow: false },
     };
   }
+
+  const canonical = `${siteUrl}/blog/${post.slug}`;
 
   return {
     title: `${post.title} - Blog - Campus Care 2.0`,
     description: post.excerpt,
+    keywords: [post.category, "Campus Care blog", "HBCU wellness", "ACT Healing"],
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: post.title,
+      description: post.excerpt,
+      siteName: "Campus Care 2.0",
+      publishedTime: post.publishedAt,
+      authors: [post.author],
+      images: [{ url: post.imageUrl, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.imageUrl],
+    },
   };
 }
 
@@ -263,8 +284,30 @@ export default async function BlogPostPage({ params }: PageProps) {
   );
   const relatedPosts = [...sameCategory, ...otherPosts].slice(0, 3);
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.imageUrl,
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: "Campus Care 2.0",
+      url: siteUrl,
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+    articleSection: post.category,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <section className="border-b border-[#d4dcd8] bg-[linear-gradient(145deg,#f4f0e8_0%,#e8f0ec_45%,#dbe8e4_100%)] py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-6">
           <Link href="/blog" className="text-xs font-semibold uppercase tracking-[0.18em] text-[#325786] hover:text-[#0e4f88]">

@@ -1,15 +1,20 @@
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { BrandLogo } from "@/components/BrandLogo";
+import { ElementCard } from "@/components/ElementCard";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
+import { siteCopy } from "@/data/copy";
+import { getCoreElements } from "@/lib/content/elements";
 import { pageMetadata } from "@/lib/seo";
+
+export const revalidate = 60;
 
 export const metadata = pageMetadata({
   title: "Campus Care",
   description:
     "Campus Care is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
   path: "/campus-care",
-  keywords: ["Diaspora VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy"],
+  keywords: ["Diaspora VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy", "5 core elements"],
 });
 
 const evidenceStats = [
@@ -71,7 +76,9 @@ const xrImages = [
 	},
 ];
 
-export default function DiasporaVRPage() {
+export default async function CampusCarePage() {
+	const coreElements = await getCoreElements();
+
 	return (
 		<>
 			<section className="border-b border-sanctuary-700/30 bg-white">
@@ -197,6 +204,27 @@ export default function DiasporaVRPage() {
 							))}
 						</div>
 					</div>
+				</div>
+			</Section>
+
+			<Section className="border-t border-sanctuary-700/60">
+				<div className="mx-auto max-w-4xl text-center">
+					<SectionHeading
+						eyebrow="The Sanctuary"
+						heading={siteCopy.elementsIntro.heading}
+						className="text-center [&>h2]:mx-auto"
+					/>
+					<p className="mt-6 text-base leading-relaxed text-parchment/70 md:text-lg">
+						{siteCopy.elementsIntro.body}
+					</p>
+				</div>
+				<div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+					{coreElements.map((element) => (
+						<ElementCard key={element.key} element={element} />
+					))}
+				</div>
+				<div className="mt-12 flex flex-wrap justify-center gap-4">
+					<PrimaryButton href="/courses">Explore the Courses</PrimaryButton>
 				</div>
 			</Section>
 

@@ -184,61 +184,42 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5 Elements tidbit */}
+      {/* 5 Elements — summary */}
       <section className="border-t border-[#eeeae4] bg-white py-16 md:py-24">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-4xl px-6">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">The Diaspora VR Sanctuary</p>
             <h2 className="mt-3 font-display text-3xl italic text-parchment md:text-4xl">
               The 5 Core Elements™
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-parchment/65">
-              Ancient pathways, reimagined as five immersive digital environments for restorative wellness.
+              Five immersive environments — each a pathway from stress to steadiness. Explore the full
+              experience on the Campus Care page.
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
             {[
-              { key: "water", label: "Water", focus: "Regulation", image: "/images/elements/water.webp", accent: "#7FC4DE" },
-              { key: "fire", label: "Fire", focus: "Release", image: "/images/elements/fire.jpg", accent: "#FF9D4D" },
-              { key: "earth", label: "Earth", focus: "Grounding", image: "/images/elements/earth.jpg", accent: "#C99A66" },
-              { key: "mineral", label: "Mineral", focus: "Perspective", image: "/images/elements/minerals.jpg", accent: "#A8B3D6" },
-              { key: "nature", label: "Nature", focus: "Renewal", image: "/images/elements/nature.jpg", accent: "#A3C98A" },
+              { label: "Water", focus: "Regulation", accent: "#7FC4DE" },
+              { label: "Fire", focus: "Release", accent: "#FF9D4D" },
+              { label: "Earth", focus: "Grounding", accent: "#C99A66" },
+              { label: "Mineral", focus: "Perspective", accent: "#A8B3D6" },
+              { label: "Nature", focus: "Renewal", accent: "#A3C98A" },
             ].map((element, index) => (
-              <Link
-                key={element.key}
-                href="/courses"
-                className={`group relative overflow-hidden border border-[#e8e4df] bg-[#faf9f7] transition hover:-translate-y-1 hover:shadow-[0_16px_32px_rgba(17,63,108,0.12)] ${
-                  index === 4 ? "col-span-2 sm:col-span-1" : ""
-                }`}
+              <div
+                key={element.label}
+                className={`border-t-2 pt-3 text-center ${index === 4 ? "col-span-2 sm:col-span-1" : ""}`}
+                style={{ borderColor: element.accent }}
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={element.image}
-                    alt={`${element.label} element`}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f2d45]/85 via-[#0f2d45]/25 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-3 text-left md:p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
-                      0{index + 1} · {element.focus}
-                    </p>
-                    <p className="mt-1 font-display text-xl italic text-white md:text-2xl">{element.label}</p>
-                    <span
-                      className="mt-3 block h-[3px] w-10"
-                      style={{ backgroundColor: element.accent }}
-                      aria-hidden
-                    />
-                  </div>
-                </div>
-              </Link>
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-water">0{index + 1}</p>
+                <p className="mt-1 font-display text-xl italic text-parchment">{element.label}</p>
+                <p className="mt-0.5 text-xs uppercase tracking-[0.12em] text-parchment/55">{element.focus}</p>
+              </div>
             ))}
           </div>
 
           <div className="mt-10 flex justify-center">
-            <HomeCta href="/courses">Explore the Elements</HomeCta>
+            <HomeCta href="/campus-care">Explore the Elements</HomeCta>
           </div>
         </div>
       </section>

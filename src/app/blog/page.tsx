@@ -21,6 +21,17 @@ type BlogPageProps = {
 
 const POSTS_PER_PAGE = 7;
 
+// Curated categories that always appear in the filter bar so the blog feels
+// complete even before every topic has a published post. Any additional
+// categories found on real posts are merged in automatically.
+const CURATED_CATEGORIES = [
+  "Clinical Perspective",
+  "Campus Wellness",
+  "Design Notes",
+  "Research",
+  "Implementation",
+] as const;
+
 type SharePlatform = "facebook" | "x" | "linkedin" | "whatsapp" | "email";
 
 function getShareHoverClass(platform: SharePlatform): string {
@@ -121,9 +132,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const requestedPage = Number.parseInt(resolvedSearchParams?.page?.trim() ?? "1", 10);
   const currentPage = Number.isNaN(requestedPage) || requestedPage < 1 ? 1 : requestedPage;
   const posts = await getBlogPosts();
-  const categories = Array.from(new Set(posts.map((post) => post.category).filter(Boolean))).sort(
-    (a, b) => a.localeCompare(b)
-  );
+  const categories = Array.from(
+    new Set([...CURATED_CATEGORIES, ...posts.map((post) => post.category).filter(Boolean)])
+  ).sort((a, b) => a.localeCompare(b));
 
   const categoryFilteredPosts = activeCategory
     ? posts.filter((post) => post.category.toLowerCase() === activeCategory.toLowerCase())
@@ -144,16 +155,34 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-[#0a3870] bg-[#0c3f84]">
-        <div className="mx-auto max-w-6xl px-6 py-20 text-center md:py-24">
-          <p className="font-display text-[2.25rem] italic leading-none text-white/95 md:text-[5rem]">Check out the latest</p>
-          <h1 className="mx-auto mt-3 max-w-5xl font-display text-[2.4rem] leading-[1.06] text-white md:text-[5.1rem]">
-            <span className="block">Binge-worthy podcast</span>
-            <span className="block">episodes and show notes</span>
-            <span className="block">from the podcast</span>
+      <section
+        className="relative overflow-hidden border-b border-[#0a3870]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(9, 42, 84, 0.92), rgba(9, 42, 84, 0.94)), linear-gradient(160deg, #0c3f84 0%, #14568f 45%, #0e3d6f 100%)",
+        }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 20% 20%, #ffffff 0, transparent 40%), radial-gradient(circle at 80% 0%, #ffffff 0, transparent 35%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-6xl px-6 py-20 text-center md:py-28">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
+            The Campus Care Journal
+          </p>
+          <h1 className="mx-auto mt-5 max-w-4xl font-display text-[2.5rem] italic leading-[1.05] text-white md:text-[4.4rem]">
+            Insights on culturally grounded wellness
           </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">
+            Research, stories, and practical tools from the ACT Healing team and the Diaspora VR
+            Sanctuary — helping students, clinicians, and communities heal, grow, and ACT on purpose.
+          </p>
 
-          <form action="/blog" method="get" className="mx-auto mt-12 max-w-4xl">
+          <form action="/blog" method="get" className="mx-auto mt-11 max-w-3xl">
             {activeCategory ? <input type="hidden" name="category" value={activeCategory} /> : null}
             <label htmlFor="blog-search" className="sr-only">
               Search blog posts

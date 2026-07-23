@@ -1,4 +1,5 @@
 import {
+  DEFAULT_BLOG_IMAGE,
   fallbackBlogPosts,
   type BlogPortableBlock,
   type BlogPortableTextChild,
@@ -99,7 +100,7 @@ function normalizePost(post: RawBlogPost, index: number): BlogPost {
       urlForImage(post.mainImage as never) ||
       urlForImage(post.coverImage as never) ||
       urlForImage(post.heroImage as never) ||
-      fallbackBlogPosts[index % fallbackBlogPosts.length].imageUrl,
+      DEFAULT_BLOG_IMAGE,
   };
 }
 
