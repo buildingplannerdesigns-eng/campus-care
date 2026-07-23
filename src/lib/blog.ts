@@ -164,3 +164,31 @@ export async function getBlogSlugs(): Promise<string[]> {
   const posts = await getBlogPosts();
   return posts.map((post) => post.slug);
 }
+
+/**
+ * Categories come from Sanity `category` documents. If none are defined yet,
+ * fall back to unique category titles used on published posts.
+ */
+export async function getBlogCategories(): Promise<string[]> {
+  if (isSanityConfigured() && sanityClient) {
+    try {
+      const rows = await sanityClient.fetch<Array<{ title?: string }>>(
+        `*[_type == "category" && defined(title)] | order(title asc) { title }`
+      );
+      const fromSanity = (rows ?? [])
+        .map((row) => row.title?.trim())
+        .filter((title): title is string => Boolean(title));
+
+      if (fromSanity.length) {
+        return Array.from(new Set(fromSanity));
+      }
+    } catch {
+      // fall through to post-derived categories
+    }
+  }
+
+  const posts = await getBlogPosts();
+  return Array.from(new Set(posts.map((post) => post.category).filter(Boolean))).sort((a, b) =>
+    a.localeCompare(b)
+  );
+}

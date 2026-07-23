@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
-import { getBlogPosts } from "@/lib/blog";
+import { getBlogCategories, getBlogPosts } from "@/lib/blog";
 
 export const revalidate = 60;
 
@@ -20,17 +20,6 @@ type BlogPageProps = {
 };
 
 const POSTS_PER_PAGE = 7;
-
-// Curated categories that always appear in the filter bar so the blog feels
-// complete even before every topic has a published post. Any additional
-// categories found on real posts are merged in automatically.
-const CURATED_CATEGORIES = [
-  "Clinical Perspective",
-  "Campus Wellness",
-  "Design Notes",
-  "Research",
-  "Implementation",
-] as const;
 
 type SharePlatform = "facebook" | "x" | "linkedin" | "whatsapp" | "email";
 
@@ -131,10 +120,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const searchQuery = resolvedSearchParams?.q?.trim() ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams?.page?.trim() ?? "1", 10);
   const currentPage = Number.isNaN(requestedPage) || requestedPage < 1 ? 1 : requestedPage;
-  const posts = await getBlogPosts();
-  const categories = Array.from(
-    new Set([...CURATED_CATEGORIES, ...posts.map((post) => post.category).filter(Boolean)])
-  ).sort((a, b) => a.localeCompare(b));
+  const [posts, categories] = await Promise.all([getBlogPosts(), getBlogCategories()]);
 
   const categoryFilteredPosts = activeCategory
     ? posts.filter((post) => post.category.toLowerCase() === activeCategory.toLowerCase())
