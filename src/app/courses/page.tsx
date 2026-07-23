@@ -1,26 +1,20 @@
 import { Section, SectionHeading, PrimaryButton, SecondaryButton, Eyebrow } from "@/components/ui";
-import { ElementCard } from "@/components/ElementCard";
 import { OperationStep } from "@/components/OperationStep";
 import { StatCard } from "@/components/StatCard";
 import { operationSteps } from "@/data/operations";
 import { mentalHealthStats } from "@/data/stats";
 import { siteCopy } from "@/data/copy";
-import { getCoreElements } from "@/lib/content/elements";
 import { pageMetadata } from "@/lib/seo";
-
-export const revalidate = 60;
 
 export const metadata = pageMetadata({
   title: "Courses",
   description:
-    "Campus Care 2.0: The Diaspora VR Sanctuary — five core elements, a bio-responsive ecosystem, and the evidence behind it.",
+    "Campus Care 2.0 programs — a bio-responsive ecosystem and the evidence behind restorative campus wellness.",
   path: "/courses",
-  keywords: ["5 core elements", "Water Fire Earth Mineral Nature", "professional courses"],
+  keywords: ["professional courses", "campus wellness programs", "bio-responsive ecosystem"],
 });
 
-export default async function CoursesPage() {
-  const coreElements = await getCoreElements();
-
+export default function CoursesPage() {
   return (
     <>
       <Section className="pt-20">
@@ -29,8 +23,7 @@ export default async function CoursesPage() {
           Programs built for lasting change
         </h1>
         <p className="mt-6 max-w-2xl text-parchment/70">
-          Explore the Campus Care 2.0 sanctuary, five core elements, and the evidence behind restorative
-          campus wellness.
+          Explore Campus Care 2.0 programs and the evidence behind restorative campus wellness.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <PrimaryButton href="/campus-care">Explore Campus Care</PrimaryButton>
@@ -43,16 +36,6 @@ export default async function CoursesPage() {
         <div className="mt-6 max-w-3xl space-y-4 text-parchment/70">
           {siteCopy.whyItExists.body.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="border-t border-sanctuary-700/60">
-        <SectionHeading eyebrow="The Sanctuary" heading={siteCopy.elementsIntro.heading} />
-        <p className="mt-6 max-w-2xl text-parchment/70">{siteCopy.elementsIntro.body}</p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {coreElements.map((element) => (
-            <ElementCard key={element.key} element={element} />
           ))}
         </div>
       </Section>
