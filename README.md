@@ -40,6 +40,7 @@ src/
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
 | `/courses`     | Courses — Campus Care 2.0 deep dive                         |
 | `/blog`        | Blog (Sanity CMS + fallback posts)                          |
+| `/studio`      | Embedded Sanity Studio (edit site content)                  |
 | `/payments`    | Donations via Donorbox                                         |
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
