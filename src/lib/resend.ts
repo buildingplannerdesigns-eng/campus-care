@@ -21,7 +21,7 @@ function getResendClient(): Resend | null {
 export async function sendContactNotification(values: ContactFormValues) {
   const resend = getResendClient();
   const to = resolveContactRecipient(values.target);
-  const from = process.env.RESEND_FROM_EMAIL ?? "no-reply@campuscare2.org";
+  const from = process.env.RESEND_FROM_EMAIL ?? "no-reply@actcampuscare.com";
 
   if (!resend) {
     // No credentials configured yet — log locally instead of failing the request.
@@ -55,7 +55,7 @@ export async function sendDonationReceipt(params: {
   reference: string;
 }) {
   const resend = getResendClient();
-  const from = process.env.RESEND_FROM_EMAIL ?? "donations@campuscare2.org";
+  const from = process.env.RESEND_FROM_EMAIL ?? "donations@actcampuscare.com";
 
   if (!resend) {
     console.info("[donation-receipt] RESEND_API_KEY not set. Receipt:", params);

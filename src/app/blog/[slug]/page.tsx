@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { getBlogPostBySlug, getBlogPosts, getBlogSlugs } from "@/lib/blog";
 import type { BlogPortableBlock } from "@/data/blogFallback";
+import { SITE_URL } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -24,7 +25,7 @@ function getShareHoverClass(platform: SharePlatform): string {
   return "hover:text-[#EA4335] hover:border-[#EA4335]";
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
+const siteUrl = SITE_URL;
 
 function ShareIcon({ platform, className = "h-3.5 w-3.5" }: { platform: SharePlatform; className?: string }) {
   if (platform === "facebook") {

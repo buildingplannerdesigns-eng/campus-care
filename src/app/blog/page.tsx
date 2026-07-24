@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { pageMetadata } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 import { getBlogCategories, getBlogPosts } from "@/lib/blog";
 
 export const revalidate = 60;
@@ -13,7 +13,7 @@ export const metadata = pageMetadata({
   keywords: ["Campus Care blog", "HBCU wellness", "ACT Healing insights"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
+const siteUrl = SITE_URL;
 
 type BlogPageProps = {
   searchParams?: Promise<{ category?: string; q?: string; page?: string }>;

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 
+/** Canonical production origin used by metadata, sitemap, robots, and share links. */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.actcampuscare.com";
+
 /** Shared SEO helpers for page-level metadata. */
 export function pageMetadata({
   title,
@@ -12,8 +16,7 @@ export function pageMetadata({
   path?: string;
   keywords?: string[];
 }): Metadata {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
-  const url = `${siteUrl}${path}`;
+  const url = `${SITE_URL}${path}`;
 
   return {
     title,

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getBlogSlugs } from "@/lib/blog";
+import { SITE_URL } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
+  const base = SITE_URL;
   const routes = ["", "/about", "/act", "/solutions", "/courses", "/payments", "/campus-care", "/blog", "/contact"];
   const blogSlugs = await getBlogSlugs();
 

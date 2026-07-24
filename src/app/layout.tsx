@@ -8,8 +8,9 @@ import {
 import "./globals.css";
 import { SiteChrome } from "@/components/SiteChrome";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { SITE_URL } from "@/lib/seo";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://campuscare2.org";
+const siteUrl = SITE_URL;
 
 const displaySerif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -133,6 +134,9 @@ export const metadata: Metadata = {
     telephone: true,
     email: true,
     address: true,
+  },
+  verification: {
+    google: "Ipq6neuotjwYAVCa-8_0DEP3Xn4zBBn7b-5lXQ_kXBo",
   },
 };
 

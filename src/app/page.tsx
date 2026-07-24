@@ -99,7 +99,7 @@ export default async function HomePage() {
               A short look at the immersive wellness experience.
             </p>
           </div>
-          <DesktopVideoMockup title={hero.videoTitle} urlBar="campuscare.com" />
+          <DesktopVideoMockup title={hero.videoTitle} urlBar="actcampuscare.com" />
         </div>
       </section>
 
