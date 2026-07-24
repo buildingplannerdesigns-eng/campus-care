@@ -63,16 +63,16 @@ const platformPillars = [
 
 const xrImages = [
 	{
-		src: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1400&q=80",
-		alt: "Person wearing a VR headset in an immersive environment",
+		src: "/images/campus-care/vr.jpeg",
+		alt: "Person wearing a VR headset in an immersive Campus Care experience",
 	},
 	{
-		src: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1400&q=80",
-		alt: "Developer working with immersive technology and XR visuals",
+		src: "/images/campus-care/student.jpeg",
+		alt: "Student engaging with Campus Care wellness technology",
 	},
 	{
-		src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80",
-		alt: "Person using a virtual reality headset in a dark immersive space",
+		src: "/images/campus-care/vr.jpeg",
+		alt: "Immersive Campus Care virtual reality session",
 	},
 ];
 

@@ -15,7 +15,7 @@ const elementConfig: Record<
   }
 > = {
   water: {
-    imageSrc: "/images/elements/water.webp",
+    imageSrc: "/images/elements/water.jpeg",
     imageAlt: "Twilight shoreline with calm ocean waves and reflective light",
     imagePosition: "center 60%",
     accent: "#7FC4DE",
@@ -23,7 +23,7 @@ const elementConfig: Record<
     badgeText: "#034e5f",
   },
   fire: {
-    imageSrc: "/images/elements/fire.jpg",
+    imageSrc: "/images/elements/fire.jpeg",
     imageAlt: "People gathered around a glowing fire at dusk",
     imagePosition: "center 52%",
     accent: "#FF9D4D",
@@ -31,7 +31,7 @@ const elementConfig: Record<
     badgeText: "#802204",
   },
   earth: {
-    imageSrc: "/images/elements/earth.jpg",
+    imageSrc: "/images/elements/earth.jpeg",
     imageAlt: "Grounded landscape with layered hills, trees, and morning light",
     imagePosition: "center 56%",
     accent: "#C99A66",
@@ -39,7 +39,7 @@ const elementConfig: Record<
     badgeText: "#4d351e",
   },
   mineral: {
-    imageSrc: "/images/elements/minerals.jpg",
+    imageSrc: "/images/elements/mineral.jpeg",
     imageAlt: "Mountain peaks at sunrise with clear expansive sky",
     imagePosition: "center 46%",
     accent: "#A8B3D6",
@@ -47,7 +47,7 @@ const elementConfig: Record<
     badgeText: "#1f2537",
   },
   nature: {
-    imageSrc: "/images/elements/nature.jpg",
+    imageSrc: "/images/elements/nature.jpeg",
     imageAlt: "Lush forest canopy with sun filtering through green leaves",
     imagePosition: "center 42%",
     accent: "#A3C98A",
