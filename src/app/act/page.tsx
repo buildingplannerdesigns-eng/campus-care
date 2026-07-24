@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { DrCammieHero } from "@/components/DrCammieHero";
 import { ContactForm } from "@/components/ContactForm";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -43,7 +44,7 @@ export default function DrCammieConnorPage() {
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
         secondaryCtaHref="mailto:cconner@actcampuscare.com"
-        headshotSrc="/images/team/dr.cammie.jpg"
+        headshotSrc="/images/act/portrait-orange.jpg"
         headshotAlt="Dr. Connor"
       />
 
@@ -68,6 +69,19 @@ export default function DrCammieConnorPage() {
       />
 
       <StefStorySection story={copy.story} />
+
+      {/* Portrait break — Stefanie Gass–style photo lead into Hi Friend */}
+      <section className="bg-white">
+        <div className="relative mx-auto aspect-[16/9] max-h-[520px] w-full overflow-hidden md:aspect-[21/9]">
+          <Image
+            src="/images/act/portrait-polka-crossed.jpg"
+            alt="Dr. Connor"
+            fill
+            className="object-cover object-[center_18%]"
+            sizes="100vw"
+          />
+        </div>
+      </section>
 
       <StefHiFriend copy={copy.hiFriend} />
 

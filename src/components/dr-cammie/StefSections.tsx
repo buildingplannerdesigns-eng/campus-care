@@ -64,11 +64,12 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
             >
               {/* Portrait */}
               <Image
-                src="/images/team/dr.cammie.jpg"
+                src="/images/act/portrait-polka-front.jpeg"
                 alt="Dr. Connor"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 40vw"
+                priority
               />
             </div>
           </div>
@@ -284,12 +285,28 @@ export function StefStorySection({ story }: { story: typeof import("@/data/drCam
 
 export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").drCammieCopy.hiFriend }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-white py-20 text-center md:py-28">
-      <div className="mx-auto max-w-3xl px-6">
-        <h2 className="font-display text-4xl italic text-parchment md:text-5xl">{copy.heading}</h2>
-        <div className="mx-auto mt-6 h-px w-16 bg-water/40" aria-hidden />
-        <p className="mt-6 font-display text-xl text-parchment/80 md:text-2xl">{copy.subheading}</p>
-        <p className="mt-10 font-display text-3xl italic text-water md:text-4xl">{copy.cta}</p>
+    <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        {/* Large portrait lead-in — matches Stefanie Gass homepage photo + greeting */}
+        <div className="relative mx-auto mb-12 w-full max-w-lg md:mb-16">
+          <div className="absolute -left-3 -top-3 hidden h-full w-full border border-water/30 md:block" aria-hidden />
+          <div className="relative aspect-[4/5] overflow-hidden shadow-[0_24px_50px_rgba(31,92,115,0.14)]">
+            <Image
+              src="/images/act/portrait-polka-clasped.jpg"
+              alt="Dr. Connor"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 768px) 90vw, 512px"
+            />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="font-display text-4xl italic text-parchment md:text-5xl">{copy.heading}</h2>
+          <div className="mx-auto mt-6 h-px w-16 bg-water/40" aria-hidden />
+          <p className="mt-6 font-display text-xl text-parchment/80 md:text-2xl">{copy.subheading}</p>
+          <p className="mt-10 font-display text-3xl italic text-water md:text-4xl">{copy.cta}</p>
+        </div>
       </div>
     </section>
   );
@@ -386,7 +403,7 @@ export function StefClosingCta({ closing }: { closing: typeof import("@/data/drC
       className="relative overflow-hidden bg-cover bg-center py-24 text-center md:py-32"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), url('/images/team/background.connor.jpg')",
+          "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), url('/images/act/portrait-polka-side.jpg')",
       }}
     >
       <div className="relative z-10 mx-auto max-w-3xl px-6">
