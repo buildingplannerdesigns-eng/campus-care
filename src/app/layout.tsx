@@ -154,20 +154,27 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
-      name: "ACT Healing",
-      alternateName: "Campus Care 2.0",
+      // Use NGO once nonprofit status is confirmed; otherwise Organization / Corporation.
+      "@type": "NGO",
+      name: "ACT Healing / Campus Care 2.0",
+      alternateName: ["ACT Healing", "Campus Care 2.0"],
       url: siteUrl,
       logo: `${siteUrl}/images/logo.jpg`,
-      email: "info@actcampuscare.com",
       description:
-        "Agents of Change and Transformation — culturally grounded wellness, therapy, workshops, and Campus Care 2.0.",
+        "Culturally grounded, bio-responsive VR wellness platform helping HBCU students regulate stress and build resilience.",
+      // Populate once real profile URLs are confirmed (avoid placeholder domains).
+      sameAs: [],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "info@actcampuscare.com",
+        telephone: "+1-520-404-1245",
+        contactType: "customer service",
+      },
       founder: {
         "@type": "Person",
         name: "Dr. Cammie Connor",
         jobTitle: "Intergenerational Trauma Expert & Founder",
       },
-      sameAs: [],
     },
     {
       "@type": "WebSite",
@@ -177,7 +184,7 @@ const jsonLd = {
         "Culturally-grounded, bio-responsive virtual reality wellness for HBCU campuses and communities.",
       publisher: {
         "@type": "Organization",
-        name: "ACT Healing",
+        name: "ACT Healing / Campus Care 2.0",
       },
       potentialAction: {
         "@type": "SearchAction",

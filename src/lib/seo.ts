@@ -10,16 +10,23 @@ export function pageMetadata({
   description,
   path = "/",
   keywords = [],
+  twitterDescription,
+  absoluteTitle = false,
 }: {
   title: string;
   description: string;
   path?: string;
   keywords?: string[];
+  /** Optional Twitter card description when it should differ from the meta description. */
+  twitterDescription?: string;
+  /** When true, skip the root layout title template (`%s | Campus Care 2.0`). */
+  absoluteTitle?: boolean;
 }): Metadata {
   const url = `${SITE_URL}${path}`;
+  const twitterDesc = twitterDescription ?? description;
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     keywords: [
       "ACT Healing",
@@ -38,7 +45,7 @@ export function pageMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: twitterDesc,
       images: ["/images/logo.jpg"],
     },
   };

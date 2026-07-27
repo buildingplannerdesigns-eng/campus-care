@@ -122,53 +122,59 @@ export function StefOverwhelmAndSteps({
           </div>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:gap-10">
-          {steps.slice(0, 2).map((step) => (
-            <StefStepCard key={step.number} step={step} />
-          ))}
-        </div>
+        {/* Numbered steps flanking a central video — stefaniegass.com layout */}
+        <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1fr_1.15fr_1fr] lg:gap-10">
+          {/* Left column */}
+          <div className="flex flex-col gap-12 lg:gap-16">
+            {steps.slice(0, 2).map((step) => (
+              <StefStep key={step.number} step={step} align="right" />
+            ))}
+          </div>
 
-        {/* Central video — desktop mockup like stefaniegass.com */}
-        <div className="mt-12 md:mt-14">
-          <DesktopVideoMockup
-            title={video?.title}
-            embedUrl={video?.embedUrl || undefined}
-            videoSrc={video?.videoSrc || undefined}
-            poster={video?.poster || undefined}
-          />
-        </div>
+          {/* Center: video + "Let me show you how" */}
+          <div className="order-first flex flex-col items-center lg:order-none">
+            <DesktopVideoMockup
+              title={video?.title}
+              embedUrl={video?.embedUrl || undefined}
+              videoSrc={video?.videoSrc || undefined}
+              poster={video?.poster || undefined}
+            />
+            <p className="mt-8 text-center font-display text-2xl italic text-parchment md:mt-10 md:text-3xl">
+              {showMe}
+            </p>
+          </div>
 
-        <div className="mt-12 grid gap-8 md:mt-14 md:grid-cols-2 lg:gap-10">
-          {steps.slice(2).map((step) => (
-            <StefStepCard key={step.number} step={step} />
-          ))}
+          {/* Right column */}
+          <div className="flex flex-col gap-12 lg:gap-16">
+            {steps.slice(2).map((step) => (
+              <StefStep key={step.number} step={step} align="left" />
+            ))}
+          </div>
         </div>
-
-        <p className="mt-16 text-center font-display text-3xl italic text-parchment md:text-4xl">
-          {showMe}
-        </p>
       </div>
     </section>
   );
 }
 
-function StefStepCard({ step }: { step: (typeof import("@/data/drCammie").drCammieCopy.steps)[number] }) {
+function StefStep({
+  step,
+  align,
+}: {
+  step: (typeof import("@/data/drCammie").drCammieCopy.steps)[number];
+  align: "left" | "right";
+}) {
+  const alignClass = align === "right" ? "lg:text-right lg:items-end" : "lg:text-left lg:items-start";
   return (
-    <div className="group/card relative flex flex-col bg-white p-7 pt-10 shadow-[0_18px_38px_rgba(0,0,0,0.06)] ring-1 ring-[#eeeae4] transition-shadow duration-300 hover:shadow-[0_24px_50px_rgba(31,92,115,0.12)] md:p-9 md:pt-12">
-      <span
-        className="pointer-events-none absolute -top-6 left-6 font-display text-7xl font-light leading-none text-water/20 md:-top-7 md:text-8xl"
-        aria-hidden
-      >
+    <div className={`flex flex-col items-center text-center ${alignClass}`}>
+      <span className="font-display text-6xl font-light leading-none text-water/30 md:text-7xl" aria-hidden>
         {step.number}
       </span>
-      <h3 className="font-display text-2xl leading-snug text-parchment">{step.title}</h3>
-      <div className="mt-3 h-px w-10 bg-water/40" aria-hidden />
-      <p className="mt-4 flex-1 text-sm leading-relaxed text-parchment/70 md:text-[0.95rem]">
+      <p className="mt-4 max-w-xs text-sm leading-relaxed text-parchment/70 md:text-[0.95rem]">
         {step.description}
       </p>
       <Link
         href={step.href}
-        className="group mt-6 inline-flex items-center text-xs font-semibold uppercase tracking-[0.15em] text-[#0e4f88] underline decoration-[#0e4f88]/30 underline-offset-4 transition hover:decoration-[#0e4f88]"
+        className="group mt-5 inline-flex items-center font-display text-xl italic leading-snug text-[#0e4f88] transition hover:text-[#0a3a66] md:text-2xl"
       >
         {step.cta}
         <ArrowIcon />

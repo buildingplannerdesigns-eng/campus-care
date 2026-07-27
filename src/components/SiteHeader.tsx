@@ -15,6 +15,7 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/payments", label: "Payments" },
   { href: "/campus-care", label: "Campus Care" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact Us" },
 ];
 

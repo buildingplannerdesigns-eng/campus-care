@@ -4,7 +4,18 @@ import { SITE_URL } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = SITE_URL;
-  const routes = ["", "/about", "/act", "/solutions", "/courses", "/payments", "/campus-care", "/blog", "/contact"];
+  const routes = [
+    "",
+    "/about",
+    "/act",
+    "/solutions",
+    "/courses",
+    "/payments",
+    "/campus-care",
+    "/faq",
+    "/blog",
+    "/contact",
+  ];
   const blogSlugs = await getBlogSlugs();
 
   const staticRoutes = routes.map((route) => ({

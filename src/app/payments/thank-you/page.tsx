@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
 import { Section, PrimaryButton } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Thank You",
-};
+export const metadata = pageMetadata({
+  title: "Thank You for Your Gift",
+  description:
+    "Your donation to Campus Care 2.0 was received. A receipt is on its way to your inbox.",
+  path: "/payments/thank-you",
+  keywords: ["donation thank you", "Donorbox receipt"],
+});
 
 export default function ThankYouPage() {
   return (

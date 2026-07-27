@@ -1,13 +1,24 @@
-import type { Metadata } from "next";
 import { Eyebrow } from "@/components/ui";
 import { DonationForm } from "@/components/DonationForm";
 import { ShieldCheck, RefreshCw, Globe, Receipt } from "lucide-react";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Donate — Campus Care 2.0",
+export const metadata = pageMetadata({
+  title: "Donate to Campus Care 2.0 | Support HBCU Student Wellness",
   description:
-    "Support Campus Care 2.0 through Donorbox with secure one-time or recurring giving.",
-};
+    "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly, starting at $25, through secure checkout.",
+  path: "/payments",
+  twitterDescription:
+    "Support culturally grounded mental wellness for HBCU students — one-time and monthly giving, starting at $25.",
+  absoluteTitle: true,
+  keywords: [
+    "donate",
+    "Donorbox",
+    "HBCU student wellness",
+    "monthly giving",
+    "VR wellness donation",
+  ],
+});
 
 const impactTiers = [
   {
