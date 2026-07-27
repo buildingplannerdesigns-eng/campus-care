@@ -74,7 +74,7 @@ export function ElementCard({ element }: { element: CoreElement }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0f2d45]/78 via-[#0f2d45]/20 to-transparent" />
         <span
-          className="absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em]"
+          className="absolute left-4 top-4 max-w-[calc(100%-2rem)] rounded-full px-3 py-1 font-mono text-[10px] font-semibold tracking-[0.08em]"
           style={{ backgroundColor: config.badgeBg, color: config.badgeText }}
         >
           {element.eyebrow}

@@ -193,18 +193,18 @@ export default async function HomePage() {
               The 5 Core Elements™
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-parchment/65">
-              Five immersive environments — each a pathway from stress to steadiness. Explore the full
-              experience on the Campus Care page.
+              In Dagara cosmology, five elements form an integrated ecosystem of mind, body, spirit, and
+              community. Explore each pathway on the Campus Care page.
             </p>
           </div>
 
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
             {[
-              { label: "Water", focus: "Regulation", accent: "#7FC4DE" },
-              { label: "Fire", focus: "Release", accent: "#FF9D4D" },
-              { label: "Earth", focus: "Grounding", accent: "#C99A66" },
-              { label: "Mineral", focus: "Perspective", accent: "#A8B3D6" },
-              { label: "Nature", focus: "Renewal", accent: "#A3C98A" },
+              { label: "Water", focus: "Reconciliation & Peace", accent: "#7FC4DE" },
+              { label: "Fire", focus: "Spirit & Vision", accent: "#FF9D4D" },
+              { label: "Earth", focus: "Identity & Grounding", accent: "#C99A66" },
+              { label: "Mineral", focus: "Memory & Purpose", accent: "#A8B3D6" },
+              { label: "Nature", focus: "Transformation & Authenticity", accent: "#A3C98A" },
             ].map((element, index) => (
               <div
                 key={element.label}
@@ -213,7 +213,7 @@ export default async function HomePage() {
               >
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-water">0{index + 1}</p>
                 <p className="mt-1 font-display text-xl italic text-parchment">{element.label}</p>
-                <p className="mt-0.5 text-xs uppercase tracking-[0.12em] text-parchment/55">{element.focus}</p>
+                <p className="mt-0.5 text-[11px] leading-snug text-parchment/55">{element.focus}</p>
               </div>
             ))}
           </div>

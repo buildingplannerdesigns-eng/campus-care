@@ -3,37 +3,37 @@ import type { CoreElement } from "@/types";
 export const coreElements: CoreElement[] = [
   {
     key: "water",
-    eyebrow: "01 · Regulation",
+    eyebrow: "Water | Reconciliation & Peace",
     name: "The Water Element",
     description:
-      "Imagine students stepping onto a tranquil, glowing coast during a gentle, endless twilight. They breathe in a calming 4-7-8 rhythm, feeling their thoughts as they shape and project them onto special stones. These stones then gently drift into the ocean, dissolving into beautiful waves of light and creating a mesmerizing, soothing scene.",
+      "Water brings emotional balance, cleansing, and harmony. It cools life's stresses, allowing us to release past grief, heal broken connections, and flow peacefully into meaningful relationships.",
   },
   {
     key: "fire",
-    eyebrow: "02 · Release",
+    eyebrow: "Fire | Spirit & Vision",
     name: "The Fire Element",
     description:
-      "Imagine being under the shelter of a sturdy baobab tree, with the rhythmic beat of drums softly echoing in the background. Students sit together in a cozy circle around a large, welcoming bonfire. The flames dance and flicker in response to the heartbeat's pitch, volume, and resonance, creating a magical sight. Guided prompts gently encourage everyone to express their structural frustrations, turning their energetic feelings into glowing embers that add to the fire's warmth and glow.",
+      "Fire is the spark of vitality, ancestral connection, and inner drive. It illuminates our path, offering vision, clarity, and the transformational energy needed to turn life's challenges into purpose and passion.",
   },
   {
     key: "earth",
-    eyebrow: "03 · Grounding",
+    eyebrow: "Earth | Identity & Grounding",
     name: "The Earth Element",
     description:
-      "Imagine strolling through a sunlit, terraced botanical garden filled with the soothing sounds of native African and Southern plants gently swaying. Using immersive 3D spatial audio, the experience guides you gently into progressive muscle relaxation, while digital roots visually anchor deep into the earth, creating a calming and connected atmosphere.",
+      "Earth is our anchor, offering a deep sense of home, stability, and belonging. It grounds our daily lives, nourishing individuals and communities with firm support, identity, and safety.",
   },
   {
     key: "mineral",
-    eyebrow: "04 · Perspective",
+    eyebrow: "Minerals | Memory & Purpose",
     name: "The Mineral Element",
     description:
-      "Imagine standing on top of a majestic mountain at sunrise, with breathtaking panoramic views and swirling, vibrant wind ribbons dancing around you. This experience gently encourages students to step back from immediate deadlines and short-term worries, helping them focus on envisioning their long-term impact and the legacy they want to leave for their community.",
+      "Minerals embody core memory, structural strength, and purpose. They hold the blueprint of who we are, keeping us focused, remembered, and deeply aligned with our true calling.",
   },
   {
     key: "nature",
-    eyebrow: "05 · Renewal",
+    eyebrow: "Nature | Transformation & Authenticity",
     name: "The Nature Element",
     description:
-      "Imagine entering a living sanctuary where breath, sound, movement, and culture converge into one immersive landscape. Here, students integrate everything they practiced in Water, Fire, Earth, and Mineral, reconnecting to belonging, purpose, and restoration through a guided experience of renewal.",
+      "Nature is the doorway to our true selves and adaptive growth. By reconnecting us with the living world, Nature fosters authentic self-expression, natural healing, and ongoing personal renewal.",
   },
 ];

@@ -22,7 +22,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What are the 5 Core Elements™?",
     answer:
-      "The Sanctuary’s therapeutic approach blends Afrocentric healing traditions and natural landscapes into five immersive digital environments — Water, Fire, Earth, Mineral, and Nature — each a pathway from stress toward steadiness and inner balance.",
+      "In indigenous Dagara cosmology, every person belongs to a clan tied to one of five elements — Water (Reconciliation & Peace), Fire (Spirit & Vision), Earth (Identity & Grounding), Mineral (Memory & Purpose), and Nature (Transformation & Authenticity). Together they frame health as an integrated ecosystem of mind, body, spirit, and community.",
   },
   {
     question: "How is Campus Care different from traditional counseling?",

@@ -41,7 +41,7 @@ export const siteCopy = {
   elementsIntro: {
     heading: "The 5 Core Elements",
     body:
-      "Our therapeutic approach beautifully blends ancient Afrocentric healing traditions and natural landscapes into five engaging digital modules. These elements serve as the foundation for our immersive experiences, helping students gently process stress and rediscover their inner balance.",
+      "In indigenous Dagara cosmology, every individual belongs to a clan corresponding to one of these five basic elements. While Western paradigms often separate personal health from spiritual and environmental contexts, this elemental framework views health as an integrated ecosystem where mind, body, spirit, and community interact continuously.",
   },
   ecosystemIntro: {
     heading: "The Immersive Ecosystem: How It Operates",
