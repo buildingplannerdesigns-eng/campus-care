@@ -7,12 +7,12 @@ export const faqItems: FaqItem[] = [
   {
     question: "Does it cost anything for students to use Campus Care?",
     answer:
-      "Campus Care 2.0 is designed to be offered through partner HBCU campuses and institutions. When a campus adopts the Diaspora VR Sanctuary, enrolled students typically access sessions through that partnership at no individual session fee. Contact us to learn how your campus can bring Campus Care to students.",
+      "Campus Care 2.0 is designed to be offered through partner HBCU campuses and institutions. When a campus adopts the VR Sanctuary, enrolled students typically access sessions through that partnership at no individual session fee. Contact us to learn how your campus can bring Campus Care to students.",
   },
   {
     question: "What is Campus Care 2.0?",
     answer:
-      "Campus Care 2.0 — the Diaspora VR Sanctuary — is a culturally grounded, bio-responsive virtual reality platform that helps HBCU students regulate stress, ease minority stress, and build psychological resilience through immersive, strengths-based wellness experiences.",
+      "Campus Care 2.0 — the VR Sanctuary — is a culturally grounded, bio-responsive virtual reality platform that helps HBCU students regulate stress, ease minority stress, and build psychological resilience through immersive, strengths-based wellness experiences.",
   },
   {
     question: "Who is Campus Care designed for?",
@@ -32,7 +32,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How can my campus bring Campus Care 2.0?",
     answer:
-      "Reach out through our Contact or Payments pages to request a campus conversation or demo. We partner with institutions to deploy the Diaspora VR Sanctuary and align it with existing student wellness goals.",
+      "Reach out through our Contact page to start a campus conversation. We partner with institutions to deploy the VR Sanctuary and align it with existing student wellness goals.",
   },
   {
     question: "What services does ACT Healing offer?",

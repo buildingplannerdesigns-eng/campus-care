@@ -37,13 +37,11 @@ export const team: TeamMember[] = [
   },
 ];
 
-// Point of contact for press, partnerships, and general enquiries.
+// Public contact is always Dr. Cammie Connor (Tessa was an error and must not appear).
+// Phone number, location, and travel availability intentionally omitted from public display.
 export const pointOfContact: TeamMember = {
-  name: "Tessa Brock",
-  role: "Contact",
-  email: "info@actcampuscare.com",
-  supportEmail: "support@actcampuscare.com",
-  phone: "520.404.1245",
-  location: "Tucson, Arizona",
-  availableForTravel: true,
+  name: "Dr. Cammie Connor",
+  role: "Founder · Speaker, Workshops & Coaching",
+  email: "cconner@actcampuscare.com",
+  supportEmail: "info@actcampuscare.com",
 };

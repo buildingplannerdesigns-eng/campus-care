@@ -18,7 +18,7 @@ const securityHeaders = [
       "frame-ancestors 'none'; " +
       "frame-src 'self' https://donorbox.org https://www.googletagmanager.com; " +
       "form-action 'self'; " +
-      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://flagcdn.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "style-src 'self' 'unsafe-inline'; " +
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
@@ -37,7 +37,7 @@ const studioHeaders = [
     value:
       "default-src 'self'; " +
       "base-uri 'self'; " +
-      "img-src 'self' data: blob: https://cdn.sanity.io https://*.sanity.io; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://*.sanity.io https://flagcdn.com; " +
       "font-src 'self' https://fonts.gstatic.com data:; " +
       "style-src 'self' 'unsafe-inline'; " +
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://core.sanity-cdn.com https://*.sanity.io; " +

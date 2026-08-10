@@ -2,9 +2,12 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ElementCard } from "@/components/ElementCard";
+import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
+import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
 import { siteCopy } from "@/data/copy";
 import { getCoreElements } from "@/lib/content/elements";
+import { getTeamMembers } from "@/lib/content/team";
 import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
@@ -12,285 +15,336 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "Campus Care",
   description:
-    "Campus Care is an immersive creativity and self-reflection platform for wellness, teletherapy, and clinical engagement.",
+    "Campus Care is an immersive VR Sanctuary for wellness, creativity, and clinical engagement — culturally grounded care for students and communities.",
   path: "/campus-care",
-  keywords: ["Diaspora VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy", "5 core elements"],
+  keywords: ["VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy", "5 core elements"],
 });
 
 const evidenceStats = [
-	{
-		value: "23.1%",
-		label: "Adults in the U.S. who deal with mental health issues",
-	},
-	{
-		value: "$477B",
-		label: "Estimated cost of mental healthcare today",
-	},
-	{
-		value: "$14T",
-		label: "Estimated cost of mental healthcare by 2040",
-	},
-	{
-		value: "65%",
-		label: "The size of the treatment gap for mental health",
-	},
-];
-
-const platformPillars = [
-	{
-		title: "Immersive Arts for Wellness",
-		body:
-			"Self-guided modes that help users explore emotions, the self, and personal journeys with reduced stress and improved reflection.",
-		bullets: [
-			"Reduced feelings of stress, anxiety, and burnout",
-			"Enhanced positive moods",
-			"Space for self-reflection",
-			"Empowerment and sense of agency",
-		],
-	},
-	{
-		title: "Immersive Art Therapy",
-		body:
-			"Clinician-supported experiences that improve self-awareness, emotional processing, and digital access to care.",
-		bullets: [
-			"Optimized and personalized treatment",
-			"Dynamic digital platform",
-			"Seamless telehealth solution",
-			"Real-time streaming via desktop app",
-		],
-	},
+  {
+    value: "54%",
+    label:
+      "of Black HBCU students said they had unmet mental health needs, compared to 41% of students nationally — better culture, worse infrastructure.",
+    source: "Healthy Minds Network / UNCF / Steve Fund · Journal of Blacks in Higher Education",
+    href: "https://jbhe.com/2025/03/black-students-at-hbcus-have-better-mental-health-than-peers-at-other-institutions/",
+  },
+  {
+    value: "78%",
+    label:
+      "of HBCU students facing financial insecurity reported mental health problems, compared to just 26% of financially secure peers.",
+    source: "Healthy Minds Network / UNCF / Steve Fund · Journal of Blacks in Higher Education",
+    href: "https://uncficb.org/wp-content/uploads/2025/03/healthymindstudycommunitycultureandcare.pdf",
+  },
+  {
+    value: "25% · 39%",
+    label:
+      "On a single HBCU campus, 25% were unaware of available mental health resources, while 39% faced time constraints that prevented them from seeking help — supporting always-available, on-device care.",
+    source: "PMC10775398 · Assessing Underutilization of Mental Health Resources at an HBCU",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10775398/",
+  },
+  {
+    value: "Race stress",
+    label:
+      "A study of 206 Black women at a southern HBCU found a positive relationship between anticipatory race-related stress and general worry — grounding Campus Care’s focus on racialized stress.",
+    source: "PMC12572699 · peer-reviewed clinical psychology research",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12572699/",
+  },
+  {
+    value: "g = 0.79",
+    label:
+      "A meta-analysis of 39 trials found VR-based therapies more effective than control for anxiety (g = 0.79) and depression (g = 0.73) — strong evidence the core technology works.",
+    source: "Scientific Reports (Nature) · peer-reviewed meta-analysis",
+    href: "https://www.nature.com/articles/s41598-018-28113-6",
+  },
 ];
 
 const xrImages = [
-	{
-		src: "/images/campus-care/vr.jpeg",
-		alt: "Person wearing a VR headset in an immersive Campus Care experience",
-	},
-	{
-		src: "/images/campus-care/student.jpeg",
-		alt: "Student engaging with Campus Care wellness technology",
-	},
-	{
-		src: "/images/campus-care/vr.jpeg",
-		alt: "Immersive Campus Care virtual reality session",
-	},
+  {
+    src: "/images/campus-care/campus-care-hero.png",
+    alt: "Campus Care immersive VR Sanctuary experience",
+  },
+  {
+    src: "/images/campus-care/student.jpeg",
+    alt: "Student engaging with Campus Care wellness technology",
+  },
+  {
+    src: "/images/campus-care/vr.jpeg",
+    alt: "Immersive Campus Care virtual reality session",
+  },
 ];
 
+/** Optional: set NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL to the drumming demo clip when ready. */
+const DRUMMING_VIDEO_SRC = process.env.NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL;
+const DRUMMING_POSTER = "/images/campus-care/fire-circle-drumming.jpg";
+
 export default async function CampusCarePage() {
-	const coreElements = await getCoreElements();
+  const [coreElements, teamMembers] = await Promise.all([
+    getCoreElements(),
+    getTeamMembers(),
+  ]);
 
-	return (
-		<>
-			<section className="border-b border-sanctuary-700/30 bg-white">
-				<div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-16 text-center md:py-24">
-					<BrandLogo size="lg" priority alt="Campus Care logo" />
-					<p className="mt-8 font-mono text-xs uppercase tracking-[0.28em] text-[#0c3f84]">Campus Care</p>
-					<h1 className="mt-4 max-w-4xl text-balance font-display text-4xl leading-[1.05] text-[#113f6c] md:text-6xl lg:text-[4.25rem]">
-						Immersive healing through creativity, reflection, and connection.
-					</h1>
-					<p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#355879] md:text-base">
-						A virtual reality experience designed to support mental wellness for students, communities, and care teams.
-					</p>
-				</div>
-			</section>
+  return (
+    <>
+      <section className="border-b border-sanctuary-700/30 bg-white">
+        <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-16 text-center md:py-24">
+          <BrandLogo size="lg" priority alt="Campus Care logo" />
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.28em] text-[#0c3f84]">
+            Campus Care
+          </p>
+          <h1 className="mt-4 max-w-4xl text-balance font-display text-4xl leading-[1.05] text-[#113f6c] md:text-6xl lg:text-[4.25rem]">
+            The only immersive healing experience grounded in community and ancestral reflection.
+          </h1>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#355879] md:text-base">
+            Campus Care offers a virtual reality experience aimed at promoting the mental well-being of
+            HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed.
+          </p>
+        </div>
+      </section>
 
-			<section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
-				<div className="relative aspect-[16/7] min-h-[320px] w-full md:min-h-[460px] lg:min-h-[560px]">
-					<Image
-						src={xrImages[0].src}
-						alt={xrImages[0].alt}
-						fill
-						sizes="100vw"
-						className="object-cover"
-						priority
-					/>
-				</div>
-			</section>
+      <section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
+        <div className="relative aspect-[16/7] min-h-[320px] w-full md:min-h-[460px] lg:min-h-[560px]">
+          <Image
+            src={xrImages[0].src}
+            alt={xrImages[0].alt}
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+      </section>
 
-			<Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
-				<div className="grid gap-6 md:grid-cols-2">
-					<div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-sanctuary-700">
-						<Image
-							src={xrImages[1].src}
-							alt={xrImages[1].alt}
-							fill
-							sizes="(max-width: 768px) 100vw, 50vw"
-							className="object-cover"
-						/>
-					</div>
-					<div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-sanctuary-700">
-						<Image
-							src={xrImages[2].src}
-							alt={xrImages[2].alt}
-							fill
-							sizes="(max-width: 768px) 100vw, 50vw"
-							className="object-cover"
-						/>
-					</div>
-				</div>
-			</Section>
+      <Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
+        <div className="mx-auto max-w-5xl space-y-10 md:space-y-14">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-sanctuary-700 md:aspect-[21/9]">
+            <Image
+              src={xrImages[1].src}
+              alt="HBCU graduates celebrating together in caps and gowns"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
 
-			<Section className="border-t border-sanctuary-700/60">
-				<div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-					<SectionHeading
-						eyebrow="Evidence"
-						heading="Why creative expression matters for mental health"
-						className="text-center [&>h2]:mx-auto"
-					/>
-					<p className="mt-5 max-w-3xl text-base leading-relaxed text-parchment/70 md:text-lg">
-						Research supports the role of honest self-expression in building confidence and reducing stress, anxiety, and burnout.
-					</p>
-					<a
-						href="https://www.sciencedirect.com/science/article/abs/pii/S019745562100068X"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="group mt-8 inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-					>
-						Read the Study
-						<span
-							className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
-							aria-hidden
-						>
-							<svg
-								className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 group-active:translate-x-0.5"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-							</svg>
-						</span>
-					</a>
-				</div>
+          <p className="mx-auto max-w-3xl text-center font-display text-2xl italic leading-snug text-parchment md:text-3xl lg:text-[2.15rem]">
+            Experience our vibrant Afrocentric space crafted to help you relax, heal, and thrive during
+            college.
+          </p>
 
-				<div className="mt-12 grid gap-px overflow-hidden rounded-[1.5rem] bg-sanctuary-700/40 sm:grid-cols-2 lg:grid-cols-4">
-					{evidenceStats.map((stat) => (
-						<article key={stat.value} className="bg-white p-6 md:p-8">
-							<p className="font-display text-4xl text-water md:text-5xl">{stat.value}</p>
-							<p className="mt-3 text-sm leading-relaxed text-parchment/70">{stat.label}</p>
-						</article>
-					))}
-				</div>
-			</Section>
+          <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-sanctuary-700 md:aspect-[21/9]">
+            <Image
+              src={xrImages[2].src}
+              alt={xrImages[2].alt}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
 
-			<Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
-				<div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-					<div>
-						<SectionHeading eyebrow="Creativity & Self Reflection" heading="Immersive arts for wellness" />
-						<p className="mt-5 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-							Self-guided and clinician-supported options help users explore emotions, externalize stress, and create a stronger sense of agency.
-						</p>
-						<ul className="mt-8 space-y-3 text-sm text-parchment/75">
-							{platformPillars[0].bullets.map((bullet) => (
-								<li key={bullet} className="flex gap-3 rounded-2xl border border-sanctuary-700 bg-white px-4 py-3">
-									<span className="mt-1 h-2.5 w-2.5 rounded-full bg-ember" aria-hidden />
-									<span>{bullet}</span>
-								</li>
-							))}
-						</ul>
-					</div>
+          <div className="flex justify-center">
+            <PrimaryButton href="/contact">Request a Demo</PrimaryButton>
+          </div>
+        </div>
+      </Section>
 
-					<div className="rounded-[1.5rem] border border-sanctuary-700 bg-white p-6 shadow-sm md:p-8">
-						<p className="text-xs uppercase tracking-[0.18em] text-parchment/45">Immersive art therapy</p>
-						<h3 className="mt-3 font-display text-2xl">A seamless digital platform for wellness teams</h3>
-						<p className="mt-4 text-sm leading-relaxed text-parchment/70">
-							Clinicians and organizations can support self-awareness and emotional processing through a dynamic experience built for telehealth and digital care.
-						</p>
-						<div className="mt-6 grid gap-3 sm:grid-cols-2">
-							{platformPillars[1].bullets.map((bullet) => (
-								<div key={bullet} className="rounded-2xl border border-sanctuary-700 bg-sanctuary-900 px-4 py-3 text-sm text-parchment/80">
-									{bullet}
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</Section>
+      <Section className="border-t border-sanctuary-700/60">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionHeading
+            eyebrow="In the Sanctuary"
+            heading="Campus Care drumming in an immersive environment"
+            className="text-center [&>h2]:mx-auto"
+          />
+          <p className="mt-5 text-sm leading-relaxed text-parchment/70 md:text-base">
+            Experience the rhythm, community, and restorative presence at the heart of the VR Sanctuary.
+          </p>
+        </div>
+        <div className="mt-10">
+          <DesktopVideoMockup
+            title="Campus Care — Drumming in the VR Sanctuary"
+            videoSrc={DRUMMING_VIDEO_SRC || undefined}
+            poster={DRUMMING_POSTER}
+            urlBar="actcampuscare.com/campus-care"
+          />
+        </div>
+      </Section>
 
-			<Section className="border-t border-sanctuary-700/60">
-				<div className="mx-auto max-w-4xl text-center">
-					<SectionHeading
-						eyebrow="The Sanctuary"
-						heading={siteCopy.elementsIntro.heading}
-						className="text-center [&>h2]:mx-auto"
-					/>
-					<p className="mt-6 text-base leading-relaxed text-parchment/70 md:text-lg">
-						{siteCopy.elementsIntro.body}
-					</p>
-				</div>
-				<div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					{coreElements.map((element) => (
-						<ElementCard key={element.key} element={element} />
-					))}
-				</div>
-				<div className="mt-12 flex flex-wrap justify-center gap-4">
-					<PrimaryButton href="/courses">Explore the Courses</PrimaryButton>
-				</div>
-			</Section>
+      <Section className="border-t border-sanctuary-700/60">
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <SectionHeading
+            eyebrow="Evidence"
+            heading="Why Campus Care 2.0 matters for HBCU student wellness"
+            className="text-center [&>h2]:mx-auto"
+          />
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-parchment/70 md:text-lg">
+            Peer-reviewed research shows HBCU students often have stronger campus culture — and still
+            face unmet need, financial stress, access barriers, and race-related worry. VR-based care
+            has measured effects on anxiety and depression.
+          </p>
+          <h3 className="mt-10 font-display text-2xl italic text-parchment md:text-3xl">
+            Read the Study
+          </h3>
+        </div>
 
-			<Section className="border-t border-sanctuary-700/60 bg-sanctuary-900" id="contact">
-				<div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-					<div>
-						<SectionHeading eyebrow="Get in Touch" heading="Connect with the Campus Care team" />
-						<p className="mt-5 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-							Campus Care is built for organizations and healthcare teams looking to expand creative wellness tools, increase self-expression, and transform the experience of care.
-						</p>
-						<div className="mt-8 flex flex-wrap gap-4">
-							<PrimaryButton href="/contact">Contact Us</PrimaryButton>
-						</div>
-					</div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {evidenceStats.map((stat) => (
+            <article
+              key={stat.value}
+              className="flex flex-col border border-sanctuary-700/50 bg-white p-6 md:p-8"
+            >
+              <p className="font-display text-3xl text-water md:text-4xl">{stat.value}</p>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-parchment/75">{stat.label}</p>
+              <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.16em] text-parchment/45">
+                {stat.source}
+              </p>
+              <a
+                href={stat.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-4 inline-flex items-center justify-center self-start rounded-none border border-[#0e4f88] bg-[#0e4f88] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
+              >
+                Read the Study
+                <span
+                  className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
+                  aria-hidden
+                >
+                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </Section>
 
-					<div className="rounded-[1.75rem] border border-sanctuary-700 bg-white p-6 shadow-sm md:p-8">
-						<p className="text-xs uppercase tracking-[0.18em] text-parchment/45">Send a message</p>
-						<h3 className="mt-3 font-display text-2xl">Contact the team</h3>
-						<p className="mt-2 text-sm leading-relaxed text-parchment/70">
-							Reach out for the brochure, a conversation about implementing Campus Care, or partnership questions.
-						</p>
-						<div className="mt-6">
-							<ContactForm />
-						</div>
-					</div>
-				</div>
-			</Section>
+      <Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionHeading
+            eyebrow="Campus Care & Self Reflection"
+            heading="Immersive environment that heals you completely."
+            className="text-center [&>h2]:mx-auto"
+          />
+          <p className="mt-5 text-sm leading-relaxed text-parchment/70 md:text-base">
+            Self-guided VR that combines the human touch option to help you explore your emotions, and
+            encourage you to create a stronger sense of belonging.
+          </p>
+          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-water">
+            People who participated in this exercise reported
+          </p>
 
-			<Section className="border-t border-sanctuary-700/60">
-				<div className="mx-auto max-w-4xl text-center">
-					<SectionHeading eyebrow="Platform Summary" heading="Diaspora VR is a versatile platform designed to accommodate personal and professional needs" />
-					<p className="mt-5 text-base leading-relaxed text-parchment/70 md:text-lg">
-						From self-guided creative journeys to clinician-supported sessions, Diaspora VR offers a scalable approach to wellness, self-reflection, and digital health.
-					</p>
-				</div>
-			</Section>
+          <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-[1.5rem] border border-sanctuary-700 bg-white">
+            <Image
+              src="/images/campus-care/word-cloud.png"
+              alt="Community, hope, excitement, fulfilled, joy, and sense of success — words participants associate with Campus Care"
+              width={1600}
+              height={900}
+              className="h-auto w-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 896px"
+            />
+          </div>
+        </div>
+      </Section>
 
-			<section className="border-t border-sanctuary-700/60 bg-[#07141f] py-20 text-white md:py-24">
-				<div className="mx-auto max-w-6xl px-6">
-					<div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0b1c2b] shadow-xl">
-						<div className="grid lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
-							<div className="relative min-h-[240px] lg:min-h-full">
-								<Image
-									src={xrImages[0].src}
-									alt="Immersive Diaspora VR experience"
-									fill
-									sizes="(max-width: 1024px) 100vw, 55vw"
-									className="object-cover"
-								/>
-								<div className="absolute inset-0 bg-gradient-to-t from-[#07141f]/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#0b1c2b]/90" />
-							</div>
+      <Section className="border-t border-sanctuary-700/60">
+        <div className="mx-auto max-w-4xl text-center">
+          <SectionHeading
+            eyebrow="The Sanctuary"
+            heading={siteCopy.elementsIntro.heading}
+            className="text-center [&>h2]:mx-auto"
+          />
+          <p className="mt-6 text-base leading-relaxed text-parchment/70 md:text-lg">
+            {siteCopy.elementsIntro.body}
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {coreElements.map((element) => (
+            <ElementCard key={element.key} element={element} />
+          ))}
+        </div>
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <PrimaryButton href="/courses">Courses — Coming Soon</PrimaryButton>
+        </div>
+      </Section>
 
-							<div className="flex flex-col justify-center px-6 py-10 text-center lg:px-10 lg:py-12 lg:text-left">
-								<p className="font-mono text-xs uppercase tracking-[0.22em] text-ember/90">Additional links</p>
-								<h2 className="mt-4 font-display text-3xl md:text-4xl">Ready to explore Diaspora VR?</h2>
-								<p className="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
-									Discover a new approach to creativity, connection, and self-expression.
-								</p>
-								<div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-									<PrimaryButton href="/contact">Contact Us</PrimaryButton>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</>
-	);
+      <Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
+        <SectionHeading eyebrow="Meet the Team" heading="The People Behind the Work" />
+        <p className="mt-4 max-w-2xl text-parchment/70">
+          Tap any card to open a profile with their details, email, and social links.
+        </p>
+        <div className="mt-10">
+          <TeamDetailsDrawer teamMembers={teamMembers} />
+        </div>
+      </Section>
+
+      <Section className="border-t border-sanctuary-700/60" id="contact">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionHeading
+            eyebrow="Get in Touch"
+            heading="Connect with the Campus Care team"
+            className="text-center [&>h2]:mx-auto"
+          />
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
+            Campus Care is designed to meet you where you are. If you are looking to stay ahead and
+            take charge of your mental health, our virtual exercises and tools are what you need.
+          </p>
+          <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
+
+          <div className="mx-auto mt-8 grid max-w-2xl gap-6 sm:grid-cols-2">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
+                Direct
+              </p>
+              <a
+                href="mailto:cconner@actcampuscare.com"
+                className="mt-2 inline-flex items-center gap-2 font-display text-lg italic text-[#0e4f88] transition hover:text-ember md:text-xl"
+              >
+                cconner@actcampuscare.com
+              </a>
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
+                General
+              </p>
+              <a
+                href="mailto:info@actcampuscare.com"
+                className="mt-2 inline-flex items-center gap-2 font-display text-lg italic text-[#0e4f88] transition hover:text-ember md:text-xl"
+              >
+                info@actcampuscare.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-14 max-w-3xl">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-water">
+              Send a message
+            </p>
+            <h3 className="mt-3 font-display text-3xl italic text-parchment md:text-4xl">
+              Tell us how we can help
+            </h3>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-parchment/70 md:text-base">
+              Complete the form below. Before we send anything, you&apos;ll get a chance to review your
+              details.
+            </p>
+          </div>
+          <div className="mt-10 border border-[#e2ded4] bg-white p-6 shadow-[0_18px_44px_rgba(12,63,132,0.08)] md:p-12">
+            <ContactForm
+              target="dr-cammie"
+              size="lg"
+              requireConfirmation
+              submitLabel="Submit Form"
+              successMessage="Thank you — the Campus Care team will be in touch soon."
+            />
+          </div>
+        </div>
+      </Section>
+
+    </>
+  );
 }

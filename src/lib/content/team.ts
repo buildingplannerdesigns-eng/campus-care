@@ -12,9 +12,6 @@ type SanityTeamMember = {
 };
 
 type SanityContact = {
-  contactName?: string;
-  contactRole?: string;
-  contactEmail?: string;
   supportEmail?: string;
   contactPhone?: string;
   contactLocation?: string;
@@ -46,25 +43,20 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 }
 
 export async function getPointOfContact(): Promise<TeamMember> {
+  // Public contact is always Dr. Cammie Connor. Phone, location, and travel are
+  // intentionally hidden on the public site — Sanity cannot override these.
   if (!isSanityConfigured() || !sanityClient) return fallbackContact;
 
   try {
     const settings = await sanityClient.fetch<SanityContact | null>(
-      `*[_type == "siteSettings"][0]{
-        contactName, contactRole, contactEmail, supportEmail, contactPhone, contactLocation
-      }`
+      `*[_type == "siteSettings"][0]{ supportEmail }`
     );
 
-    if (!settings?.contactEmail && !settings?.contactName) return fallbackContact;
+    if (!settings) return fallbackContact;
 
     return {
-      name: settings.contactName?.trim() || fallbackContact.name,
-      role: settings.contactRole?.trim() || fallbackContact.role,
-      email: settings.contactEmail?.trim() || fallbackContact.email,
+      ...fallbackContact,
       supportEmail: settings.supportEmail?.trim() || fallbackContact.supportEmail,
-      phone: settings.contactPhone?.trim() || fallbackContact.phone,
-      location: settings.contactLocation?.trim() || fallbackContact.location,
-      availableForTravel: fallbackContact.availableForTravel,
     };
   } catch {
     return fallbackContact;

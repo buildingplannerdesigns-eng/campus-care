@@ -11,10 +11,10 @@ const lookAroundLinks = [
   { href: "/about", label: "About Us" },
   { href: "/act", label: "ACT" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/campus-care", label: "Campus Care" },
   { href: "/courses", label: "Courses" },
   { href: "/blog", label: "Blog" },
   { href: "/payments", label: "Payments" },
-  { href: "/campus-care", label: "Campus Care" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -49,35 +49,25 @@ export function SiteFooter() {
 
       <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.15fr_0.95fr] lg:gap-8">
-          {/* Look Around */}
-          <div className="border-b border-[#c8c8c6] pb-10 lg:border-b-0 lg:border-r lg:pr-8 lg:pb-0">
-            <div className="flex gap-5">
-              <p
-                className="hidden shrink-0 font-display text-[1.65rem] italic leading-none text-[#0e4f88] lg:block"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-              >
-                Look Around
-              </p>
-              <div className="min-w-0 flex-1">
-                <p className="mb-4 font-display text-3xl italic text-[#0e4f88] lg:hidden">Look Around</p>
-                <ul>
-                  {lookAroundLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className={`block border-b border-[#c8c8c6] py-2.5 text-sm uppercase tracking-[0.16em] transition ${
-                          isActive(link.href)
-                            ? "bg-[#e6edf5] px-2 font-semibold text-[#0e3f78]"
-                            : "text-[#365a86] hover:text-[#0e3f78]"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          {/* Explore */}
+          <div className="border-b border-[#c8c8c6] pb-10 text-center lg:border-b-0 lg:border-r lg:pr-8 lg:pb-0">
+            <h3 className="font-display text-4xl italic text-[#0e4f88]">Explore</h3>
+            <ul className="mt-5">
+              {lookAroundLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`block border-b border-[#c8c8c6] py-2.5 text-sm uppercase tracking-[0.16em] transition ${
+                      isActive(link.href)
+                        ? "bg-[#e6edf5] px-2 font-semibold text-[#0e3f78]"
+                        : "text-[#365a86] hover:text-[#0e3f78]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Come Listen */}
@@ -85,10 +75,9 @@ export function SiteFooter() {
             <Link href="/" className="inline-flex items-center justify-center">
               <BrandLogo size="md" alt="Campus Care 2.0 logo" className="!h-28 !w-28" />
             </Link>
-            <h3 className="mt-5 font-display text-4xl italic text-[#0e4f88]">Come listen</h3>
-            <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[#365a86]">
-              to the movement
-            </p>
+            <h3 className="mt-5 font-display text-4xl italic text-[#0e4f88]">
+              Come join the movement
+            </h3>
             <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-[#355879]">
               Explore Campus Care programs, ACT Healing insights, and tools that grow restorative wellness.
             </p>
@@ -97,7 +86,7 @@ export function SiteFooter() {
 
           {/* Come Hang Out */}
           <div className="text-center lg:pl-6">
-            <h3 className="font-display text-4xl italic text-[#0e4f88]">Come hang out!</h3>
+            <h3 className="font-display text-4xl italic text-[#0e4f88]">Hear from us</h3>
             <p className="mt-3 text-xs uppercase tracking-[0.24em] text-[#365a86]">
               Join our insider email list
             </p>

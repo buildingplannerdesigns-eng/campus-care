@@ -3,7 +3,7 @@ export const siteCopy = {
     name: "ACT Healing",
     tagline: "Agents of Change and Transformation",
     program: "Campus Care 2.0",
-    programSubtitle: "The Diaspora VR Sanctuary",
+    programSubtitle: "The VR Sanctuary",
   },
   hero: {
     kicker: "Speaker · Workshops · Coaching",
@@ -13,8 +13,8 @@ export const siteCopy = {
     tagline:
       "Delivering transformative, culturally grounded wellness solutions and improving student care through Campus Care 2.0.",
     primaryCta: "Show Me How",
-    secondaryCta: "Meet Dr. Cammie",
-    videoTitle: "Campus Care 2.0 — The Diaspora VR Sanctuary",
+    secondaryCta: "Meet Dr. Connor",
+    videoTitle: "Campus Care 2.0 — The VR Sanctuary",
   },
   mission: {
     heading: "\u201cInspire Hope, Purpose and Collective Action\u201d",
@@ -25,11 +25,11 @@ export const siteCopy = {
     "We empower healing by transforming knowledge into action, pain into purpose, and challenges into opportunities for growth \u2014 creating healthier individuals, stronger relationships, and thriving communities.",
   campusCare: {
     kicker: "Empower Student Wellness Through Culturally Grounded Virtual Reality",
-    headline: "Meet Campus Care 2.0: The Diaspora VR Sanctuary",
+    headline: "Meet Campus Care 2.0: The VR Sanctuary",
     body:
       "An immersive, bio-responsive virtual reality platform engineered to regulate the autonomic nervous system, alleviate minority stress, and cultivate deep psychological resilience for HBCU students.",
-    primaryCta: "Request a Campus Demo",
-    secondaryCta: "Read the Clinical Whitepaper",
+    primaryCta: "Explore Campus Care",
+    secondaryCta: "Contact Us",
   },
   whyItExists: {
     heading: "Why It Exists",
@@ -49,7 +49,7 @@ export const siteCopy = {
       "Our unique architecture seamlessly combines advanced biometrics with spatial environments to provide automated, closed-loop stress relief.",
   },
   contact: {
-    heading: "Stay in Touch",
-    body: "Stay in touch with Dr. Cammie and receive periodic tips, interventions, and video content.",
+    heading: "Connect with Dr. Cammie Connor",
+    body: "Reach Dr. Cammie Connor for therapy, speaking, workshops, coaching, and Campus Care conversations.",
   },
 } as const;

@@ -57,6 +57,15 @@ const config: Config = {
       borderRadius: {
         sanctuary: "1.75rem",
       },
+      keyframes: {
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.3" },
+        },
+      },
+      animation: {
+        blink: "blink 1.4s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

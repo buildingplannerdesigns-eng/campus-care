@@ -1,73 +1,67 @@
-import { Section, SectionHeading, PrimaryButton, SecondaryButton, Eyebrow } from "@/components/ui";
-import { OperationStep } from "@/components/OperationStep";
-import { StatCard } from "@/components/StatCard";
-import { operationSteps } from "@/data/operations";
-import { mentalHealthStats } from "@/data/stats";
-import { siteCopy } from "@/data/copy";
+import Image from "next/image";
+import { EarlyRegistrationForm } from "@/components/EarlyRegistrationForm";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Courses",
+  title: "Courses — Coming Soon",
   description:
-    "Campus Care 2.0 programs — a bio-responsive ecosystem and the evidence behind restorative campus wellness.",
+    "Campus Care Courses are coming soon. Register early interest for workshops, professional training, and campus wellness programs.",
   path: "/courses",
-  keywords: ["professional courses", "campus wellness programs", "bio-responsive ecosystem"],
+  keywords: [
+    "courses coming soon",
+    "early registration",
+    "campus wellness programs",
+    "ACT Healing courses",
+  ],
 });
 
 export default function CoursesPage() {
   return (
-    <>
-      <Section className="pt-20">
-        <Eyebrow>Courses</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl md:text-5xl">
-          Programs built for lasting change
-        </h1>
-        <p className="mt-6 max-w-2xl text-parchment/70">
-          Explore Campus Care 2.0 programs and the evidence behind restorative campus wellness.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <PrimaryButton href="/campus-care">Explore Campus Care</PrimaryButton>
-          <SecondaryButton href="/contact">Contact Us</SecondaryButton>
-        </div>
-      </Section>
+    <section className="relative min-h-[calc(100dvh-4rem)] overflow-hidden">
+      <Image
+        src="/images/courses/hero-book.jpg"
+        alt="Open book with warm light — Campus Care Courses coming soon"
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
+      <div
+        className="absolute inset-0"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "linear-gradient(105deg, rgba(8, 28, 58, 0.88) 0%, rgba(12, 63, 132, 0.78) 48%, rgba(10, 36, 72, 0.55) 100%)",
+        }}
+      />
 
-      <Section className="border-t border-sanctuary-700/60">
-        <SectionHeading heading={siteCopy.whyItExists.heading} />
-        <div className="mt-6 max-w-3xl space-y-4 text-parchment/70">
-          {siteCopy.whyItExists.body.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-28 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:pb-28 lg:pt-32">
+        <div className="text-center lg:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/70">
+            Campus Care Courses
+          </p>
+          <h1 className="mt-6 font-display text-[clamp(3.5rem,10vw,7rem)] italic leading-[0.9] text-white">
+            Coming Soon
+          </h1>
+          <div className="mx-auto mt-6 h-px w-20 bg-white/40 lg:mx-0" aria-hidden />
+          <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-white/80 md:text-base lg:mx-0">
+            Workshops, professional training, and campus programs are on the way. Leave your details
+            and we&apos;ll notify you when registration opens.
+          </p>
         </div>
-      </Section>
 
-      <Section className="border-t border-sanctuary-700/60">
-        <SectionHeading eyebrow="Closed-Loop Design" heading={siteCopy.ecosystemIntro.heading} />
-        <p className="mt-6 max-w-2xl text-parchment/70">{siteCopy.ecosystemIntro.body}</p>
-        <div className="mt-12 max-w-3xl">
-          {operationSteps.map((step) => (
-            <OperationStep key={step.order} step={step} />
-          ))}
+        <div className="border border-white/25 bg-[#0a2f66]/55 p-6 backdrop-blur-md md:p-8">
+          <h2 className="font-display text-2xl italic text-white md:text-3xl">
+            Early registration
+          </h2>
+          <p className="mt-2 text-sm text-white/70">
+            Be first in line when Courses launch.
+          </p>
+          <div className="mt-7">
+            <EarlyRegistrationForm />
+          </div>
         </div>
-      </Section>
-
-      <Section className="border-t border-sanctuary-700/60">
-        <SectionHeading eyebrow="The Evidence" heading="Why This, Why Now" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {mentalHealthStats.map((stat) => (
-            <StatCard key={stat.stat + stat.source} item={stat} />
-          ))}
-        </div>
-      </Section>
-
-      <Section className="border-t border-sanctuary-700/60 text-center">
-        <p className="mx-auto max-w-xl text-parchment/70">
-          Ready to bring these programs to your campus or community?
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-4">
-          <PrimaryButton href="/contact">Contact Us</PrimaryButton>
-          <SecondaryButton href="/payments">Make a Payment</SecondaryButton>
-        </div>
-      </Section>
-    </>
+      </div>
+    </section>
   );
 }

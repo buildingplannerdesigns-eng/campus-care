@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LogoMarquee } from "@/components/LogoMarquee";
 import { StefQuoteCarousel } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
-import { audienceOutcomes } from "@/data/audiences";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -90,7 +88,6 @@ const pathways = [
     eyebrow: "Therapy",
     title: "Individual, Couples & Family Sessions",
     body: "One-on-one and relational work led by Dr. Connor to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
-    outcomes: audienceOutcomes.slice(0, 2),
     cta: { href: "/contact", label: "Book a Consultation" },
     avatars: [
       { src: "/images/avatars/female.svg", alt: "Therapy avatar" },
@@ -102,7 +99,6 @@ const pathways = [
     eyebrow: "Interventions",
     title: "Campus & Community Programs",
     body: "Campus Care 2.0 brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
-    outcomes: audienceOutcomes.slice(2),
     cta: { href: "/campus-care", label: "Explore Campus Care" },
     avatars: [
       { src: "/images/avatars/male.svg", alt: "Campus avatar" },
@@ -251,24 +247,6 @@ export default function SolutionsPage() {
                   {pathway.body}
                 </p>
 
-                <ul className="mx-auto mt-8 max-w-sm space-y-3 text-left">
-                  {pathway.outcomes.map((item) => (
-                    <li
-                      key={item.audience}
-                      className="flex items-start gap-3 border-b border-[#e8e4df] pb-3 text-sm text-parchment/80 last:border-b-0"
-                    >
-                      <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-water">
-                        {item.audience.slice(0, 3)}
-                      </span>
-                      <span>
-                        <span className="font-medium text-parchment">{item.audience}</span>
-                        {" — "}
-                        {item.outcome}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
                 <div className="mt-9 flex justify-center">
                   <SolutionsCta href={pathway.cta.href}>{pathway.cta.label}</SolutionsCta>
                 </div>
@@ -345,8 +323,6 @@ export default function SolutionsPage() {
           <p className="mt-10 font-script text-4xl text-[#0e4f88] md:text-5xl">Dr. Connor</p>
         </div>
       </section>
-
-      <LogoMarquee title="Trusted by communities and partners" />
 
       {/* Closing CTA */}
       <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">

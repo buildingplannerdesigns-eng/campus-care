@@ -11,10 +11,10 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/act", label: "ACT" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/courses", label: "Courses" },
+  { href: "/campus-care", label: "Campus Care" },
+  { href: "/courses", label: "Courses", comingSoon: true },
   { href: "/blog", label: "Blog" },
   { href: "/payments", label: "Payments" },
-  { href: "/campus-care", label: "Campus Care" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -185,7 +185,17 @@ export function SiteHeader() {
                     : `${linkClass} ${isActive(link.href) ? (isTransparent ? "text-ember" : "text-[#0c3f84]") : ""}`
                 }
               >
-                {link.label}
+                <span className="inline-flex items-center gap-1.5">
+                  {link.label}
+                  {link.comingSoon && (
+                    <span
+                      className="animate-blink inline-flex items-center rounded-sm bg-[#C4471E] px-1.5 py-[1px] text-[9px] font-bold uppercase tracking-[0.18em] text-white"
+                      aria-label="Coming soon"
+                    >
+                      Soon
+                    </span>
+                  )}
+                </span>
               </Link>
             ))}
           </nav>
@@ -229,7 +239,17 @@ export function SiteHeader() {
                   }
                   onClick={() => setMobileOpen(false)}
                 >
-                  {link.label}
+                  <span className="inline-flex items-center gap-2">
+                    {link.label}
+                    {link.comingSoon && (
+                      <span
+                        className="animate-blink inline-flex items-center rounded-sm bg-[#C4471E] px-1.5 py-[1px] text-[9px] font-bold uppercase tracking-[0.18em] text-white"
+                        aria-label="Coming soon"
+                      >
+                        Soon
+                      </span>
+                    )}
+                  </span>
                 </Link>
               </li>
             ))}

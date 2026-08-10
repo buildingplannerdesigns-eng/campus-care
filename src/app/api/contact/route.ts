@@ -8,7 +8,12 @@ const contactSchema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
   email: z.string().email(),
-  phone: z.string().min(1),
+  phone: z
+    .string()
+    .min(1, "Phone number is required")
+    .refine((value) => value.replace(/[^\d]/g, "").length >= 7, {
+      message: "Enter a valid phone number",
+    }),
   subject: z.string().min(1),
   message: z.string().optional(),
   target: z.enum(["general", "dr-cammie"]).optional(),
@@ -61,6 +66,12 @@ export async function POST(request: NextRequest) {
         { status: 403 }
       );
     }
+  } else if (parsed.data.turnstileToken !== "manual-security-check") {
+    // Fallback when Turnstile keys are not configured: require the client checkbox mark.
+    return NextResponse.json(
+      { error: "Security verification is required." },
+      { status: 400 }
+    );
   }
 
   try {
@@ -68,7 +79,7 @@ export async function POST(request: NextRequest) {
       firstName: parsed.data.firstName,
       lastName: parsed.data.lastName,
       email: parsed.data.email,
-      phone: parsed.data.phone,
+      phone: parsed.data.phone.trim(),
       subject: parsed.data.subject,
       message: parsed.data.message,
       target: parsed.data.target ?? "general",

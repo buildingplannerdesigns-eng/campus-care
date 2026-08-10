@@ -50,7 +50,7 @@ const seoKeywords = [
   "HBCU mental health",
   "culturally grounded wellness",
   "VR wellness",
-  "Diaspora VR Sanctuary",
+  "VR Sanctuary",
   "therapy",
   "workshops",
   "campus wellness",
@@ -64,7 +64,7 @@ const seoKeywords = [
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Campus Care 2.0 — The Diaspora VR Sanctuary | ACT Healing",
+    default: "Campus Care 2.0 — The VR Sanctuary | ACT Healing",
     template: "%s | Campus Care 2.0",
   },
   description:
@@ -94,7 +94,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Campus Care 2.0",
-    title: "Campus Care 2.0 — The Diaspora VR Sanctuary",
+    title: "Campus Care 2.0 — The VR Sanctuary",
     description:
       "An immersive, bio-responsive VR platform built to regulate the nervous system and cultivate resilience for HBCU students.",
     images: [
@@ -108,7 +108,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Campus Care 2.0 — The Diaspora VR Sanctuary",
+    title: "Campus Care 2.0 — The VR Sanctuary",
     description:
       "Culturally grounded, bio-responsive VR wellness for HBCU students from ACT Healing.",
     images: ["/images/logo.jpg"],

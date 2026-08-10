@@ -8,7 +8,7 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "Blog",
   description:
-    "Insights, stories, and research updates from Campus Care 2.0 and the Diaspora VR Sanctuary.",
+    "Insights, stories, and research updates from Campus Care 2.0 and the VR Sanctuary.",
   path: "/blog",
   keywords: ["Campus Care blog", "HBCU wellness", "ACT Healing insights"],
 });
@@ -164,7 +164,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             Insights on culturally grounded wellness
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">
-            Research, stories, and practical tools from the ACT Healing team and the Diaspora VR
+            Research, stories, and practical tools from the ACT Healing team and the VR
             Sanctuary — helping students, clinicians, and communities heal, grow, and ACT on purpose.
           </p>
 

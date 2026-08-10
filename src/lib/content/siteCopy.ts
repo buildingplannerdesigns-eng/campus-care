@@ -71,10 +71,8 @@ export async function getEditableSiteCopy(): Promise<EditableSiteCopy> {
         body: settings.missionBody?.trim() || fallback.mission.body,
       },
       guidingStatement: settings.guidingStatement?.trim() || fallback.guidingStatement,
-      contact: {
-        heading: settings.contactHeading?.trim() || fallback.contact.heading,
-        body: settings.contactBody?.trim() || fallback.contact.body,
-      },
+      // Contact copy is fixed to Dr. Cammie Connor — ignore stale CMS “Stay in Touch” / Tessa values.
+      contact: fallback.contact,
     };
   } catch {
     return fallback;

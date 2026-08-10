@@ -64,8 +64,8 @@ export const drCammieCopy = {
       title: "Bring Campus Care 2.0 to Your Campus",
       description:
         "Learn how to scale healing institutionally with a culturally grounded, bio-responsive VR platform built for HBCU students.",
-      cta: "Request a Campus Demo",
-      href: "/courses",
+      cta: "Explore Campus Care",
+      href: "/campus-care",
     },
   ],
   showMe: "Let me show you how.",

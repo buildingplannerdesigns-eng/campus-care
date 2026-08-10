@@ -39,7 +39,7 @@ const impactTiers = [
   {
     amount: "$250+",
     label: "Transform",
-    impact: "Accelerates Diaspora VR Sanctuary deployment to HBCU campuses.",
+    impact: "Accelerates VR Sanctuary deployment to HBCU campuses.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function PaymentsPage() {
         <div className="mx-auto max-w-3xl">
           <Eyebrow>Donate</Eyebrow>
           <h1 className="mt-4 font-display text-4xl italic leading-tight text-parchment md:text-5xl lg:text-6xl">
-            Support the Diaspora VR Sanctuary
+            Support the VR Sanctuary
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-parchment/70 md:text-lg">
             Every contribution brings culturally grounded mental wellness to more HBCU students.

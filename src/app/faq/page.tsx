@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
   keywords: [
     "Campus Care FAQ",
     "HBCU wellness FAQ",
-    "Diaspora VR Sanctuary",
+    "VR Sanctuary",
     "ACT Healing questions",
   ],
 });

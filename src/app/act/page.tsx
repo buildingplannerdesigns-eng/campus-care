@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { DrCammieHero } from "@/components/DrCammieHero";
 import { ContactForm } from "@/components/ContactForm";
-import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroFeatureBar } from "@/components/dr-cammie/HeroFeatureBar";
 import {
   StefClosingCta,
@@ -49,8 +48,6 @@ export default function DrCammieConnorPage() {
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />
-
-      <LogoMarquee title="Trusted by communities and partners" />
 
       <StefIntro copy={copy.intro} />
 
@@ -124,7 +121,7 @@ export default function DrCammieConnorPage() {
           <div className="border border-[#e8e4df] bg-white p-6 shadow-[0_18px_34px_rgba(0,0,0,0.06)] md:p-8">
             <ContactForm
               target="dr-cammie"
-              submitLabel="Submit"
+              submitLabel="Submit Form"
               successMessage="Thanks — your message has been sent to Dr. Cammie."
             />
           </div>
