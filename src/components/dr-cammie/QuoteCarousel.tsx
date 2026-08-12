@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { CalendarDays } from "lucide-react";
 
-export type QuoteSlide = {
-  name: string;
-  brand: string;
+export type TestimonySlide = {
   quote: string;
-  image?: string;
+  date: string;
+  context: string;
 };
 
 type QuoteCarouselProps = {
-  slides: QuoteSlide[];
+  slides: TestimonySlide[];
   autoPlayMs?: number;
 };
 
@@ -30,7 +29,7 @@ function NavArrow({
       onClick={onClick}
       aria-label={label}
       className={`absolute top-1/2 z-20 -translate-y-1/2 text-[#0c3f84] transition hover:opacity-70 focus-visible:outline-none ${
-        direction === "prev" ? "left-0" : "right-0"
+        direction === "prev" ? "left-0 sm:left-2" : "right-0 sm:right-2"
       }`}
     >
       <svg className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -44,7 +43,7 @@ function NavArrow({
   );
 }
 
-export function QuoteCarousel({ slides, autoPlayMs = 6000 }: QuoteCarouselProps) {
+export function QuoteCarousel({ slides, autoPlayMs = 7000 }: QuoteCarouselProps) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -77,62 +76,45 @@ export function QuoteCarousel({ slides, autoPlayMs = 6000 }: QuoteCarouselProps)
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
-      aria-label="Community quotations"
+      aria-label="Client testimonies"
     >
-      <div className="relative mx-auto max-w-6xl px-10 md:px-14 lg:px-16">
+      <div className="relative mx-auto max-w-4xl px-12 md:px-16">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-water">
+          Testimonies
+        </p>
+
         {count > 1 && (
           <>
-            <NavArrow direction="prev" onClick={goPrev} label="Previous quote" />
-            <NavArrow direction="next" onClick={goNext} label="Next quote" />
+            <NavArrow direction="prev" onClick={goPrev} label="Previous testimony" />
+            <NavArrow direction="next" onClick={goNext} label="Next testimony" />
           </>
         )}
 
-        <div
-          key={active.name + active.quote}
-          className="relative grid items-center gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-12 lg:gap-16"
-        >
-          {/* Portrait — left, never covered by quote marks */}
-          <div className="relative justify-self-center md:justify-self-start">
-            <div className="relative aspect-square w-[220px] overflow-hidden rounded-full border border-[#d7dfda] bg-[#eef2ef] shadow-[0_18px_40px_rgba(15,23,42,0.12)] sm:w-[260px] md:w-[280px] lg:w-[300px]">
-              {active.image ? (
-                <Image
-                  src={active.image}
-                  alt={`${active.name} portrait`}
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 260px, 300px"
-                  priority={index === 0}
-                  unoptimized={active.image.endsWith(".svg")}
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_55%,#3d5a3a_100%)] text-white">
-                  <span className="font-display text-7xl italic">{active.name.charAt(0)}</span>
-                </div>
-              )}
-            </div>
-          </div>
+        <div key={`${active.date}-${index}`} className="relative mt-8 text-center md:mt-10">
+          <span
+            className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 select-none font-display leading-none text-[#b7c9db]/70"
+            style={{ fontSize: "clamp(5rem, 12vw, 8rem)" }}
+            aria-hidden
+          >
+            &ldquo;
+          </span>
 
-          {/* Text + oversized quote marks (text column only) */}
-          <div className="relative min-h-[280px] md:min-h-[320px]">
-            <span
-              className="pointer-events-none absolute -right-1 -top-12 select-none font-display leading-[0.75] text-[#b7c9db] sm:-top-16 md:-right-2 md:-top-20 lg:-top-24"
-              style={{ fontSize: "clamp(8rem, 20vw, 15rem)" }}
+          <blockquote className="relative z-10 pt-10 md:pt-14">
+            <p className="mx-auto max-w-3xl font-display text-xl italic leading-relaxed text-parchment md:text-2xl lg:text-[1.75rem] lg:leading-snug">
+              {active.quote}
+            </p>
+          </blockquote>
+
+          <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-2 sm:flex-row sm:items-start sm:justify-center sm:gap-3">
+            <CalendarDays
+              className="mt-0.5 h-5 w-5 shrink-0 text-[#0e4f88]"
+              strokeWidth={1.5}
               aria-hidden
-            >
-              &ldquo;
-            </span>
-
-            <div className="relative z-10 pt-6 md:pt-8">
-              <p className="font-script text-4xl leading-none text-[#1f3552] md:text-5xl lg:text-[3.4rem]">
-                {active.name}
-              </p>
-              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#5b6d7f] md:text-xs">
-                {active.brand}
-              </p>
-              <p className="mt-8 max-w-xl text-lg font-medium uppercase leading-relaxed tracking-[0.04em] text-[#374151] md:text-xl md:leading-[1.55] lg:text-[1.35rem]">
-                {active.quote}
-              </p>
-            </div>
+            />
+            <p className="text-sm leading-relaxed text-parchment/65 md:text-base">
+              <span className="font-semibold text-parchment/80">Written on {active.date}</span>
+              {active.context ? ` ${active.context}` : ""}
+            </p>
           </div>
         </div>
 
@@ -140,10 +122,10 @@ export function QuoteCarousel({ slides, autoPlayMs = 6000 }: QuoteCarouselProps)
           <div className="mt-10 flex items-center justify-center gap-2" aria-hidden>
             {slides.map((slide, i) => (
               <button
-                key={slide.name + slide.brand}
+                key={`${slide.date}-${i}`}
                 type="button"
                 onClick={() => setIndex(i)}
-                aria-label={`Go to quote ${i + 1}`}
+                aria-label={`Go to testimony ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
                   i === index ? "w-6 bg-[#0c3f84]" : "w-1.5 bg-[#0c3f84]/25 hover:bg-[#0c3f84]/45"
                 }`}
@@ -155,3 +137,6 @@ export function QuoteCarousel({ slides, autoPlayMs = 6000 }: QuoteCarouselProps)
     </section>
   );
 }
+
+/** @deprecated Use TestimonySlide */
+export type QuoteSlide = TestimonySlide;

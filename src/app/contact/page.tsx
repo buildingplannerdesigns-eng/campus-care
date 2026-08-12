@@ -16,7 +16,7 @@ export const metadata = pageMetadata({
 const contactChannels = [
   {
     label: "Direct",
-    email: "cconner@actcampuscare.com",
+    email: "cconnor@actcampuscare.com",
     description: "Therapy, coaching, speaking, workshops, and partnership conversations.",
   },
   {

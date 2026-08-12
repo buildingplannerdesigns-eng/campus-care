@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { DrCammieHero } from "@/components/DrCammieHero";
 import { ContactForm } from "@/components/ContactForm";
 import { HeroFeatureBar } from "@/components/dr-cammie/HeroFeatureBar";
@@ -7,7 +6,6 @@ import {
   StefFeatureSection,
   StefHiFriend,
   StefImagineSection,
-  StefIntro,
   StefOffersSection,
   StefOverwhelmAndSteps,
   StefQuoteCarousel,
@@ -42,49 +40,31 @@ export default function DrCammieConnorPage() {
         primaryCta={copy.hero.primaryCta}
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
-        secondaryCtaHref="mailto:cconner@actcampuscare.com"
+        secondaryCtaHref="mailto:cconnor@actcampuscare.com"
         headshotSrc="/images/act/portrait-orange.jpg"
         headshotAlt="Dr. Connor"
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />
 
-      <StefIntro copy={copy.intro} />
+      <StefHiFriend copy={copy.hiFriend} />
 
       <StefOverwhelmAndSteps
         overwhelm={copy.overwhelm}
         steps={copy.steps}
         showMe={copy.showMe}
-        video={copy.video}
+        video={copy.homeVideo}
       />
 
       <StefFeatureSection feature={copy.feature} />
 
-      <StefQuoteCarousel
-        featuredQuotes={copy.featuredQuotes}
-        testimonials={copy.testimonials}
-      />
+      <StefQuoteCarousel testimonies={copy.testimonies} />
 
       <StefStorySection story={copy.story} />
 
-      {/* Portrait break — Stefanie Gass–style photo lead into Hi Friend */}
-      <section className="bg-white">
-        <div className="relative mx-auto aspect-[16/9] max-h-[520px] w-full overflow-hidden md:aspect-[21/9]">
-          <Image
-            src="/images/act/portrait-polka-crossed.jpg"
-            alt="Dr. Connor"
-            fill
-            className="object-cover object-[center_18%]"
-            sizes="100vw"
-          />
-        </div>
-      </section>
-
-      <StefHiFriend copy={copy.hiFriend} />
-
       <StefOffersSection offers={copy.offers} />
 
-      <StefImagineSection imagine={copy.imagine} video={copy.video} />
+      <StefImagineSection imagine={copy.imagine} />
 
       <section className="border-t border-[#e8e4df] bg-[#faf9f7] py-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
@@ -100,11 +80,11 @@ export default function DrCammieConnorPage() {
             </p>
             <div className="mt-8 space-y-3 text-sm text-parchment/75">
               <a
-                href="mailto:cconner@actcampuscare.com"
+                href="mailto:cconnor@actcampuscare.com"
                 className="flex items-center gap-3 rounded-none border border-[#e8e4df] bg-white px-4 py-3 transition hover:border-water hover:text-water"
               >
                 <span className="font-semibold text-parchment">Email:</span>
-                <span>cconner@actcampuscare.com</span>
+                <span>cconnor@actcampuscare.com</span>
               </a>
               {pointOfContact.phone && (
                 <a
@@ -118,7 +98,7 @@ export default function DrCammieConnorPage() {
             </div>
           </div>
 
-          <div className="border border-[#e8e4df] bg-white p-6 shadow-[0_18px_34px_rgba(0,0,0,0.06)] md:p-8">
+          <div className="border border-[#e8e4df] bg-white p-6 md:p-8">
             <ContactForm
               target="dr-cammie"
               submitLabel="Submit Form"

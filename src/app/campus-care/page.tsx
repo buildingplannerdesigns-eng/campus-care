@@ -2,12 +2,10 @@ import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ElementCard } from "@/components/ElementCard";
-import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
 import { siteCopy } from "@/data/copy";
 import { getCoreElements } from "@/lib/content/elements";
-import { getTeamMembers } from "@/lib/content/team";
 import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
@@ -73,15 +71,13 @@ const xrImages = [
   },
 ];
 
-/** Optional: set NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL to the drumming demo clip when ready. */
-const DRUMMING_VIDEO_SRC = process.env.NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL;
+/** Drop at public/videos/campus-care.mp4, or override with NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL. */
+const DRUMMING_VIDEO_SRC =
+  process.env.NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL?.trim() || "/videos/campus-care.mp4";
 const DRUMMING_POSTER = "/images/campus-care/fire-circle-drumming.jpg";
 
 export default async function CampusCarePage() {
-  const [coreElements, teamMembers] = await Promise.all([
-    getCoreElements(),
-    getTeamMembers(),
-  ]);
+  const coreElements = await getCoreElements();
 
   return (
     <>
@@ -102,13 +98,13 @@ export default async function CampusCarePage() {
       </section>
 
       <section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
-        <div className="relative aspect-[16/7] min-h-[320px] w-full md:min-h-[460px] lg:min-h-[560px]">
+        <div className="relative h-[220px] w-full overflow-hidden sm:h-[280px] md:h-[340px] lg:h-[460px] xl:h-[520px]">
           <Image
             src={xrImages[0].src}
             alt={xrImages[0].alt}
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
         </div>
@@ -161,7 +157,7 @@ export default async function CampusCarePage() {
         <div className="mt-10">
           <DesktopVideoMockup
             title="Campus Care — Drumming in the VR Sanctuary"
-            videoSrc={DRUMMING_VIDEO_SRC || undefined}
+            videoSrc={DRUMMING_VIDEO_SRC}
             poster={DRUMMING_POSTER}
             urlBar="actcampuscare.com/campus-care"
           />
@@ -271,16 +267,6 @@ export default async function CampusCarePage() {
         </div>
       </Section>
 
-      <Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
-        <SectionHeading eyebrow="Meet the Team" heading="The People Behind the Work" />
-        <p className="mt-4 max-w-2xl text-parchment/70">
-          Tap any card to open a profile with their details, email, and social links.
-        </p>
-        <div className="mt-10">
-          <TeamDetailsDrawer teamMembers={teamMembers} />
-        </div>
-      </Section>
-
       <Section className="border-t border-sanctuary-700/60" id="contact">
         <div className="mx-auto max-w-3xl text-center">
           <SectionHeading
@@ -300,10 +286,10 @@ export default async function CampusCarePage() {
                 Direct
               </p>
               <a
-                href="mailto:cconner@actcampuscare.com"
+                href="mailto:cconnor@actcampuscare.com"
                 className="mt-2 inline-flex items-center gap-2 font-display text-lg italic text-[#0e4f88] transition hover:text-ember md:text-xl"
               >
-                cconner@actcampuscare.com
+                cconnor@actcampuscare.com
               </a>
             </div>
             <div>

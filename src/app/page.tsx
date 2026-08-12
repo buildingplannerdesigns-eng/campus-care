@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BrandLogo } from "@/components/BrandLogo";
+import { HomeHero } from "@/components/HomeHero";
 import { siteCopy } from "@/data/copy";
-import { getEditableSiteCopy } from "@/lib/content/siteCopy";
 import { getBlogPosts } from "@/lib/blog";
 
 export const revalidate = 60;
@@ -59,96 +58,83 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
 }
 
 export default async function HomePage() {
-  const [editable, blogPosts] = await Promise.all([
-    getEditableSiteCopy(),
-    getBlogPosts(),
-  ]);
+  const blogPosts = await getBlogPosts();
   const { mission: fallbackMission } = siteCopy;
-  const hero = editable.hero;
-  const mission = editable.mission;
-  const guidingStatement = editable.guidingStatement;
   const featuredPosts = blogPosts.slice(0, 3);
 
   return (
     <>
-      {/* Hero */}
-      <section className="border-b border-[#eeeae4]">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-14 md:grid-cols-[1.15fr_0.85fr] md:gap-16 md:py-20 lg:gap-20 lg:py-24">
-          <div className="flex justify-center md:justify-end">
-            <BrandLogo size="xl" priority alt="ACT Healing logo" />
-          </div>
+      <HomeHero />
 
-          <div className="text-center md:text-left">
-            <h1 className="font-body text-xl font-bold uppercase tracking-[0.08em] text-[#0e4f88] md:text-2xl lg:text-[1.65rem]">
-              {hero.orgName}
-            </h1>
-            <div className="mx-auto mt-4 h-1 w-full max-w-md bg-[#0e4f88] md:mx-0" />
-            <p className="mx-auto mt-6 max-w-md text-base font-semibold leading-relaxed text-[#333] md:mx-0 md:text-lg">
-              {hero.tagline}
+      {/* Post-hero — Patrice-style editorial welcome */}
+      <section className="relative overflow-hidden border-b border-[#e6e0d6] bg-[#f7f8f9]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18% 20%, #0e4f88 0%, transparent 42%), radial-gradient(circle at 82% 70%, #1f5c73 0%, transparent 40%)",
+          }}
+        />
+
+        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 md:pb-28 md:pt-24">
+          {/* Large lead statement — like Patrice’s purpose question */}
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#0e4f88]/75">
+              ACT Campus Care 2.0
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
-              <HomeCta href="/act">Meet Dr. Connor</HomeCta>
-              <HomeCta href="/contact" variant="outline">
-                Contact Us
-              </HomeCta>
-            </div>
+            <h2 className="mt-5 font-display text-[2rem] italic leading-[1.15] text-[#113f6c] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
+              {fallbackMission.heading}
+            </h2>
           </div>
-        </div>
-      </section>
 
-      {/* Mission */}
-      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <blockquote className="font-display text-3xl italic leading-snug text-parchment md:text-4xl">
-            {mission.heading || fallbackMission.heading}
-          </blockquote>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-            {guidingStatement}
-          </p>
-        </div>
-      </section>
-
-      {/* ACT — Dr. Connor intro */}
-      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
-            <div className="order-2 text-center md:order-1 md:text-left">
-              <SectionEyebrow>ACT</SectionEyebrow>
-              <h2 className="mt-3 font-display text-4xl leading-[1.1] text-[#113f6c] md:text-5xl lg:text-[3.25rem]">
-                Hi Friend! I&apos;m Dr. Connor
-              </h2>
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#5b6d7f]">
-                Intergenerational trauma expert &amp; founder of ACT Healing
-              </p>
-              <div className="mx-auto mt-6 space-y-4 md:mx-0">
-                <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
-                  For years, I&apos;ve helped individuals, couples, families, and communities heal from
-                  patterns that no longer serve them — with culturally grounded care and practical tools
-                  for lasting change.
-                </p>
-                <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
-                  Through speaking, workshops, coaching, and Campus Care 2.0, my work is built to help you
-                  transform pain into purpose and ACT on what matters most.
-                </p>
-              </div>
-              <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
-                <HomeCta href="/act">Explore ACT</HomeCta>
+          {/* Portrait + welcome story */}
+          <div className="mt-14 grid items-center gap-12 md:mt-20 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-16 lg:gap-20">
+            <div className="relative mx-auto w-full max-w-md md:mx-0 md:max-w-none">
+              <div
+                className="absolute -bottom-4 -right-4 hidden h-full w-full border border-[#0e4f88]/20 md:block"
+                aria-hidden
+              />
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#e8eef3]">
+                <Image
+                  src="/images/team/dr.cammie.jpg"
+                  alt="Dr. Cammie Connor"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 90vw, 44vw"
+                  priority
+                />
               </div>
             </div>
 
-            <div className="order-1 mx-auto w-full max-w-md md:order-2 md:max-w-none">
-              <div className="relative">
-                <div className="absolute -left-3 -top-3 hidden h-full w-full border border-[#0e4f88]/25 md:block" aria-hidden />
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#eef2ef] shadow-[0_24px_50px_rgba(17,63,108,0.14)]">
-                  <Image
-                    src="/images/team/dr.cammie.jpg"
-                    alt="Dr. Cammie Connor"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 768px) 90vw, 40vw"
-                    priority
-                  />
-                </div>
+            <div className="text-center md:text-left">
+              <h3 className="font-display text-4xl italic leading-[1.08] text-[#113f6c] md:text-5xl lg:text-[3.5rem]">
+                Welcome All,
+              </h3>
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#5b6d7f]">
+                I am Dr. Cammie Connor
+              </p>
+              <div className="mx-auto mt-6 h-px w-16 bg-[#0e4f88]/35 md:mx-0" aria-hidden />
+
+              <div className="mx-auto mt-8 max-w-xl space-y-5 text-left md:mx-0 md:max-w-none">
+                <p className="text-base leading-relaxed text-parchment/75 md:text-lg">
+                  My name is Cammie Connor, Ph.D., and a Licensed Professional Counselor (LPC) in the
+                  state of Missouri with over 20 years of experience. You just made an important step
+                  in the change process and on your way to transitioning to a more achieving life.
+                </p>
+                <p className="text-base leading-relaxed text-parchment/75 md:text-lg">
+                  A woman of purpose, I help individuals put their life back together one piece at a
+                  time — and empower you to ACT on your purpose through counseling, coaching, and
+                  Campus Care.
+                </p>
+              </div>
+
+              <p className="mt-8 font-display text-2xl italic leading-snug text-[#0e4f88] md:text-3xl">
+                Let me support your journey.
+              </p>
+
+              <div className="mt-9 flex flex-wrap justify-center gap-3 md:justify-start">
+                <HomeCta href="/act">Learn More</HomeCta>
               </div>
             </div>
           </div>

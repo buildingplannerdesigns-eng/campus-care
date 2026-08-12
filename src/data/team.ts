@@ -6,7 +6,7 @@ export const team: TeamMember[] = [
     role: "Founder · Speaker, Workshops & Coaching",
     bio: "Dr. Cammie's expertise in intergenerational trauma helps break the thought patterns that no longer serve a person's purpose — the clinical foundation behind ACT Healing and Campus Care 2.0.",
     image: "/images/team/dr.cammie.jpg",
-    email: "cconner@actcampuscare.com",
+    email: "cconnor@actcampuscare.com",
     socialLinks: {
       linkedin: "https://linkedin.com",
       x: "https://x.com",
@@ -42,6 +42,6 @@ export const team: TeamMember[] = [
 export const pointOfContact: TeamMember = {
   name: "Dr. Cammie Connor",
   role: "Founder · Speaker, Workshops & Coaching",
-  email: "cconner@actcampuscare.com",
+  email: "cconnor@actcampuscare.com",
   supportEmail: "info@actcampuscare.com",
 };

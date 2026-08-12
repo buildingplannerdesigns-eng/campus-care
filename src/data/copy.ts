@@ -7,17 +7,18 @@ export const siteCopy = {
   },
   hero: {
     kicker: "Speaker · Workshops · Coaching",
-    headline: "Ready to Heal, Transform & Thrive?",
-    subhead: "Culturally grounded wellness for individuals, campuses, and communities",
-    orgName: "ACT HEALING",
+    headline: "Honor Our Roots, Inspire Our Future, and \"ACT\" Together",
+    subhead: "Building a Legacy Through Unity and Purpose.",
+    orgName: "ACT Campus Care 2.0",
     tagline:
-      "Delivering transformative, culturally grounded wellness solutions and improving student care through Campus Care 2.0.",
-    primaryCta: "Show Me How",
-    secondaryCta: "Meet Dr. Connor",
+      "Honor Our Roots, Inspire Our Future, and \"ACT\" Together — Building a Legacy Through Unity and Purpose.",
+    primaryCta: "Meet Dr. Connor",
+    secondaryCta: "Contact Us",
     videoTitle: "Campus Care 2.0 — The VR Sanctuary",
   },
   mission: {
-    heading: "\u201cInspire Hope, Purpose and Collective Action\u201d",
+    heading:
+      "Honor Our Roots, Inspire Our Future, and \u201cACT\u201d Together \u2014 Building a Legacy Through Unity and Purpose.",
     body:
       "As agents of change and transformation, we empower individuals, couples, families, and communities to heal from past wounds, discover their strengths, strengthen relationships, and create pathways toward resilience, wellness, and lasting hope. Through compassion, cultural understanding, and evidence-based practices, we help transform pain into purpose and challenges into opportunities for growth \u2014 to ACT according to your purpose.",
   },

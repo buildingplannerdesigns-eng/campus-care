@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { HeartHandshake, Mic, UsersRound, type LucideIcon } from "lucide-react";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
-import { QuoteCarousel, type QuoteSlide } from "@/components/dr-cammie/QuoteCarousel";
+import { QuoteCarousel } from "@/components/dr-cammie/QuoteCarousel";
 
 function ArrowIcon() {
   return (
@@ -104,7 +105,7 @@ export function StefOverwhelmAndSteps({
   overwhelm: typeof import("@/data/drCammie").drCammieCopy.overwhelm;
   steps: typeof import("@/data/drCammie").drCammieCopy.steps;
   showMe: string;
-  video?: typeof import("@/data/drCammie").drCammieCopy.video;
+  video?: typeof import("@/data/drCammie").drCammieCopy.video | typeof import("@/data/drCammie").drCammieCopy.homeVideo;
 }) {
   return (
     <section id="show-me-how" className="scroll-mt-28 border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
@@ -189,34 +190,57 @@ function StefStep({
 
 export function StefFeatureSection({ feature }: { feature: typeof import("@/data/drCammie").drCammieCopy.feature }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
+    <section className="border-t border-[#dce8ee] bg-white py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">{feature.badgeSub}</p>
-          <p className="mt-2 font-display text-2xl italic text-parchment md:text-3xl">{feature.badge}</p>
-        </div>
+        <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:gap-16">
+          {/* Left — editorial intro */}
+          <div className="lg:sticky lg:top-28 lg:pt-2">
+            <div className="h-px w-16 bg-ember" aria-hidden />
+            <h2 className="mt-7 font-display text-4xl leading-[1.1] text-water md:text-5xl lg:text-[3.25rem]">
+              {feature.listHeading}
+            </h2>
+            <p className="mt-5 font-display text-2xl italic leading-snug text-water/85 md:text-3xl">
+              {feature.subheading}
+            </p>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-parchment/75 md:text-base">
+              {feature.heading}
+            </p>
+            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-water/55">
+              {feature.badgeSub} · {feature.badge}
+            </p>
+          </div>
 
-        <p className="mx-auto mt-10 max-w-4xl text-center text-base leading-relaxed text-parchment/75 md:text-lg">
-          {feature.heading}
-        </p>
-        <h3 className="mx-auto mt-10 max-w-3xl text-center font-display text-2xl italic text-parchment md:text-3xl">
-          {feature.subheading}
-        </h3>
-
-        <div className="mx-auto mt-14 max-w-2xl bg-[#faf9f7] p-8 ring-1 ring-[#eeeae4] md:p-10">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-parchment/60">
-            {feature.listHeading}
-          </p>
-          <ul className="mt-7 space-y-0">
-            {feature.listItems.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-baseline gap-5 border-b border-[#e8e4df] py-4 text-sm text-parchment/80 last:border-b-0 md:text-base"
-              >
-                <span className="shrink-0 font-mono text-xs text-water/70">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {item.label}
+          {/* Right — offset-frame image grid */}
+          <ul className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3">
+            {feature.listItems.map((item) => (
+              <li key={item.word} className="group">
+                <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <div
+                    className="absolute -left-2.5 -top-2.5 h-full w-full bg-[#d8e4eb] transition-colors duration-500 group-hover:bg-water/20"
+                    aria-hidden
+                  />
+                  <div className="relative aspect-[3/4] overflow-hidden bg-mineral">
+                    <Image
+                      src={item.image}
+                      alt={item.label}
+                      fill
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      sizes="(max-width: 768px) 45vw, 220px"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-mineral/70 via-mineral/25 to-transparent"
+                      aria-hidden
+                    />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
+                      <p className="font-script text-[2.35rem] leading-none text-white drop-shadow-sm sm:text-4xl md:text-[2.6rem]">
+                        {item.word}
+                      </p>
+                      <p className="mt-2 max-w-[11rem] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/95">
+                        {item.tagline}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
@@ -227,32 +251,15 @@ export function StefFeatureSection({ feature }: { feature: typeof import("@/data
 }
 
 /* ------------------------------------------------------------------ */
-/* Quotations carousel — Stefanie Gass style with auto-scroll          */
+/* Testimonies carousel — no images; calendar date meta                */
 /* ------------------------------------------------------------------ */
 
 export function StefQuoteCarousel({
-  featuredQuotes,
-  testimonials,
+  testimonies,
 }: {
-  featuredQuotes: typeof import("@/data/drCammie").drCammieCopy.featuredQuotes;
-  testimonials: typeof import("@/data/drCammie").drCammieCopy.testimonials;
+  testimonies: typeof import("@/data/drCammie").drCammieCopy.testimonies;
 }) {
-  const slides: QuoteSlide[] = [
-    ...featuredQuotes.map((item) => ({
-      name: item.attribution,
-      brand: item.reference,
-      quote: item.quote,
-      image: item.image,
-    })),
-    ...testimonials.map((item) => ({
-      name: item.name,
-      brand: item.brand,
-      quote: item.quote,
-      image: item.image,
-    })),
-  ];
-
-  return <QuoteCarousel slides={slides} autoPlayMs={6500} />;
+  return <QuoteCarousel slides={[...testimonies]} autoPlayMs={7000} />;
 }
 
 /* ------------------------------------------------------------------ */
@@ -293,25 +300,48 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
   return (
     <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        {/* Large portrait lead-in — matches Stefanie Gass homepage photo + greeting */}
-        <div className="relative mx-auto mb-12 w-full max-w-lg md:mb-16">
-          <div className="absolute -left-3 -top-3 hidden h-full w-full border border-water/30 md:block" aria-hidden />
-          <div className="relative aspect-[4/5] overflow-hidden shadow-[0_24px_50px_rgba(31,92,115,0.14)]">
-            <Image
-              src="/images/act/portrait-polka-clasped.jpg"
-              alt="Dr. Connor"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 768px) 90vw, 512px"
-            />
+        <div className="grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16 lg:gap-20">
+          <div className="relative mx-auto w-full max-w-md md:mx-0 md:max-w-none md:sticky md:top-36">
+            <div className="absolute -left-3 -top-3 hidden h-full w-full border border-water/30 md:block" aria-hidden />
+            <div className="relative aspect-[4/5] overflow-hidden bg-[#eef2ef]">
+              <Image
+                src="/images/act/portrait-polka-clasped.jpg"
+                alt="Dr. Cammie Connor"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 90vw, 40vw"
+                priority
+              />
+            </div>
           </div>
-        </div>
 
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-4xl italic text-parchment md:text-5xl">{copy.heading}</h2>
-          <div className="mx-auto mt-6 h-px w-16 bg-water/40" aria-hidden />
-          <p className="mt-6 font-display text-xl text-parchment/80 md:text-2xl">{copy.subheading}</p>
-          <p className="mt-10 font-display text-3xl italic text-water md:text-4xl">{copy.cta}</p>
+          <div>
+            <h2 className="font-display text-4xl italic leading-snug text-parchment md:text-5xl">
+              {copy.heading}
+            </h2>
+            <div className="mt-5 h-px w-16 bg-water/40" aria-hidden />
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-parchment/50">
+              {copy.subheading}
+            </p>
+
+            <div className="mt-8 space-y-5">
+              {copy.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 48)}
+                  className="text-sm leading-relaxed text-parchment/75 md:text-base"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <div className="mt-10 border-t border-[#e6e0d6] pt-8">
+              <p className="font-display text-2xl italic leading-snug text-water md:text-3xl">
+                {copy.cta}
+              </p>
+              <p className="mt-4 font-display text-lg text-parchment md:text-xl">{copy.signature}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -319,14 +349,14 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
 }
 
 /* ------------------------------------------------------------------ */
-/* Offers — three cards with gradient banner tops                      */
+/* Offers — three pathways with Lucide icons                           */
 /* ------------------------------------------------------------------ */
 
-const offerGradients = [
-  "linear-gradient(135deg, #1F5C73 0%, #2a7a96 100%)",
-  "linear-gradient(135deg, #3D5A3A 0%, #567a52 100%)",
-  "linear-gradient(135deg, #0e4f88 0%, #2a6cae 100%)",
-];
+const offerIcons: Record<(typeof import("@/data/drCammie").drCammieCopy.offers.items)[number]["icon"], LucideIcon> = {
+  users: UsersRound,
+  mic: Mic,
+  "heart-handshake": HeartHandshake,
+};
 
 export function StefOffersSection({ offers }: { offers: typeof import("@/data/drCammie").drCammieCopy.offers }) {
   return (
@@ -338,28 +368,19 @@ export function StefOffersSection({ offers }: { offers: typeof import("@/data/dr
         </p>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {offers.items.map((item, i) => (
-            <div
-              key={item.title}
-              className="flex flex-col overflow-hidden bg-white shadow-[0_18px_34px_rgba(0,0,0,0.06)] ring-1 ring-[#eeeae4] transition-shadow duration-300 hover:shadow-[0_24px_48px_rgba(31,92,115,0.14)]"
-            >
+          {offers.items.map((item) => {
+            const Icon = offerIcons[item.icon];
+            return (
               <div
-                className="flex h-28 items-center justify-center"
-                style={{ background: offerGradients[i % offerGradients.length] }}
+                key={item.title}
+                className="flex flex-col border border-[#e6e0d6] bg-white p-8 text-left"
               >
-                <span className="font-display text-4xl font-light text-white/85">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <Icon className="h-7 w-7 text-[#0e4f88]" strokeWidth={1.5} aria-hidden />
+                <h3 className="mt-6 font-display text-xl text-parchment md:text-2xl">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-parchment/65">{item.subtitle}</p>
               </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h3 className="font-display text-xl text-parchment md:text-2xl">{item.title}</h3>
-                <p className="mt-3 flex-1 text-sm text-parchment/65">{item.subtitle}</p>
-                <div className="mt-7">
-                  <StefCta href={item.href}>{item.cta}</StefCta>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <p className="mx-auto mt-14 max-w-3xl text-sm leading-relaxed text-parchment/70 md:text-base">
@@ -379,7 +400,7 @@ export function StefImagineSection({
   video,
 }: {
   imagine: typeof import("@/data/drCammie").drCammieCopy.imagine;
-  video?: typeof import("@/data/drCammie").drCammieCopy.video;
+  video?: typeof import("@/data/drCammie").drCammieCopy.video | typeof import("@/data/drCammie").drCammieCopy.homeVideo;
 }) {
   return (
     <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
@@ -388,10 +409,9 @@ export function StefImagineSection({
         <p className="mt-4 font-display text-xl italic text-water md:text-2xl">{imagine.eyebrow}</p>
         <div className="mt-12">
           <DesktopVideoMockup
-            title={video?.title ?? "Imagine consistent healing and transformation"}
-            embedUrl={video?.embedUrl || undefined}
-            videoSrc={video?.videoSrc || undefined}
-            poster={video?.poster || undefined}
+            title={video?.title ?? "Dr. Cammie Connor — ACT Healing"}
+            videoSrc="/videos/act-hero.mp4"
+            poster={video?.poster || "/images/act/portrait-orange.jpg"}
           />
         </div>
       </div>

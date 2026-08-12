@@ -285,10 +285,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Quotes carousel */}
-      <StefQuoteCarousel
-        featuredQuotes={drCammieCopy.featuredQuotes}
-        testimonials={drCammieCopy.testimonials}
-      />
+      <StefQuoteCarousel testimonies={drCammieCopy.testimonies} />
 
       {/* Partner letter — speaking page style */}
       <section className="border-t border-[#eeeae4] bg-white py-16 md:py-28">

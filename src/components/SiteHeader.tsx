@@ -31,7 +31,7 @@ function getSocialBrandHoverClass(label: string): string {
   return "hover:text-black";
 }
 
-const HERO_ROUTES = ["/act"];
+const HERO_ROUTES = ["/", "/act"];
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -39,7 +39,9 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   const isHeroRoute = HERO_ROUTES.includes(pathname);
-  const isTransparent = isHeroRoute && !scrolled;
+  /** Homepage + ACT: float nav inside the video; solid bar returns after scroll. */
+  const isVideoHero = isHeroRoute && !scrolled;
+  const isTransparent = isVideoHero;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -53,7 +55,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   const linkClass = isTransparent
-    ? "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-white/85 transition hover:text-ember xl:text-sm xl:tracking-[0.12em]"
+    ? "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-white transition hover:text-ember xl:text-sm xl:tracking-[0.12em] [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]"
     : "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-parchment/80 transition hover:text-[#0c3f84] xl:text-sm xl:tracking-[0.12em]";
 
   const isActive = (href: string) =>
@@ -65,12 +67,12 @@ export function SiteHeader() {
 
   return (
     <header id="top" className="fixed inset-x-0 top-0 z-50">
-      {/* Top announcement bar */}
+      {/* Top announcement bar — hidden over video heroes so media stays full-bleed */}
       <div
-        className={`hidden border-b transition-colors lg:block ${
-          isTransparent
-            ? "border-white/10 bg-black/20 text-white/90 backdrop-blur-sm"
-            : "border-[#0c3f84]/30 bg-[#0c3f84] text-white"
+        className={`border-b transition-colors lg:block ${
+          isVideoHero
+            ? "hidden"
+            : "hidden border-[#0c3f84]/30 bg-[#0c3f84] text-white lg:block"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6">
@@ -153,24 +155,30 @@ export function SiteHeader() {
       {/* Main navigation bar */}
       <div
         className={`border-b transition-all duration-300 ${
-          isTransparent
-            ? "border-white/10 bg-transparent"
+          isVideoHero
+            ? "border-transparent bg-transparent"
             : "border-sanctuary-700/50 bg-white/95 shadow-sm backdrop-blur-md"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-6 lg:py-4">
+        <div
+          className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:gap-5 ${
+            isVideoHero ? "py-4 lg:py-5" : "py-3 lg:py-4"
+          }`}
+        >
           {/* Logo */}
           <Link href="/" className="group flex shrink-0 items-center">
             <BrandLogo
               size="sm"
               priority
               alt="Campus Care 2.0 logo"
-              className="ring-2 ring-transparent transition group-hover:ring-ember/40 !h-12 !w-12 sm:!h-14 sm:!w-14 md:!h-16 md:!w-16"
+              className={`ring-2 ring-transparent transition group-hover:ring-ember/40 !h-11 !w-11 sm:!h-12 sm:!w-12 md:!h-14 md:!w-14 ${
+                isVideoHero ? "ring-white/30" : ""
+              }`}
             />
           </Link>
 
           {/* Desktop nav — flat, no dropdowns */}
-          <nav className="hidden items-center gap-4 xl:gap-6 lg:flex">
+          <nav className="hidden items-center gap-3 xl:gap-5 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -179,8 +187,12 @@ export function SiteHeader() {
                   link.href === "/contact"
                     ? `group inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 ${
                         isActive(link.href)
-                          ? "border-[#0c3f84] bg-white text-[#0c3f84]"
-                          : "border-[#0c3f84] bg-[#0c3f84] text-white hover:bg-white hover:text-[#0c3f84]"
+                          ? isTransparent
+                            ? "border-white bg-white text-[#0c3f84]"
+                            : "border-[#0c3f84] bg-white text-[#0c3f84]"
+                          : isTransparent
+                            ? "border-white/90 bg-transparent text-white hover:bg-white hover:text-[#0c3f84]"
+                            : "border-[#0c3f84] bg-[#0c3f84] text-white hover:bg-white hover:text-[#0c3f84]"
                       }`
                     : `${linkClass} ${isActive(link.href) ? (isTransparent ? "text-ember" : "text-[#0c3f84]") : ""}`
                 }
@@ -202,7 +214,9 @@ export function SiteHeader() {
 
           {/* Mobile toggle */}
           <button
-            className={`rounded-lg p-1.5 transition sm:p-2 lg:hidden ${isTransparent ? "text-white" : "text-parchment"}`}
+            className={`rounded-lg p-1.5 transition sm:p-2 lg:hidden ${
+              isTransparent ? "text-white [filter:drop-shadow(0_1px_6px_rgba(0,0,0,0.45))]" : "text-parchment"
+            }`}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}

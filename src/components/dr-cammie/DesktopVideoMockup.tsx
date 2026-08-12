@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
 type DesktopVideoMockupProps = {
   title?: string;
   videoSrc?: string;
@@ -12,6 +16,17 @@ export function DesktopVideoMockup({
   embedUrl,
   poster,
 }: DesktopVideoMockupProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const resolvedEmbed = embedUrl?.trim() || "";
+  const resolvedVideo = videoSrc?.trim() || "";
+
+  useEffect(() => {
+    if (!resolvedVideo || !videoRef.current) return;
+    const video = videoRef.current;
+    video.muted = true;
+    void video.play().catch(() => undefined);
+  }, [resolvedVideo]);
+
   return (
     <div className="mx-auto w-full max-w-[860px]">
       {/* Silver iMac-style chassis */}
@@ -27,17 +42,31 @@ export function DesktopVideoMockup({
         {/* Thin black bezel + screen */}
         <div className="overflow-hidden rounded-[0.55rem] bg-[#0a0a0a] p-[5px] sm:rounded-[0.7rem] sm:p-[6px]">
           <div className="relative aspect-video overflow-hidden rounded-[0.28rem] bg-[#111] sm:rounded-[0.35rem]">
-            {embedUrl ? (
+            {resolvedEmbed ? (
               <iframe
-                src={embedUrl}
+                src={
+                  resolvedEmbed.includes("autoplay=1")
+                    ? resolvedEmbed
+                    : `${resolvedEmbed}${resolvedEmbed.includes("?") ? "&" : "?"}autoplay=1&mute=1`
+                }
                 title={title}
                 className="absolute inset-0 h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            ) : videoSrc ? (
-              <video className="h-full w-full object-cover" controls playsInline poster={poster}>
-                <source src={videoSrc} type="video/mp4" />
+            ) : resolvedVideo ? (
+              <video
+                ref={videoRef}
+                key={resolvedVideo}
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                poster={poster}
+              >
+                <source src={resolvedVideo} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             ) : (

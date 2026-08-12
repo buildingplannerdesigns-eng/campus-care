@@ -20,7 +20,7 @@ export const drCammieCopy = {
     },
   ],
   intro: {
-    greeting: "Hey, I'm Dr. Cammie Connor",
+    greeting: "Agents of Change and Transformation",
     title: "Intergenerational Trauma Expert & Founder of ACT Healing",
     subtitle:
       "Over the past decade, I built a transformative practice helping people break patterns and ACT on their purpose.",
@@ -49,7 +49,7 @@ export const drCammieCopy = {
       description:
         "Invite Dr. Cammie to inspire your audience with faith-led, trauma-informed training on healing, resilience, and collective action.",
       cta: "Request Speaking",
-      href: "mailto:cconner@actcampuscare.com",
+      href: "mailto:cconnor@actcampuscare.com",
     },
     {
       number: "03",
@@ -72,8 +72,14 @@ export const drCammieCopy = {
   video: {
     title: "Dr. Cammie Connor — Healing, Transformation & ACT",
     embedUrl: "",
-    videoSrc: "",
-    poster: "",
+    videoSrc: "/videos/act-hero.mp4",
+    poster: "/images/act/portrait-orange.jpg",
+  },
+  homeVideo: {
+    title: "ACT Campus Care 2.0 — Homepage",
+    embedUrl: "",
+    videoSrc: "/videos/home-hero.mp4",
+    poster: "/images/campus-care/campus-care-hero.png",
   },
   faith: {
     label: "Agents of Change and Transformation",
@@ -86,15 +92,39 @@ export const drCammieCopy = {
     badgeSub: "Expert-Led",
     heading:
       "Come learn from an expert in intergenerational trauma so you can heal, grow, and create lasting change. Learn how to transform pain into purpose instead of spending years stuck in patterns that no longer serve you.",
-    subheading:
-      "The Go-To Expert for Individuals, Couples, Families & Communities Ready to Heal",
-    listHeading: "Top Ways to Work Together:",
+    subheading: "Why partner with Dr. Cammie?",
+    listHeading: "Top Ways to Work Together",
     listItems: [
-      { label: "Book a speaking engagement for your organization or event" },
-      { label: "Join a workshop to break intergenerational patterns" },
-      { label: "Start 1:1 or couples therapy rooted in trauma expertise" },
-      { label: "Bring Campus Care 2.0 to your HBCU campus" },
-      { label: "Explore group coaching and community healing programs" },
+      {
+        word: "speaking",
+        tagline: "FOR YOUR ORGANIZATION OR EVENT",
+        label: "Book a speaking engagement for your organization or event",
+        image: "/images/act/portrait-orange.jpg",
+      },
+      {
+        word: "workshop",
+        tagline: "BREAK INTERGENERATIONAL PATTERNS",
+        label: "Join a workshop to break intergenerational patterns",
+        image: "/images/act/portrait-polka-front.jpeg",
+      },
+      {
+        word: "therapy",
+        tagline: "1:1 OR COUPLES, TRAUMA-ROOTED",
+        label: "Start 1:1 or couples therapy rooted in trauma expertise",
+        image: "/images/act/portrait-polka-side.jpg",
+      },
+      {
+        word: "campus",
+        tagline: "CAMPUS CARE 2.0 FOR YOUR HBCU",
+        label: "Bring Campus Care 2.0 to your HBCU campus",
+        image: "/images/act/portrait-polka-clasped.jpg",
+      },
+      {
+        word: "coaching",
+        tagline: "GROUP HEALING & COMMUNITY",
+        label: "Explore group coaching and community healing programs",
+        image: "/images/act/portrait-polka-crossed.jpg",
+      },
     ],
   },
   story: {
@@ -109,31 +139,41 @@ export const drCammieCopy = {
     callout: "MY CALLING IS TO SHOW YOU HOW TO DO THE SAME.",
   },
   hiFriend: {
-    heading: "Hi Friend! I'm Dr. Cammie",
-    subheading: "I've dedicated my career to helping others heal and transform.",
-    cta: "Let's grow, friend.",
+    heading: "Welcome All, I am Dr. Cammie Connor",
+    subheading: "Cammie Connor, Ph.D., LPC",
+    cta: "Let me support your journey.",
+    paragraphs: [
+      "My name is Cammie Connor, Ph.D., and a Licensed Professional Counselor (LPC) in the state of Missouri with over 20 years of experience. You just made an important step in the change process and on your way to transitioning to a more achieving life. My experience includes working with individuals in residential, private practice and university settings. I would describe my approach to counseling as eclectic — drawing on many therapeutic modalities to best serve a client's needs and goals for treatment.",
+      "A woman of purpose, I help individuals put their life back together one piece at a time. This is an essential ingredient in healing and personal growth. I work collaboratively with you to better understand your lived experience and to eliminate relationship challenges, life stressors, anxiety, depression, PTSD and any barrier that gets in the way of living a fulfilled life.",
+      "An expert in trauma, whatever the root of the chains are holding you back, we will work to identify them, pull the pieces apart and empower and strengthen you to heal and become whole again.",
+      "Finally, I will empower you to experience transformation and changed attitudes through counseling services, transformational movement coaching, spiritual well-being, trauma informed care, and using the Campus Care model so you build a life that is meaningful and true for you to ACT on your purpose.",
+    ],
+    signature: "Cammie Connor, PhD., LPC",
   },
   offers: {
     heading: "Get clear on the exact steps to healing & transformation",
     subheading: "THAT MAKES A LASTING IMPACT",
     items: [
       {
-        title: "Workshops & Group Coaching",
+        title: "Workshops & Group Training",
         subtitle: "Interactive sessions to break generational patterns",
         cta: "Explore Programs",
         href: "/courses",
+        icon: "users" as const,
       },
       {
         title: "Speaking & Keynotes",
         subtitle: "Inspire your audience with trauma-informed training",
         cta: "Book Dr. Cammie",
-        href: "mailto:cconner@actcampuscare.com",
+        href: "mailto:cconnor@actcampuscare.com",
+        icon: "mic" as const,
       },
       {
-        title: "Therapy & 1:1 Coaching",
+        title: "Therapy & 1:1 Life Coaching",
         subtitle: "Individual, couples, and family sessions",
         cta: "Apply Now",
         href: "/solutions#therapy",
+        icon: "heart-handshake" as const,
       },
     ],
     body:
@@ -143,90 +183,51 @@ export const drCammieCopy = {
     eyebrow: "Consistent Healing From Expert-Led Support...",
     heading: "Imagine having",
   },
-  featuredQuotes: [
+  testimonies: [
     {
       quote:
-        "Dr. Cammie's expertise in intergenerational trauma helped me break patterns I'd carried for decades.",
-      attribution: "Amara Johnson",
-      reference: "ACT Healing Community",
-      image: "/images/avatars/female.svg",
+        "Dr. Connor is one amazing therapist! I knew within five minutes of speaking with her that she would be able to help me.",
+      date: "Jan 12, 2026",
+      context:
+        "after therapy with Camilla for 2 weeks on issues concerning stress, anxiety, and self esteem",
     },
     {
       quote:
-        "Finally an approach that sees the whole person — culturally grounded, compassionate, and deeply transformative.",
-      attribution: "Chris Alvarez",
-      reference: "Individual Counseling",
-      image: "/images/avatars/male.svg",
+        "We only met with her once and I feel a strong connection with her and will continue the journey we have started.",
+      date: "Jan 10, 2026",
+      context:
+        "after therapy with Camilla for 2 weeks on issues concerning stress, anxiety, relationship issues, family conflicts, trauma and abuse, intimacy-related issues, parenting issues, coping with life changes, coaching, and compassion fatigue",
     },
     {
       quote:
-        "Campus Care 2.0 brings Dr. Cammie's clinical foundation to scale — giving students a sanctuary that builds real resilience.",
-      attribution: "Keisha Morgan",
-      reference: "HBCU Wellness Initiative",
-      image: "/images/avatars/female.svg",
-    },
-  ],
-  testimonials: [
-    {
-      headline: "Dr. Cammie helped me break patterns I'd carried for decades",
-      brand: "ACT Healing Community",
-      name: "Maya Thompson",
-      quote:
-        "Dr. Cammie's expertise in intergenerational trauma helped me break patterns I'd carried for decades. Her approach is compassionate, culturally grounded, and deeply transformative.",
-      image: "/images/avatars/female.svg",
+        "Dr. Connor is not only very professional but also objective. That is not always common in marriage counseling, especially when one partner is attending marriage counseling by themselves. When I first met with Dr. Connor, I was in a desperate situation facing a divorce I did not want. She not only listened to me but also taught me self-care, which I knew nothing about up to that time. That has helped me change the way I think and respond to situations in my life. I know that life and marriage are not easy, but I feel more confident and hopeful now that I have the strength and skills to improve and succeed at both.",
+      date: "Mar 31, 2023",
+      context:
+        "after therapy with Camilla for 10 months on issues concerning relationship",
     },
     {
-      headline: "I strengthened my relationships and found my purpose again",
-      brand: "Individual Counseling",
-      name: "Jordan Ellis",
-      quote:
-        "The clarity and cultural understanding Dr. Cammie brings to every session created a safe space for real healing.",
-      image: "/images/avatars/male.svg",
+      quote: "Absolutely the best !",
+      date: "Nov 26, 2025",
+      context:
+        "after therapy with Camilla for 4 years and 10 months on issues concerning depression, stress, anxiety, family conflicts, trauma and abuse, and grief",
     },
     {
-      headline: "Campus Care 2.0 honors students' lived experiences",
-      brand: "HBCU Wellness Initiative",
-      name: "Aisha Brooks",
       quote:
-        "Campus Care 2.0 brings Dr. Cammie's clinical foundation to scale — giving students a sanctuary that builds real resilience.",
-      image: "/images/avatars/female.svg",
+        "Dr Connor is a wonderful therapist, she is compassionate and listens. I feel very comfortable with her. I have actually opened up to her about deep painful secrets I have kept hidden all my life. She encourages me to believe in myself. I will eventually find peace within myself to live a fulfilling life.",
+      date: "Aug 22, 2022",
+      context:
+        "after therapy with Camilla for 1 year and 2 months on issues concerning relationship",
     },
     {
-      headline: "Her workshops changed how our organization approaches wellness",
-      brand: "Community Organization",
-      name: "Daniel Okonkwo",
       quote:
-        "Dr. Cammie's speaking and workshop facilitation gave our team practical tools for trauma-informed care.",
-      image: "/images/avatars/male.svg",
-    },
-    {
-      headline: "Finally an approach that sees the whole person",
-      brand: "Couples Counseling",
-      name: "Nina & Marcus Reed",
-      quote:
-        "We learned to break cycles we'd repeated for generations. The culturally grounded approach made all the difference.",
-      image: "/images/avatars/female.svg",
-    },
-    {
-      headline: "ACT Healing transformed our campus wellness strategy",
-      brand: "Campus Care 2.0 Partner",
-      name: "Precious Osei",
-      quote:
-        "The ACT Healing gives our students a space that feels supportive, anonymous, and culturally affirming.",
-      image: "/images/team/precious.jpeg",
-    },
-    {
-      headline: "ACT work that creates lasting change",
-      brand: "Founder · Celestial Web Solutions",
-      name: "Paul",
-      quote:
-        "Dr. Cammie's ACT work meets people where they are — breaking generational patterns with compassion, cultural grounding, and real transformation for individuals, families, and communities.",
-      image: "/images/team/founder-waliu.png",
+        "10 minutes into our first appointment I felt like she understood me and my struggles. 2 appointments in and I feel like she had given me great insight and tools to accomplish my goals.",
+      date: "Jun 21, 2021",
+      context: "after therapy with Camilla for 2 weeks",
     },
   ],
   closingCta: {
     lines: ["Learn How to Consistently", "Heal & Transform", "For Individuals, Couples, Families & Communities"],
     cta: "Work With Dr. Cammie",
-    href: "mailto:cconner@actcampuscare.com",
+    href: "mailto:cconnor@actcampuscare.com",
   },
 } as const;

@@ -1,6 +1,6 @@
 import { Eyebrow } from "@/components/ui";
 import { DonationForm } from "@/components/DonationForm";
-import { ShieldCheck, RefreshCw, Globe, Receipt } from "lucide-react";
+import { Shield, RefreshCcw, Globe2, FileText } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -45,22 +45,22 @@ const impactTiers = [
 
 const trustItems = [
   {
-    Icon: ShieldCheck,
+    Icon: Shield,
     label: "Secure checkout via Donorbox",
     description: "256-bit SSL encrypted transit",
   },
   {
-    Icon: RefreshCw,
+    Icon: RefreshCcw,
     label: "One-time or monthly giving",
     description: "Toggle frequency anytime",
   },
   {
-    Icon: Globe,
+    Icon: Globe2,
     label: "International donors welcome",
     description: "Supports multi-currency gifts",
   },
   {
-    Icon: Receipt,
+    Icon: FileText,
     label: "Donation receipt emailed automatically",
     description: "Instant tax-compliant receipt",
   },
@@ -129,11 +129,9 @@ export default function PaymentsPage() {
               return (
                 <div
                   key={item.label}
-                  className="flex items-start gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-[0_12px_28px_rgba(11,31,52,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(11,31,52,0.08)]"
+                  className="flex items-start gap-4 border border-gray-100 bg-white p-5"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#1a5a96]/10 text-[#1a5a96]">
-                    <Icon className="h-6 w-6" />
-                  </div>
+                  <Icon className="mt-0.5 h-5 w-5 shrink-0 text-[#1a5a96]" strokeWidth={1.5} aria-hidden />
                   <div>
                     <h4 className="text-sm font-bold leading-snug text-parchment">{item.label}</h4>
                     <p className="mt-1 text-xs text-parchment/50">{item.description}</p>

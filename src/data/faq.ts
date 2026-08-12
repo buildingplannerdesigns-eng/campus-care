@@ -47,6 +47,6 @@ export const faqItems: FaqItem[] = [
   {
     question: "How do I book a consultation, workshop, or speaking engagement?",
     answer:
-      "Visit the Contact page or email info@actcampuscare.com. For Dr. Connor directly, use cconner@actcampuscare.com. Share your goals, audience, and timing and our team will follow up.",
+      "Visit the Contact page or email info@actcampuscare.com. For Dr. Connor directly, use cconnor@actcampuscare.com. Share your goals, audience, and timing and our team will follow up.",
   },
 ];

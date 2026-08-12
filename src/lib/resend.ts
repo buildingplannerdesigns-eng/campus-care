@@ -3,7 +3,7 @@ import type { ContactFormValues } from "@/types";
 
 function resolveContactRecipient(target: ContactFormValues["target"]) {
   if (target === "dr-cammie") {
-    return process.env.DR_CAMMIE_CONTACT_EMAIL ?? "cconner@actcampuscare.com";
+    return process.env.DR_CAMMIE_CONTACT_EMAIL ?? "cconnor@actcampuscare.com";
   }
 
   return process.env.CONTACT_NOTIFICATION_EMAIL ?? "info@actcampuscare.com";

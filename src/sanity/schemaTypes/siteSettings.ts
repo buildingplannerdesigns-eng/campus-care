@@ -95,7 +95,7 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: "contactEmail",
-      title: "Info email (unused — public contact email is cconner@actcampuscare.com)",
+      title: "Info email (unused — public contact email is cconnor@actcampuscare.com)",
       type: "string",
       group: "contact",
       hidden: true,

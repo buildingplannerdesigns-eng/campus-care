@@ -47,6 +47,33 @@ textarea:focus-visible {
   text-wrap: balance;
 }
 
+@keyframes home-hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-hero-fade {
+  animation: home-hero-fade 0.9s ease-out both;
+}
+
+.home-hero-fade-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.home-hero-fade-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.home-hero-fade-delay-3 {
+  animation-delay: 0.3s;
+}
+
 @keyframes logo-marquee {
   0% {
     transform: translateX(0);
@@ -66,17 +93,14 @@ textarea:focus-visible {
   100% {
     opacity: 1;
     transform: scale(1);
-    filter: drop-shadow(0 0 0 transparent);
   }
   40% {
     opacity: 0.15;
     transform: scale(0.92);
-    filter: drop-shadow(0 0 0 transparent);
   }
   70% {
     opacity: 1;
     transform: scale(1.06);
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
   }
 }
 
@@ -85,7 +109,7 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 .icon-blink-soft {
@@ -93,7 +117,7 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -102,6 +126,5 @@ textarea:focus-visible {
     animation: none;
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
