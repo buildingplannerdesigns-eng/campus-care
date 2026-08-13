@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
 
 /** Drop at public/videos/act-hero.mp4, or set NEXT_PUBLIC_ACT_HERO_VIDEO. */
 const ACT_HERO_VIDEO =
@@ -39,10 +38,7 @@ export function DrCammieHero({
 
   return (
     <section className="relative bg-white pb-10 md:pb-14">
-      {/* Header lives inside the hero so it sits on the video */}
-      <SiteHeader inHero />
-
-      {/* Full-bleed video band */}
+      {/* Full-bleed video band — site header overlays this on /act */}
       <div className="relative isolate overflow-hidden pb-36 md:pb-44 lg:pb-52">
         <div className="absolute inset-0 bg-[#0a1f33]" aria-hidden>
           <div

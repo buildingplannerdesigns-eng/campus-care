@@ -2,12 +2,17 @@
 
 import { usePathname } from "next/navigation";
 import { MotionPage } from "@/components/MotionProvider";
+import { HERO_ROUTES } from "@/components/SiteHeader";
 
-const HERO_ROUTES = ["/", "/act"];
+function isHeroPath(pathname: string | null) {
+  if (!pathname) return false;
+  const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  return (HERO_ROUTES as readonly string[]).includes(path);
+}
 
 export function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isHeroRoute = HERO_ROUTES.includes(pathname);
+  const isHeroRoute = isHeroPath(pathname);
 
   return (
     <main className={isHeroRoute ? "" : "pt-28"}>

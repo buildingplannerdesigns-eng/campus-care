@@ -33,19 +33,21 @@ function getSocialBrandHoverClass(label: string): string {
 
 export const HERO_ROUTES = ["/", "/act"] as const;
 
-type SiteHeaderProps = {
-  /** Rendered inside Home/ACT hero so the nav lives on the video. */
-  inHero?: boolean;
-};
+function isHeroPath(pathname: string | null) {
+  if (!pathname) return false;
+  const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  return (HERO_ROUTES as readonly string[]).includes(path);
+}
 
-export function SiteHeader({ inHero = false }: SiteHeaderProps) {
+export function SiteHeader() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  /** Inside hero: transparent over video until scroll/menu; then sticky solid. */
-  const overHero = inHero && !scrolled && !mobileOpen;
-  const hideContactBar = inHero;
+  const isHeroRoute = isHeroPath(pathname);
+  /** Home/ACT: one fixed nav floats over the video, then turns solid on scroll. */
+  const overHero = isHeroRoute && !scrolled && !mobileOpen;
+  const hideContactBar = isHeroRoute;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -70,15 +72,9 @@ export function SiteHeader({ inHero = false }: SiteHeaderProps) {
     ? `tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`
     : undefined;
 
-  const positionClass = inHero
-    ? scrolled || mobileOpen
-      ? "fixed inset-x-0 top-0 z-50"
-      : "absolute inset-x-0 top-0 z-50"
-    : "fixed inset-x-0 top-0 z-50";
-
   return (
-    <header id="top" className={positionClass}>
-      {/* Top announcement bar — hidden when nav is inside a video hero */}
+    <header id="top" className="fixed inset-x-0 top-0 z-50">
+      {/* Top announcement bar — hidden on video-hero routes */}
       <div
         className={`border-b transition-colors lg:block ${
           hideContactBar
@@ -173,7 +169,7 @@ export function SiteHeader({ inHero = false }: SiteHeaderProps) {
       >
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:gap-5 ${
-            inHero ? "py-4 lg:py-5" : "py-3 lg:py-4"
+            isHeroRoute ? "py-4 lg:py-5" : "py-3 lg:py-4"
           }`}
         >
           {/* Logo */}

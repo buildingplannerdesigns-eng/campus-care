@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
 
 /** Drop the file at public/videos/home-hero.mp4 (or set NEXT_PUBLIC_HOME_HERO_VIDEO). */
 const HOME_HERO_VIDEO =
@@ -16,13 +15,10 @@ export function HomeHero() {
 
   return (
     <section
-      className="relative min-h-[100svh] bg-[#0a1f33]"
+      className="relative min-h-[100svh] overflow-hidden bg-[#0a1f33]"
       aria-label="Homepage hero"
     >
-      {/* Header lives inside the hero so it sits on the video */}
-      <SiteHeader inHero />
-
-      <div className="absolute inset-0 overflow-hidden" aria-hidden>
+      <div className="absolute inset-0" aria-hidden>
         <div
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
           style={{
