@@ -39,9 +39,10 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   const isHeroRoute = HERO_ROUTES.includes(pathname);
-  /** Homepage + ACT: float nav inside the video; solid bar returns after scroll. */
-  const isVideoHero = isHeroRoute && !scrolled;
-  const isTransparent = isVideoHero;
+  /** Homepage + ACT: float nav over the video; solid bar after scroll. */
+  const isTransparent = isHeroRoute && !scrolled;
+  /** Keep contact strip off hero routes so header height stays stable over video. */
+  const hideContactBar = isHeroRoute;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -67,10 +68,10 @@ export function SiteHeader() {
 
   return (
     <header id="top" className="fixed inset-x-0 top-0 z-50">
-      {/* Top announcement bar — hidden over video heroes so media stays full-bleed */}
+      {/* Top announcement bar — never on video-hero routes (avoids jump over media) */}
       <div
         className={`border-b transition-colors lg:block ${
-          isVideoHero
+          hideContactBar
             ? "hidden"
             : "hidden border-[#0c3f84]/30 bg-[#0c3f84] text-white lg:block"
         }`}
@@ -155,14 +156,14 @@ export function SiteHeader() {
       {/* Main navigation bar */}
       <div
         className={`border-b transition-all duration-300 ${
-          isVideoHero
+          isTransparent
             ? "border-transparent bg-transparent"
             : "border-sanctuary-700/50 bg-white/95 shadow-sm backdrop-blur-md"
         }`}
       >
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:gap-5 ${
-            isVideoHero ? "py-4 lg:py-5" : "py-3 lg:py-4"
+            isTransparent || isHeroRoute ? "py-4 lg:py-5" : "py-3 lg:py-4"
           }`}
         >
           {/* Logo */}
@@ -172,7 +173,7 @@ export function SiteHeader() {
               priority
               alt="Campus Care 2.0 logo"
               className={`ring-2 ring-transparent transition group-hover:ring-ember/40 !h-11 !w-11 sm:!h-12 sm:!w-12 md:!h-14 md:!w-14 ${
-                isVideoHero ? "ring-white/30" : ""
+                isTransparent ? "ring-white/30" : ""
               }`}
             />
           </Link>

@@ -50,16 +50,20 @@ export function DrCammieHero({
           />
           <video
             ref={videoRef}
-            className={`h-full w-full object-cover transition-opacity duration-700 ${
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
               videoReady ? "opacity-100" : "opacity-0"
             }`}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={ACT_HERO_POSTER}
             onCanPlay={() => {
+              setVideoReady(true);
+              void videoRef.current?.play().catch(() => undefined);
+            }}
+            onLoadedData={() => {
               setVideoReady(true);
               void videoRef.current?.play().catch(() => undefined);
             }}
@@ -67,7 +71,7 @@ export function DrCammieHero({
           >
             <source src={ACT_HERO_VIDEO} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,38,0.45)_0%,rgba(8,22,38,0.55)_45%,rgba(8,22,38,0.72)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,38,0.5)_0%,rgba(8,22,38,0.28)_40%,rgba(8,22,38,0.55)_100%)]" />
         </div>
 
         <div
