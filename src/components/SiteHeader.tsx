@@ -31,32 +31,36 @@ function getSocialBrandHoverClass(label: string): string {
   return "hover:text-black";
 }
 
-const HERO_ROUTES = ["/", "/act"];
+export const HERO_ROUTES = ["/", "/act"] as const;
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  /** Rendered inside Home/ACT hero so the nav lives on the video. */
+  inHero?: boolean;
+};
+
+export function SiteHeader({ inHero = false }: SiteHeaderProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const isHeroRoute = HERO_ROUTES.includes(pathname);
-  /** Homepage + ACT: float nav over the video; solid bar after scroll. */
-  const isTransparent = isHeroRoute && !scrolled;
-  /** Keep contact strip off hero routes so header height stays stable over video. */
-  const hideContactBar = isHeroRoute;
+  /** Inside hero: transparent over video until scroll/menu; then sticky solid. */
+  const overHero = inHero && !scrolled && !mobileOpen;
+  const hideContactBar = inHero;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     setMobileOpen(false);
+    setScrolled(typeof window !== "undefined" ? window.scrollY > 24 : false);
   }, [pathname]);
 
-  const linkClass = isTransparent
-    ? "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-white transition hover:text-ember xl:text-sm xl:tracking-[0.12em] [text-shadow:0_1px_8px_rgba(0,0,0,0.55)]"
+  const linkClass = overHero
+    ? "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-white transition hover:text-ember xl:text-sm xl:tracking-[0.12em]"
     : "whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-parchment/80 transition hover:text-[#0c3f84] xl:text-sm xl:tracking-[0.12em]";
 
   const isActive = (href: string) =>
@@ -66,9 +70,15 @@ export function SiteHeader() {
     ? `tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`
     : undefined;
 
+  const positionClass = inHero
+    ? scrolled || mobileOpen
+      ? "fixed inset-x-0 top-0 z-50"
+      : "absolute inset-x-0 top-0 z-50"
+    : "fixed inset-x-0 top-0 z-50";
+
   return (
-    <header id="top" className="fixed inset-x-0 top-0 z-50">
-      {/* Top announcement bar — never on video-hero routes (avoids jump over media) */}
+    <header id="top" className={positionClass}>
+      {/* Top announcement bar — hidden when nav is inside a video hero */}
       <div
         className={`border-b transition-colors lg:block ${
           hideContactBar
@@ -156,14 +166,14 @@ export function SiteHeader() {
       {/* Main navigation bar */}
       <div
         className={`border-b transition-all duration-300 ${
-          isTransparent
+          overHero
             ? "border-transparent bg-transparent"
             : "border-sanctuary-700/50 bg-white/95 shadow-sm backdrop-blur-md"
         }`}
       >
         <div
           className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:gap-5 ${
-            isTransparent || isHeroRoute ? "py-4 lg:py-5" : "py-3 lg:py-4"
+            inHero ? "py-4 lg:py-5" : "py-3 lg:py-4"
           }`}
         >
           {/* Logo */}
@@ -173,7 +183,7 @@ export function SiteHeader() {
               priority
               alt="Campus Care 2.0 logo"
               className={`ring-2 ring-transparent transition group-hover:ring-ember/40 !h-11 !w-11 sm:!h-12 sm:!w-12 md:!h-14 md:!w-14 ${
-                isTransparent ? "ring-white/30" : ""
+                overHero ? "ring-white/35 shadow-[0_2px_16px_rgba(0,0,0,0.35)]" : ""
               }`}
             />
           </Link>
@@ -188,14 +198,14 @@ export function SiteHeader() {
                   link.href === "/contact"
                     ? `group inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 ${
                         isActive(link.href)
-                          ? isTransparent
+                          ? overHero
                             ? "border-white bg-white text-[#0c3f84]"
                             : "border-[#0c3f84] bg-white text-[#0c3f84]"
-                          : isTransparent
+                          : overHero
                             ? "border-white/90 bg-transparent text-white hover:bg-white hover:text-[#0c3f84]"
                             : "border-[#0c3f84] bg-[#0c3f84] text-white hover:bg-white hover:text-[#0c3f84]"
                       }`
-                    : `${linkClass} ${isActive(link.href) ? (isTransparent ? "text-ember" : "text-[#0c3f84]") : ""}`
+                    : `${linkClass} ${isActive(link.href) ? (overHero ? "text-ember" : "text-[#0c3f84]") : ""}`
                 }
               >
                 <span className="inline-flex items-center gap-1.5">
@@ -216,7 +226,7 @@ export function SiteHeader() {
           {/* Mobile toggle */}
           <button
             className={`rounded-lg p-1.5 transition sm:p-2 lg:hidden ${
-              isTransparent ? "text-white [filter:drop-shadow(0_1px_6px_rgba(0,0,0,0.45))]" : "text-parchment"
+              overHero ? "text-white [filter:drop-shadow(0_1px_6px_rgba(0,0,0,0.45))]" : "text-parchment"
             }`}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
