@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 
 /** Drop at public/videos/act-hero.mp4, or set NEXT_PUBLIC_ACT_HERO_VIDEO. */
 const ACT_HERO_VIDEO =
   process.env.NEXT_PUBLIC_ACT_HERO_VIDEO?.trim() || "/videos/act-hero.mp4";
+const ACT_HERO_POSTER =
+  process.env.NEXT_PUBLIC_ACT_HERO_POSTER?.trim() || "/images/act/portrait-orange.jpg";
 
 type DrCammieHeroProps = {
   headline: string;
@@ -32,31 +34,44 @@ export function DrCammieHero({
   headshotAlt = "Dr. Connor",
 }: DrCammieHeroProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    void video.play().catch(() => undefined);
-  }, []);
+  const [videoReady, setVideoReady] = useState(false);
 
   return (
     <section className="relative bg-white pb-10 md:pb-14">
       {/* Full-bleed video band */}
       <div className="relative isolate overflow-hidden pb-36 md:pb-44 lg:pb-52">
         <div className="absolute inset-0 bg-[#0a1f33]" aria-hidden>
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
+            style={{
+              backgroundImage: `url(${ACT_HERO_POSTER})`,
+              opacity: videoReady ? 0 : 1,
+            }}
+          />
           <video
             ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+              videoReady ? "opacity-100" : "opacity-0"
+            }`}
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            poster={ACT_HERO_POSTER}
+            onCanPlay={() => {
+              setVideoReady(true);
+              void videoRef.current?.play().catch(() => undefined);
+            }}
+            onLoadedData={() => {
+              setVideoReady(true);
+              void videoRef.current?.play().catch(() => undefined);
+            }}
+            onError={() => setVideoReady(false)}
           >
             <source src={ACT_HERO_VIDEO} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,38,0.5)_0%,rgba(8,22,38,0.22)_40%,rgba(8,22,38,0.55)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,22,38,0.5)_0%,rgba(8,22,38,0.28)_40%,rgba(8,22,38,0.55)_100%)]" />
         </div>
 
         <div
