@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HomeHero } from "@/components/HomeHero";
+import { DonateButton } from "@/components/DonateButton";
 import { siteCopy } from "@/data/copy";
 import { getBlogPosts } from "@/lib/blog";
 
@@ -155,14 +156,25 @@ export default async function HomePage() {
           </p>
 
           <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
-            <div className="border border-[#e6e0d6] bg-white p-6 text-left md:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">Therapy</p>
-              <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
-                Individual, couples &amp; family sessions
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-parchment/70">
-                Culturally grounded, relational work led by Dr. Connor.
-              </p>
+            <div className="overflow-hidden border border-[#e6e0d6] bg-white text-left">
+              <div className="relative aspect-[4/3] bg-[#e8eef3]">
+                <Image
+                  src="/images/team/consellor.jpg"
+                  alt="Dr. Connor — Counseling"
+                  fill
+                  className="object-cover object-[center_20%]"
+                  sizes="(max-width: 640px) 90vw, 360px"
+                />
+              </div>
+              <div className="p-6 md:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">ACT Counseling</p>
+                <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
+                  Individual, couples &amp; family sessions
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-parchment/70">
+                  Culturally grounded, relational work led by Dr. Connor.
+                </p>
+              </div>
             </div>
             <div className="border border-[#e6e0d6] bg-white p-6 text-left md:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
@@ -304,7 +316,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-9 flex justify-center">
-            <HomeCta href="/payments">Make a Payment</HomeCta>
+            <DonateButton />
           </div>
         </div>
       </section>
@@ -332,9 +344,7 @@ export default async function HomePage() {
             <HomeCta href="/act" variant="outline">
               Meet Dr. Connor
             </HomeCta>
-            <HomeCta href="/payments" variant="outline">
-              Make a Payment
-            </HomeCta>
+            <DonateButton variant="outline" />
           </div>
         </div>
       </section>

@@ -41,7 +41,7 @@ export default function DrCammieConnorPage() {
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
         secondaryCtaHref="mailto:cconnor@actcampuscare.com"
-        headshotSrc="/images/act/portrait-orange.jpg"
+        headshotSrc="/images/team/consellor.jpg"
         headshotAlt="Dr. Connor"
       />
 

@@ -2,10 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-
-const DONORBOX_URL =
-  process.env.NEXT_PUBLIC_DONORBOX_CAMPAIGN_URL ||
-  "https://donorbox.org/campus-care-2-0";
+import { DonateButton } from "@/components/DonateButton";
+import { donorboxUrl } from "@/lib/donorbox";
 
 const suggestedAmounts = [25, 50, 100, 250, 365];
 
@@ -58,13 +56,10 @@ export function DonationForm() {
 
   const activeAmount = customAmount !== "" ? Number(customAmount) : amount;
 
-  const donateUrl = useMemo(() => {
-    const params = new URLSearchParams();
-    if (activeAmount > 0) params.set("amount", String(activeAmount));
-    if (isMonthly) params.set("interval", "monthly");
-    const query = params.toString();
-    return query ? `${DONORBOX_URL}?${query}` : DONORBOX_URL;
-  }, [activeAmount, isMonthly]);
+  const donateUrl = useMemo(
+    () => donorboxUrl({ amount: activeAmount, monthly: isMonthly }),
+    [activeAmount, isMonthly]
+  );
 
   const impactText =
     impactByAmount[activeAmount] ??
@@ -153,28 +148,10 @@ export function DonationForm() {
       </label>
 
       {/* Donate CTA */}
-      <a
-        href={donateUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group inline-flex w-full items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-      >
+      <DonateButton href={donateUrl} className="w-full px-6 py-4 sm:px-6 sm:py-4">
         Donate {activeAmount > 0 ? `$${activeAmount}` : "Now"}
         {isMonthly ? " / month" : " today"}
-        <span
-          className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100"
-          aria-hidden
-        >
-          <svg
-            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-          </svg>
-        </span>
-      </a>
+      </DonateButton>
 
       {honorGift && (
         <p className="text-center text-xs text-parchment/50">

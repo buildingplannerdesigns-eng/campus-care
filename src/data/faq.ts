@@ -42,11 +42,11 @@ export const faqItems: FaqItem[] = [
   {
     question: "How can I support Campus Care financially?",
     answer:
-      "You can give once or monthly through our secure Payments page, starting at $25. Gifts help fund culturally grounded VR wellness sessions and expand access for HBCU students. Receipts are emailed automatically after checkout.",
+      "You can give once or monthly through our secure Payments page. Gifts help fund culturally grounded VR wellness sessions and expand access for HBCU students. Receipts are emailed automatically after checkout.",
   },
   {
     question: "How do I book a consultation, workshop, or speaking engagement?",
     answer:
-      "Visit the Contact page or email info@actcampuscare.com. For Dr. Connor directly, use cconnor@actcampuscare.com. Share your goals, audience, and timing and our team will follow up.",
+      "Visit the Contact page, call +1 573-203-6723, or email info@actcampuscare.com. For Dr. Connor directly, use cconnor@actcampuscare.com. Share your goals, audience, and timing and our team will follow up.",
   },
 ];

@@ -1,15 +1,15 @@
 import { Eyebrow } from "@/components/ui";
-import { DonationForm } from "@/components/DonationForm";
+import { DonorboxEmbed } from "@/components/DonorboxEmbed";
 import { Shield, RefreshCcw, Globe2, FileText } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Donate to Campus Care 2.0 | Support HBCU Student Wellness",
   description:
-    "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly, starting at $25, through secure checkout.",
+    "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly through secure checkout.",
   path: "/payments",
   twitterDescription:
-    "Support culturally grounded mental wellness for HBCU students — one-time and monthly giving, starting at $25.",
+    "Support culturally grounded mental wellness for HBCU students — one-time and monthly giving.",
   absoluteTitle: true,
   keywords: [
     "donate",
@@ -19,29 +19,6 @@ export const metadata = pageMetadata({
     "VR wellness donation",
   ],
 });
-
-const impactTiers = [
-  {
-    amount: "$25",
-    label: "Seed",
-    impact: "Supports one guided wellness touchpoint for a student.",
-  },
-  {
-    amount: "$50",
-    label: "Grow",
-    impact: "Funds restorative VR content sessions in the Sanctuary.",
-  },
-  {
-    amount: "$100",
-    label: "Sustain",
-    impact: "Expands trauma-informed support for students and campus teams.",
-  },
-  {
-    amount: "$250+",
-    label: "Transform",
-    impact: "Accelerates VR Sanctuary deployment to HBCU campuses.",
-  },
-];
 
 const trustItems = [
   {
@@ -83,27 +60,6 @@ export default function PaymentsPage() {
         </div>
       </section>
 
-      {/* Impact tiers */}
-      <section className="border-b border-sanctuary-700/40 bg-sanctuary-900 px-6 py-16">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-parchment/45">
-            Your impact
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {impactTiers.map((tier) => (
-              <article
-                key={tier.amount}
-                className="flex flex-col rounded-2xl border border-sanctuary-700 bg-white/5 p-6 text-center transition hover:border-ember/50 hover:bg-white/10"
-              >
-                <span className="font-display text-4xl font-light text-ember">{tier.amount}</span>
-                <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-parchment/45">{tier.label}</span>
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-parchment/65">{tier.impact}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Donation form — centered, full focus */}
       <section className="bg-white px-6 py-20">
         <div className="mx-auto max-w-2xl">
@@ -114,12 +70,12 @@ export default function PaymentsPage() {
             Make your donation
           </h2>
           <p className="mx-auto mt-3 max-w-md text-center text-sm text-parchment/60">
-            Choose an amount and click Donate Now — you&apos;ll be taken to Donorbox&apos;s
-            secure checkout to complete your gift.
+            Complete your gift securely below. Donorbox processes one-time and monthly donations
+            with an emailed receipt.
           </p>
 
-          <div className="mt-10 rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_24px_60px_rgba(11,31,52,0.08)] md:p-8">
-            <DonationForm />
+          <div className="mt-10">
+            <DonorboxEmbed />
           </div>
 
           {/* Trust bar */}

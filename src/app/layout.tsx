@@ -167,7 +167,7 @@ const jsonLd = {
       contactPoint: {
         "@type": "ContactPoint",
         email: "info@actcampuscare.com",
-        telephone: "+1-520-404-1245",
+        telephone: "+1-573-203-6723",
         contactType: "customer service",
       },
       founder: {

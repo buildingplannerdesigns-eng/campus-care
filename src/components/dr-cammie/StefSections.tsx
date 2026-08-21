@@ -305,7 +305,7 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
             <div className="absolute -left-3 -top-3 hidden h-full w-full border border-water/30 md:block" aria-hidden />
             <div className="relative aspect-[4/5] overflow-hidden bg-[#eef2ef]">
               <Image
-                src="/images/act/portrait-polka-clasped.jpg"
+                src="/images/team/consellor.jpg"
                 alt="Dr. Cammie Connor"
                 fill
                 className="object-cover object-center"

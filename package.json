@@ -4,7 +4,8 @@
   "private": true,
   "description": "Campus Care 2.0 — The Diaspora VR Sanctuary. Culturally-grounded, bio-responsive VR wellness platform for HBCU students.",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/clean-image-cache.mjs && next dev",
+    "clean:image-cache": "node scripts/clean-image-cache.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

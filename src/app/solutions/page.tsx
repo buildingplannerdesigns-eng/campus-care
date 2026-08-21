@@ -85,13 +85,12 @@ const expectations = [
 const pathways = [
   {
     id: "therapy",
-    eyebrow: "Therapy",
+    eyebrow: "Counseling",
     title: "Individual, Couples & Family Sessions",
     body: "One-on-one and relational work led by Dr. Connor to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
     cta: { href: "/contact", label: "Book a Consultation" },
     avatars: [
-      { src: "/images/avatars/female.svg", alt: "Therapy avatar" },
-      { src: "/images/avatars/male.svg", alt: "Therapy avatar" },
+      { src: "/images/team/consellor.jpg", alt: "Dr. Connor — Counseling" },
     ],
   },
   {

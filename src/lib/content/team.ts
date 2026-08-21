@@ -35,7 +35,6 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
       bio: row.bio?.trim(),
       email: row.email?.trim(),
       image: urlForImage(row.image as never) || undefined,
-      socialLinks: row.socialLinks,
     }));
   } catch {
     return fallbackTeam;
@@ -43,8 +42,8 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 }
 
 export async function getPointOfContact(): Promise<TeamMember> {
-  // Public contact is always Dr. Cammie Connor. Phone, location, and travel are
-  // intentionally hidden on the public site — Sanity cannot override these.
+  // Public contact is always Dr. Cammie Connor. Phone is fixed; location and
+  // travel stay hidden. Sanity cannot override these.
   if (!isSanityConfigured() || !sanityClient) return fallbackContact;
 
   try {

@@ -109,6 +109,33 @@ export default async function ContactPage() {
                   </div>
                 ))}
               </div>
+
+              {pointOfContact.phone && (
+                <div className="mt-8 text-left">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
+                    Phone
+                  </p>
+                  <a
+                    href={`tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`}
+                    className="mt-2 inline-flex items-center gap-2 font-display text-lg italic text-[#0e4f88] transition hover:text-[#0a3a66] md:text-xl"
+                  >
+                    <svg
+                      className="h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        d="M6.5 4.5h3l1.5 3.5-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 3.5 1.5v3c0 1-1 2-2 2C9.5 19.5 4.5 14.5 4.5 6.5c0-1 1-2 2-2Z"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    {pointOfContact.phone}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

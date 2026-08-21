@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { BackToTopButton } from "@/components/BackToTopButton";
 import { BrandLogo } from "@/components/BrandLogo";
 
 const lookAroundLinks = [
@@ -107,13 +106,13 @@ export function SiteFooter() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://celestialwebsolutions.net/campus-care"
+                href="https://www.celestialwebsolutions.net/portfolio/act-campus-care"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 text-[#0c3f84] transition hover:text-[#0a3269]"
               >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#0c3f84]/70 group-hover:text-[#0c3f84]">
-                  Site Credit
+                <span className="text-[10px] uppercase tracking-[0.12em] text-[#0c3f84]/70 group-hover:text-[#0c3f84]">
+                  Website Developed and Powered by Celestial Web Solutions
                 </span>
                 <Image
                   src="/images/site-credit.png"
@@ -123,7 +122,6 @@ export function SiteFooter() {
                   className="h-9 w-9 object-contain sm:h-10 sm:w-10"
                 />
               </a>
-              <BackToTopButton />
             </div>
           </div>
         </div>

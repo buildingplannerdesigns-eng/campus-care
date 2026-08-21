@@ -5,6 +5,7 @@ import { ElementCard } from "@/components/ElementCard";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
 import { siteCopy } from "@/data/copy";
+import { pointOfContact } from "@/data/team";
 import { getCoreElements } from "@/lib/content/elements";
 import { pageMetadata } from "@/lib/seo";
 
@@ -303,6 +304,19 @@ export default async function CampusCarePage() {
                 info@actcampuscare.com
               </a>
             </div>
+            {pointOfContact.phone && (
+              <div className="sm:col-span-2">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
+                  Phone
+                </p>
+                <a
+                  href={`tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`}
+                  className="mt-2 inline-flex items-center gap-2 font-display text-lg italic text-[#0e4f88] transition hover:text-ember md:text-xl"
+                >
+                  {pointOfContact.phone}
+                </a>
+              </div>
+            )}
           </div>
         </div>
 

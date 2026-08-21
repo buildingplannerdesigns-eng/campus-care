@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { MainWrapper } from "@/components/MainWrapper";
+import { BackToTopButton } from "@/components/BackToTopButton";
 import { PwaRegister } from "@/components/PwaRegister";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -19,6 +20,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <SiteHeader />
       <MainWrapper>{children}</MainWrapper>
       <SiteFooter />
+      <BackToTopButton />
       <PwaRegister />
     </>
   );
