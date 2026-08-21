@@ -5,15 +5,14 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { HeroFeatureBar } from "@/components/dr-cammie/HeroFeatureBar";
 import {
   StefClosingCta,
-  StefFeaturedQuotes,
   StefFeatureSection,
   StefHiFriend,
   StefImagineSection,
   StefIntro,
   StefOffersSection,
   StefOverwhelmAndSteps,
+  StefQuoteCarousel,
   StefStorySection,
-  StefTestimonials,
 } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
 import { pointOfContact } from "@/data/team";
@@ -35,11 +34,9 @@ export default function DrCammieConnorPage() {
         primaryCta={copy.hero.primaryCta}
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
-        secondaryCtaHref="mailto:cammie@campuscare.com"
-        videoTitle={copy.video.title}
-        videoEmbedUrl={copy.video.embedUrl || undefined}
-        videoSrc={copy.video.videoSrc || undefined}
-        videoPoster={copy.video.poster || undefined}
+        secondaryCtaHref="mailto:cconnor@actcampuscare.com"
+        headshotSrc="/images/team/consellor.jpg"
+        headshotAlt="Dr. Connor"
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />
@@ -57,9 +54,7 @@ export default function DrCammieConnorPage() {
 
       <StefFeatureSection feature={copy.feature} />
 
-      <StefFeaturedQuotes quotes={copy.featuredQuotes} />
-
-      <StefTestimonials testimonials={copy.testimonials} />
+      <StefQuoteCarousel testimonies={copy.testimonies} />
 
       <StefStorySection story={copy.story} />
 
@@ -83,11 +78,11 @@ export default function DrCammieConnorPage() {
             </p>
             <div className="mt-8 space-y-3 text-sm text-parchment/75">
               <a
-                href="mailto:cammie@campuscare.com"
+                href="mailto:cconnor@actcampuscare.com"
                 className="flex items-center gap-3 rounded-none border border-[#e8e4df] bg-white px-4 py-3 transition hover:border-water hover:text-water"
               >
                 <span className="font-semibold text-parchment">Email:</span>
-                <span>cammie@campuscare.com</span>
+                <span>cconnor@actcampuscare.com</span>
               </a>
               {pointOfContact.phone && (
                 <a
