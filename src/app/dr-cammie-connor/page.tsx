@@ -35,7 +35,7 @@ export default function DrCammieConnorPage() {
         primaryCtaHref="#show-me-how"
         secondaryCta="Book Dr. Cammie"
         secondaryCtaHref="mailto:cconnor@actcampuscare.com"
-        headshotSrc="/images/team/consellor.jpg"
+        headshotSrc="/images/attachments/image002.jpg"
         headshotAlt="Dr. Connor"
       />
 
@@ -64,7 +64,7 @@ export default function DrCammieConnorPage() {
 
       <StefImagineSection imagine={copy.imagine} video={copy.video} />
 
-      <section className="border-t border-[#e8e4df] bg-[#faf9f7] py-20 md:py-28">
+      <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-parchment/45">

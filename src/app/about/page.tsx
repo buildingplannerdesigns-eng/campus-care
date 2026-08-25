@@ -8,6 +8,7 @@ import {
   Landmark,
   GraduationCap,
 } from "lucide-react";
+import { PageIntro } from "@/components/PageIntro";
 import { Section, SectionHeading, PrimaryButton } from "@/components/ui";
 import { AudienceOutcomeCard } from "@/components/AudienceOutcomeCard";
 import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
@@ -73,26 +74,15 @@ export default async function AboutPage() {
 
   return (
     <>
-      <Section className="pt-20">
-        <div className="overflow-hidden border border-[#d7dfda] bg-white shadow-[0_18px_40px_rgba(12,63,132,0.08)]">
-          <div className="bg-[linear-gradient(145deg,#0c3f84_0%,#104f9e_100%)] px-6 py-14 text-center text-white md:px-10 md:py-16 lg:px-14 lg:py-20">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/75">About Us</p>
-            <h1 className="mt-4 font-display text-4xl leading-[1.02] md:text-6xl">
-              Agents of Change and Transformation
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
-              Culturally responsive, trauma-informed counseling that helps individuals, families, and
-              communities heal, grow, and thrive.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <PrimaryButton href="/contact">Work With Us</PrimaryButton>
-            </div>
-          </div>
-        </div>
-      </Section>
+      <PageIntro
+        label="About"
+        size="lg"
+        heading="Hey there, I'm Dr. Connor!"
+        body="Culturally responsive, trauma-informed counseling that helps individuals, families, and communities heal, grow, and thrive."
+      />
 
       {/* Mission & Vision */}
-      <Section className="border-t border-sanctuary-700/60 bg-[#faf9f7]">
+      <Section className="border-t border-sanctuary-700/60 bg-sage">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-water">
             What Guides Us
@@ -141,7 +131,7 @@ export default async function AboutPage() {
       </Section>
 
       {/* Core Goals */}
-      <Section className="border-t border-sanctuary-700/60 bg-[#faf9f7]">
+      <Section className="border-t border-sanctuary-700/60 bg-sage">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-water">
             Core Goals

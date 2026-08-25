@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { getBlogPostBySlug, getBlogPosts, getBlogSlugs } from "@/lib/blog";
 import type { BlogPortableBlock } from "@/data/blogFallback";
 import { SITE_URL } from "@/lib/seo";
+import { SiteCta } from "@/components/SiteCta";
 
 export const revalidate = 60;
 
@@ -320,7 +321,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <h1 className="mt-4 font-display text-4xl italic leading-[1.08] text-[#113f6c] md:text-6xl">
             {post.title}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-[#355879] md:text-lg">{post.excerpt}</p>
+          <p className="mt-6 text-base leading-relaxed text-parchment/70 md:text-lg">{post.excerpt}</p>
           <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-[#c9d8e6] pt-5">
             <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4f6a86]">Share</span>
             <a
@@ -395,7 +396,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-sage py-12 md:py-16">
         <article className="mx-auto max-w-4xl px-6">
           <div className="relative mb-10 aspect-[16/9] overflow-hidden border border-[#d0d8d3]">
             <Image
@@ -416,20 +417,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           <div className="mt-12 border-t border-[#d8dfda] pt-8">
-            <Link
-              href="/blog"
-              className="group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-            >
-              View More Updates
-              <span
-                className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-                aria-hidden
-              >
-                <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </Link>
+            <SiteCta href="/blog">View More Updates</SiteCta>
           </div>
         </article>
       </section>

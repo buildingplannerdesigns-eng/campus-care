@@ -2,53 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeHero } from "@/components/HomeHero";
 import { DonateButton } from "@/components/DonateButton";
+import { OffsetImageFrame } from "@/components/OffsetImageFrame";
+import { SiteCta } from "@/components/SiteCta";
 import { siteCopy } from "@/data/copy";
 import { getBlogPosts } from "@/lib/blog";
 
 export const revalidate = 60;
 
-function ArrowIcon() {
-  return (
-    <span
-      className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100"
-      aria-hidden
-    >
-      <svg
-        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-      </svg>
-    </span>
-  );
-}
-
 function HomeCta({
   href,
   children,
-  variant = "dark",
+  variant = "peach",
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "dark" | "outline" | "light";
+  variant?: "peach" | "outline" | "ghost";
 }) {
-  const styles =
-    variant === "dark"
-      ? "border-[#0e4f88] bg-[#0e4f88] text-white hover:bg-white hover:text-[#0e4f88]"
-      : variant === "light"
-        ? "border-white bg-white text-[#0e4f88] hover:bg-transparent hover:text-white"
-        : "border-[#0e4f88] bg-white text-[#0e4f88] hover:bg-[#0e4f88] hover:text-white";
-
   return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center rounded-none border px-8 py-3 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 sm:px-10 sm:py-3.5 sm:text-sm ${styles}`}
-    >
+    <SiteCta href={href} variant={variant}>
       {children}
-      <ArrowIcon />
-    </Link>
+    </SiteCta>
   );
 }
 
@@ -68,13 +41,13 @@ export default async function HomePage() {
       <HomeHero />
 
       {/* Post-hero — Patrice-style editorial welcome */}
-      <section className="relative overflow-hidden border-b border-[#e6e0d6] bg-[#f7f8f9]">
+      <section className="relative overflow-hidden border-b border-[#cfdcd6] bg-sage">
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
           aria-hidden
           style={{
             backgroundImage:
-              "radial-gradient(circle at 18% 20%, #0e4f88 0%, transparent 42%), radial-gradient(circle at 82% 70%, #1f5c73 0%, transparent 40%)",
+              "radial-gradient(circle at 18% 20%, #1f5c73 0%, transparent 42%), radial-gradient(circle at 82% 70%, #3d5a3a 0%, transparent 40%)",
           }}
         />
 
@@ -91,12 +64,8 @@ export default async function HomePage() {
 
           {/* Portrait + welcome story */}
           <div className="mt-14 grid items-center gap-12 md:mt-20 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-16 lg:gap-20">
-            <div className="relative mx-auto w-full max-w-md md:mx-0 md:max-w-none">
-              <div
-                className="absolute -bottom-4 -right-4 hidden h-full w-full border border-[#0e4f88]/20 md:block"
-                aria-hidden
-              />
-              <div className="relative aspect-[4/5] overflow-hidden bg-[#e8eef3]">
+            <div className="relative mx-auto w-full max-w-md p-3 md:mx-0 md:max-w-none">
+              <OffsetImageFrame aspectClassName="aspect-[4/5]">
                 <Image
                   src="/images/team/dr.cammie.jpg"
                   alt="Dr. Cammie Connor"
@@ -105,7 +74,7 @@ export default async function HomePage() {
                   sizes="(max-width: 768px) 90vw, 44vw"
                   priority
                 />
-              </div>
+              </OffsetImageFrame>
             </div>
 
             <div className="text-center md:text-left">
@@ -143,7 +112,7 @@ export default async function HomePage() {
       </section>
 
       {/* Solutions */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <SectionEyebrow>Solutions</SectionEyebrow>
           <h2 className="mt-3 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
@@ -176,16 +145,27 @@ export default async function HomePage() {
                 </p>
               </div>
             </div>
-            <div className="border border-[#e6e0d6] bg-white p-6 text-left md:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
-                Interventions
-              </p>
-              <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
-                Campus &amp; community programs
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-parchment/70">
-                Bio-responsive VR wellness for HBCU campuses at scale.
-              </p>
+            <div className="overflow-hidden border border-[#e6e0d6] bg-white text-left">
+              <div className="relative aspect-[4/3] bg-[#e8eef3]">
+                <Image
+                  src="/images/attachments/image001.jpg"
+                  alt="Campus Care interventions"
+                  fill
+                  className="object-cover object-[center_12%]"
+                  sizes="(max-width: 640px) 90vw, 360px"
+                />
+              </div>
+              <div className="p-6 md:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">
+                  Interventions
+                </p>
+                <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
+                  Campus &amp; community programs
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-parchment/70">
+                  Bio-responsive VR wellness for HBCU campuses at scale.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -196,7 +176,7 @@ export default async function HomePage() {
       </section>
 
       {/* Campus Care */}
-      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <SectionEyebrow>Campus Care</SectionEyebrow>
           <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
@@ -213,6 +193,17 @@ export default async function HomePage() {
               grow restorative wellness.
             </p>
           </div>
+          <div className="mx-auto mt-10 max-w-2xl overflow-hidden border border-[#e6e0d6] bg-white">
+            <div className="relative aspect-[4/3] bg-[#e8eef3]">
+              <Image
+                src="/images/attachments/image005.jpeg"
+                alt="Dr. Connor presenting Campus Care 2.0"
+                fill
+                className="object-cover object-[center_20%]"
+                sizes="(max-width: 768px) 90vw, 672px"
+              />
+            </div>
+          </div>
           <div className="mt-9 flex justify-center">
             <HomeCta href="/campus-care">Explore Campus Care</HomeCta>
           </div>
@@ -220,7 +211,7 @@ export default async function HomePage() {
       </section>
 
       {/* Courses — Coming Soon */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <div className="inline-flex items-center gap-3">
             <SectionEyebrow>Courses</SectionEyebrow>
@@ -243,7 +234,7 @@ export default async function HomePage() {
       </section>
 
       {/* Blog */}
-      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
             <SectionEyebrow>Blog</SectionEyebrow>
@@ -298,7 +289,7 @@ export default async function HomePage() {
       </section>
 
       {/* Payments */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <SectionEyebrow>Payments</SectionEyebrow>
           <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
@@ -338,10 +329,10 @@ export default async function HomePage() {
             Reach out or meet Dr. Cammie Connor to begin the conversation.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <HomeCta href="/contact" variant="light">
+            <HomeCta href="/contact">
               Contact Us
             </HomeCta>
-            <HomeCta href="/act" variant="outline">
+            <HomeCta href="/act" variant="ghost">
               Meet Dr. Connor
             </HomeCta>
             <DonateButton variant="outline" />

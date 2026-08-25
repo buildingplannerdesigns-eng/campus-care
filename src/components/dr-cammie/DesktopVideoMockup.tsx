@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ACT_HERO_END_AT, ACT_HERO_TRIM_START, heroVideoSrc, useTrimmedLoopVideo } from "@/lib/useTrimmedLoopVideo";
 
 type DesktopVideoMockupProps = {
   title?: string;
@@ -16,19 +17,38 @@ export function DesktopVideoMockup({
   embedUrl,
   poster,
 }: DesktopVideoMockupProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const isActVideo = (videoSrc ?? "").includes("act-hero");
+  const { videoRef, ready } = useTrimmedLoopVideo({
+    enabled: inView,
+    start: isActVideo ? ACT_HERO_TRIM_START : undefined,
+    endAt: isActVideo ? ACT_HERO_END_AT : undefined,
+    endPad: isActVideo ? 16 : undefined,
+  });
   const resolvedEmbed = embedUrl?.trim() || "";
   const resolvedVideo = videoSrc?.trim() || "";
 
   useEffect(() => {
-    if (!resolvedVideo || !videoRef.current) return;
-    const video = videoRef.current;
-    video.muted = true;
-    void video.play().catch(() => undefined);
-  }, [resolvedVideo]);
+    const node = frameRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[860px]">
+    <div ref={frameRef} className="mx-auto w-full max-w-[860px]">
       {/* Silver iMac-style chassis */}
       <div
         className="rounded-[1.15rem] p-[11px] sm:rounded-[1.4rem] sm:p-[14px]"
@@ -42,7 +62,7 @@ export function DesktopVideoMockup({
         {/* Thin black bezel + screen */}
         <div className="overflow-hidden rounded-[0.55rem] bg-[#0a0a0a] p-[5px] sm:rounded-[0.7rem] sm:p-[6px]">
           <div className="relative aspect-video overflow-hidden rounded-[0.28rem] bg-[#111] sm:rounded-[0.35rem]">
-            {resolvedEmbed ? (
+            {inView && resolvedEmbed ? (
               <iframe
                 src={
                   resolvedEmbed.includes("autoplay=1")
@@ -54,19 +74,22 @@ export function DesktopVideoMockup({
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            ) : resolvedVideo ? (
+            ) : inView && resolvedVideo ? (
               <video
                 ref={videoRef}
                 key={resolvedVideo}
-                className="absolute inset-0 h-full w-full object-cover"
-                autoPlay
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                  ready ? "opacity-100" : "opacity-0"
+                }`}
                 muted
-                loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 poster={poster}
               >
-                <source src={resolvedVideo} type="video/mp4" />
+                <source
+                  src={heroVideoSrc(resolvedVideo, isActVideo ? ACT_HERO_TRIM_START : undefined)}
+                  type="video/mp4"
+                />
                 Your browser does not support the video tag.
               </video>
             ) : (
@@ -90,6 +113,13 @@ export function DesktopVideoMockup({
                   </p>
                 </div>
               </>
+            )}
+            {inView && resolvedVideo && poster && !ready && (
+              <div
+                className="pointer-events-none absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${poster})` }}
+                aria-hidden
+              />
             )}
           </div>
         </div>

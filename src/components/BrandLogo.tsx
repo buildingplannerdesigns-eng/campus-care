@@ -35,7 +35,7 @@ export function BrandLogo({
             : size === "lg"
               ? "(max-width: 768px) 192px, 288px"
               : size === "sm"
-                ? "56px"
+                ? "76px"
                 : "128px"
         }
         priority={priority}

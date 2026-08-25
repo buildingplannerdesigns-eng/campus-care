@@ -72,7 +72,7 @@ export function QuoteCarousel({ slides, autoPlayMs = 7000 }: QuoteCarouselProps)
 
   return (
     <section
-      className="relative overflow-hidden border-t border-[#eeeae4] bg-white py-16 md:py-24"
+      className="relative overflow-hidden border-t border-[#cfdcd6] bg-sage py-16 md:py-24"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"

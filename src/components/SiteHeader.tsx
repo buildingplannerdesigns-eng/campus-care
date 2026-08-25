@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
+import { SiteCta } from "@/components/SiteCta";
 import { pointOfContact } from "@/data/team";
 
 const navLinks = [
@@ -117,7 +118,7 @@ export function SiteHeader() {
         className={`border-b transition-all duration-300 ${
           overHero
             ? "border-transparent bg-transparent"
-            : "border-sanctuary-700/50 bg-white/95 shadow-sm backdrop-blur-md"
+            : "border-sanctuary-700/50 bg-sage/95 shadow-sm backdrop-blur-md"
         }`}
       >
         <div
@@ -131,31 +132,31 @@ export function SiteHeader() {
               size="sm"
               priority
               alt="Campus Care 2.0 logo"
-              className={`ring-2 ring-transparent transition group-hover:ring-ember/40 !h-11 !w-11 sm:!h-12 sm:!w-12 md:!h-14 md:!w-14 ${
-                overHero ? "ring-white/35 shadow-[0_2px_16px_rgba(0,0,0,0.35)]" : ""
-              }`}
+              className={`ring-2 ring-transparent transition group-hover:ring-ember/40 ${
+                isHeroRoute
+                  ? "!h-14 !w-14 sm:!h-16 sm:!w-16 md:!h-[4.75rem] md:!w-[4.75rem]"
+                  : "!h-12 !w-12 sm:!h-14 sm:!w-14 md:!h-16 md:!w-16"
+              } ${overHero ? "ring-white/35 shadow-[0_2px_16px_rgba(0,0,0,0.35)]" : ""}`}
             />
           </Link>
 
           {/* Desktop nav — flat, no dropdowns */}
           <nav className="hidden items-center gap-3 xl:gap-5 lg:flex">
-            {navLinks.map((link) => (
+            {navLinks.map((link) =>
+              link.href === "/contact" ? (
+                <SiteCta
+                  key={link.href}
+                  href={link.href}
+                  size="sm"
+                  variant={overHero && !isActive(link.href) ? "ghost" : "peach"}
+                >
+                  {link.label}
+                </SiteCta>
+              ) : (
               <Link
                 key={link.href}
                 href={link.href}
-                className={
-                  link.href === "/contact"
-                    ? `group inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 ${
-                        isActive(link.href)
-                          ? overHero
-                            ? "border-white bg-white text-[#0c3f84]"
-                            : "border-[#0c3f84] bg-white text-[#0c3f84]"
-                          : overHero
-                            ? "border-white/90 bg-transparent text-white hover:bg-white hover:text-[#0c3f84]"
-                            : "border-[#0c3f84] bg-[#0c3f84] text-white hover:bg-white hover:text-[#0c3f84]"
-                      }`
-                    : `${linkClass} ${isActive(link.href) ? (overHero ? "text-ember" : "text-[#0c3f84]") : ""}`
-                }
+                className={`${linkClass} ${isActive(link.href) ? (overHero ? "text-ember" : "text-[#0c3f84]") : ""}`}
               >
                 <span className="inline-flex items-center gap-1.5">
                   {link.label}
@@ -169,7 +170,8 @@ export function SiteHeader() {
                   )}
                 </span>
               </Link>
-            ))}
+              )
+            )}
           </nav>
 
           {/* Mobile toggle */}
@@ -194,23 +196,26 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <nav className="border-b border-sanctuary-700/50 bg-white px-4 py-4 shadow-lg sm:px-6 sm:py-5 lg:hidden">
+        <nav className="border-b border-sanctuary-700/50 bg-sage px-4 py-4 shadow-lg sm:px-6 sm:py-5 lg:hidden">
           <ul className="flex flex-col gap-0.5">
             {navLinks.map((link) => (
               <li key={link.href}>
+                {link.href === "/contact" ? (
+                  <SiteCta
+                    href={link.href}
+                    size="sm"
+                    className="mt-1 w-full"
+                    variant={isActive(link.href) ? "outline" : "peach"}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </SiteCta>
+                ) : (
                 <Link
                   href={link.href}
-                  className={
-                    link.href === "/contact"
-                      ? `group mt-1 inline-flex w-full items-center justify-center rounded-none border px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 ${
-                          isActive(link.href)
-                            ? "border-[#0c3f84] bg-white text-[#0c3f84]"
-                            : "border-[#0c3f84] bg-[#0c3f84] text-white hover:bg-white hover:text-[#0c3f84]"
-                        }`
-                      : `block rounded-lg px-3 py-2.5 text-sm font-medium uppercase tracking-wider transition hover:bg-sanctuary-900 ${
-                          isActive(link.href) ? "text-[#0c3f84]" : "text-parchment/85"
-                        }`
-                  }
+                  className={`block rounded-lg px-3 py-2.5 text-sm font-medium uppercase tracking-wider transition hover:bg-sanctuary-900 ${
+                    isActive(link.href) ? "text-[#0c3f84]" : "text-parchment/85"
+                  }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   <span className="inline-flex items-center gap-2">
@@ -225,6 +230,7 @@ export function SiteHeader() {
                     )}
                   </span>
                 </Link>
+                )}
               </li>
             ))}
             <li className="mt-2">

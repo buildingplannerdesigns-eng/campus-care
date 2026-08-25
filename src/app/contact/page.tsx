@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
+import { PageIntro } from "@/components/PageIntro";
 import { getPointOfContact } from "@/lib/content/team";
 import { pageMetadata } from "@/lib/seo";
 
@@ -31,30 +32,14 @@ export default async function ContactPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[#e6e0d6] bg-white">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden>
-          <div className="absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#0e4f88]" />
-          <div className="absolute -right-24 bottom-8 h-56 w-56 rounded-full bg-[#0e4f88]" />
-        </div>
-
-        <div className="relative mx-auto max-w-4xl px-6 pt-28 pb-16 text-center md:pt-32 md:pb-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#0e4f88]/80">
-            Contact
-          </p>
-          <h1 className="mt-5 font-display text-4xl italic leading-[1.05] text-parchment md:text-6xl">
-            Let&apos;s start the conversation
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-            Whether you&apos;re seeking therapy, planning a workshop, booking a speaker, or bringing
-            Campus Care to your campus — share a few details and Dr. Cammie Connor&apos;s team will be in
-            touch personally.
-          </p>
-        </div>
-      </section>
+      <PageIntro
+        label="Contact"
+        heading="Let's start the conversation"
+        body="Whether you're seeking therapy, planning a workshop, booking a speaker, or bringing Campus Care to your campus — share a few details and Dr. Connor's team will be in touch personally."
+      />
 
       {/* Contact details — above the form */}
-      <section className="border-b border-[#e6e0d6] bg-[#faf9f7] py-16 md:py-20">
+      <section className="border-b border-[#cfdcd6] bg-sage py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid items-center gap-10 md:grid-cols-[220px_1fr] md:gap-14">
             <div className="mx-auto md:mx-0">
@@ -142,7 +127,7 @@ export default async function ContactPage() {
       </section>
 
       {/* Large professional form */}
-      <section className="border-b border-[#e6e0d6] bg-white py-20 md:py-24">
+      <section className="border-b border-[#cfdcd6] bg-sage py-20 md:py-24">
         <div className="mx-auto max-w-3xl px-6">
           <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-water">

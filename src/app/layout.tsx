@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import {
   Cormorant_Garamond,
+  Gilda_Display,
   Montserrat,
   IBM_Plex_Mono,
   Great_Vibes,
@@ -17,6 +18,13 @@ const displaySerif = Cormorant_Garamond({
   variable: "--font-display",
   weight: ["400", "500", "600"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const heroSerif = Gilda_Display({
+  subsets: ["latin"],
+  variable: "--font-hero",
+  weight: "400",
   display: "swap",
 });
 
@@ -201,7 +209,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${displaySerif.variable} ${bodySans.variable} ${plexMono.variable} ${scriptHand.variable}`}
+      className={`scroll-smooth ${displaySerif.variable} ${heroSerif.variable} ${bodySans.variable} ${plexMono.variable} ${scriptHand.variable}`}
     >
       <body className="font-body bg-sanctuary-950 text-parchment antialiased">
         <GoogleAnalytics />

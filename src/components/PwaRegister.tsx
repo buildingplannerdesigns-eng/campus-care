@@ -127,7 +127,7 @@ export function PwaRegister() {
             <button
               type="button"
               onClick={() => void install()}
-              className="border border-[#0e4f88] bg-[#0e4f88] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-white hover:text-[#0e4f88]"
+              className="border border-[#1a3c40] bg-[#1a3c40] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#f7efe8] transition hover:border-[#ead5c6] hover:bg-gradient-to-b hover:from-[#f7efe8] hover:to-[#ead5c6] hover:text-[#1a3c40]"
             >
               Install
             </button>

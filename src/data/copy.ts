@@ -7,11 +7,10 @@ export const siteCopy = {
   },
   hero: {
     kicker: "Speaker · Workshops · Coaching",
-    headline: "Honor Our Roots, Inspire Our Future, and \"ACT\" Together",
-    subhead: "Building a Legacy Through Unity and Purpose.",
-    orgName: "ACT Campus Care 2.0",
-    tagline:
-      "Honor Our Roots, Inspire Our Future, and \"ACT\" Together — Building a Legacy Through Unity and Purpose.",
+    headline: "Redefining Campus Care",
+    subhead: "ACT",
+    orgName: "Dr. Connor",
+    tagline: "Dr. Connor redefining Campus Care",
     primaryCta: "Meet Dr. Connor",
     secondaryCta: "Contact Us",
     videoTitle: "Campus Care 2.0 — The VR Sanctuary",

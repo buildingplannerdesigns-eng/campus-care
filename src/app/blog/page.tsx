@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 import { getBlogCategories, getBlogPosts } from "@/lib/blog";
+import { PageIntro } from "@/components/PageIntro";
+import { SiteCta } from "@/components/SiteCta";
 
 export const revalidate = 60;
 
@@ -141,90 +143,68 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <>
-      <section
-        className="relative overflow-hidden border-b border-[#0a3870]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(9, 42, 84, 0.92), rgba(9, 42, 84, 0.94)), linear-gradient(160deg, #0c3f84 0%, #14568f 45%, #0e3d6f 100%)",
-        }}
-      >
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
-          aria-hidden
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, #ffffff 0, transparent 40%), radial-gradient(circle at 80% 0%, #ffffff 0, transparent 35%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-6xl px-6 py-20 text-center md:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
-            The Campus Care Journal
-          </p>
-          <h1 className="mx-auto mt-5 max-w-4xl font-display text-[2.5rem] italic leading-[1.05] text-white md:text-[4.4rem]">
-            Insights on culturally grounded wellness
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 md:text-base">
-            Research, stories, and practical tools from the ACT Healing team and the VR
-            Sanctuary — helping students, clinicians, and communities heal, grow, and ACT on purpose.
-          </p>
-
-          <form action="/blog" method="get" className="mx-auto mt-11 max-w-3xl">
-            {activeCategory ? <input type="hidden" name="category" value={activeCategory} /> : null}
-            <label htmlFor="blog-search" className="sr-only">
-              Search blog posts
-            </label>
-            <div className="relative">
-              <span className="pointer-events-none absolute inset-y-0 left-5 inline-flex items-center text-[#7d8794]" aria-hidden>
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="m20 20-3.5-3.5" strokeLinecap="round" />
-                </svg>
-              </span>
-              <input
-                id="blog-search"
-                name="q"
-                type="search"
-                defaultValue={searchQuery}
-                placeholder="Search..."
-                className="h-14 w-full rounded-full border border-white/50 bg-[#f2f2f2] pl-14 pr-5 text-base text-[#17467b] placeholder:text-[#9aa3ad] focus:border-white focus:outline-none focus:ring-2 focus:ring-white/60"
-              />
-            </div>
-          </form>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-9 gap-y-3 border-t border-white/25 pt-6">
-            <Link
-              href={buildBlogHref({ q: searchQuery || undefined })}
-              className={`inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
-                !activeCategory
-                  ? "border-white bg-white text-[#0c3f84]"
-                  : "border-white/30 bg-white/10 text-white/90 hover:border-white hover:bg-white hover:text-[#0c3f84]"
-              }`}
-            >
-              All
-            </Link>
-            {categories.map((category) => (
+      <PageIntro
+        label="Journal"
+        heading="Insights on culturally grounded wellness"
+        body="Research, stories, and practical tools from the ACT Healing team and the VR Sanctuary — helping students, clinicians, and communities heal, grow, and ACT on purpose."
+        extra={
+          <>
+            <form action="/blog" method="get" className="w-full">
+              {activeCategory ? <input type="hidden" name="category" value={activeCategory} /> : null}
+              <label htmlFor="blog-search" className="sr-only">
+                Search blog posts
+              </label>
+              <div className="relative">
+                <span className="pointer-events-none absolute inset-y-0 left-5 inline-flex items-center text-[#1a3c40]/45" aria-hidden>
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+                  </svg>
+                </span>
+                <input
+                  id="blog-search"
+                  name="q"
+                  type="search"
+                  defaultValue={searchQuery}
+                  placeholder="Search..."
+                  className="h-12 w-full rounded-full border border-[#1a3c40]/20 bg-white pl-14 pr-5 text-base text-[#1a3c40] placeholder:text-[#1a3c40]/40 focus:border-[#1a3c40] focus:outline-none focus:ring-2 focus:ring-[#1a3c40]/20"
+                />
+              </div>
+            </form>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link
-                key={category}
-                href={buildBlogHref({ category, q: searchQuery || undefined })}
+                href={buildBlogHref({ q: searchQuery || undefined })}
                 className={`inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
-                  activeCategory.toLowerCase() === category.toLowerCase()
-                    ? "border-white bg-white text-[#0c3f84]"
-                    : "border-white/30 bg-white/10 text-white/90 hover:border-white hover:bg-white hover:text-[#0c3f84]"
+                  !activeCategory
+                    ? "border-[#1a3c40] bg-[#1a3c40] text-white"
+                    : "border-[#1a3c40]/30 bg-white text-[#1a3c40] hover:border-[#1a3c40] hover:bg-[#1a3c40] hover:text-white"
                 }`}
               >
-                {category}
+                All
               </Link>
-            ))}
-          </div>
-
-          {(activeCategory || searchQuery) && (
-            <p className="mt-4 text-xs uppercase tracking-[0.16em] text-white/70">
-              {activeCategory ? `Category: ${activeCategory}` : "All categories"}
-              {searchQuery ? ` | Search: ${searchQuery}` : ""}
-            </p>
-          )}
-        </div>
-      </section>
+              {categories.map((category) => (
+                <Link
+                  key={category}
+                  href={buildBlogHref({ category, q: searchQuery || undefined })}
+                  className={`inline-flex items-center justify-center rounded-none border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+                    activeCategory.toLowerCase() === category.toLowerCase()
+                      ? "border-[#1a3c40] bg-[#1a3c40] text-white"
+                      : "border-[#1a3c40]/30 bg-white text-[#1a3c40] hover:border-[#1a3c40] hover:bg-[#1a3c40] hover:text-white"
+                  }`}
+                >
+                  {category}
+                </Link>
+              ))}
+            </div>
+            {(activeCategory || searchQuery) && (
+              <p className="mt-4 text-xs uppercase tracking-[0.16em] text-[#1a3c40]/60">
+                {activeCategory ? `Category: ${activeCategory}` : "All categories"}
+                {searchQuery ? ` | Search: ${searchQuery}` : ""}
+              </p>
+            )}
+          </>
+        }
+      />
 
       {!featured && (
         <section className="border-b border-[#d9d9d7] bg-[#f7f5ef] py-14">
@@ -234,20 +214,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               <p className="mt-3 text-sm text-[#355879]">
                 Try another search phrase or switch categories to find more updates.
               </p>
-              <Link
-                href="/blog"
-                className="group mt-6 inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-              >
+              <SiteCta href="/blog" className="mt-6">
                 View All Posts
-                <span
-                  className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-                  aria-hidden
-                >
-                  <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
+              </SiteCta>
             </div>
           </div>
       </section>
@@ -324,27 +293,16 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 <span>{formatDate(featured.publishedAt)}</span>
               </p>
               <p className="mt-5 flex-1 text-sm leading-relaxed text-[#355879]">{featured.excerpt}</p>
-              <Link
-                href={`/blog/${featured.slug}`}
-                className="group mt-7 inline-flex items-center justify-center self-start rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-              >
+              <SiteCta href={`/blog/${featured.slug}`} className="mt-7 self-start">
                 Read Article
-                <span
-                  className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-                  aria-hidden
-                >
-                  <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
+              </SiteCta>
             </article>
           </div>
         </section>
       )}
 
       {rest.length > 0 && (
-        <section className="bg-white py-16 md:py-20">
+        <section className="bg-sage py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-8 flex items-end justify-between gap-4 border-b border-[#dde3df] pb-4">
             <h3 className="font-display text-3xl italic text-[#113f6c]">Latest Articles</h3>

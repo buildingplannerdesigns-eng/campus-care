@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
+import { PageIntro } from "@/components/PageIntro";
 import { Section, SectionHeading } from "@/components/ui";
+import { SiteCta } from "@/components/SiteCta";
 import { TeamDetailsDrawer } from "@/components/TeamDetailsDrawer";
 import { team, pointOfContact } from "@/data/team";
 
@@ -15,44 +16,11 @@ export default function TeamPage() {
 
   return (
     <>
-      <Section className="pt-20">
-        <div className="overflow-hidden border border-[#d7dfda] bg-[linear-gradient(145deg,#0c3f84_0%,#0c3f84_100%)]">
-          <div className="flex flex-col justify-center px-6 py-14 text-white md:px-10 md:py-16 lg:px-14 lg:py-20">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/75">Meet the Team</p>
-              <h1 className="mt-4 max-w-xl font-display text-4xl leading-[1.02] md:text-6xl">
-                The people shaping Campus Care 2.0
-              </h1>
-              <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/85 md:text-base">
-                A focused group of clinicians, strategists, and builders working to make student support feel human,
-                practical, and easy to access.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center rounded-none border border-white bg-white px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#0c3f84] transition hover:bg-transparent hover:text-white"
-                >
-                  Contact Us
-                  <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
-                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </Link>
-                <Link
-                  href="/programs"
-                  className="group inline-flex items-center justify-center rounded-none border border-white/35 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white hover:text-[#0c3f84]"
-                >
-                  Explore Programs
-                  <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
-                    <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
-          </div>
-        </div>
-      </Section>
+      <PageIntro
+        label="Team"
+        heading="The people shaping Campus Care 2.0"
+        body="A focused group of clinicians, strategists, and builders working to make student support feel human, practical, and easy to access."
+      />
 
       {featuredMember && (
         <Section className="border-t border-sanctuary-700/60 bg-[#f7fafc]">
@@ -98,28 +66,10 @@ export default function TeamPage() {
                 </div>
 
                 <div className="flex flex-wrap gap-3 border-t border-[#d9e1dc] pt-5">
-                  <Link
-                    href="/dr-cammie-connor"
-                    className="group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-                  >
-                    View Full Profile
-                    <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
-                      <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-white px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#0e4f88] transition-all duration-200 hover:bg-[#0e4f88] hover:text-white"
-                  >
+                  <SiteCta href="/dr-cammie-connor">View Full Profile</SiteCta>
+                  <SiteCta href="/contact" variant="outline">
                     Book Dr. Cammie
-                    <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100" aria-hidden>
-                      <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  </Link>
+                  </SiteCta>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@ const iconSrc = {
 
 export function HeroFeatureBar({ items }: { items: readonly FeatureItem[] }) {
   return (
-    <section className="bg-[#0e4f88]">
+    <section className="relative z-10 -mt-[4.4rem] bg-[#0e4f88] pt-28 sm:-mt-[5.6rem] sm:pt-32 lg:-mt-[7.2rem] lg:pt-40">
       <div className="mx-auto grid max-w-6xl divide-y divide-white/30 md:grid-cols-3 md:divide-x md:divide-y-0">
         {items.map((item) => (
           <div

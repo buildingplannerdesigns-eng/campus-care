@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Section, SectionHeading, PrimaryButton, SecondaryButton, Eyebrow } from "@/components/ui";
+import { PageIntro } from "@/components/PageIntro";
+import { Section, SectionHeading, PrimaryButton } from "@/components/ui";
 import { ElementCard } from "@/components/ElementCard";
 import { OperationStep } from "@/components/OperationStep";
 import { StatCard } from "@/components/StatCard";
@@ -17,17 +18,11 @@ export const metadata: Metadata = {
 export default function ProgramsPage() {
   return (
     <>
-      <Section className="pt-20">
-        <Eyebrow>{siteCopy.campusCare.kicker}</Eyebrow>
-        <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl md:text-5xl">
-          {siteCopy.campusCare.headline}
-        </h1>
-        <p className="mt-6 max-w-2xl text-parchment/70">{siteCopy.campusCare.body}</p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <PrimaryButton href="/contact">{siteCopy.campusCare.primaryCta}</PrimaryButton>
-          <SecondaryButton href="/contact">{siteCopy.campusCare.secondaryCta}</SecondaryButton>
-        </div>
-      </Section>
+      <PageIntro
+        label="Programs"
+        heading="Meet Campus Care 2.0: The VR Sanctuary"
+        body={siteCopy.campusCare.body}
+      />
 
       <Section className="border-t border-sanctuary-700/60">
         <SectionHeading heading={siteCopy.whyItExists.heading} />

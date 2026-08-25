@@ -99,7 +99,7 @@ export const drCammieCopy = {
         word: "speaking",
         tagline: "FOR YOUR ORGANIZATION OR EVENT",
         label: "Book a speaking engagement for your organization or event",
-        image: "/images/act/portrait-orange.jpg",
+        image: "/images/attachments/image006.jpeg",
       },
       {
         word: "workshop",
@@ -111,13 +111,13 @@ export const drCammieCopy = {
         word: "therapy",
         tagline: "1:1 OR COUPLES, TRAUMA-ROOTED",
         label: "Start 1:1 or couples therapy rooted in trauma expertise",
-        image: "/images/act/portrait-polka-side.jpg",
+        image: "/images/attachments/image004.jpg",
       },
       {
         word: "campus",
         tagline: "CAMPUS CARE 2.0 FOR YOUR HBCU",
         label: "Bring Campus Care 2.0 to your HBCU campus",
-        image: "/images/act/portrait-polka-clasped.jpg",
+        image: "/images/attachments/image005.jpeg",
       },
       {
         word: "coaching",

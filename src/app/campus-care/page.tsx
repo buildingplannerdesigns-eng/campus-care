@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { BrandLogo } from "@/components/BrandLogo";
 import { ElementCard } from "@/components/ElementCard";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
+import { PageIntro } from "@/components/PageIntro";
+import { SiteCta } from "@/components/SiteCta";
 import { siteCopy } from "@/data/copy";
 import { pointOfContact } from "@/data/team";
 import { getCoreElements } from "@/lib/content/elements";
@@ -59,8 +60,8 @@ const evidenceStats = [
 
 const xrImages = [
   {
-    src: "/images/campus-care/campus-care-hero.png",
-    alt: "Campus Care immersive VR Sanctuary experience",
+    src: "/images/attachments/image005.jpeg",
+    alt: "Dr. Connor presenting Campus Care 2.0",
   },
   {
     src: "/images/campus-care/student.jpeg",
@@ -82,21 +83,11 @@ export default async function CampusCarePage() {
 
   return (
     <>
-      <section className="border-b border-sanctuary-700/30 bg-white">
-        <div className="mx-auto flex max-w-5xl flex-col items-center px-6 py-16 text-center md:py-24">
-          <BrandLogo size="lg" priority alt="Campus Care logo" />
-          <p className="mt-8 font-mono text-xs uppercase tracking-[0.28em] text-[#0c3f84]">
-            Campus Care
-          </p>
-          <h1 className="mt-4 max-w-4xl text-balance font-display text-4xl leading-[1.05] text-[#113f6c] md:text-6xl lg:text-[4.25rem]">
-            The only immersive healing experience grounded in community and ancestral reflection.
-          </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-[#355879] md:text-base">
-            Campus Care offers a virtual reality experience aimed at promoting the mental well-being of
-            HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed.
-          </p>
-        </div>
-      </section>
+      <PageIntro
+        label="Campus Care"
+        heading="The only immersive healing experience grounded in community and ancestral reflection."
+        body="Campus Care offers a virtual reality experience aimed at promoting the mental well-being of HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed."
+      />
 
       <section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
         <div className="relative h-[220px] w-full overflow-hidden sm:h-[280px] md:h-[340px] lg:h-[460px] xl:h-[520px]">
@@ -193,27 +184,9 @@ export default async function CampusCarePage() {
               <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.16em] text-parchment/45">
                 {stat.source}
               </p>
-              <a
-                href={stat.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-4 inline-flex items-center justify-center self-start rounded-none border border-[#0e4f88] bg-[#0e4f88] px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-              >
+              <SiteCta href={stat.href} className="mt-4 self-start">
                 Read the Study
-                <span
-                  className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-                  aria-hidden
-                >
-                  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2.5}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </a>
+              </SiteCta>
             </article>
           ))}
         </div>

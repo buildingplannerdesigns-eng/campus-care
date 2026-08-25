@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DEFAULT_COUNTRY_CODE, formatInternationalPhone } from "@/data/countryCodes";
 import { PhoneWithCountryCode } from "@/components/PhoneWithCountryCode";
+import { CtaArrow, siteCtaClassName } from "@/components/SiteCta";
 import {
   SecurityCheck,
   isSecuritySatisfied,
@@ -192,9 +193,10 @@ export function EarlyRegistrationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="group inline-flex w-full items-center justify-center border border-white bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#0c3f84] transition hover:bg-transparent hover:text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className={`${siteCtaClassName({ variant: "peach" })} w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto`}
       >
         {status === "submitting" ? "Submitting…" : "Submit Form"}
+        <CtaArrow />
       </button>
 
       {status === "success" && (

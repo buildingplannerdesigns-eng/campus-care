@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PageIntro } from "@/components/PageIntro";
 import { PrimaryButton, SecondaryButton } from "@/components/ui";
 import { faqItems } from "@/data/faq";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
@@ -38,20 +39,13 @@ export default function FaqPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <section className="border-b border-sanctuary-700/40 bg-sanctuary-900 px-6 pb-16 pt-28 text-center">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-water">FAQ</p>
-          <h1 className="mt-4 font-display text-4xl italic leading-tight text-parchment md:text-5xl lg:text-6xl">
-            Frequently asked questions
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-parchment/70 md:text-lg">
-            Clear answers about Campus Care 2.0, student access, ACT Healing services, and how to
-            get involved.
-          </p>
-        </div>
-      </section>
+      <PageIntro
+        label="FAQ"
+        heading="Frequently asked questions"
+        body="Clear answers about Campus Care 2.0, student access, ACT Healing services, and how to get involved."
+      />
 
-      <section className="border-b border-sanctuary-700/40 bg-[#faf9f7] px-6 py-16 md:py-20">
+      <section className="border-b border-sanctuary-700/40 bg-sage px-6 py-16 md:py-20">
         <div className="mx-auto max-w-3xl space-y-3">
           {faqItems.map((item, index) => (
             <details

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import type { TeamMember } from "@/types";
+import { TeamPortrait } from "@/components/TeamMemberCard";
 
 function SocialIcon({ platform }: { platform: "linkedin" | "x" | "instagram" }) {
   if (platform === "linkedin") {
@@ -61,29 +61,17 @@ function TeamDetailsPanel({ member, onClose }: { member: TeamMember; onClose: ()
           </button>
 
           <div className="flex flex-col items-center text-center">
-            <div className="relative h-28 w-28 overflow-hidden rounded-full border-2 border-[#d8ded9] bg-[#eef2ef] shadow-sm sm:h-32 sm:w-32">
-              {member.image ? (
-                <Image
-                  src={member.image}
-                  alt={`${member.name} photo`}
-                  fill
-                  className="object-cover object-center"
-                  sizes="128px"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white">
-                  <span className="font-display text-4xl italic">{member.name.charAt(0)}</span>
-                </div>
-              )}
+            <div className="w-full max-w-[220px] p-3">
+              <TeamPortrait member={member} sizes="220px" />
             </div>
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
-            <h3 className="mt-2 font-display text-3xl leading-tight text-[#113f6c] md:text-4xl">{member.name}</h3>
-            <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#5b6d7f] md:text-sm">{member.role}</p>
+            <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
+            <h3 className="mt-2 font-display text-3xl italic leading-tight text-[#113f6c] md:text-4xl">{member.name}</h3>
+            <p className="mt-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#5b6d7f] md:text-sm">{member.role}</p>
           </div>
 
           <div className="mt-6 border-t border-[#d8ded9] pt-6">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Profile</p>
-            <p className="mt-3 text-sm leading-relaxed text-[#355879] md:text-base">{member.bio}</p>
+            <p className="mt-3 text-sm leading-relaxed text-parchment/70 md:text-base">{member.bio}</p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -156,41 +144,29 @@ export function TeamDetailsDrawer({ teamMembers }: { teamMembers: TeamMember[] }
 
   return (
     <>
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
         {teamMembers.map((member) => (
           <button
             key={member.name}
             type="button"
             onClick={() => setActiveMember(member)}
-            className="group border border-[#d7dfda] bg-white p-5 text-left shadow-[0_12px_32px_rgba(11,31,52,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_42px_rgba(11,31,52,0.14)] md:p-6"
+            className="group border border-[#e2ded4] bg-white p-5 text-left transition-transform duration-500 ease-out hover:-translate-y-1 md:p-6"
           >
-            <div className="flex items-start gap-4">
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-[#d7dfda] bg-[#eef3ef] sm:h-24 sm:w-24">
-                {member.image ? (
-                  <Image
-                    src={member.image}
-                    alt={`${member.name} photo`}
-                    fill
-                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    sizes="96px"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(145deg,#0c3f84_0%,#1f5c73_50%,#3d5a3a_100%)] text-white">
-                    <span className="font-display text-3xl italic">{member.name.charAt(0)}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#4e6f95]">Team Member</p>
-                <h3 className="mt-1 font-display text-xl text-[#113f6c] sm:text-2xl">{member.name}</h3>
-                <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#5b6d7f]">{member.role}</p>
-              </div>
+            <div className="mx-auto w-[min(100%,15rem)] p-3">
+              <TeamPortrait member={member} />
             </div>
 
-            <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-[#355879]">
-              {member.bio ?? "Open this profile to learn more about their role and impact."}
-            </p>
+            <div className="mt-5">
+              <h3 className="font-display text-2xl italic leading-snug text-[#113f6c] md:text-[1.65rem]">
+                {member.name}
+              </h3>
+              <p className="mt-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#5b6d7f]">
+                {member.role}
+              </p>
+              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-parchment/70">
+                {member.bio ?? "Open this profile to learn more about their role and impact."}
+              </p>
+            </div>
 
             <span className="mt-5 inline-flex items-center text-xs font-semibold uppercase tracking-[0.16em] text-[#0c3f84]">
               View Profile

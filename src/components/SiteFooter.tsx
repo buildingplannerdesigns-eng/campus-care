@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/BrandLogo";
+import { SiteCta } from "@/components/SiteCta";
 
 const lookAroundLinks = [
   { href: "/", label: "Home" },
@@ -18,33 +19,14 @@ const lookAroundLinks = [
   { href: "/contact", label: "Contact Us" },
 ];
 
-function FooterCta({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="group mt-7 inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-10 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-    >
-      {children}
-      <span
-        className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-        aria-hidden
-      >
-        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-        </svg>
-      </span>
-    </Link>
-  );
-}
-
 export function SiteFooter() {
   const pathname = usePathname();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <footer className="border-t border-[#d9d9d7] bg-[#f7f7f5] text-[#1f3552]">
-      <div className="h-10 bg-[#d7e2df]" aria-hidden />
+    <footer className="border-t border-[#cfdcd6] bg-sage text-[#1f3552]">
+      <div className="h-10 bg-sage-deep" aria-hidden />
 
       <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.15fr_0.95fr] lg:gap-8">
@@ -80,7 +62,9 @@ export function SiteFooter() {
             <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-[#355879]">
               Explore Campus Care programs, ACT Healing insights, and tools that grow restorative wellness.
             </p>
-            <FooterCta href="/campus-care">Learn More</FooterCta>
+            <SiteCta href="/campus-care" className="mt-7">
+              Learn More
+            </SiteCta>
           </div>
 
           {/* Come Hang Out */}
@@ -92,7 +76,9 @@ export function SiteFooter() {
             <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed text-[#355879]">
               Get updates about events, partnerships, and new healing resources.
             </p>
-            <FooterCta href="/contact">Sign Up</FooterCta>
+            <SiteCta href="/contact" className="mt-7">
+              Sign Up
+            </SiteCta>
           </div>
         </div>
 

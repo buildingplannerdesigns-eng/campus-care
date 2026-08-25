@@ -9,10 +9,21 @@ const config: Config = {
       colors: {
         // Base — light sanctuary (remapped for light theme)
         sanctuary: {
-          950: "#ffffff",
-          900: "#f5f5f5",
-          800: "#e5e7eb",
-          700: "#d1d5db",
+          950: "#e4ede8",
+          900: "#dce8e2",
+          800: "#cfdcd6",
+          700: "#b7c8c0",
+        },
+        // Page canvas — light teal green (Patrice Washington–style sage)
+        sage: {
+          DEFAULT: "#e4ede8",
+          deep: "#d7e2df",
+        },
+        // Display type on text-only pages — pale sage green
+        moss: {
+          DEFAULT: "#5f8a76",
+          muted: "#7aa090",
+          deep: "#3f5f52",
         },
         // Five Core Elements — pulled from the ACT Healing mark
         water: {
@@ -46,6 +57,7 @@ const config: Config = {
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],
+        hero: ["var(--font-hero)", "var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
         script: ["var(--font-script)", "cursive"],

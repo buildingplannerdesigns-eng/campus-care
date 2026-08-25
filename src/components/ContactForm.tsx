@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { DEFAULT_COUNTRY_CODE, formatInternationalPhone } from "@/data/countryCodes";
 import { PhoneWithCountryCode } from "@/components/PhoneWithCountryCode";
+import { CtaArrow, siteCtaClassName } from "@/components/SiteCta";
 import {
   SecurityCheck,
   isSecuritySatisfied,
@@ -336,19 +337,12 @@ export function ContactForm({
         <button
           type="submit"
           disabled={status === "submitting"}
-          className={`group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88] disabled:cursor-not-allowed disabled:opacity-60 ${
-            isLarge ? "px-8 py-4 text-sm" : "px-6 py-3 text-xs"
+          className={`${siteCtaClassName({ variant: "peach" })} ${
+            isLarge ? "px-8 py-4 text-sm" : ""
           }`}
         >
           <span>{requireConfirmation ? "Review & Submit" : submitLabel ?? "Submit Form"}</span>
-          <span
-            className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-            aria-hidden
-          >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
+          <CtaArrow />
         </button>
       </div>
 
@@ -444,21 +438,23 @@ function ReviewPanel({
           type="button"
           onClick={onEdit}
           disabled={status === "submitting"}
-          className={`inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-white font-semibold uppercase tracking-[0.14em] text-[#0e4f88] transition hover:bg-[#0e4f88] hover:text-white disabled:opacity-60 ${
-            isLarge ? "px-8 py-4 text-sm" : "px-6 py-3 text-xs"
+          className={`${siteCtaClassName({ variant: "outline" })} disabled:opacity-60 ${
+            isLarge ? "px-8 py-4 text-sm" : ""
           }`}
         >
           Edit message
+          <CtaArrow />
         </button>
         <button
           type="button"
           onClick={onConfirm}
           disabled={status === "submitting"}
-          className={`inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-white hover:text-[#0e4f88] disabled:cursor-not-allowed disabled:opacity-60 ${
-            isLarge ? "px-10 py-4 text-sm" : "px-8 py-3 text-xs"
+          className={`${siteCtaClassName({ variant: "peach" })} disabled:cursor-not-allowed disabled:opacity-60 ${
+            isLarge ? "px-10 py-4 text-sm" : ""
           }`}
         >
           {status === "submitting" ? "Sending…" : "Submit Form"}
+          <CtaArrow />
         </button>
       </div>
     </div>

@@ -4,46 +4,22 @@ import type { ReactNode } from "react";
 import { HeartHandshake, Mic, UsersRound, type LucideIcon } from "lucide-react";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { QuoteCarousel } from "@/components/dr-cammie/QuoteCarousel";
-
-function ArrowIcon() {
-  return (
-    <span
-      className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
-      aria-hidden
-    >
-      <svg
-        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 group-active:translate-x-0.5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-      </svg>
-    </span>
-  );
-}
+import { OffsetImageFrame } from "@/components/OffsetImageFrame";
+import { SiteCta, CtaArrow } from "@/components/SiteCta";
 
 function StefCta({
   href,
   children,
-  variant = "dark",
+  variant = "peach",
 }: {
   href: string;
   children: ReactNode;
-  variant?: "dark" | "outline";
+  variant?: "peach" | "outline";
 }) {
   return (
-    <Link
-      href={href}
-      className={
-        variant === "dark"
-          ? "group inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-8 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
-          : "group inline-flex items-center justify-center rounded-none border border-parchment/30 bg-transparent px-8 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-parchment transition-all duration-200 hover:border-[#0e4f88] hover:bg-[#0e4f88] hover:text-white"
-      }
-    >
+    <SiteCta href={href} variant={variant}>
       {children}
-      <ArrowIcon />
-    </Link>
+    </SiteCta>
   );
 }
 
@@ -53,17 +29,12 @@ function StefCta({
 
 export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drCammieCopy.intro }) {
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
           {/* Portrait with Stef-style offset frame */}
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute -left-3 -top-3 h-full w-full border border-water/30" aria-hidden />
-            <div
-              className="relative aspect-[4/5] overflow-hidden shadow-[0_24px_50px_rgba(31,92,115,0.14)]"
-              style={{ background: "linear-gradient(180deg, #d9d4cc 0%, #b8b0a8 100%)" }}
-            >
-              {/* Portrait */}
+          <div className="relative mx-auto w-full max-w-md p-3">
+            <OffsetImageFrame aspectClassName="aspect-[4/5]">
               <Image
                 src="/images/act/portrait-polka-front.jpeg"
                 alt="Dr. Connor"
@@ -72,7 +43,7 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
                 sizes="(max-width: 768px) 90vw, 40vw"
                 priority
               />
-            </div>
+            </OffsetImageFrame>
           </div>
 
           <div className="text-center md:text-left">
@@ -108,7 +79,7 @@ export function StefOverwhelmAndSteps({
   video?: typeof import("@/data/drCammie").drCammieCopy.video | typeof import("@/data/drCammie").drCammieCopy.homeVideo;
 }) {
   return (
-    <section id="show-me-how" className="scroll-mt-28 border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
+    <section id="show-me-how" className="scroll-mt-28 border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-4xl leading-snug text-parchment md:text-5xl">
@@ -175,10 +146,10 @@ function StefStep({
       </p>
       <Link
         href={step.href}
-        className="group mt-5 inline-flex items-center font-display text-xl italic leading-snug text-[#0e4f88] transition hover:text-[#0a3a66] md:text-2xl"
+        className="group mt-5 inline-flex items-center font-display text-xl italic leading-snug text-[#1a3c40] transition hover:text-[#C9A87C] md:text-2xl"
       >
         {step.cta}
-        <ArrowIcon />
+        <CtaArrow />
       </Link>
     </div>
   );
@@ -190,7 +161,7 @@ function StefStep({
 
 export function StefFeatureSection({ feature }: { feature: typeof import("@/data/drCammie").drCammieCopy.feature }) {
   return (
-    <section className="border-t border-[#dce8ee] bg-white py-20 md:py-28">
+    <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-start gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:gap-16">
           {/* Left — editorial intro */}
@@ -211,36 +182,30 @@ export function StefFeatureSection({ feature }: { feature: typeof import("@/data
           </div>
 
           {/* Right — offset-frame image grid */}
-          <ul className="grid grid-cols-2 gap-x-5 gap-y-8 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3">
+          <ul className="grid grid-cols-2 gap-x-7 gap-y-11 sm:gap-x-8 sm:gap-y-12 md:grid-cols-3">
             {feature.listItems.map((item) => (
-              <li key={item.word} className="group">
-                <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-1">
+              <li key={item.word} className="group p-3">
+                <OffsetImageFrame className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                  <Image
+                    src={item.image}
+                    alt={item.label}
+                    fill
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 45vw, 220px"
+                  />
                   <div
-                    className="absolute -left-2.5 -top-2.5 h-full w-full bg-[#d8e4eb] transition-colors duration-500 group-hover:bg-water/20"
+                    className="absolute inset-0 bg-gradient-to-t from-[#1a3c40]/80 via-[#1a3c40]/25 to-transparent"
                     aria-hidden
                   />
-                  <div className="relative aspect-[3/4] overflow-hidden bg-mineral">
-                    <Image
-                      src={item.image}
-                      alt={item.label}
-                      fill
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                      sizes="(max-width: 768px) 45vw, 220px"
-                    />
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-mineral/70 via-mineral/25 to-transparent"
-                      aria-hidden
-                    />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
-                      <p className="font-script text-[2.35rem] leading-none text-white drop-shadow-sm sm:text-4xl md:text-[2.6rem]">
-                        {item.word}
-                      </p>
-                      <p className="mt-2 max-w-[11rem] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/95">
-                        {item.tagline}
-                      </p>
-                    </div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
+                    <p className="font-script text-[2.35rem] leading-none text-white drop-shadow-sm sm:text-4xl md:text-[2.6rem]">
+                      {item.word}
+                    </p>
+                    <p className="mt-2 max-w-[11rem] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/95">
+                      {item.tagline}
+                    </p>
                   </div>
-                </div>
+                </OffsetImageFrame>
               </li>
             ))}
           </ul>
@@ -268,7 +233,7 @@ export function StefQuoteCarousel({
 
 export function StefStorySection({ story }: { story: typeof import("@/data/drCammie").drCammieCopy.story }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
+    <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-6 text-center">
         {story.paragraphs.map((p, i) => (
           <p key={i} className="mt-5 text-base leading-relaxed text-parchment/75 first:mt-0 md:text-lg">
@@ -298,12 +263,11 @@ export function StefStorySection({ story }: { story: typeof import("@/data/drCam
 
 export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").drCammieCopy.hiFriend }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
+    <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-start gap-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-16 lg:gap-20">
-          <div className="relative mx-auto w-full max-w-md md:mx-0 md:max-w-none md:sticky md:top-36">
-            <div className="absolute -left-3 -top-3 hidden h-full w-full border border-water/30 md:block" aria-hidden />
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#eef2ef]">
+          <div className="relative mx-auto w-full max-w-md p-3 md:mx-0 md:max-w-none md:sticky md:top-36">
+            <OffsetImageFrame aspectClassName="aspect-[4/5]">
               <Image
                 src="/images/team/consellor.jpg"
                 alt="Dr. Cammie Connor"
@@ -312,7 +276,7 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
                 sizes="(max-width: 768px) 90vw, 40vw"
                 priority
               />
-            </div>
+            </OffsetImageFrame>
           </div>
 
           <div>
@@ -360,7 +324,7 @@ const offerIcons: Record<(typeof import("@/data/drCammie").drCammieCopy.offers.i
 
 export function StefOffersSection({ offers }: { offers: typeof import("@/data/drCammie").drCammieCopy.offers }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-20 md:py-28">
+    <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 text-center">
         <h2 className="font-display text-3xl text-parchment md:text-4xl">{offers.heading}</h2>
         <p className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-water">
@@ -403,7 +367,7 @@ export function StefImagineSection({
   video?: typeof import("@/data/drCammie").drCammieCopy.video | typeof import("@/data/drCammie").drCammieCopy.homeVideo;
 }) {
   return (
-    <section className="border-t border-[#eeeae4] bg-white py-20 md:py-28">
+    <section className="border-t border-[#cfdcd6] bg-sage py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 text-center">
         <h2 className="font-display text-4xl italic text-parchment md:text-5xl">{imagine.heading}</h2>
         <p className="mt-4 font-display text-xl italic text-water md:text-2xl">{imagine.eyebrow}</p>
@@ -439,13 +403,7 @@ export function StefClosingCta({ closing }: { closing: typeof import("@/data/drC
           ))}
         </div>
         <div className="mt-12">
-          <Link
-            href={closing.href}
-            className="group inline-flex items-center justify-center rounded-none border border-white bg-white px-10 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-[#0e4f88] transition-all duration-200 hover:bg-transparent hover:text-white md:text-sm"
-          >
-            {closing.cta}
-            <ArrowIcon />
-          </Link>
+          <SiteCta href={closing.href}>{closing.cta}</SiteCta>
         </div>
       </div>
     </section>

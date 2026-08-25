@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
+import { PageIntro } from "@/components/PageIntro";
 import { StefQuoteCarousel } from "@/components/dr-cammie/StefSections";
+import { SiteCta, type SiteCtaVariant } from "@/components/SiteCta";
 import { drCammieCopy } from "@/data/drCammie";
 import { pageMetadata } from "@/lib/seo";
 
@@ -12,50 +13,19 @@ export const metadata = pageMetadata({
   keywords: ["therapy", "campus interventions", "couples counseling", "family therapy"],
 });
 
-function ArrowIcon() {
-  return (
-    <span
-      className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100"
-      aria-hidden
-    >
-      <svg
-        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-      </svg>
-    </span>
-  );
-}
-
 function SolutionsCta({
   href,
   children,
-  variant = "dark",
+  variant = "peach",
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "dark" | "outline" | "light" | "ghost";
+  variant?: SiteCtaVariant;
 }) {
-  const styles =
-    variant === "dark"
-      ? "border-[#0e4f88] bg-[#0e4f88] text-white hover:bg-white hover:text-[#0e4f88]"
-      : variant === "light"
-        ? "border-white bg-white text-[#0e4f88] hover:bg-transparent hover:text-white"
-        : variant === "ghost"
-          ? "border-white/45 bg-white/10 text-white hover:bg-white hover:text-[#0e4f88]"
-          : "border-[#0e4f88] bg-white text-[#0e4f88] hover:bg-[#0e4f88] hover:text-white";
-
   return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center justify-center rounded-none border px-8 py-3 text-xs font-semibold uppercase tracking-[0.14em] transition-all duration-200 sm:px-10 sm:py-3.5 sm:text-sm ${styles}`}
-    >
+    <SiteCta href={href} variant={variant}>
       {children}
-      <ArrowIcon />
-    </Link>
+    </SiteCta>
   );
 }
 
@@ -109,33 +79,14 @@ const pathways = [
 export default function SolutionsPage() {
   return (
     <>
-      {/* Hero — Stef speaking page style */}
-      <section
-        className="relative overflow-hidden px-6 pb-20 pt-36 text-center md:pb-28 md:pt-44"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(18, 28, 42, 0.72), rgba(18, 28, 42, 0.72)), linear-gradient(160deg, #1a3348 0%, #2a5570 45%, #1e3d35 100%)",
-        }}
-      >
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">Solutions</p>
-        <h1 className="mx-auto mt-5 max-w-4xl font-display text-4xl italic leading-[1.05] text-white md:text-6xl lg:text-[4.1rem]">
-          Book ACT Healing for lasting change
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl font-display text-xl text-white/85 md:text-2xl">
-          Want to help your people heal, grow, and ACT on purpose?
-        </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <SolutionsCta href="/contact" variant="light">
-            Invite Us to Work With You
-          </SolutionsCta>
-          <SolutionsCta href="#pathways" variant="ghost">
-            See How We Work
-          </SolutionsCta>
-        </div>
-      </section>
+      <PageIntro
+        label="Solutions"
+        heading="Want to help your people heal, grow, and ACT on purpose?"
+        body="Book ACT Healing for therapy, workshops, and campus programs — culturally grounded care that moves people from insight to action."
+      />
 
       {/* Pull quote strip */}
-      <section className="border-b border-[#eeeae4] bg-white py-14 md:py-16">
+      <section className="border-b border-[#cfdcd6] bg-sage py-14 md:py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="font-display text-2xl italic leading-snug text-parchment md:text-3xl">
             &ldquo;From therapy to campus wellness, ACT delivers care that transforms.&rdquo;
@@ -150,7 +101,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Credibility / bio */}
-      <section className="border-b border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-b border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="flex justify-center lg:justify-start">
             <div className="flex -space-x-6">
@@ -161,7 +112,7 @@ export default function SolutionsPage() {
               ].map((avatar, index) => (
                 <div
                   key={avatar.src}
-                  className="relative h-28 w-28 overflow-hidden rounded-full ring-[5px] ring-[#faf9f7] shadow-[0_12px_28px_rgba(17,63,108,0.14)] sm:h-32 sm:w-32"
+                  className="relative h-28 w-28 overflow-hidden rounded-full ring-[5px] ring-sage shadow-[0_12px_28px_rgba(17,63,108,0.14)] sm:h-32 sm:w-32"
                   style={{ zIndex: 3 - index }}
                 >
                   <Image
@@ -199,7 +150,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Pathways — speaking "topics" equivalent */}
-      <section id="pathways" className="border-b border-[#eeeae4] bg-white py-16 md:py-24">
+      <section id="pathways" className="border-b border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">Let&apos;s Work Together</p>
@@ -214,7 +165,7 @@ export default function SolutionsPage() {
               <article
                 key={pathway.id}
                 id={pathway.id}
-                className="border border-[#eeeae4] bg-[#faf9f7] px-6 py-10 text-center md:px-10 md:py-12"
+                className="border border-[#cfdcd6] bg-white px-6 py-10 text-center md:px-10 md:py-12"
               >
                 <div className="flex justify-center">
                   <div className="flex -space-x-4">
@@ -256,7 +207,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* What you can expect — numbered like speaking page */}
-      <section className="border-b border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-b border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-3xl italic text-parchment md:text-5xl">
@@ -287,7 +238,7 @@ export default function SolutionsPage() {
       <StefQuoteCarousel testimonies={drCammieCopy.testimonies} />
 
       {/* Partner letter — speaking page style */}
-      <section className="border-t border-[#eeeae4] bg-white py-16 md:py-28">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-water">
             More than a service — a partner
@@ -321,7 +272,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* Closing CTA */}
-      <section className="border-t border-[#eeeae4] bg-[#faf9f7] py-16 md:py-24">
+      <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-water">Ready to reach out?</p>
           <h2 className="mt-4 font-display text-4xl italic text-parchment md:text-5xl">

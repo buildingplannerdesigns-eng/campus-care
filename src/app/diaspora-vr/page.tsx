@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { PrimaryButton, SecondaryButton, Section, SectionHeading } from "@/components/ui";
+import { SiteCta } from "@/components/SiteCta";
 
 export const metadata: Metadata = {
 	title: "Diaspora VR",
@@ -132,27 +133,12 @@ export default function DiasporaVRPage() {
 					<p className="mt-5 max-w-3xl text-base leading-relaxed text-parchment/70 md:text-lg">
 						Research supports the role of honest self-expression in building confidence and reducing stress, anxiety, and burnout.
 					</p>
-					<a
+					<SiteCta
 						href="https://www.sciencedirect.com/science/article/abs/pii/S019745562100068X"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="group mt-8 inline-flex items-center justify-center rounded-none border border-[#0e4f88] bg-[#0e4f88] px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all duration-200 hover:bg-white hover:text-[#0e4f88]"
+						className="mt-8"
 					>
 						Read the Study
-						<span
-							className="w-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:ml-2 group-hover:w-4 group-hover:opacity-100 group-focus-visible:ml-2 group-focus-visible:w-4 group-focus-visible:opacity-100 group-active:ml-2 group-active:w-4 group-active:opacity-100"
-							aria-hidden
-						>
-							<svg
-								className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5 group-active:translate-x-0.5"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-							</svg>
-						</span>
-					</a>
+					</SiteCta>
 				</div>
 
 				<div className="mt-12 grid gap-px overflow-hidden rounded-[1.5rem] bg-sanctuary-700/40 sm:grid-cols-2 lg:grid-cols-4">

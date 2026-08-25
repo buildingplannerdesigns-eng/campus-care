@@ -15,7 +15,7 @@ export function MainWrapper({ children }: { children: React.ReactNode }) {
   const isHeroRoute = isHeroPath(pathname);
 
   return (
-    <main className={isHeroRoute ? "" : "pt-28"}>
+    <main className={isHeroRoute ? "" : "pt-28 lg:pt-40"}>
       <MotionPage>{children}</MotionPage>
     </main>
   );
