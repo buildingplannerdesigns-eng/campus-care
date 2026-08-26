@@ -150,7 +150,8 @@ export function ContactForm({
   }, [register]);
 
   async function goToNextStep() {
-    const names = (step === 0 ? ["firstName", "lastName"] : ["email", "phone"]) as const;
+    const names =
+      step === 0 ? (["firstName", "lastName"] as const) : (["email", "phone"] as const);
     const valid = await trigger(names);
     if (!valid) {
       for (const name of names) {
