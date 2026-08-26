@@ -10,7 +10,7 @@ export const siteCopy = {
     headline: "Redefining Campus Care",
     subhead: "ACT",
     orgName: "Dr. Connor",
-    tagline: "Dr. Connor redefining Campus Care",
+    tagline: "Dr. Connor is redefining Campus Care",
     primaryCta: "Meet Dr. Connor",
     secondaryCta: "Contact Us",
     videoTitle: "Campus Care 2.0 — The VR Sanctuary",
