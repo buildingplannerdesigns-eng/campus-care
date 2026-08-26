@@ -82,33 +82,31 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[#d5d5d3] pt-6">
-          <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
-            <p className="text-center text-[11px] uppercase tracking-[0.14em] text-[#2f537d]">
+        <div className="mt-12 border-t border-[#d5d5d3] pt-8">
+          <div className="flex flex-col items-center gap-5 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0e3f78] md:text-base">
               © {new Date().getFullYear()} Campus Care 2.0
-              <span className="mx-2 text-[#94a9bf]">|</span>
+              <span className="mx-2 text-[#5b7a9a]">|</span>
               All Rights Reserved
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="https://www.celestialwebsolutions.net/portfolio/act-campus-care"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-[#0c3f84] transition hover:text-[#0a3269]"
-              >
-                <span className="text-[10px] uppercase tracking-[0.12em] text-[#0c3f84]/70 group-hover:text-[#0c3f84]">
-                  Website Developed and Powered by Celestial Web Solutions
-                </span>
-                <Image
-                  src="/images/site-credit.png"
-                  alt="Celestial Web Solutions logo"
-                  width={40}
-                  height={40}
-                  className="h-9 w-9 object-contain sm:h-10 sm:w-10"
-                />
-              </a>
-            </div>
+            <a
+              href="https://www.celestialwebsolutions.net/portfolio/act-campus-care"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex max-w-full flex-wrap items-center justify-center gap-3 text-center text-[#0c3f84] transition hover:text-[#082c5c]"
+            >
+              <span className="text-sm font-semibold leading-snug text-[#0c3f84] sm:text-base">
+                Website Developed and Powered by Celestial Web Solutions
+              </span>
+              <Image
+                src="/images/site-credit.png"
+                alt="Celestial Web Solutions logo"
+                width={48}
+                height={48}
+                className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
+              />
+            </a>
           </div>
         </div>
       </div>

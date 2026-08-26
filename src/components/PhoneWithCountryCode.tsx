@@ -18,6 +18,7 @@ type PhoneWithCountryCodeProps = {
   labelClassName?: string;
   errorClassName?: string;
   dark?: boolean;
+  menuClassName?: string;
 };
 
 function flagUrl(countryCode: string) {
@@ -48,6 +49,7 @@ export function PhoneWithCountryCode({
   labelClassName,
   errorClassName,
   dark,
+  menuClassName,
 }: PhoneWithCountryCodeProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -88,6 +90,7 @@ export function PhoneWithCountryCode({
     }
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") {
+        e.stopPropagation();
         setOpen(false);
         setQuery("");
       }
@@ -186,7 +189,7 @@ export function PhoneWithCountryCode({
 
       {open && (
         <div
-          className={`absolute z-40 mt-2 w-[min(22rem,90vw)] ${menuPanel}`}
+          className={`absolute z-40 mt-2 w-[min(22rem,90vw)] ${menuPanel} ${menuClassName ?? ""}`}
           role="dialog"
           aria-label="Select country code"
         >

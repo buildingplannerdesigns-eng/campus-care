@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BrandLogo } from "@/components/BrandLogo";
 import { ContactForm } from "@/components/ContactForm";
 import { ElementCard } from "@/components/ElementCard";
 import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
@@ -60,10 +61,6 @@ const evidenceStats = [
 
 const xrImages = [
   {
-    src: "/images/attachments/image005.jpeg",
-    alt: "Dr. Connor presenting Campus Care 2.0",
-  },
-  {
     src: "/images/campus-care/student.jpeg",
     alt: "Student engaging with Campus Care wellness technology",
   },
@@ -89,15 +86,15 @@ export default async function CampusCarePage() {
         body="Campus Care offers a virtual reality experience aimed at promoting the mental well-being of HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed."
       />
 
-      <section className="relative isolate overflow-hidden border-b border-sanctuary-700/30">
-        <div className="relative h-[220px] w-full overflow-hidden sm:h-[280px] md:h-[340px] lg:h-[460px] xl:h-[520px]">
-          <Image
-            src={xrImages[0].src}
-            alt={xrImages[0].alt}
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
+      <section
+        className="relative isolate overflow-hidden border-b border-sanctuary-700/30 bg-sage"
+        aria-label="Campus Care emblem"
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-14 sm:py-16 md:py-20 lg:py-24">
+          <BrandLogo
+            size="xl"
             priority
+            alt="Campus Care 2.0 logo"
           />
         </div>
       </section>
@@ -106,7 +103,7 @@ export default async function CampusCarePage() {
         <div className="mx-auto max-w-5xl space-y-10 md:space-y-14">
           <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-sanctuary-700 md:aspect-[21/9]">
             <Image
-              src={xrImages[1].src}
+              src={xrImages[0].src}
               alt="HBCU graduates celebrating together in caps and gowns"
               fill
               sizes="100vw"
@@ -121,8 +118,8 @@ export default async function CampusCarePage() {
 
           <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] border border-sanctuary-700 md:aspect-[21/9]">
             <Image
-              src={xrImages[2].src}
-              alt={xrImages[2].alt}
+              src={xrImages[1].src}
+              alt={xrImages[1].alt}
               fill
               sizes="100vw"
               className="object-cover"

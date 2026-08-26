@@ -32,7 +32,7 @@ export function BackToTopButton() {
       onClick={scrollToTop}
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}
-      className={`fixed bottom-6 right-5 z-40 inline-flex h-12 w-12 items-center justify-center border border-[#1a3c40] bg-[#1a3c40] text-[#f7efe8] shadow-[0_12px_28px_rgba(26,60,64,0.28)] transition-all duration-300 hover:border-[#ead5c6] hover:bg-gradient-to-b hover:from-[#f7efe8] hover:to-[#ead5c6] hover:text-[#1a3c40] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead5c6] sm:bottom-8 sm:right-8 ${
+      className={`fixed bottom-6 left-5 z-40 inline-flex h-12 w-12 items-center justify-center border border-[#1a3c40] bg-[#1a3c40] text-[#f7efe8] shadow-[0_12px_28px_rgba(26,60,64,0.28)] transition-all duration-300 hover:border-[#ead5c6] hover:bg-gradient-to-b hover:from-[#f7efe8] hover:to-[#ead5c6] hover:text-[#1a3c40] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ead5c6] sm:bottom-8 sm:left-8 ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >

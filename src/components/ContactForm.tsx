@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -57,12 +57,16 @@ export function ContactForm({
   successMessage,
   size = "default",
   requireConfirmation = false,
+  idPrefix = "",
+  compact = false,
 }: {
   target?: ContactFormTarget;
   submitLabel?: string;
   successMessage?: string;
   size?: ContactFormSize;
   requireConfirmation?: boolean;
+  idPrefix?: string;
+  compact?: boolean;
 }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -70,6 +74,7 @@ export function ContactForm({
   const [securityVerified, setSecurityVerified] = useState(false);
   const [turnstileError, setTurnstileError] = useState<string>("");
   const [reviewData, setReviewData] = useState<ContactFormData | null>(null);
+  const [step, setStep] = useState(0);
   const subjectOptions = contactSubjects[target];
 
   const {
@@ -78,6 +83,8 @@ export function ContactForm({
     reset,
     watch,
     setValue,
+    trigger,
+    getFieldState,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -93,30 +100,42 @@ export function ContactForm({
   const countryCode = watch("countryCode") || DEFAULT_COUNTRY_CODE;
   const phoneValue = watch("phone") || "";
 
-  const isLarge = size === "lg";
+  const isLarge = size === "lg" && !compact;
+  const ids = {
+    firstName: `${idPrefix}firstName`,
+    lastName: `${idPrefix}lastName`,
+    email: `${idPrefix}email`,
+    subject: `${idPrefix}subject`,
+    message: `${idPrefix}message`,
+    phone: `${idPrefix}phone`,
+  };
 
   const fieldClass = useMemo(
     () =>
       `mt-2 w-full rounded-none border border-[#d5d0c4] bg-white text-parchment outline-none transition focus:border-[#0e4f88] focus:ring-2 focus:ring-[#0e4f88]/20 ${
-        isLarge ? "px-4 py-3.5 text-base" : "px-4 py-2.5 text-sm"
+        isLarge ? "px-4 py-3.5 text-base" : compact ? "px-3 py-2 text-sm" : "px-4 py-2.5 text-sm"
       }`,
-    [isLarge]
+    [isLarge, compact]
   );
 
   const phoneTriggerClass = useMemo(
     () =>
       `inline-flex shrink-0 items-center gap-2 rounded-none border border-[#d5d0c4] border-r-0 bg-[#faf9f7] text-parchment outline-none transition hover:bg-white focus:border-[#0e4f88] focus:ring-2 focus:ring-[#0e4f88]/20 ${
-        isLarge ? "min-w-[7rem] px-3 py-3.5 text-sm" : "min-w-[6rem] px-3 py-2.5 text-xs"
+        isLarge
+          ? "min-w-[7rem] px-3 py-3.5 text-sm"
+          : compact
+            ? "min-w-[5.25rem] px-2 py-2 text-xs"
+            : "min-w-[6rem] px-3 py-2.5 text-xs"
       }`,
-    [isLarge]
+    [isLarge, compact]
   );
 
   const phoneInputClass = useMemo(
     () =>
       `min-w-0 flex-1 rounded-none border border-[#d5d0c4] bg-white text-parchment outline-none transition focus:border-[#0e4f88] focus:ring-2 focus:ring-[#0e4f88]/20 ${
-        isLarge ? "px-4 py-3.5 text-base" : "px-4 py-2.5 text-sm"
+        isLarge ? "px-4 py-3.5 text-base" : compact ? "px-3 py-2 text-sm" : "px-4 py-2.5 text-sm"
       }`,
-    [isLarge]
+    [isLarge, compact]
   );
 
   const labelClass = `block font-semibold uppercase tracking-[0.14em] text-parchment/70 ${
@@ -124,6 +143,26 @@ export function ContactForm({
   }`;
 
   const errorClass = "mt-1.5 text-xs font-medium text-[#b3421c]";
+
+  useEffect(() => {
+    register("phone");
+    register("countryCode");
+  }, [register]);
+
+  async function goToNextStep() {
+    const names = (step === 0 ? ["firstName", "lastName"] : ["email", "phone"]) as const;
+    const valid = await trigger(names);
+    if (!valid) {
+      for (const name of names) {
+        if (getFieldState(name).invalid) {
+          document.getElementById(ids[name])?.focus();
+          break;
+        }
+      }
+      return;
+    }
+    setStep((current) => current + 1);
+  }
 
   function resetSecurity() {
     setTurnstileToken("");
@@ -148,6 +187,7 @@ export function ContactForm({
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
+      setStep(0);
       reset({
         phone: "",
         countryCode: DEFAULT_COUNTRY_CODE,
@@ -209,29 +249,65 @@ export function ContactForm({
 
   if (status === "success") {
     return (
-      <div className="border border-[#c9dfd0] bg-[#f0f7f2] p-8 text-center">
+      <div className={`border border-[#c9dfd0] bg-[#f0f7f2] text-center ${compact ? "p-5" : "p-8"}`}>
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#2f7a4e]/10 text-[#2f7a4e]">
           <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="mt-5 font-display text-2xl italic text-parchment md:text-3xl">Message sent</h3>
+        <h3 className={`mt-5 font-display italic text-parchment ${compact ? "text-xl" : "text-2xl md:text-3xl"}`}>
+          Message sent
+        </h3>
         <p className="mt-3 text-sm leading-relaxed text-parchment/70 md:text-base">
           {successMessage ?? "Thank you — we'll be in touch soon."}
         </p>
+        {compact ? (
+          <button
+            type="button"
+            onClick={() => {
+              setStatus("idle");
+              setErrorMessage("");
+              setStep(0);
+            }}
+            className={`${siteCtaClassName({ variant: "peach", className: "mt-5 w-full" })}`}
+          >
+            Send another message
+            <CtaArrow />
+          </button>
+        ) : null}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={isLarge ? "space-y-7" : "space-y-5"} noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={compact ? "space-y-3.5" : isLarge ? "space-y-7" : "space-y-5"}
+      noValidate
+    >
+      {compact ? (
         <div>
-          <label htmlFor="firstName" className={labelClass}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0e4f88]">
+            Step {step + 1} of 3
+          </p>
+          <div className="mt-2 flex gap-1.5" aria-hidden>
+            {[0, 1, 2].map((index) => (
+              <span
+                key={index}
+                className={`h-1 flex-1 ${index <= step ? "bg-[#1a3c40]" : "bg-[#d5d0c4]"}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      <div className={compact && step !== 0 ? "hidden" : compact ? "grid gap-3.5" : "grid gap-5 sm:grid-cols-2"}>
+        <div>
+          <label htmlFor={ids.firstName} className={labelClass}>
             First name <span className="text-[#b3421c]">*</span>
           </label>
           <input
-            id="firstName"
+            id={ids.firstName}
             autoComplete="given-name"
             aria-invalid={Boolean(errors.firstName) || undefined}
             {...register("firstName")}
@@ -240,11 +316,11 @@ export function ContactForm({
           {errors.firstName && <p className={errorClass}>{errors.firstName.message}</p>}
         </div>
         <div>
-          <label htmlFor="lastName" className={labelClass}>
+          <label htmlFor={ids.lastName} className={labelClass}>
             Last name <span className="text-[#b3421c]">*</span>
           </label>
           <input
-            id="lastName"
+            id={ids.lastName}
             autoComplete="family-name"
             aria-invalid={Boolean(errors.lastName) || undefined}
             {...register("lastName")}
@@ -254,13 +330,13 @@ export function ContactForm({
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className={compact && step !== 1 ? "hidden" : compact ? "grid gap-3.5" : "grid gap-5 sm:grid-cols-2"}>
         <div>
-          <label htmlFor="email" className={labelClass}>
+          <label htmlFor={ids.email} className={labelClass}>
             Email <span className="text-[#b3421c]">*</span>
           </label>
           <input
-            id="email"
+            id={ids.email}
             type="email"
             autoComplete="email"
             aria-invalid={Boolean(errors.email) || undefined}
@@ -270,6 +346,7 @@ export function ContactForm({
           {errors.email && <p className={errorClass}>{errors.email.message}</p>}
         </div>
         <PhoneWithCountryCode
+          id={ids.phone}
           countryCode={countryCode}
           phone={phoneValue}
           onCountryCodeChange={(code) => setValue("countryCode", code, { shouldDirty: true })}
@@ -281,70 +358,125 @@ export function ContactForm({
           triggerClassName={phoneTriggerClass}
           inputClassName={phoneInputClass}
           wrapperClassName="mt-2 flex"
+          menuClassName={compact ? "!w-full !max-w-full" : undefined}
         />
       </div>
 
-      <div>
-        <label htmlFor="subject" className={labelClass}>
-          Subject <span className="text-[#b3421c]">*</span>
-        </label>
-        <select
-          id="subject"
-          defaultValue=""
-          aria-invalid={Boolean(errors.subject) || undefined}
-          {...register("subject")}
-          className={fieldClass}
-        >
-          <option value="" disabled>
-            Select a subject
-          </option>
-          {subjectOptions.map((subject) => (
-            <option key={subject} value={subject}>
-              {subject}
+      <div
+        className={
+          compact && step !== 2
+            ? "hidden"
+            : compact
+              ? "space-y-3.5"
+              : isLarge
+                ? "space-y-7"
+                : "space-y-5"
+        }
+      >
+        <div>
+          <label htmlFor={ids.subject} className={labelClass}>
+            Subject <span className="text-[#b3421c]">*</span>
+          </label>
+          <select
+            id={ids.subject}
+            aria-invalid={Boolean(errors.subject) || undefined}
+            {...register("subject")}
+            className={fieldClass}
+          >
+            <option value="" disabled>
+              Select a subject
             </option>
-          ))}
-        </select>
-        {errors.subject && <p className={errorClass}>{errors.subject.message}</p>}
-      </div>
+            {subjectOptions.map((subject) => (
+              <option key={subject} value={subject}>
+                {subject}
+              </option>
+            ))}
+          </select>
+          {errors.subject && <p className={errorClass}>{errors.subject.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor="message" className={labelClass}>
-          Message <span className="text-[#b3421c]">*</span>
-        </label>
-        <textarea
-          id="message"
-          rows={isLarge ? 7 : 4}
-          aria-invalid={Boolean(errors.message) || undefined}
-          {...register("message")}
-          className={fieldClass}
+        <div>
+          <label htmlFor={ids.message} className={labelClass}>
+            Message <span className="text-[#b3421c]">*</span>
+          </label>
+          <textarea
+            id={ids.message}
+            rows={isLarge ? 7 : compact ? 3 : 4}
+            aria-invalid={Boolean(errors.message) || undefined}
+            {...register("message")}
+            className={fieldClass}
+          />
+          {errors.message && <p className={errorClass}>{errors.message.message}</p>}
+        </div>
+
+        <SecurityCheck
+          token={turnstileToken}
+          onTokenChange={setTurnstileToken}
+          verified={securityVerified}
+          onVerifiedChange={setSecurityVerified}
+          error={turnstileError}
+          theme="light"
         />
-        {errors.message && <p className={errorClass}>{errors.message.message}</p>}
-      </div>
 
-      <SecurityCheck
-        token={turnstileToken}
-        onTokenChange={setTurnstileToken}
-        verified={securityVerified}
-        onVerifiedChange={setSecurityVerified}
-        error={turnstileError}
-        theme="light"
-      />
-
-      <div className="flex flex-col-reverse items-stretch gap-4 border-t border-[#e6e0d6] pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-parchment/55">
-          Fields marked <span className="text-[#b3421c]">*</span> are required.
-        </p>
-        <button
-          type="submit"
-          disabled={status === "submitting"}
-          className={`${siteCtaClassName({ variant: "peach" })} ${
-            isLarge ? "px-8 py-4 text-sm" : ""
-          }`}
+        <div
+          className={
+            compact
+              ? "flex flex-col items-stretch gap-3 border-t border-[#e6e0d6] pt-4"
+              : "flex flex-col-reverse items-stretch gap-4 border-t border-[#e6e0d6] pt-6 sm:flex-row sm:items-center sm:justify-between"
+          }
         >
-          <span>{requireConfirmation ? "Review & Submit" : submitLabel ?? "Submit Form"}</span>
-          <CtaArrow />
-        </button>
+          {compact ? (
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className={siteCtaClassName({ variant: "outline", className: "w-full" })}
+            >
+              Back
+            </button>
+          ) : null}
+          <button
+            type="submit"
+            disabled={status === "submitting"}
+            className={`${siteCtaClassName({ variant: "peach", className: compact ? "w-full" : "" })} ${
+              isLarge ? "px-8 py-4 text-sm" : ""
+            }`}
+          >
+            <span>
+              {status === "submitting"
+                ? "Sending…"
+                : requireConfirmation
+                  ? "Review & Submit"
+                  : submitLabel ?? "Submit Form"}
+            </span>
+            <CtaArrow />
+          </button>
+          <p className={`text-xs text-parchment/55 ${compact ? "text-center" : ""}`}>
+            Fields marked <span className="text-[#b3421c]">*</span> are required.
+          </p>
+        </div>
       </div>
+
+      {compact && step < 2 ? (
+        <div className="flex flex-col gap-2 pt-2">
+          {step > 0 ? (
+            <button
+              type="button"
+              onClick={() => setStep((current) => current - 1)}
+              className={siteCtaClassName({ variant: "outline", className: "w-full" })}
+            >
+              Back
+            </button>
+          ) : null}
+          <button
+            type="button"
+            onClick={goToNextStep}
+            className={siteCtaClassName({ variant: "peach", className: "w-full" })}
+          >
+            Continue
+            <CtaArrow />
+          </button>
+        </div>
+      ) : null}
 
       {status === "error" && errorMessage && (
         <p className={`text-sm ${errorClass}`}>{errorMessage}</p>

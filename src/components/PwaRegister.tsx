@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -23,7 +24,22 @@ function isIos() {
   return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
 }
 
+function isHomePath(pathname: string | null) {
+  if (!pathname) return false;
+  return pathname === "/" || pathname === "";
+}
+
+function wasDismissed() {
+  if (typeof window === "undefined") return true;
+  try {
+    return localStorage.getItem(DISMISS_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export function PwaRegister() {
+  const pathname = usePathname();
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [iosHint, setIosHint] = useState(false);
@@ -45,22 +61,23 @@ export function PwaRegister() {
 
   useEffect(() => {
     if (isStandalone()) return;
-    if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(DISMISS_KEY) === "1") return;
+    if (wasDismissed()) return;
 
     const onBeforeInstall = (event: Event) => {
       event.preventDefault();
       setDeferred(event as BeforeInstallPromptEvent);
-      setVisible(true);
-      setIosHint(false);
+      if (isHomePath(window.location.pathname) && !wasDismissed()) {
+        setVisible(true);
+        setIosHint(false);
+      }
     };
 
     window.addEventListener("beforeinstallprompt", onBeforeInstall);
 
-    // iOS has no beforeinstallprompt — show a soft hint after a short delay
-    if (isIos()) {
+    // iOS has no beforeinstallprompt — show a soft hint after a short delay, home only
+    if (isIos() && isHomePath(pathname)) {
       const timer = window.setTimeout(() => {
-        if (!sessionStorage.getItem(DISMISS_KEY) && !isStandalone()) {
+        if (!wasDismissed() && !isStandalone() && isHomePath(window.location.pathname)) {
           setIosHint(true);
           setVisible(true);
         }
@@ -72,10 +89,20 @@ export function PwaRegister() {
     }
 
     return () => window.removeEventListener("beforeinstallprompt", onBeforeInstall);
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isHomePath(pathname) || wasDismissed() || isStandalone()) {
+      setVisible(false);
+    }
+  }, [pathname]);
 
   const dismiss = useCallback(() => {
-    sessionStorage.setItem(DISMISS_KEY, "1");
+    try {
+      localStorage.setItem(DISMISS_KEY, "1");
+    } catch {
+      // Ignore storage failures (private mode)
+    }
     setVisible(false);
   }, []);
 
@@ -84,6 +111,11 @@ export function PwaRegister() {
     await deferred.prompt();
     await deferred.userChoice;
     setDeferred(null);
+    try {
+      localStorage.setItem(DISMISS_KEY, "1");
+    } catch {
+      // Ignore storage failures (private mode)
+    }
     setVisible(false);
   }, [deferred]);
 
@@ -94,7 +126,7 @@ export function PwaRegister() {
         void install();
         return;
       }
-      // No deferred prompt — show the banner / iOS hint
+      if (wasDismissed()) return;
       setVisible(true);
       if (isIos()) setIosHint(true);
     };

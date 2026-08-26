@@ -21,13 +21,14 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "ACT Healing empowers individuals, couples, families, and communities to heal, grow, and thrive through culturally responsive, trauma-informed counseling.",
+    "Campus Care 2.0 is an immersive, culturally grounded VR sanctuary helping HBCU students and communities heal, connect, and thrive.",
   path: "/about",
   keywords: [
-    "about ACT Healing",
-    "Agents of Change and Transformation",
-    "mission vision goals",
-    "team",
+    "about Campus Care",
+    "Campus Care 2.0",
+    "VR Sanctuary",
+    "HBCU wellness",
+    "culturally grounded care",
   ],
 });
 
@@ -77,8 +78,8 @@ export default async function AboutPage() {
       <PageIntro
         label="About"
         size="lg"
-        heading="Hey there, I'm Dr. Connor!"
-        body="Culturally responsive, trauma-informed counseling that helps individuals, families, and communities heal, grow, and thrive."
+        heading="Campus Care is an immersive healing experience for students and communities."
+        body="Campus Care 2.0 — the VR Sanctuary — is a culturally grounded virtual reality platform that supports mental well-being by tackling stress, anxiety, and depression, so students can connect, care, and belong."
       />
 
       {/* Mission & Vision */}
