@@ -7,6 +7,7 @@ import { MainWrapper } from "@/components/MainWrapper";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { ChatButton } from "@/components/ChatButton";
 import { PwaRegister } from "@/components/PwaRegister";
+import { TurnstileLoader } from "@/components/TurnstileLoader";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -23,6 +24,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <SiteFooter />
       <BackToTopButton />
       <ChatButton />
+      <TurnstileLoader />
       <PwaRegister />
     </>
   );

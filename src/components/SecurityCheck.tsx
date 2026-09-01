@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef } from "react";
-import Script from "next/script";
+import { Component, useEffect, useRef, type ReactNode } from "react";
 
 declare global {
   interface Window {
@@ -9,8 +8,6 @@ declare global {
       render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
       reset: (widgetId?: string) => void;
       remove: (widgetId?: string) => void;
-      ready?: (callback: () => void) => void;
-      implicitRender?: () => void;
     };
   }
 }
@@ -19,8 +16,6 @@ const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ||
   process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY?.trim() ||
   "";
-
-const TURNSTILE_SCRIPT = "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
 type SecurityCheckProps = {
   token: string;
@@ -35,21 +30,35 @@ type SecurityCheckProps = {
   resetNonce?: number;
 };
 
-export function SecurityCheck({
+class WidgetErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed) {
+      return (
+        <p className="text-sm text-[#b3421c]">
+          Security check failed to load. Refresh this page and try again.
+        </p>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function TurnstileWidget({
   onTokenChange,
-  verified,
   onVerifiedChange,
   error,
-  theme = "light",
+  theme,
   className,
-  compact = false,
-  visible = true,
-  resetNonce = 0,
+  compact,
+  visible,
+  resetNonce,
 }: SecurityCheckProps) {
-  const reactId = useId().replace(/:/g, "");
-  const successCb = `onTurnstileSuccess_${reactId}`;
-  const expiredCb = `onTurnstileExpired_${reactId}`;
-  const errorCb = `onTurnstileError_${reactId}`;
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const onTokenChangeRef = useRef(onTokenChange);
@@ -59,45 +68,33 @@ export function SecurityCheck({
   onVerifiedChangeRef.current = onVerifiedChange;
 
   useEffect(() => {
-    (window as unknown as Record<string, unknown>)[successCb] = (value: string) => {
-      onTokenChangeRef.current(value);
-      onVerifiedChangeRef.current(true);
-    };
-    (window as unknown as Record<string, unknown>)[expiredCb] = () => {
-      onTokenChangeRef.current("");
-      onVerifiedChangeRef.current(false);
-    };
-    (window as unknown as Record<string, unknown>)[errorCb] = () => {
-      onTokenChangeRef.current("");
-      onVerifiedChangeRef.current(false);
-    };
-
-    return () => {
-      delete (window as unknown as Record<string, unknown>)[successCb];
-      delete (window as unknown as Record<string, unknown>)[expiredCb];
-      delete (window as unknown as Record<string, unknown>)[errorCb];
-    };
-  }, [errorCb, expiredCb, successCb]);
-
-  useEffect(() => {
     if (!TURNSTILE_SITE_KEY || !visible) return;
 
     let cancelled = false;
     let poll: number | undefined;
 
-    const hasWidget = () =>
-      Boolean(containerRef.current?.querySelector("iframe, input[name='cf-turnstile-response']"));
-
-    const renderExplicit = () => {
-      if (cancelled || widgetIdRef.current || !containerRef.current || !window.turnstile?.render) {
-        return false;
+    const cleanup = () => {
+      const widgetId = widgetIdRef.current;
+      widgetIdRef.current = null;
+      if (widgetId && window.turnstile?.remove) {
+        try {
+          window.turnstile.remove(widgetId);
+        } catch {
+          // Already removed during navigation.
+        }
       }
-      if (hasWidget()) return true;
-      const target =
-        containerRef.current.querySelector<HTMLElement>(".cf-turnstile") || containerRef.current;
+      if (containerRef.current) {
+        containerRef.current.innerHTML = "";
+      }
+    };
+
+    const renderWidget = () => {
+      if (cancelled || widgetIdRef.current) return true;
+      if (!containerRef.current || !window.turnstile?.render) return false;
 
       try {
-        widgetIdRef.current = window.turnstile.render(target, {
+        containerRef.current.innerHTML = "";
+        widgetIdRef.current = window.turnstile.render(containerRef.current, {
           sitekey: TURNSTILE_SITE_KEY,
           theme,
           size: compact ? "compact" : "normal",
@@ -115,73 +112,65 @@ export function SecurityCheck({
           },
         });
         return Boolean(widgetIdRef.current);
-      } catch (error) {
-        console.error("[turnstile] render failed:", error);
+      } catch (renderError) {
+        console.error("[turnstile] render failed:", renderError);
         return false;
       }
     };
 
-    const start = () => {
-      if (!window.turnstile) return false;
-      if (hasWidget()) return true;
-      if (typeof window.turnstile.implicitRender === "function") {
-        try {
-          window.turnstile.implicitRender();
-        } catch {
-          // Fall through to explicit render.
-        }
-      }
-      if (hasWidget()) return true;
-      if (typeof window.turnstile.ready === "function") {
-        window.turnstile.ready(() => {
-          if (!hasWidget()) renderExplicit();
-        });
-        return true;
-      }
-      return renderExplicit();
-    };
-
-    const onLoad = () => {
-      start();
-    };
-    window.addEventListener("turnstile-load", onLoad);
-
-    if (!start()) {
+    if (!renderWidget()) {
+      let attempts = 0;
       poll = window.setInterval(() => {
-        if (start() && poll) window.clearInterval(poll);
-      }, 250);
+        attempts += 1;
+        if (renderWidget() || attempts >= 50) {
+          if (poll) window.clearInterval(poll);
+        }
+      }, 200);
     }
 
     return () => {
       cancelled = true;
-      window.removeEventListener("turnstile-load", onLoad);
       if (poll) window.clearInterval(poll);
-      if (widgetIdRef.current && window.turnstile?.remove) {
-        try {
-          window.turnstile.remove(widgetIdRef.current);
-        } catch {
-          // Widget may already be gone during unmount.
-        }
-      }
-      widgetIdRef.current = null;
+      cleanup();
     };
   }, [compact, theme, visible]);
 
   useEffect(() => {
-    if (!resetNonce || !window.turnstile?.reset) return;
+    if (!resetNonce || !widgetIdRef.current || !window.turnstile?.reset) return;
     try {
-      if (widgetIdRef.current) {
-        window.turnstile.reset(widgetIdRef.current);
-      } else {
-        window.turnstile.reset();
-      }
+      window.turnstile.reset(widgetIdRef.current);
     } catch {
-      // Ignore reset errors after navigation or expired widgets.
+      // Ignore reset errors after navigation.
     }
     onTokenChangeRef.current("");
     onVerifiedChangeRef.current(false);
   }, [resetNonce]);
 
+  const isDark = theme === "dark";
+  const textClass = isDark ? "text-white/80" : "text-parchment/70";
+  const errorClass = isDark ? "text-[#ffb4a2]" : "text-[#b3421c]";
+
+  if (!visible) return null;
+
+  return (
+    <div className={className}>
+      <p className={`mb-2 text-xs ${textClass}`}>
+        Security check <span className={isDark ? "text-[#ffb4a2]" : "text-[#b3421c]"}>*</span>
+      </p>
+      <div ref={containerRef} className="min-h-[65px] w-full" />
+      {error && <p className={`mt-1.5 text-xs font-medium ${errorClass}`}>{error}</p>}
+    </div>
+  );
+}
+
+function CheckboxFallback({
+  verified,
+  onVerifiedChange,
+  onTokenChange,
+  error,
+  theme,
+  className,
+}: SecurityCheckProps) {
   const isDark = theme === "dark";
   const boxClass = isDark
     ? "border border-white/25 bg-white/10"
@@ -189,45 +178,12 @@ export function SecurityCheck({
   const textClass = isDark ? "text-white/80" : "text-parchment/70";
   const errorClass = isDark ? "text-[#ffb4a2]" : "text-[#b3421c]";
 
-  if (TURNSTILE_SITE_KEY) {
-    if (!visible) return null;
-
-    return (
-      <div className={className}>
-        <Script
-          src={TURNSTILE_SCRIPT}
-          strategy="afterInteractive"
-          onLoad={() => {
-            window.dispatchEvent(new Event("turnstile-load"));
-          }}
-        />
-        <p className={`mb-2 text-xs ${textClass}`}>
-          Security check <span className={isDark ? "text-[#ffb4a2]" : "text-[#b3421c]"}>*</span>
-        </p>
-        <div ref={containerRef} className="min-h-[65px] w-full">
-          <div
-            className="cf-turnstile"
-            data-sitekey={TURNSTILE_SITE_KEY}
-            data-theme={theme}
-            data-size={compact ? "compact" : "normal"}
-            data-callback={successCb}
-            data-expired-callback={expiredCb}
-            data-error-callback={errorCb}
-          />
-        </div>
-        {error && <p className={`mt-1.5 text-xs font-medium ${errorClass}`}>{error}</p>}
-      </div>
-    );
-  }
-
   return (
     <div className={className}>
       <p className={`mb-2 text-xs font-semibold uppercase tracking-[0.14em] ${textClass}`}>
         Security check <span className={isDark ? "text-[#ffb4a2]" : "text-[#b3421c]"}>*</span>
       </p>
-      <label
-        className={`flex cursor-pointer items-start gap-3 rounded-none px-4 py-3 ${boxClass}`}
-      >
+      <label className={`flex cursor-pointer items-start gap-3 rounded-none px-4 py-3 ${boxClass}`}>
         <input
           type="checkbox"
           checked={verified}
@@ -244,6 +200,18 @@ export function SecurityCheck({
       </label>
       {error && <p className={`mt-1.5 text-xs font-medium ${errorClass}`}>{error}</p>}
     </div>
+  );
+}
+
+export function SecurityCheck(props: SecurityCheckProps) {
+  if (!TURNSTILE_SITE_KEY) {
+    return <CheckboxFallback {...props} />;
+  }
+
+  return (
+    <WidgetErrorBoundary>
+      <TurnstileWidget {...props} />
+    </WidgetErrorBoundary>
   );
 }
 

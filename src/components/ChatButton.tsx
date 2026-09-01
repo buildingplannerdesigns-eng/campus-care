@@ -77,12 +77,14 @@ export function ChatButton() {
           <p className="mb-4 text-sm leading-relaxed text-[#1a3c40]/80">
             Fill in a few details and we&apos;ll get back to you personally.
           </p>
-          <ContactForm
-            compact
-            idPrefix="chat-"
-            submitLabel="Send message"
-            successMessage="Thank you — the Campus Care team will be in touch soon."
-          />
+          {open ? (
+            <ContactForm
+              compact
+              idPrefix="chat-"
+              submitLabel="Send message"
+              successMessage="Thank you — the Campus Care team will be in touch soon."
+            />
+          ) : null}
         </div>
       </div>
 
