@@ -73,6 +73,7 @@ export function ContactForm({
   const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [securityVerified, setSecurityVerified] = useState(false);
   const [turnstileError, setTurnstileError] = useState<string>("");
+  const [securityResetNonce, setSecurityResetNonce] = useState(0);
   const [reviewData, setReviewData] = useState<ContactFormData | null>(null);
   const [step, setStep] = useState(0);
   const subjectOptions = contactSubjects[target];
@@ -168,6 +169,7 @@ export function ContactForm({
   function resetSecurity() {
     setTurnstileToken("");
     setSecurityVerified(false);
+    setSecurityResetNonce((current) => current + 1);
   }
 
   async function submitToApi(data: ContactFormData) {
@@ -417,6 +419,9 @@ export function ContactForm({
           onVerifiedChange={setSecurityVerified}
           error={turnstileError}
           theme="light"
+          compact={compact}
+          visible={!compact || step === 2}
+          resetNonce={securityResetNonce}
         />
 
         <div

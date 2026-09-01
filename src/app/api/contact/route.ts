@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { sendContactNotification } from "@/lib/resend";
 import { getClientIp, rateLimitByIp } from "@/lib/security";
-import { verifyTurnstileToken } from "@/lib/turnstile";
+import { getTurnstileSecretKey, verifyTurnstileToken } from "@/lib/turnstile";
 
 const contactSchema = z.object({
   firstName: z.string().min(1),
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (process.env.TURNSTILE_SECRET_KEY) {
+  if (getTurnstileSecretKey()) {
     const token = parsed.data.turnstileToken;
     if (!token) {
       return NextResponse.json(

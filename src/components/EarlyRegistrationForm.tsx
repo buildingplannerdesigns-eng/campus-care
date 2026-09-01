@@ -34,6 +34,7 @@ export function EarlyRegistrationForm() {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [securityVerified, setSecurityVerified] = useState(false);
   const [turnstileError, setTurnstileError] = useState("");
+  const [securityResetNonce, setSecurityResetNonce] = useState(0);
 
   const {
     register,
@@ -90,6 +91,7 @@ export function EarlyRegistrationForm() {
       reset({ countryCode: DEFAULT_COUNTRY_CODE, phone: "" });
       setTurnstileToken("");
       setSecurityVerified(false);
+      setSecurityResetNonce((current) => current + 1);
     } catch {
       setStatus("error");
     }
@@ -188,6 +190,7 @@ export function EarlyRegistrationForm() {
         onVerifiedChange={setSecurityVerified}
         error={turnstileError}
         theme="dark"
+        resetNonce={securityResetNonce}
       />
 
       <button

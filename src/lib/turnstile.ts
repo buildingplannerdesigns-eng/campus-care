@@ -3,11 +3,19 @@ type TurnstileVerifyResponse = {
   "error-codes"?: string[];
 };
 
+export function getTurnstileSecretKey() {
+  return (
+    process.env.TURNSTILE_SECRET_KEY?.trim() ||
+    process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY?.trim() ||
+    ""
+  );
+}
+
 export async function verifyTurnstileToken(params: {
   token: string;
   remoteIp?: string;
 }): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
+  const secret = getTurnstileSecretKey();
   if (!secret) return false;
 
   const body = new URLSearchParams({

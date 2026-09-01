@@ -1,9 +1,23 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useRef } from "react";
 import Script from "next/script";
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: HTMLElement, options: Record<string, unknown>) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+      ready: (callback: () => void) => void;
+    };
+  }
+}
+
+const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ||
+  process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY?.trim() ||
+  "";
 
 type SecurityCheckProps = {
   token: string;
@@ -13,6 +27,9 @@ type SecurityCheckProps = {
   error?: string;
   theme?: "light" | "dark";
   className?: string;
+  compact?: boolean;
+  visible?: boolean;
+  resetNonce?: number;
 };
 
 /**
@@ -21,36 +38,86 @@ type SecurityCheckProps = {
  * - Checkbox confirmation fallback when Turnstile is not configured
  */
 export function SecurityCheck({
-  token,
   onTokenChange,
   verified,
   onVerifiedChange,
   error,
   theme = "light",
   className,
+  compact = false,
+  visible = true,
+  resetNonce = 0,
 }: SecurityCheckProps) {
-  const reactId = useId().replace(/:/g, "");
-  const successCb = `onTurnstileSuccess_${reactId}`;
-  const expiredCb = `onTurnstileExpired_${reactId}`;
-  const [scriptReady, setScriptReady] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const onTokenChangeRef = useRef(onTokenChange);
+  const onVerifiedChangeRef = useRef(onVerifiedChange);
+
+  onTokenChangeRef.current = onTokenChange;
+  onVerifiedChangeRef.current = onVerifiedChange;
 
   useEffect(() => {
-    if (!TURNSTILE_SITE_KEY) return;
+    if (!TURNSTILE_SITE_KEY || !visible) return;
 
-    (window as unknown as Record<string, unknown>)[successCb] = (value: string) => {
-      onTokenChange(value);
-      onVerifiedChange(true);
+    let cancelled = false;
+    let poll: number | undefined;
+
+    const renderWidget = () => {
+      if (cancelled || !containerRef.current || !window.turnstile || widgetIdRef.current) return;
+
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme,
+        size: compact ? "compact" : "flexible",
+        callback: (value: string) => {
+          onTokenChangeRef.current(value);
+          onVerifiedChangeRef.current(true);
+        },
+        "expired-callback": () => {
+          onTokenChangeRef.current("");
+          onVerifiedChangeRef.current(false);
+        },
+        "error-callback": () => {
+          onTokenChangeRef.current("");
+          onVerifiedChangeRef.current(false);
+        },
+      });
     };
-    (window as unknown as Record<string, unknown>)[expiredCb] = () => {
-      onTokenChange("");
-      onVerifiedChange(false);
+
+    const start = () => {
+      if (!window.turnstile) return false;
+      window.turnstile.ready(renderWidget);
+      return true;
     };
+
+    const onReady = () => {
+      start();
+    };
+    window.addEventListener("turnstile-load", onReady);
+
+    if (!start()) {
+      poll = window.setInterval(() => {
+        if (start() && poll) window.clearInterval(poll);
+      }, 250);
+    }
 
     return () => {
-      delete (window as unknown as Record<string, unknown>)[successCb];
-      delete (window as unknown as Record<string, unknown>)[expiredCb];
+      cancelled = true;
+      window.removeEventListener("turnstile-load", onReady);
+      if (poll) window.clearInterval(poll);
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+      }
+      widgetIdRef.current = null;
     };
-  }, [successCb, expiredCb, onTokenChange, onVerifiedChange]);
+  }, [compact, theme, visible]);
+
+  useEffect(() => {
+    if (!resetNonce || !widgetIdRef.current || !window.turnstile) return;
+    window.turnstile.reset(widgetIdRef.current);
+    onTokenChangeRef.current("");
+    onVerifiedChangeRef.current(false);
+  }, [resetNonce]);
 
   const isDark = theme === "dark";
   const boxClass = isDark
@@ -60,26 +127,21 @@ export function SecurityCheck({
   const errorClass = isDark ? "text-[#ffb4a2]" : "text-[#b3421c]";
 
   if (TURNSTILE_SITE_KEY) {
+    if (!visible) return null;
+
     return (
       <div className={className}>
         <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
-          onLoad={() => setScriptReady(true)}
+          onLoad={() => {
+            window.dispatchEvent(new Event("turnstile-load"));
+          }}
         />
         <p className={`mb-2 text-xs ${textClass}`}>
           Security check <span className={isDark ? "text-[#ffb4a2]" : "text-[#b3421c]"}>*</span>
         </p>
-        <div
-          className="cf-turnstile"
-          data-sitekey={TURNSTILE_SITE_KEY}
-          data-callback={successCb}
-          data-expired-callback={expiredCb}
-          data-theme={theme}
-        />
-        {!scriptReady && !token && (
-          <p className={`mt-2 text-xs ${textClass}`}>Loading security check…</p>
-        )}
+        <div ref={containerRef} className="overflow-hidden" />
         {error && <p className={`mt-1.5 text-xs font-medium ${errorClass}`}>{error}</p>}
       </div>
     );

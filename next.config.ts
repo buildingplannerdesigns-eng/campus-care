@@ -16,15 +16,15 @@ const securityHeaders = [
       "default-src 'self'; " +
       "base-uri 'self'; " +
       "frame-ancestors 'none'; " +
-      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com https://buy.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; " +
+      "frame-src 'self' https://challenges.cloudflare.com https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com https://buy.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; " +
       "form-action 'self' https://checkout.stripe.com https://buy.stripe.com; " +
-      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://flagcdn.com https://*.stripe.com https://www.paypalobjects.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://flagcdn.com https://*.stripe.com https://www.paypalobjects.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://challenges.cloudflare.com; " +
       "font-src 'self' https://fonts.gstatic.com https://rsms.me data:; " +
       "style-src 'self' 'unsafe-inline' https://rsms.me https://fonts.googleapis.com; " +
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://jspm.dev https://ga.jspm.io https://cdn.jsdelivr.net https://js.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://jspm.dev https://ga.jspm.io https://cdn.jsdelivr.net https://js.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
       "worker-src 'self' blob:; " +
       "manifest-src 'self'; " +
-      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io https://jspm.dev https://ga.jspm.io https://appsignal-endpoint.net https://api.stripe.com https://m.stripe.com https://www.paypal.com https://*.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
+      "connect-src 'self' https://challenges.cloudflare.com https://api.resend.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io https://jspm.dev https://ga.jspm.io https://appsignal-endpoint.net https://api.stripe.com https://m.stripe.com https://www.paypal.com https://*.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
   },
 ];
 
