@@ -1,7 +1,6 @@
 import { PageIntro } from "@/components/PageIntro";
 import { DonationForm } from "@/components/DonationForm";
 import { Shield, RefreshCcw, Globe2, FileText } from "lucide-react";
-import { isStripeCheckoutConfigured } from "@/lib/stripe";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -30,7 +29,7 @@ const trustItems = [
   {
     Icon: RefreshCcw,
     label: "One-time or monthly giving",
-    description: "Choose your gift on the payments page",
+    description: "Choose your gift on Stripe checkout",
   },
   {
     Icon: Globe2,
@@ -45,8 +44,6 @@ const trustItems = [
 ];
 
 export default function PaymentsPage() {
-  const customCheckout = isStripeCheckoutConfigured();
-
   return (
     <>
       <PageIntro
@@ -69,7 +66,7 @@ export default function PaymentsPage() {
           </p>
 
           <div className="mt-10 border border-[#e6e0d6] bg-white p-6 shadow-[0_18px_44px_rgba(12,63,132,0.08)] md:p-10">
-            <DonationForm customCheckout={customCheckout} />
+            <DonationForm />
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
