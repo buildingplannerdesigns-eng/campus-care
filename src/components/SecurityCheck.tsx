@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import Script from "next/script";
 
 declare global {
   interface Window {
     turnstile?: {
-      render: (container: HTMLElement, options: Record<string, unknown>) => string;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-      ready: (callback: () => void) => void;
-      getResponse: (widgetId: string) => string | undefined;
+      render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
+      ready?: (callback: () => void) => void;
+      implicitRender?: () => void;
     };
   }
 }
@@ -19,6 +19,8 @@ const TURNSTILE_SITE_KEY =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ||
   process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY?.trim() ||
   "";
+
+const TURNSTILE_SCRIPT = "https://challenges.cloudflare.com/turnstile/v0/api.js";
 
 type SecurityCheckProps = {
   token: string;
@@ -33,11 +35,6 @@ type SecurityCheckProps = {
   resetNonce?: number;
 };
 
-/**
- * Always-visible security check:
- * - Cloudflare Turnstile when NEXT_PUBLIC_TURNSTILE_SITE_KEY is set
- * - Checkbox confirmation fallback when Turnstile is not configured
- */
 export function SecurityCheck({
   onTokenChange,
   verified,
@@ -49,6 +46,10 @@ export function SecurityCheck({
   visible = true,
   resetNonce = 0,
 }: SecurityCheckProps) {
+  const reactId = useId().replace(/:/g, "");
+  const successCb = `onTurnstileSuccess_${reactId}`;
+  const expiredCb = `onTurnstileExpired_${reactId}`;
+  const errorCb = `onTurnstileError_${reactId}`;
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const onTokenChangeRef = useRef(onTokenChange);
@@ -58,49 +59,92 @@ export function SecurityCheck({
   onVerifiedChangeRef.current = onVerifiedChange;
 
   useEffect(() => {
+    (window as unknown as Record<string, unknown>)[successCb] = (value: string) => {
+      onTokenChangeRef.current(value);
+      onVerifiedChangeRef.current(true);
+    };
+    (window as unknown as Record<string, unknown>)[expiredCb] = () => {
+      onTokenChangeRef.current("");
+      onVerifiedChangeRef.current(false);
+    };
+    (window as unknown as Record<string, unknown>)[errorCb] = () => {
+      onTokenChangeRef.current("");
+      onVerifiedChangeRef.current(false);
+    };
+
+    return () => {
+      delete (window as unknown as Record<string, unknown>)[successCb];
+      delete (window as unknown as Record<string, unknown>)[expiredCb];
+      delete (window as unknown as Record<string, unknown>)[errorCb];
+    };
+  }, [errorCb, expiredCb, successCb]);
+
+  useEffect(() => {
     if (!TURNSTILE_SITE_KEY || !visible) return;
 
     let cancelled = false;
     let poll: number | undefined;
 
-    const renderWidget = () => {
-      if (cancelled || !containerRef.current || !window.turnstile || widgetIdRef.current) return;
+    const hasWidget = () =>
+      Boolean(containerRef.current?.querySelector("iframe, input[name='cf-turnstile-response']"));
 
-      widgetIdRef.current = window.turnstile.render(containerRef.current, {
-        sitekey: TURNSTILE_SITE_KEY,
-        theme,
-        size: compact ? "compact" : "flexible",
-        appearance: "always",
-        action: "contact",
-        callback: (value: string) => {
-          onTokenChangeRef.current(value);
-          onVerifiedChangeRef.current(true);
-        },
-        "expired-callback": () => {
-          onTokenChangeRef.current("");
-          onVerifiedChangeRef.current(false);
-        },
-        "error-callback": () => {
-          onTokenChangeRef.current("");
-          onVerifiedChangeRef.current(false);
-        },
-        "timeout-callback": () => {
-          onTokenChangeRef.current("");
-          onVerifiedChangeRef.current(false);
-        },
-      });
+    const renderExplicit = () => {
+      if (cancelled || widgetIdRef.current || !containerRef.current || !window.turnstile?.render) {
+        return false;
+      }
+      if (hasWidget()) return true;
+      const target =
+        containerRef.current.querySelector<HTMLElement>(".cf-turnstile") || containerRef.current;
+
+      try {
+        widgetIdRef.current = window.turnstile.render(target, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme,
+          size: compact ? "compact" : "normal",
+          callback: (value: string) => {
+            onTokenChangeRef.current(value);
+            onVerifiedChangeRef.current(true);
+          },
+          "expired-callback": () => {
+            onTokenChangeRef.current("");
+            onVerifiedChangeRef.current(false);
+          },
+          "error-callback": () => {
+            onTokenChangeRef.current("");
+            onVerifiedChangeRef.current(false);
+          },
+        });
+        return Boolean(widgetIdRef.current);
+      } catch (error) {
+        console.error("[turnstile] render failed:", error);
+        return false;
+      }
     };
 
     const start = () => {
       if (!window.turnstile) return false;
-      window.turnstile.ready(renderWidget);
-      return true;
+      if (hasWidget()) return true;
+      if (typeof window.turnstile.implicitRender === "function") {
+        try {
+          window.turnstile.implicitRender();
+        } catch {
+          // Fall through to explicit render.
+        }
+      }
+      if (hasWidget()) return true;
+      if (typeof window.turnstile.ready === "function") {
+        window.turnstile.ready(() => {
+          if (!hasWidget()) renderExplicit();
+        });
+        return true;
+      }
+      return renderExplicit();
     };
 
-    const onReady = () => {
+    const onLoad = () => {
       start();
     };
-    window.addEventListener("turnstile-load", onReady);
+    window.addEventListener("turnstile-load", onLoad);
 
     if (!start()) {
       poll = window.setInterval(() => {
@@ -110,18 +154,30 @@ export function SecurityCheck({
 
     return () => {
       cancelled = true;
-      window.removeEventListener("turnstile-load", onReady);
+      window.removeEventListener("turnstile-load", onLoad);
       if (poll) window.clearInterval(poll);
-      if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
+      if (widgetIdRef.current && window.turnstile?.remove) {
+        try {
+          window.turnstile.remove(widgetIdRef.current);
+        } catch {
+          // Widget may already be gone during unmount.
+        }
       }
       widgetIdRef.current = null;
     };
   }, [compact, theme, visible]);
 
   useEffect(() => {
-    if (!resetNonce || !widgetIdRef.current || !window.turnstile) return;
-    window.turnstile.reset(widgetIdRef.current);
+    if (!resetNonce || !window.turnstile?.reset) return;
+    try {
+      if (widgetIdRef.current) {
+        window.turnstile.reset(widgetIdRef.current);
+      } else {
+        window.turnstile.reset();
+      }
+    } catch {
+      // Ignore reset errors after navigation or expired widgets.
+    }
     onTokenChangeRef.current("");
     onVerifiedChangeRef.current(false);
   }, [resetNonce]);
@@ -139,7 +195,7 @@ export function SecurityCheck({
     return (
       <div className={className}>
         <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          src={TURNSTILE_SCRIPT}
           strategy="afterInteractive"
           onLoad={() => {
             window.dispatchEvent(new Event("turnstile-load"));
@@ -148,7 +204,17 @@ export function SecurityCheck({
         <p className={`mb-2 text-xs ${textClass}`}>
           Security check <span className={isDark ? "text-[#ffb4a2]" : "text-[#b3421c]"}>*</span>
         </p>
-        <div ref={containerRef} className="overflow-hidden" />
+        <div ref={containerRef} className="min-h-[65px] w-full">
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-theme={theme}
+            data-size={compact ? "compact" : "normal"}
+            data-callback={successCb}
+            data-expired-callback={expiredCb}
+            data-error-callback={errorCb}
+          />
+        </div>
         {error && <p className={`mt-1.5 text-xs font-medium ${errorClass}`}>{error}</p>}
       </div>
     );

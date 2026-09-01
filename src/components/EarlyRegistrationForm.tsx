@@ -204,6 +204,7 @@ export function EarlyRegistrationForm() {
         onVerifiedChange={setSecurityVerified}
         error={turnstileError}
         theme="dark"
+        compact
         resetNonce={securityResetNonce}
       />
 
