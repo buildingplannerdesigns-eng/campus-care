@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import {
   Cormorant_Garamond,
   Gilda_Display,
@@ -211,7 +212,17 @@ export default function RootLayout({
       lang="en"
       className={`scroll-smooth ${displaySerif.variable} ${heroSerif.variable} ${bodySans.variable} ${plexMono.variable} ${scriptHand.variable}`}
     >
+      <head>
+        <link rel="preconnect" href="https://challenges.cloudflare.com" />
+      </head>
       <body className="font-body bg-sanctuary-950 text-parchment antialiased">
+        {(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+          process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY) && (
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+            strategy="afterInteractive"
+          />
+        )}
         <GoogleAnalytics />
         <script
           type="application/ld+json"

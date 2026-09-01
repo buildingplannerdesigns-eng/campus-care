@@ -86,7 +86,18 @@ export function EarlyRegistrationForm() {
           turnstileToken,
         }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const payload = (await res.json().catch(() => null)) as
+        | { error?: string; retryTurnstile?: boolean }
+        | null;
+      if (!res.ok) {
+        setSecurityResetNonce((current) => current + 1);
+        setTurnstileToken("");
+        setSecurityVerified(false);
+        if (payload?.retryTurnstile) {
+          setTurnstileError("Please complete the security check again.");
+        }
+        throw new Error("Request failed");
+      }
       setStatus("success");
       reset({ countryCode: DEFAULT_COUNTRY_CODE, phone: "" });
       setTurnstileToken("");
@@ -94,6 +105,9 @@ export function EarlyRegistrationForm() {
       setSecurityResetNonce((current) => current + 1);
     } catch {
       setStatus("error");
+      setTurnstileToken("");
+      setSecurityVerified(false);
+      setSecurityResetNonce((current) => current + 1);
     }
   }
 

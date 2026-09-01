@@ -10,6 +10,7 @@ declare global {
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
       ready: (callback: () => void) => void;
+      getResponse: (widgetId: string) => string | undefined;
     };
   }
 }
@@ -69,6 +70,8 @@ export function SecurityCheck({
         sitekey: TURNSTILE_SITE_KEY,
         theme,
         size: compact ? "compact" : "flexible",
+        appearance: "always",
+        action: "contact",
         callback: (value: string) => {
           onTokenChangeRef.current(value);
           onVerifiedChangeRef.current(true);
@@ -78,6 +81,10 @@ export function SecurityCheck({
           onVerifiedChangeRef.current(false);
         },
         "error-callback": () => {
+          onTokenChangeRef.current("");
+          onVerifiedChangeRef.current(false);
+        },
+        "timeout-callback": () => {
           onTokenChangeRef.current("");
           onVerifiedChangeRef.current(false);
         },

@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { sendContactNotification } from "@/lib/resend";
 import { getClientIp, rateLimitByIp } from "@/lib/security";
-import { getTurnstileSecretKey, verifyTurnstileToken } from "@/lib/turnstile";
+import {
+  TURNSTILE_FALLBACK_TOKEN,
+  isTurnstileServerConfigured,
+  verifyTurnstileToken,
+} from "@/lib/turnstile";
 
 const contactSchema = z.object({
   firstName: z.string().min(1),
@@ -17,7 +21,7 @@ const contactSchema = z.object({
   subject: z.string().min(1),
   message: z.string().optional(),
   target: z.enum(["general", "dr-cammie"]).optional(),
-  turnstileToken: z.string().optional(),
+  turnstileToken: z.string().max(2048).optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -46,28 +50,33 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (getTurnstileSecretKey()) {
-    const token = parsed.data.turnstileToken;
-    if (!token) {
-      return NextResponse.json(
-        { error: "Security verification is required." },
-        { status: 400 }
-      );
-    }
+  const turnstileEnabled = isTurnstileServerConfigured();
 
-    const isHuman = await verifyTurnstileToken({
+  if (process.env.NODE_ENV === "production" && !turnstileEnabled) {
+    console.error("[contact] TURNSTILE_SECRET_KEY is missing in production");
+    return NextResponse.json(
+      { error: "Form security is temporarily unavailable. Please try again later." },
+      { status: 503 }
+    );
+  }
+
+  if (turnstileEnabled) {
+    const token = parsed.data.turnstileToken?.trim() ?? "";
+    const verified = await verifyTurnstileToken({
       token,
       remoteIp: ip,
     });
 
-    if (!isHuman) {
+    if (!verified.success) {
       return NextResponse.json(
-        { error: "Security verification failed. Please retry." },
+        {
+          error: "Security verification failed. Please complete the check again.",
+          retryTurnstile: true,
+        },
         { status: 403 }
       );
     }
-  } else if (parsed.data.turnstileToken !== "manual-security-check") {
-    // Fallback when Turnstile keys are not configured: require the client checkbox mark.
+  } else if (parsed.data.turnstileToken !== TURNSTILE_FALLBACK_TOKEN) {
     return NextResponse.json(
       { error: "Security verification is required." },
       { status: 400 }

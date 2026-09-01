@@ -188,7 +188,16 @@ export function ContactForm({
           turnstileToken,
         }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const payload = (await res.json().catch(() => null)) as
+        | { error?: string; retryTurnstile?: boolean }
+        | null;
+      if (!res.ok) {
+        resetSecurity();
+        if (payload?.retryTurnstile) {
+          setTurnstileError("Please complete the security check again.");
+        }
+        throw new Error(payload?.error || "Request failed");
+      }
       setStatus("success");
       setStep(0);
       reset({
@@ -202,9 +211,14 @@ export function ContactForm({
       });
       resetSecurity();
       setReviewData(null);
-    } catch {
+    } catch (error) {
       setStatus("error");
-      setErrorMessage("Something went wrong. Please try again in a moment.");
+      resetSecurity();
+      setErrorMessage(
+        error instanceof Error && error.message !== "Request failed"
+          ? error.message
+          : "Something went wrong. Please try again in a moment."
+      );
     }
   }
 
