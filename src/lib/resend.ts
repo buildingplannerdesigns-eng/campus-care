@@ -11,7 +11,7 @@ function resolveContactRecipient(target: ContactFormValues["target"]) {
 
 /**
  * Lazily instantiate the Resend client so the app can build and run
- * locally before RESEND_API_KEY is provisioned (see .env.example).
+ * locally before RESEND_API_KEY is provisioned.
  */
 function getResendClient(): Resend | null {
   if (!process.env.RESEND_API_KEY) return null;

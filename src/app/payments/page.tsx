@@ -1,19 +1,20 @@
 import { PageIntro } from "@/components/PageIntro";
-import { DonorboxEmbed } from "@/components/DonorboxEmbed";
+import { DonationForm } from "@/components/DonationForm";
 import { Shield, RefreshCcw, Globe2, FileText } from "lucide-react";
+import { isStripeCheckoutConfigured } from "@/lib/stripe";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Donate to Campus Care 2.0 | Support HBCU Student Wellness",
   description:
-    "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly through secure checkout.",
+    "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly through secure Stripe checkout.",
   path: "/payments",
   twitterDescription:
     "Support culturally grounded mental wellness for HBCU students — one-time and monthly giving.",
   absoluteTitle: true,
   keywords: [
     "donate",
-    "Donorbox",
+    "Stripe",
     "HBCU student wellness",
     "monthly giving",
     "VR wellness donation",
@@ -23,27 +24,29 @@ export const metadata = pageMetadata({
 const trustItems = [
   {
     Icon: Shield,
-    label: "Secure checkout via Donorbox",
+    label: "Secure checkout via Stripe",
     description: "256-bit SSL encrypted transit",
   },
   {
     Icon: RefreshCcw,
     label: "One-time or monthly giving",
-    description: "Toggle frequency anytime",
+    description: "Choose your gift on the payments page",
   },
   {
     Icon: Globe2,
     label: "International donors welcome",
-    description: "Supports multi-currency gifts",
+    description: "Supports major cards and wallets",
   },
   {
     Icon: FileText,
     label: "Donation receipt emailed automatically",
-    description: "Instant tax-compliant receipt",
+    description: "Stripe sends a receipt after payment",
   },
 ];
 
 export default function PaymentsPage() {
+  const customCheckout = isStripeCheckoutConfigured();
+
   return (
     <>
       <PageIntro
@@ -52,7 +55,6 @@ export default function PaymentsPage() {
         body="Every contribution brings culturally grounded mental wellness to more HBCU students. Give once or give monthly — every amount makes a real difference."
       />
 
-      {/* Donation form — centered, full focus */}
       <section className="bg-sage px-6 py-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-parchment/45">
@@ -62,15 +64,14 @@ export default function PaymentsPage() {
             Make your donation
           </h2>
           <p className="mx-auto mt-3 max-w-md text-center text-sm text-parchment/60">
-            Complete your gift securely below. Donorbox processes one-time and monthly donations
-            with an emailed receipt.
+            Complete your gift securely with Stripe. You&apos;ll receive an emailed receipt after
+            checkout.
           </p>
 
-          <div className="mt-10">
-            <DonorboxEmbed />
+          <div className="mt-10 border border-[#e6e0d6] bg-white p-6 shadow-[0_18px_44px_rgba(12,63,132,0.08)] md:p-10">
+            <DonationForm customCheckout={customCheckout} />
           </div>
 
-          {/* Trust bar */}
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {trustItems.map((item) => {
               const { Icon } = item;

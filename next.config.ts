@@ -5,7 +5,7 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self \"https://donorbox.org\")" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(self \"https://js.stripe.com\" \"https://checkout.stripe.com\")" },
   {
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
@@ -16,15 +16,15 @@ const securityHeaders = [
       "default-src 'self'; " +
       "base-uri 'self'; " +
       "frame-ancestors 'none'; " +
-      "frame-src 'self' https://donorbox.org https://*.donorbox.org https://js.stripe.com https://hooks.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; " +
-      "form-action 'self' https://donorbox.org https://*.donorbox.org; " +
-      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://flagcdn.com https://donorbox.org https://*.donorbox.org https://*.stripe.com https://www.paypalobjects.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
+      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com https://buy.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; " +
+      "form-action 'self' https://checkout.stripe.com https://buy.stripe.com; " +
+      "img-src 'self' data: blob: https://cdn.sanity.io https://images.unsplash.com https://flagcdn.com https://*.stripe.com https://www.paypalobjects.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com; " +
       "font-src 'self' https://fonts.gstatic.com https://rsms.me data:; " +
       "style-src 'self' 'unsafe-inline' https://rsms.me https://fonts.googleapis.com; " +
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://donorbox.org https://*.donorbox.org https://jspm.dev https://ga.jspm.io https://cdn.jsdelivr.net https://js.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://jspm.dev https://ga.jspm.io https://cdn.jsdelivr.net https://js.stripe.com https://www.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://core.sanity-cdn.com https://*.sanity.io; " +
       "worker-src 'self' blob:; " +
       "manifest-src 'self'; " +
-      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io https://donorbox.org https://*.donorbox.org https://jspm.dev https://ga.jspm.io https://appsignal-endpoint.net https://api.stripe.com https://m.stripe.com https://www.paypal.com https://*.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
+      "connect-src 'self' https://api.resend.com https://cdn.sanity.io https://*.api.sanity.io https://*.sanity.io wss://*.api.sanity.io https://jspm.dev https://ga.jspm.io https://appsignal-endpoint.net https://api.stripe.com https://m.stripe.com https://www.paypal.com https://*.paypal.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;",
   },
 ];
 

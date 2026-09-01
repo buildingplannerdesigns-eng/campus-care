@@ -6,7 +6,7 @@ export const metadata = pageMetadata({
   description:
     "Your donation to Campus Care 2.0 was received. A receipt is on its way to your inbox.",
   path: "/payments/thank-you",
-  keywords: ["donation thank you", "Donorbox receipt"],
+  keywords: ["donation thank you", "Stripe receipt"],
 });
 
 export default function ThankYouPage() {

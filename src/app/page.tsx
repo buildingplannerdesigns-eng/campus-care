@@ -302,7 +302,7 @@ export default async function HomePage() {
               and communities.
             </p>
             <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
-              Give once or set up ongoing support through Donorbox — every contribution moves this
+              Give once or set up ongoing support through Stripe — every contribution moves this
               mission forward.
             </p>
           </div>

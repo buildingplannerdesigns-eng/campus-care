@@ -5,14 +5,14 @@ Built by **Celestial Web Solutions** — Next.js 15, React 19, TypeScript, Tailw
 
 This scaffold follows the stack and Phase 1 scope agreed in
 `Campus_Care_2_0_Project_Breakdown.docx`: Next.js/TypeScript frontend, Sanity CMS for
-editable content, Supabase for donation records, Donorbox for payments, Resend for
+editable content, Supabase for donation records, Stripe for payments, Resend for
 transactional email, deployed on Vercel.
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in Sanity / Supabase / Donorbox / Turnstile / Resend keys
+# fill .env.local with Sanity / Stripe / Turnstile / Resend keys
 npm run dev
 ```
 
@@ -41,7 +41,7 @@ src/
 | `/courses`     | Courses — Campus Care 2.0 deep dive                         |
 | `/blog`        | Blog (Sanity CMS + fallback posts)                          |
 | `/studio`      | Embedded Sanity Studio (edit site content)                  |
-| `/payments`    | Donations via Donorbox                                         |
+| `/payments`    | Donations via Stripe                                           |
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
 
@@ -56,8 +56,8 @@ src/
   - Edit content locally with `npm run sanity` (or a hosted Sanity Studio URL)
 - **Supabase** (`src/lib/supabase.ts`) — `recordDonation()` inserts into a `donations`
   table (suggested schema in the file's comments).
-- **Donorbox** (`NEXT_PUBLIC_DONORBOX_CAMPAIGN_URL`)
-  — hosted checkout for one-time and recurring donations.
+- **Stripe** (`NEXT_PUBLIC_STRIPE_PAYMENT_LINK`, `STRIPE_SECRET_KEY`)
+  — payment link plus Checkout for one-time and recurring donations.
 - **Resend** (`src/lib/resend.ts`) — contact form notifications and donation receipts.
 - **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`)
   — bot protection for the contact form with server-side token verification.
@@ -88,7 +88,7 @@ Designed for Vercel:
 vercel
 ```
 
-Set the environment variables from `.env.example` in the Vercel project dashboard,
+Set environment variables in the Vercel project dashboard,
 and point the domain's DNS per your registrar (e.g. Namecheap) once the project is live.
 
 ## Cloudflare security hardening
