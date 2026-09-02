@@ -12,7 +12,7 @@ function getResendClient(): Resend {
 
 function fromAddress() {
   const email =
-    process.env.RESEND_FROM_EMAIL?.trim() || "donations@actcampuscare.com";
+    process.env.RESEND_FROM_EMAIL?.trim() || "info@actcampuscare.com";
   return email.includes("<") ? email : `Campus Care 2.0 <${email}>`;
 }
 

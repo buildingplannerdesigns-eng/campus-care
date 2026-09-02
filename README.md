@@ -59,8 +59,8 @@ src/
 - **Stripe** (`NEXT_PUBLIC_STRIPE_PAYMENT_LINK`, `STRIPE_SECRET_KEY`)
   — payment link plus Checkout. Receipts are sent from `/payments/thank-you` using the
   Checkout session id (no webhook secret required).
-- **Resend** (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`) — contact notifications, Stripe donor receipts,
-  and staff donation alerts.
+- **Resend** (`RESEND_API_KEY`, `RESEND_FROM_EMAIL=info@actcampuscare.com`) — contact notifications, Stripe donor receipts,
+  and staff donation alerts. All mail is sent from `info@actcampuscare.com`.
 - **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`)
   — bot protection for the contact form with server-side token verification.
 
