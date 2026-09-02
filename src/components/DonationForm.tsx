@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { DonateButton } from "@/components/DonateButton";
+import { STRIPE_PAYMENT_LINK } from "@/lib/stripe";
 
 const paymentLogos = [
   {
@@ -39,7 +40,9 @@ const paymentLogos = [
 export function DonationForm() {
   return (
     <div className="space-y-7">
-      <DonateButton className="w-full px-6 py-4 sm:px-6 sm:py-4">Donate to Support</DonateButton>
+      <DonateButton href={STRIPE_PAYMENT_LINK} className="w-full px-6 py-4 sm:px-6 sm:py-4">
+        Donate to Support
+      </DonateButton>
 
       <div className="flex flex-wrap items-center justify-center gap-5 border-t border-gray-100 pt-6">
         {paymentLogos.map((logo) => (

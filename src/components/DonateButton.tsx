@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { SiteCta, type SiteCtaVariant } from "@/components/SiteCta";
-import { STRIPE_PAYMENT_LINK } from "@/lib/stripe";
 
 const variantMap: Record<"dark" | "outline" | "light", SiteCtaVariant> = {
   dark: "peach",
@@ -10,7 +9,7 @@ const variantMap: Record<"dark" | "outline" | "light", SiteCtaVariant> = {
 
 export function DonateButton({
   children = "Donate to Support",
-  href = STRIPE_PAYMENT_LINK,
+  href = "/payments",
   variant = "dark",
   className = "",
 }: {

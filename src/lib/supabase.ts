@@ -38,12 +38,12 @@ export interface DonationRecord {
  *     created_at timestamptz default now()
  *   );
  */
-export async function recordDonation(donation: DonationRecord) {
+export async function recordDonation(donation: DonationRecord): Promise<boolean> {
   const client = getSupabaseServerClient();
 
   if (!client) {
     console.info("[donation] Supabase not configured. Donation:", donation);
-    return;
+    return true;
   }
 
   const { error } = await client.from("donations").insert({
@@ -54,7 +54,10 @@ export async function recordDonation(donation: DonationRecord) {
   });
 
   if (error) {
+    if (error.code === "23505") return false;
     console.error("Failed to record donation in Supabase:", error);
     throw error;
   }
+
+  return true;
 }

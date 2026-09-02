@@ -39,7 +39,7 @@ const trustItems = [
   {
     Icon: FileText,
     label: "Donation receipt emailed automatically",
-    description: "Stripe sends a receipt after payment",
+    description: "A Campus Care 2.0 receipt is sent after payment",
   },
 ];
 

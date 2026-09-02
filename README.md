@@ -45,7 +45,7 @@ src/
 | `/campus-care` | Campus Care immersive platform                              |
 | `/contact`     | Contact form → Resend notification                           |
 
-## Integrations (wired, awaiting credentials)
+## Integrations
 
 - **Sanity CMS** — edit live content via Sanity Studio (`npm run sanity` or hosted Studio).
   - Blog posts, authors, categories
@@ -57,10 +57,21 @@ src/
 - **Supabase** (`src/lib/supabase.ts`) — `recordDonation()` inserts into a `donations`
   table (suggested schema in the file's comments).
 - **Stripe** (`NEXT_PUBLIC_STRIPE_PAYMENT_LINK`, `STRIPE_SECRET_KEY`)
-  — payment link plus Checkout for one-time and recurring donations.
-- **Resend** (`src/lib/resend.ts`) — contact form notifications and donation receipts.
+  — payment link plus Checkout. Receipts are sent from `/payments/thank-you` using the
+  Checkout session id (no webhook secret required).
+- **Resend** (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`) — contact notifications, Stripe donor receipts,
+  and staff donation alerts.
 - **Cloudflare Turnstile** (`NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`)
   — bot protection for the contact form with server-side token verification.
+
+### Donation receipts
+
+After Stripe checkout, donors return to `/payments/thank-you?session_id={CHECKOUT_SESSION_ID}`.
+The page loads the paid session with `STRIPE_SECRET_KEY` and Resend sends the receipt.
+
+In the Stripe Payment Link settings, set the after-payment redirect to:
+
+`https://www.actcampuscare.com/payments/thank-you?session_id={CHECKOUT_SESSION_ID}`
 
 ### Sanity quick start
 
