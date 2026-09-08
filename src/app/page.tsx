@@ -151,7 +151,7 @@ export default async function HomePage() {
                   src="/images/campus-care/solutions-new.jpeg"
                   alt="Campus Care interventions"
                   fill
-                  className="object-cover object-[center_22%]"
+                  className="origin-top object-cover object-[center_12%] scale-[1.45]"
                   sizes="(max-width: 640px) 90vw, 360px"
                 />
               </div>

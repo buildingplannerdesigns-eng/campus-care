@@ -60,7 +60,11 @@ const pathways = [
     body: "One-on-one and relational work led by Dr. Cammiel to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
     cta: { href: "/contact", label: "Book a Consultation" },
     avatars: [
-      { src: "/images/team/consellor.jpg", alt: "Dr. Cammiel — Counseling" },
+      {
+        src: "/images/team/consellor.jpg",
+        alt: "Dr. Cammiel — Counseling",
+        className: "object-cover object-[center_20%]",
+      },
     ],
   },
   {
@@ -70,7 +74,11 @@ const pathways = [
     body: "Campus Care 2.0 brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
     cta: { href: "/campus-care", label: "Explore Campus Care" },
     avatars: [
-      { src: "/images/campus-care/solutions-new.jpeg", alt: "Campus Care interventions" },
+      {
+        src: "/images/campus-care/solutions-new.jpeg",
+        alt: "Campus Care interventions",
+        className: "origin-top object-cover object-[center_12%] scale-[1.55]",
+      },
     ],
   },
 ] as const;
@@ -195,7 +203,7 @@ export default function SolutionsPage() {
                           src={avatar.src}
                           alt={avatar.alt}
                           fill
-                          className="object-cover"
+                          className={avatar.className}
                           sizes="80px"
                           unoptimized={avatar.src.endsWith(".svg")}
                         />
