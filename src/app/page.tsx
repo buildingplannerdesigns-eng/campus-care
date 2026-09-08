@@ -148,10 +148,10 @@ export default async function HomePage() {
             <div className="overflow-hidden border border-[#e6e0d6] bg-white text-left">
               <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef3]">
                 <Image
-                  src="/images/attachments/image001.jpg"
+                  src="/images/campus-care/solutions-new.jpeg"
                   alt="Campus Care interventions"
                   fill
-                  className="object-cover object-[50%_22%]"
+                  className="object-cover object-[center_22%]"
                   sizes="(max-width: 640px) 90vw, 360px"
                 />
               </div>

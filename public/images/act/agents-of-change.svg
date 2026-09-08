@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-labelledby="actTitle actDesc">
+  <title id="actTitle">Agents of Change &amp; Transformation</title>
+  <desc id="actDesc">ACT Healing circular emblem</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#1a6bb0"/>
+      <stop offset="55%" stop-color="#0e4f88"/>
+      <stop offset="100%" stop-color="#0a3a66"/>
+    </radialGradient>
+  </defs>
+  <circle cx="160" cy="160" r="160" fill="url(#bg)"/>
+  <circle cx="160" cy="160" r="148" fill="none" stroke="#c9a227" stroke-width="3" opacity="0.9"/>
+  <circle cx="160" cy="160" r="138" fill="none" stroke="#f5f0e6" stroke-width="1.25" opacity="0.45"/>
+  <text
+    x="160"
+    y="118"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42"
+    font-weight="700"
+    letter-spacing="0.18em"
+    fill="#f5f0e6"
+  >ACT</text>
+  <line x1="88" y1="138" x2="232" y2="138" stroke="#c9a227" stroke-width="1.5" opacity="0.85"/>
+  <text
+    x="160"
+    y="172"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="15"
+    font-weight="600"
+    letter-spacing="0.04em"
+    fill="#f5f0e6"
+  >Agents of Change</text>
+  <text
+    x="160"
+    y="196"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="15"
+    font-weight="600"
+    letter-spacing="0.04em"
+    fill="#f5f0e6"
+  >&amp; Transformation</text>
+</svg>

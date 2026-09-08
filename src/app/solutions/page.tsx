@@ -70,8 +70,7 @@ const pathways = [
     body: "Campus Care 2.0 brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
     cta: { href: "/campus-care", label: "Explore Campus Care" },
     avatars: [
-      { src: "/images/avatars/male.svg", alt: "Campus avatar" },
-      { src: "/images/avatars/female.svg", alt: "Community avatar" },
+      { src: "/images/campus-care/solutions-new.jpeg", alt: "Campus Care interventions" },
     ],
   },
 ] as const;
@@ -105,21 +104,39 @@ export default function SolutionsPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div className="flex justify-center lg:justify-start">
             <div className="flex -space-x-6">
-              {[
-                { src: "/images/avatars/female.svg", alt: "Community member" },
-                { src: "/images/team/dr.cammie.jpg", alt: "Dr. Cammiel" },
-                { src: "/images/avatars/male.svg", alt: "Campus partner" },
-              ].map((avatar, index) => (
+              {(
+                [
+                  {
+                    src: "/images/act/agents-of-change.svg",
+                    alt: "Agents of Change & Transformation",
+                    className: "object-cover",
+                    style: undefined,
+                  },
+                  {
+                    src: "/images/team/dr.cammie.jpg",
+                    alt: "Dr. Cammiel",
+                    className: "object-cover object-[center_20%]",
+                    style: undefined,
+                  },
+                  {
+                    src: "/images/logo.jpg",
+                    alt: "Campus Care 2.0 logo",
+                    className: "object-cover object-center",
+                    style: { transform: "scale(1.42)" },
+                  },
+                ] as const
+              ).map((avatar, index) => (
                 <div
                   key={avatar.src}
-                  className="relative h-28 w-28 overflow-hidden rounded-full ring-[5px] ring-sage shadow-[0_12px_28px_rgba(17,63,108,0.14)] sm:h-32 sm:w-32"
+                  className="relative h-28 w-28 overflow-hidden rounded-full bg-white ring-[5px] ring-sage shadow-[0_12px_28px_rgba(17,63,108,0.14)] sm:h-32 sm:w-32"
                   style={{ zIndex: 3 - index }}
                 >
                   <Image
                     src={avatar.src}
                     alt={avatar.alt}
                     fill
-                    className="object-cover"
+                    className={avatar.className}
+                    style={avatar.style}
                     sizes="128px"
                     unoptimized={avatar.src.endsWith(".svg")}
                   />
