@@ -21,4 +21,10 @@ export const audienceOutcomes: AudienceOutcome[] = [
     outcome: "Encourage cultural pride, resilience, and social justice.",
     icon: "handshake",
   },
+  {
+    audience: "Coaching",
+    outcome:
+      "Empower individuals to become advocates for mental wellness, healing and positive social change.",
+    icon: "sparkles",
+  },
 ];

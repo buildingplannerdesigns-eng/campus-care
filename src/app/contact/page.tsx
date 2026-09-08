@@ -35,7 +35,7 @@ export default async function ContactPage() {
       <PageIntro
         label="Contact"
         heading="Let's start the conversation"
-        body="Whether you're seeking therapy, planning a workshop, booking a speaker, or bringing Campus Care to your campus — share a few details and Dr. Connor's team will be in touch personally."
+        body="Whether you're seeking therapy, planning a workshop, booking a speaker, or bringing Campus Care to your campus — share a few details and Dr. Cammiel's team will be in touch personally."
       />
 
       {/* Contact details — above the form */}

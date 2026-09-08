@@ -46,7 +46,7 @@ export function HomeHero() {
         <div className="max-w-xl text-left lg:max-w-2xl">
           <h1 className="home-hero-fade font-hero text-[2.85rem] font-normal leading-[0.94] text-[#E8C4B0] sm:text-6xl md:text-7xl lg:text-[5.35rem] lg:leading-[0.92]">
             <span className="block text-[1.85rem] leading-[1.05] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              Dr. Connor is
+              Dr. Cammie Connor is
             </span>
             <span className="mt-2 block sm:mt-3">Redefining</span>
             <span className="mt-1 block sm:mt-2">Campus Care</span>

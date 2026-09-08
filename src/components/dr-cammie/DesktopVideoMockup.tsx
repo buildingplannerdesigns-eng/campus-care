@@ -9,6 +9,8 @@ type DesktopVideoMockupProps = {
   embedUrl?: string;
   poster?: string;
   urlBar?: string;
+  /** Crop the bottom edge to hide burned-in lower-third captions in the source video. */
+  hideLowerThird?: boolean;
 };
 
 export function DesktopVideoMockup({
@@ -16,6 +18,7 @@ export function DesktopVideoMockup({
   videoSrc,
   embedUrl,
   poster,
+  hideLowerThird = false,
 }: DesktopVideoMockupProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -70,7 +73,7 @@ export function DesktopVideoMockup({
                     : `${resolvedEmbed}${resolvedEmbed.includes("?") ? "&" : "?"}autoplay=1&mute=1`
                 }
                 title={title}
-                className="absolute inset-0 h-full w-full"
+                className={`absolute inset-0 h-full w-full ${hideLowerThird ? "scale-[1.12] origin-top" : ""}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -79,8 +82,8 @@ export function DesktopVideoMockup({
                 ref={videoRef}
                 key={resolvedVideo}
                 className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-                  ready ? "opacity-100" : "opacity-0"
-                }`}
+                  hideLowerThird ? "scale-[1.14] origin-top object-[center_20%]" : ""
+                } ${ready ? "opacity-100" : "opacity-0"}`}
                 muted
                 playsInline
                 preload="metadata"

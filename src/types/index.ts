@@ -38,9 +38,9 @@ export interface TeamMember {
 }
 
 export interface AudienceOutcome {
-  audience: "Individuals" | "Couples" | "Families" | "Communities";
+  audience: "Individuals" | "Couples" | "Families" | "Communities" | "Coaching";
   outcome: string;
-  icon: "user-round" | "heart" | "house" | "handshake";
+  icon: "user-round" | "heart" | "house" | "handshake" | "sparkles";
 }
 
 export interface ExternalResource {

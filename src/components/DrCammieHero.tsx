@@ -48,7 +48,7 @@ export function DrCammieHero({
   secondaryCta,
   secondaryCtaHref,
   headshotSrc = "/images/attachments/image002.jpg",
-  headshotAlt = "Dr. Connor",
+  headshotAlt = "Dr. Cammiel",
 }: DrCammieHeroProps) {
   const { videoRef, ready: videoReady } = useTrimmedLoopVideo({
     start: ACT_HERO_TRIM_START,
@@ -86,7 +86,7 @@ export function DrCammieHero({
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pb-36 pt-28 sm:px-10 sm:pb-40 lg:px-16 lg:pb-44">
           <div className="max-w-xl text-left lg:max-w-3xl">
             <p className="home-hero-fade font-body text-[11px] font-medium uppercase tracking-[0.38em] text-white sm:text-xs sm:tracking-[0.46em]">
-              Dr. Connor
+              Dr. Cammiel
             </p>
 
             <h1 className="home-hero-fade-delay-1 mt-5 font-hero text-[2.15rem] font-normal leading-[1.12] text-[#E8C4B0] sm:text-5xl md:text-[3.25rem] lg:text-[3.65rem] lg:leading-[1.08]">

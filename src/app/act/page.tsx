@@ -42,7 +42,7 @@ export default function DrCammieConnorPage() {
         secondaryCta="Book Dr. Cammie"
         secondaryCtaHref="mailto:cconnor@actcampuscare.com"
         headshotSrc="/images/attachments/image002.jpg"
-        headshotAlt="Dr. Connor"
+        headshotAlt="Dr. Cammiel"
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />

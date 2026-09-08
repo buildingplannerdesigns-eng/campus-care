@@ -53,9 +53,9 @@ export const drCammieCopy = {
     },
     {
       number: "03",
-      title: "Start Coaching or Therapy",
+      title: "Counseling and Coaching",
       description:
-        "Work one-on-one or in relational settings to discover strengths, process trauma, and create lasting transformation.",
+        "Work one-on-one through Counseling or Coaching in a relational setting to discover strengths, process trauma, and create lasting transformation.",
       cta: "Book a Consultation",
       href: "/solutions#therapy",
     },
@@ -136,11 +136,11 @@ export const drCammieCopy = {
     ],
     calloutQuote:
       "My calling is to show you how to heal, transform, and ACT on the purpose God has placed in your life.",
-    callout: "MY CALLING IS TO SHOW YOU HOW TO DO THE SAME.",
+    callout: "",
   },
   hiFriend: {
     heading: "Welcome All, I am Dr. Cammie Connor",
-    subheading: "Cammie Connor, Ph.D., LPC",
+    subheading: "",
     cta: "Let me support your journey.",
     paragraphs: [
       "My name is Cammie Connor, Ph.D., and a Licensed Professional Counselor (LPC) in the state of Missouri with over 20 years of experience. You just made an important step in the change process and on your way to transitioning to a more achieving life. My experience includes working with individuals in residential, private practice and university settings. I would describe my approach to counseling as eclectic — drawing on many therapeutic modalities to best serve a client's needs and goals for treatment.",
@@ -148,7 +148,7 @@ export const drCammieCopy = {
       "An expert in trauma, whatever the root of the chains are holding you back, we will work to identify them, pull the pieces apart and empower and strengthen you to heal and become whole again.",
       "Finally, I will empower you to experience transformation and changed attitudes through counseling services, transformational movement coaching, spiritual well-being, trauma informed care, and using the Campus Care model so you build a life that is meaningful and true for you to ACT on your purpose.",
     ],
-    signature: "Cammie Connor, PhD., LPC",
+    signature: "",
   },
   offers: {
     heading: "Get clear on the exact steps to healing & transformation",
@@ -170,7 +170,7 @@ export const drCammieCopy = {
       },
       {
         title: "Therapy & 1:1 Life Coaching",
-        subtitle: "Individual, couples, and family sessions",
+        subtitle: "Individual, Couples, Family and Coaching Sessions",
         cta: "Apply Now",
         href: "/solutions#therapy",
         icon: "heart-handshake" as const,

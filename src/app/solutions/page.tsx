@@ -56,17 +56,17 @@ const pathways = [
   {
     id: "therapy",
     eyebrow: "Counseling",
-    title: "Individual, Couples & Family Sessions",
-    body: "One-on-one and relational work led by Dr. Connor to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
+    title: "Individual, Couples, Family and Coaching Sessions",
+    body: "One-on-one and relational work led by Dr. Cammiel to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
     cta: { href: "/contact", label: "Book a Consultation" },
     avatars: [
-      { src: "/images/team/consellor.jpg", alt: "Dr. Connor — Counseling" },
+      { src: "/images/team/consellor.jpg", alt: "Dr. Cammiel — Counseling" },
     ],
   },
   {
     id: "interventions",
     eyebrow: "Interventions",
-    title: "Campus & Community Programs",
+    title: "Campus Care and Community Programs",
     body: "Campus Care 2.0 brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
     cta: { href: "/campus-care", label: "Explore Campus Care" },
     avatars: [
@@ -107,7 +107,7 @@ export default function SolutionsPage() {
             <div className="flex -space-x-6">
               {[
                 { src: "/images/avatars/female.svg", alt: "Community member" },
-                { src: "/images/team/dr.cammie.jpg", alt: "Dr. Connor" },
+                { src: "/images/team/dr.cammie.jpg", alt: "Dr. Cammiel" },
                 { src: "/images/avatars/male.svg", alt: "Campus partner" },
               ].map((avatar, index) => (
                 <div
@@ -130,7 +130,7 @@ export default function SolutionsPage() {
 
           <div className="text-center lg:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-water">
-              Therapy · Workshops · Campus Care
+              Therapy · Coaching · Workshops · Campus Care
             </p>
             <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl">
               From a culturally grounded approach you can trust
@@ -138,7 +138,7 @@ export default function SolutionsPage() {
             <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35 lg:mx-0" aria-hidden />
             <p className="mt-6 text-sm leading-relaxed text-parchment/70 md:text-base">
               With deep expertise in intergenerational trauma and a mission to inspire hope, purpose,
-              and collective action, Dr. Connor and the ACT Healing team help individuals, couples,
+              and collective action, Dr. Cammiel and the ACT Healing team help individuals, couples,
               families, and campuses move from pain into purpose.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-parchment/70 md:text-base">
@@ -267,7 +267,7 @@ export default function SolutionsPage() {
             </p>
           </div>
 
-          <p className="mt-10 font-script text-4xl text-[#0e4f88] md:text-5xl">Dr. Connor</p>
+          <p className="mt-10 font-script text-4xl text-[#0e4f88] md:text-5xl">Dr. Cammiel</p>
         </div>
       </section>
 
@@ -285,7 +285,7 @@ export default function SolutionsPage() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <SolutionsCta href="/contact">Contact Us</SolutionsCta>
             <SolutionsCta href="/act" variant="outline">
-              Meet Dr. Connor
+              Meet Dr. Cammiel
             </SolutionsCta>
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   Landmark,
   GraduationCap,
 } from "lucide-react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { PageIntro } from "@/components/PageIntro";
 import { Section, SectionHeading, PrimaryButton } from "@/components/ui";
 import { AudienceOutcomeCard } from "@/components/AudienceOutcomeCard";
@@ -53,7 +54,7 @@ const coreGoals: {
   {
     number: "03",
     title: "Restore Identity and Purpose",
-    body: "Support clients in discovering their strengths, cultural identity, values, and life purpose while building confidence and resilience.",
+    body: "Coach clients in discovering their strengths, cultural identity, values, and life purpose while building confidence and resilience.",
     icon: Fingerprint,
   },
   {
@@ -65,7 +66,7 @@ const coreGoals: {
   {
     number: "05",
     title: "Cultivate Future Leaders",
-    body: "Empower individuals to become advocates for mental wellness, community healing, and positive social change by inspiring collective responsibility and transformational leadership.",
+    body: "Empower individuals to become advocates for mental wellness, community healing, and positive social change by inspiring collective responsibility and transformational leadership through Campus Care.",
     icon: GraduationCap,
   },
 ];
@@ -80,6 +81,11 @@ export default async function AboutPage() {
         size="lg"
         heading="Campus Care is an immersive healing experience for students and communities."
         body="Campus Care 2.0 — the VR Sanctuary — is a culturally grounded virtual reality platform that supports mental well-being by tackling stress, anxiety, and depression, so students can connect, care, and belong."
+        aside={
+          <div className="flex justify-center lg:justify-end">
+            <BrandLogo size="xl" priority alt="Campus Care 2.0 logo" />
+          </div>
+        }
       />
 
       {/* Mission & Vision */}
@@ -122,10 +128,11 @@ export default async function AboutPage() {
             <div className="mt-5 h-px w-14 bg-white/35" aria-hidden />
             <p className="mt-6 text-sm leading-relaxed text-white/85 md:text-base">
               Our vision is to become a nationally recognized leader in culturally grounded
-              behavioral health and transformational counseling by creating safe spaces where healing,
-              belonging, and personal growth flourish. We envision communities where mental wellness
-              is accessible, stigma is reduced, families are strengthened, and every individual
-              recognizes their capacity to become an Agent of Change and Transformation.
+              behavioral health and transformational counseling, coaching, and Campus Care by
+              creating safe spaces where healing, belonging, and personal growth flourish. We
+              envision communities where mental wellness is accessible, stigma is reduced, families
+              are strengthened, and every individual recognizes their capacity to become an Agent of
+              Change and Transformation.
             </p>
           </article>
         </div>
@@ -180,7 +187,7 @@ export default async function AboutPage() {
 
       <Section className="border-t border-sanctuary-700/60">
         <SectionHeading eyebrow="Therapeutic Services" heading="What Healing Means for Every Circle" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {audienceOutcomes.map((item) => (
             <AudienceOutcomeCard key={item.audience} item={item} />
           ))}

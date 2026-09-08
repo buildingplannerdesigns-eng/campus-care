@@ -126,10 +126,10 @@ export default async function HomePage() {
 
           <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
             <div className="overflow-hidden border border-[#e6e0d6] bg-white text-left">
-              <div className="relative aspect-[4/3] bg-[#e8eef3]">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef3]">
                 <Image
                   src="/images/team/consellor.jpg"
-                  alt="Dr. Connor — Counseling"
+                  alt="Dr. Cammiel — Counseling"
                   fill
                   className="object-cover object-[center_20%]"
                   sizes="(max-width: 640px) 90vw, 360px"
@@ -138,20 +138,20 @@ export default async function HomePage() {
               <div className="p-6 md:p-8">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-water">ACT Counseling</p>
                 <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
-                  Individual, couples &amp; family sessions
+                  Individual, Couples, Family and Coaching Sessions
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-parchment/70">
-                  Culturally grounded, relational work led by Dr. Connor.
+                  Culturally grounded, relational work led by Dr. Cammiel.
                 </p>
               </div>
             </div>
             <div className="overflow-hidden border border-[#e6e0d6] bg-white text-left">
-              <div className="relative aspect-[4/3] bg-[#e8eef3]">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef3]">
                 <Image
                   src="/images/attachments/image001.jpg"
                   alt="Campus Care interventions"
                   fill
-                  className="object-cover object-[center_12%]"
+                  className="object-cover object-[50%_22%]"
                   sizes="(max-width: 640px) 90vw, 360px"
                 />
               </div>
@@ -160,7 +160,7 @@ export default async function HomePage() {
                   Interventions
                 </p>
                 <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
-                  Campus &amp; community programs
+                  Campus Care and Community Programs
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-parchment/70">
                   Bio-responsive VR wellness for HBCU campuses at scale.
@@ -197,7 +197,7 @@ export default async function HomePage() {
             <div className="relative aspect-[4/3] bg-[#e8eef3]">
               <Image
                 src="/images/attachments/image005.jpeg"
-                alt="Dr. Connor presenting Campus Care 2.0"
+                alt="Dr. Cammiel presenting Campus Care 2.0"
                 fill
                 className="object-cover object-[center_20%]"
                 sizes="(max-width: 768px) 90vw, 672px"
@@ -333,7 +333,7 @@ export default async function HomePage() {
               Contact Us
             </HomeCta>
             <HomeCta href="/act" variant="ghost">
-              Meet Dr. Connor
+              Meet Dr. Cammiel
             </HomeCta>
             <DonateButton variant="outline" />
           </div>

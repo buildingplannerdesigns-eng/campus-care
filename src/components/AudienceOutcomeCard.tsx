@@ -1,6 +1,6 @@
 "use client";
 
-import { HeartHandshake, Home, UserRound, UsersRound } from "lucide-react";
+import { HeartHandshake, Home, Sparkles, UserRound, UsersRound } from "lucide-react";
 import type { AudienceOutcome } from "@/types";
 
 const iconMap = {
@@ -8,6 +8,7 @@ const iconMap = {
   heart: HeartHandshake,
   house: Home,
   handshake: UsersRound,
+  sparkles: Sparkles,
 } as const;
 
 export function AudienceOutcomeCard({ item }: { item: AudienceOutcome }) {

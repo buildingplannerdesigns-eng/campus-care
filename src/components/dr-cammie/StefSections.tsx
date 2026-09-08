@@ -37,7 +37,7 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
             <OffsetImageFrame aspectClassName="aspect-[4/5]">
               <Image
                 src="/images/act/portrait-polka-front.jpeg"
-                alt="Dr. Connor"
+                alt="Dr. Cammiel"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 40vw"
@@ -141,7 +141,10 @@ function StefStep({
       <span className="font-display text-6xl font-light leading-none text-water/30 md:text-7xl" aria-hidden>
         {step.number}
       </span>
-      <p className="mt-4 max-w-xs text-sm leading-relaxed text-parchment/70 md:text-[0.95rem]">
+      <p className="mt-4 font-display text-xl italic leading-snug text-[#1a3c40] md:text-2xl">
+        {step.title}
+      </p>
+      <p className="mt-3 max-w-xs text-sm leading-relaxed text-parchment/70 md:text-[0.95rem]">
         {step.description}
       </p>
       <Link
@@ -184,7 +187,7 @@ export function StefFeatureSection({ feature }: { feature: typeof import("@/data
           {/* Right — offset-frame image grid */}
           <ul className="grid grid-cols-2 gap-x-7 gap-y-11 sm:gap-x-8 sm:gap-y-12 md:grid-cols-3">
             {feature.listItems.map((item) => (
-              <li key={item.word} className="group p-3">
+              <li key={item.word} className="group p-3 text-center">
                 <OffsetImageFrame className="transition-transform duration-500 ease-out group-hover:-translate-y-1">
                   <Image
                     src={item.image}
@@ -193,19 +196,13 @@ export function StefFeatureSection({ feature }: { feature: typeof import("@/data
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     sizes="(max-width: 768px) 45vw, 220px"
                   />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-[#1a3c40]/80 via-[#1a3c40]/25 to-transparent"
-                    aria-hidden
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center px-3 text-center">
-                    <p className="font-script text-[2.35rem] leading-none text-white drop-shadow-sm sm:text-4xl md:text-[2.6rem]">
-                      {item.word}
-                    </p>
-                    <p className="mt-2 max-w-[11rem] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white/95">
-                      {item.tagline}
-                    </p>
-                  </div>
                 </OffsetImageFrame>
+                <p className="mt-4 font-script text-[2rem] leading-none text-[#1a3c40] sm:text-[2.2rem]">
+                  {item.word}
+                </p>
+                <p className="mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-parchment/60">
+                  {item.tagline}
+                </p>
               </li>
             ))}
           </ul>
@@ -251,7 +248,9 @@ export function StefStorySection({ story }: { story: typeof import("@/data/drCam
             &rdquo;
           </span>
         </div>
-        <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-water">{story.callout}</p>
+        {story.callout ? (
+          <p className="mt-8 text-sm font-bold uppercase tracking-[0.18em] text-water">{story.callout}</p>
+        ) : null}
       </div>
     </section>
   );
@@ -284,9 +283,11 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
               {copy.heading}
             </h2>
             <div className="mt-5 h-px w-16 bg-water/40" aria-hidden />
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-parchment/50">
-              {copy.subheading}
-            </p>
+            {copy.subheading ? (
+              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-parchment/50">
+                {copy.subheading}
+              </p>
+            ) : null}
 
             <div className="mt-8 space-y-5">
               {copy.paragraphs.map((paragraph) => (
@@ -303,7 +304,9 @@ export function StefHiFriend({ copy }: { copy: typeof import("@/data/drCammie").
               <p className="font-display text-2xl italic leading-snug text-water md:text-3xl">
                 {copy.cta}
               </p>
-              <p className="mt-4 font-display text-lg text-parchment md:text-xl">{copy.signature}</p>
+              {copy.signature ? (
+                <p className="mt-4 font-display text-lg text-parchment md:text-xl">{copy.signature}</p>
+              ) : null}
             </div>
           </div>
         </div>
@@ -376,6 +379,7 @@ export function StefImagineSection({
             title={video?.title ?? "Dr. Cammie Connor — ACT Healing"}
             videoSrc="/videos/act-hero.mp4"
             poster={video?.poster || "/images/act/portrait-orange.jpg"}
+            hideLowerThird
           />
         </div>
       </div>
