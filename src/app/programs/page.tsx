@@ -10,9 +10,9 @@ import { mentalHealthStats } from "@/data/stats";
 import { siteCopy } from "@/data/copy";
 
 export const metadata: Metadata = {
-  title: "Professional Courses — Campus Care 2.0",
+  title: "Professional Courses — ACT Campus Care",
   description:
-    "Campus Care 2.0: The Diaspora VR Sanctuary — five core elements, a bio-responsive ecosystem, and the evidence behind it.",
+    "ACT Campus Care: The Diaspora VR Sanctuary — five core elements, a bio-responsive ecosystem, and the evidence behind it.",
 };
 
 export default function ProgramsPage() {
@@ -20,7 +20,7 @@ export default function ProgramsPage() {
     <>
       <PageIntro
         label="Programs"
-        heading="Meet Campus Care 2.0: The VR Sanctuary"
+        heading="Meet ACT Campus Care: The VR Sanctuary"
         body={siteCopy.campusCare.body}
       />
 
@@ -64,7 +64,7 @@ export default function ProgramsPage() {
 
       <Section className="border-t border-sanctuary-700/60 text-center">
         <p className="mx-auto max-w-xl text-parchment/70">
-          Bring Campus Care 2.0&apos;s Diaspora VR Sanctuary to your campus.
+          Bring ACT Campus Care&apos;s Diaspora VR Sanctuary to your campus.
         </p>
         <div className="mt-6 flex justify-center">
           <PrimaryButton href="/contact">{siteCopy.campusCare.primaryCta}</PrimaryButton>

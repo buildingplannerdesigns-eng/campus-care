@@ -11,10 +11,10 @@ const lookAroundLinks = [
   { href: "/about", label: "About Us" },
   { href: "/act", label: "ACT" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/campus-care", label: "Campus Care" },
+  { href: "/campus-care", label: "ACT Campus Care" },
   { href: "/courses", label: "Courses" },
   { href: "/blog", label: "Blog" },
-  { href: "/payments", label: "Payments" },
+  { href: "/payments", label: "Become a Partner" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -54,13 +54,13 @@ export function SiteFooter() {
           {/* Come Listen */}
           <div className="border-b border-[#c8c8c6] pb-10 text-center lg:border-b-0 lg:border-r lg:px-8 lg:pb-0">
             <Link href="/" className="inline-flex items-center justify-center">
-              <BrandLogo size="md" alt="Campus Care 2.0 logo" className="!h-28 !w-28" />
+              <BrandLogo size="md" alt="ACT Campus Care logo" className="!h-28 !w-28" />
             </Link>
             <h3 className="mt-5 font-display text-4xl italic text-[#0e4f88]">
               Come join the movement
             </h3>
             <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-[#355879]">
-              Explore Campus Care programs, ACT Healing insights, and tools that grow restorative wellness.
+              Explore ACT Campus Care programs, ACT Healing insights, and tools that grow restorative wellness.
             </p>
             <SiteCta href="/campus-care" className="mt-7">
               Learn More
@@ -85,7 +85,7 @@ export function SiteFooter() {
         <div className="mt-12 border-t border-[#d5d5d3] pt-8">
           <div className="flex flex-col items-center gap-5 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0e3f78] md:text-base">
-              © {new Date().getFullYear()} Campus Care 2.0
+              © {new Date().getFullYear()} ACT Campus Care
               <span className="mx-2 text-[#5b7a9a]">|</span>
               All Rights Reserved
             </p>

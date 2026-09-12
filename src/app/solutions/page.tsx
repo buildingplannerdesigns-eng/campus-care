@@ -43,7 +43,7 @@ const expectations = [
   {
     number: "03",
     title: "Practical tools you can use",
-    body: "Sessions, workshops, and Campus Care tools that move people from insight to action.",
+    body: "Sessions, workshops, and ACT Campus Care tools that move people from insight to action.",
   },
   {
     number: "04",
@@ -57,12 +57,12 @@ const pathways = [
     id: "therapy",
     eyebrow: "Counseling",
     title: "Individual, Couples, Family and Coaching Sessions",
-    body: "One-on-one and relational work led by Dr. Cammiel to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
+    body: "One-on-one and relational work led by Dr. Cammie to help clients discover strengths, foster intimacy, and build supportive environments for growth.",
     cta: { href: "/contact", label: "Book a Consultation" },
     avatars: [
       {
         src: "/images/team/consellor.jpg",
-        alt: "Dr. Cammiel — Counseling",
+        alt: "Dr. Cammie — Counseling",
         className: "object-cover object-[center_20%]",
       },
     ],
@@ -70,13 +70,13 @@ const pathways = [
   {
     id: "interventions",
     eyebrow: "Interventions",
-    title: "Campus Care and Community Programs",
-    body: "Campus Care 2.0 brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
-    cta: { href: "/campus-care", label: "Explore Campus Care" },
+    title: "ACT Campus Care and Community Programs",
+    body: "ACT Campus Care brings culturally grounded, bio-responsive wellness to HBCU campuses — building pride, resilience, and social justice at scale.",
+    cta: { href: "/campus-care", label: "Explore ACT Campus Care" },
     avatars: [
       {
         src: "/images/campus-care/solutions-new.jpeg",
-        alt: "Campus Care interventions",
+        alt: "ACT Campus Care interventions",
         className: "origin-top object-cover object-[center_12%] scale-[1.55]",
       },
     ],
@@ -101,7 +101,7 @@ export default function SolutionsPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <SolutionsCta href="/contact">Book a Consultation</SolutionsCta>
             <SolutionsCta href="/campus-care" variant="outline">
-              Explore Campus Care
+              Explore ACT Campus Care
             </SolutionsCta>
           </div>
         </div>
@@ -122,13 +122,13 @@ export default function SolutionsPage() {
                   },
                   {
                     src: "/images/team/dr.cammie.jpg",
-                    alt: "Dr. Cammiel",
+                    alt: "Dr. Cammie",
                     className: "object-cover object-[center_20%]",
                     style: undefined,
                   },
                   {
                     src: "/images/logo.jpg",
-                    alt: "Campus Care 2.0 logo",
+                    alt: "ACT Campus Care logo",
                     className: "object-cover object-center",
                     style: { transform: "scale(1.42)" },
                   },
@@ -155,7 +155,7 @@ export default function SolutionsPage() {
 
           <div className="text-center lg:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-water">
-              Therapy · Coaching · Workshops · Campus Care
+              Therapy · Coaching · Workshops · ACT Campus Care
             </p>
             <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl">
               From a culturally grounded approach you can trust
@@ -163,7 +163,7 @@ export default function SolutionsPage() {
             <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35 lg:mx-0" aria-hidden />
             <p className="mt-6 text-sm leading-relaxed text-parchment/70 md:text-base">
               With deep expertise in intergenerational trauma and a mission to inspire hope, purpose,
-              and collective action, Dr. Cammiel and the ACT Healing team help individuals, couples,
+              and collective action, Dr. Cammie and the ACT Healing team help individuals, couples,
               families, and campuses move from pain into purpose.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-parchment/70 md:text-base">
@@ -276,7 +276,7 @@ export default function SolutionsPage() {
           <div className="mt-10 space-y-5 text-left text-sm leading-relaxed text-parchment/75 md:text-base">
             <p>
               It is an honor to be considered for your next season of healing — whether that looks like
-              therapy, a workshop, a speaking engagement, or bringing Campus Care 2.0 to your campus.
+              therapy, a workshop, a speaking engagement, or bringing ACT Campus Care to your campus.
             </p>
             <p>
               When you work with ACT Healing, you get more than a session or a platform. You get a team
@@ -292,7 +292,7 @@ export default function SolutionsPage() {
             </p>
           </div>
 
-          <p className="mt-10 font-script text-4xl text-[#0e4f88] md:text-5xl">Dr. Cammiel</p>
+          <p className="mt-10 font-script text-4xl text-[#0e4f88] md:text-5xl">Dr. Cammie</p>
         </div>
       </section>
 
@@ -310,7 +310,7 @@ export default function SolutionsPage() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <SolutionsCta href="/contact">Contact Us</SolutionsCta>
             <SolutionsCta href="/act" variant="outline">
-              Meet Dr. Cammiel
+              Meet Dr. Cammie
             </SolutionsCta>
           </div>
         </div>

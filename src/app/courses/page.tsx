@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Courses — Coming Soon",
   description:
-    "Campus Care Courses are coming soon. Register early interest for workshops, professional training, and campus wellness programs.",
+    "ACT Campus Care Courses are coming soon. Register early interest for workshops, professional training, and campus wellness programs.",
   path: "/courses",
   keywords: [
     "courses coming soon",

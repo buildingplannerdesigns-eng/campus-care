@@ -61,10 +61,10 @@ export const drCammieCopy = {
     },
     {
       number: "04",
-      title: "Bring Campus Care 2.0 to Your Campus",
+      title: "Bring ACT Campus Care to Your Campus",
       description:
         "Learn how to scale healing institutionally with a culturally grounded, bio-responsive VR platform built for HBCU students.",
-      cta: "Explore Campus Care",
+      cta: "Explore ACT Campus Care",
       href: "/campus-care",
     },
   ],
@@ -76,7 +76,7 @@ export const drCammieCopy = {
     poster: "/images/act/portrait-orange.jpg",
   },
   homeVideo: {
-    title: "ACT Campus Care 2.0 — Homepage",
+    title: "ACT Campus Care — Homepage",
     embedUrl: "",
     videoSrc: "/videos/home-hero.mp4",
     poster: "/images/campus-care/campus-care-hero.png",
@@ -115,8 +115,8 @@ export const drCammieCopy = {
       },
       {
         word: "campus",
-        tagline: "CAMPUS CARE 2.0 FOR YOUR HBCU",
-        label: "Bring Campus Care 2.0 to your HBCU campus",
+        tagline: "ACT Campus Care FOR YOUR HBCU",
+        label: "Bring ACT Campus Care to your HBCU campus",
         image: "/images/attachments/image005.jpeg",
       },
       {
@@ -146,7 +146,7 @@ export const drCammieCopy = {
       "My name is Cammie Connor, Ph.D., and a Licensed Professional Counselor (LPC) in the state of Missouri with over 20 years of experience. You just made an important step in the change process and on your way to transitioning to a more achieving life. My experience includes working with individuals in residential, private practice and university settings. I would describe my approach to counseling as eclectic — drawing on many therapeutic modalities to best serve a client's needs and goals for treatment.",
       "A woman of purpose, I help individuals put their life back together one piece at a time. This is an essential ingredient in healing and personal growth. I work collaboratively with you to better understand your lived experience and to eliminate relationship challenges, life stressors, anxiety, depression, PTSD and any barrier that gets in the way of living a fulfilled life.",
       "An expert in trauma, whatever the root of the chains are holding you back, we will work to identify them, pull the pieces apart and empower and strengthen you to heal and become whole again.",
-      "Finally, I will empower you to experience transformation and changed attitudes through counseling services, transformational movement coaching, spiritual well-being, trauma informed care, and using the Campus Care model so you build a life that is meaningful and true for you to ACT on your purpose.",
+      "Finally, I will empower you to experience transformation and changed attitudes through counseling services, transformational movement coaching, spiritual well-being, trauma informed care, and using the ACT Campus Care model so you build a life that is meaningful and true for you to ACT on your purpose.",
     ],
     signature: "",
   },
@@ -177,7 +177,7 @@ export const drCammieCopy = {
       },
     ],
     body:
-      "Join individuals, couples, families, and campus partners who have created lasting transformation through ACT Healing. From workshops to therapy, speaking, and Campus Care 2.0 — this system will help you heal, grow, and ACT according to your purpose.",
+      "Join individuals, couples, families, and campus partners who have created lasting transformation through ACT Healing. From workshops to therapy, speaking, and ACT Campus Care — this system will help you heal, grow, and ACT according to your purpose.",
   },
   imagine: {
     eyebrow: "Consistent Healing From Expert-Led Support...",

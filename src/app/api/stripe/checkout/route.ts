@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: "usd",
             product_data: {
-              name: monthly ? "Campus Care 2.0 monthly gift" : "Campus Care 2.0 donation",
+              name: monthly ? "ACT Campus Care monthly gift" : "ACT Campus Care donation",
               description: "Support culturally grounded VR wellness for HBCU students.",
             },
             unit_amount: amountCents,

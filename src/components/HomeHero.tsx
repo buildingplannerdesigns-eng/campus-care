@@ -45,19 +45,18 @@ export function HomeHero() {
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pb-16 pt-28 sm:px-10 lg:px-16">
         <div className="max-w-xl text-left lg:max-w-2xl">
           <h1 className="home-hero-fade font-hero text-[2.85rem] font-normal leading-[0.94] text-[#E8C4B0] sm:text-6xl md:text-7xl lg:text-[5.35rem] lg:leading-[0.92]">
-            <span className="block text-[1.85rem] leading-[1.05] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              Dr. Cammie Connor is
+            <span className="block whitespace-nowrap text-[1.65rem] leading-[1.08] sm:text-[2.35rem] md:text-[2.85rem] lg:text-[3.15rem]">
+              Dr. Cammie Connor
+            </span>
+            <span className="mt-2 block font-body text-base font-medium lowercase tracking-[0.14em] text-[#E8C4B0]/90 sm:mt-3 sm:text-lg md:text-xl">
+              is
             </span>
             <span className="mt-2 block sm:mt-3">Redefining</span>
-            <span className="mt-1 block sm:mt-2">Campus Care</span>
+            <span className="mt-1 block sm:mt-2">ACT Campus Care</span>
           </h1>
 
-          <p className="home-hero-fade-delay-1 mt-7 font-body text-sm font-medium uppercase tracking-[0.38em] text-[#C9A87C] sm:text-base sm:tracking-[0.42em] md:text-lg md:tracking-[0.46em] lg:text-xl">
-            ACT
-          </p>
-
-          <div className="home-hero-fade-delay-2 mt-10">
-            <SiteCta href="/campus-care">Explore Campus Care</SiteCta>
+          <div className="home-hero-fade-delay-1 mt-10">
+            <SiteCta href="/campus-care">Explore ACT Campus Care</SiteCta>
           </div>
         </div>
       </div>

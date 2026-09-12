@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
-  title: "Campus Care CMS",
+  title: "ACT Campus Care CMS",
   robots: { index: false, follow: false },
 };
 

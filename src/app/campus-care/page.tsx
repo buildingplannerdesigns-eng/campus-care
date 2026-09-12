@@ -2,7 +2,6 @@ import Image from "next/image";
 import { BrandLogo } from "@/components/BrandLogo";
 import { ContactForm } from "@/components/ContactForm";
 import { ElementCard } from "@/components/ElementCard";
-import { DesktopVideoMockup } from "@/components/dr-cammie/DesktopVideoMockup";
 import { PrimaryButton, Section, SectionHeading } from "@/components/ui";
 import { PageIntro } from "@/components/PageIntro";
 import { SiteCta } from "@/components/SiteCta";
@@ -14,9 +13,9 @@ import { pageMetadata } from "@/lib/seo";
 export const revalidate = 60;
 
 export const metadata = pageMetadata({
-  title: "Campus Care",
+  title: "ACT Campus Care",
   description:
-    "Campus Care is an immersive VR Sanctuary for wellness, creativity, and clinical engagement — culturally grounded care for students and communities.",
+    "ACT Campus Care is an immersive VR Sanctuary for wellness, creativity, and clinical engagement — culturally grounded care for students and communities.",
   path: "/campus-care",
   keywords: ["VR Sanctuary", "VR therapy", "HBCU wellness", "teletherapy", "5 core elements"],
 });
@@ -46,7 +45,7 @@ const evidenceStats = [
   {
     value: "Race stress",
     label:
-      "A study of 206 Black women at a southern HBCU found a positive relationship between anticipatory race-related stress and general worry — grounding Campus Care’s focus on racialized stress.",
+      "A study of 206 Black women at a southern HBCU found a positive relationship between anticipatory race-related stress and general worry — grounding ACT Campus Care’s focus on racialized stress.",
     source: "PMC12572699 · peer-reviewed clinical psychology research",
     href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12572699/",
   },
@@ -62,17 +61,15 @@ const evidenceStats = [
 const xrImages = [
   {
     src: "/images/campus-care/student.jpeg",
-    alt: "Student engaging with Campus Care wellness technology",
+    alt: "Student engaging with ACT Campus Care wellness technology",
   },
   {
     src: "/images/campus-care/vr.jpeg",
-    alt: "Immersive Campus Care virtual reality session",
+    alt: "Immersive ACT Campus Care virtual reality session",
   },
 ];
 
-/** Drop at public/videos/campus-care.mp4, or override with NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL. */
-const DRUMMING_VIDEO_SRC =
-  process.env.NEXT_PUBLIC_CAMPUS_CARE_VIDEO_URL?.trim() || "/videos/campus-care.mp4";
+/** Still image for the immersive drumming section. */
 const DRUMMING_POSTER = "/images/campus-care/fire-circle-drumming.jpg";
 
 export default async function CampusCarePage() {
@@ -81,20 +78,20 @@ export default async function CampusCarePage() {
   return (
     <>
       <PageIntro
-        label="Campus Care"
+        label="ACT Campus Care"
         heading="The only immersive healing experience grounded in community and ancestral reflection."
-        body="Campus Care offers a virtual reality experience aimed at promoting the mental well-being of HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed."
+        body="ACT Campus Care offers a virtual reality experience aimed at promoting the mental well-being of HBCU students by tackling stress, anxiety, and depression (SAD) to help them succeed."
       />
 
       <section
         className="relative isolate overflow-hidden border-b border-sanctuary-700/30 bg-sage"
-        aria-label="Campus Care emblem"
+        aria-label="ACT Campus Care emblem"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-14 sm:py-16 md:py-20 lg:py-24">
           <BrandLogo
             size="xl"
             priority
-            alt="Campus Care 2.0 logo"
+            alt="ACT Campus Care logo"
           />
         </div>
       </section>
@@ -136,19 +133,21 @@ export default async function CampusCarePage() {
         <div className="mx-auto max-w-3xl text-center">
           <SectionHeading
             eyebrow="In the Sanctuary"
-            heading="Campus Care drumming in an immersive environment"
+            heading="ACT Campus Care drumming in an immersive environment"
             className="text-center [&>h2]:mx-auto"
           />
           <p className="mt-5 text-sm leading-relaxed text-parchment/70 md:text-base">
             Experience the rhythm, community, and restorative presence at the heart of the VR Sanctuary.
           </p>
         </div>
-        <div className="mt-10">
-          <DesktopVideoMockup
-            title="Campus Care — Drumming in the VR Sanctuary"
-            videoSrc={DRUMMING_VIDEO_SRC}
-            poster={DRUMMING_POSTER}
-            urlBar="actcampuscare.com/campus-care"
+        <div className="relative mx-auto mt-10 aspect-[16/10] w-full max-w-5xl overflow-hidden border border-[#cfdcd6] bg-[#e8eef3]">
+          <Image
+            src={DRUMMING_POSTER}
+            alt="ACT Campus Care drumming in an immersive environment"
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            priority
           />
         </div>
       </Section>
@@ -157,7 +156,7 @@ export default async function CampusCarePage() {
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           <SectionHeading
             eyebrow="Evidence"
-            heading="Why Campus Care 2.0 matters for HBCU student wellness"
+            heading="Why ACT Campus Care matters for HBCU student wellness"
             className="text-center [&>h2]:mx-auto"
           />
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-parchment/70 md:text-lg">
@@ -192,7 +191,7 @@ export default async function CampusCarePage() {
       <Section className="border-t border-sanctuary-700/60 bg-sanctuary-900">
         <div className="mx-auto max-w-3xl text-center">
           <SectionHeading
-            eyebrow="Campus Care & Self Reflection"
+            eyebrow="ACT Campus Care & Self Reflection"
             heading="Immersive environment that heals you completely."
             className="text-center [&>h2]:mx-auto"
           />
@@ -207,7 +206,7 @@ export default async function CampusCarePage() {
           <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-[1.5rem] border border-sanctuary-700 bg-white">
             <Image
               src="/images/campus-care/word-cloud.png"
-              alt="Community, hope, excitement, fulfilled, joy, and sense of success — words participants associate with Campus Care"
+              alt="Community, hope, excitement, fulfilled, joy, and sense of success — words participants associate with ACT Campus Care"
               width={1600}
               height={900}
               className="h-auto w-full object-cover"
@@ -242,11 +241,11 @@ export default async function CampusCarePage() {
         <div className="mx-auto max-w-3xl text-center">
           <SectionHeading
             eyebrow="Get in Touch"
-            heading="Connect with the Campus Care team"
+            heading="Connect with the ACT Campus Care team"
             className="text-center [&>h2]:mx-auto"
           />
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-            Campus Care is designed to meet you where you are. If you are looking to stay ahead and
+            ACT Campus Care is designed to meet you where you are. If you are looking to stay ahead and
             take charge of your mental health, our virtual exercises and tools are what you need.
           </p>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
@@ -309,7 +308,7 @@ export default async function CampusCarePage() {
               size="lg"
               requireConfirmation
               submitLabel="Submit Form"
-              successMessage="Thank you — the Campus Care team will be in touch soon."
+              successMessage="Thank you — the ACT Campus Care team will be in touch soon."
             />
           </div>
         </div>

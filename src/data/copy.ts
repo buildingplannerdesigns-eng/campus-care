@@ -2,18 +2,18 @@ export const siteCopy = {
   brand: {
     name: "ACT Healing",
     tagline: "Agents of Change and Transformation",
-    program: "Campus Care 2.0",
+    program: "ACT Campus Care",
     programSubtitle: "The VR Sanctuary",
   },
   hero: {
     kicker: "Speaker · Workshops · Coaching",
-    headline: "Redefining Campus Care",
+    headline: "Redefining ACT Campus Care",
     subhead: "ACT",
-    orgName: "Dr. Cammiel",
-    tagline: "Dr. Cammiel is redefining Campus Care",
-    primaryCta: "Meet Dr. Cammiel",
+    orgName: "Dr. Cammie",
+    tagline: "Dr. Cammie is redefining ACT Campus Care",
+    primaryCta: "Meet Dr. Cammie",
     secondaryCta: "Contact Us",
-    videoTitle: "Campus Care 2.0 — The VR Sanctuary",
+    videoTitle: "ACT Campus Care — The VR Sanctuary",
   },
   mission: {
     heading:
@@ -25,17 +25,17 @@ export const siteCopy = {
     "We empower healing by transforming knowledge into action, pain into purpose, and challenges into opportunities for growth \u2014 creating healthier individuals, stronger relationships, and thriving communities.",
   campusCare: {
     kicker: "Empower Student Wellness Through Culturally Grounded Virtual Reality",
-    headline: "Meet Campus Care 2.0: The VR Sanctuary",
+    headline: "Meet ACT Campus Care: The VR Sanctuary",
     body:
       "An immersive, bio-responsive virtual reality platform engineered to regulate the autonomic nervous system, alleviate minority stress, and cultivate deep psychological resilience for HBCU students.",
-    primaryCta: "Explore Campus Care",
+    primaryCta: "Explore ACT Campus Care",
     secondaryCta: "Contact Us",
   },
   whyItExists: {
     heading: "Why It Exists",
     body: [
       "Traditional, Eurocentric mental health solutions often miss the mark when it comes to the unique cultural backgrounds, heightened visibility, and ongoing systemic stressors that Black college students experience. With a heavy academic workload and the added physiological strain of racial battle fatigue, campus counseling centers are frequently overwhelmed and struggle to earn and maintain trust.",
-      "Campus Care 2.0 is redefining higher-education wellness by creating a warm, welcoming space for students. Instead of a traditional counseling approach that focuses on problems, it offers an anonymous, strengths-based, interactive environment that feels supportive and empowering \u2014 honoring students' lived experiences, reducing stress, and providing a calming space whenever they need it.",
+      "ACT Campus Care is redefining higher-education wellness by creating a warm, welcoming space for students. Instead of a traditional counseling approach that focuses on problems, it offers an anonymous, strengths-based, interactive environment that feels supportive and empowering \u2014 honoring students' lived experiences, reducing stress, and providing a calming space whenever they need it.",
     ],
   },
   elementsIntro: {
@@ -50,6 +50,6 @@ export const siteCopy = {
   },
   contact: {
     heading: "Connect with Dr. Cammie Connor",
-    body: "Reach Dr. Cammie Connor for therapy, speaking, workshops, coaching, and Campus Care conversations.",
+    body: "Reach Dr. Cammie Connor for therapy, speaking, workshops, coaching, and ACT Campus Care conversations.",
   },
 } as const;

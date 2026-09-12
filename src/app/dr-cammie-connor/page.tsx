@@ -20,7 +20,7 @@ import { pointOfContact } from "@/data/team";
 export const metadata: Metadata = {
   title: "Dr. Cammie Connor",
   description:
-    "Dr. Cammie Connor — intergenerational trauma expert, speaker, workshop facilitator, and founder of ACT Healing & Campus Care 2.0.",
+    "Dr. Cammie Connor — intergenerational trauma expert, speaker, workshop facilitator, and founder of ACT Healing & ACT Campus Care.",
 };
 
 export default function DrCammieConnorPage() {
@@ -33,10 +33,10 @@ export default function DrCammieConnorPage() {
         subhead={copy.hero.subhead}
         primaryCta={copy.hero.primaryCta}
         primaryCtaHref="#show-me-how"
-        secondaryCta="Book Dr. Cammie"
-        secondaryCtaHref="mailto:cconnor@actcampuscare.com"
+        secondaryCta={`Book Dr. Cammie · ${pointOfContact.phone}`}
+        secondaryCtaHref={`tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`}
         headshotSrc="/images/attachments/image002.jpg"
-        headshotAlt="Dr. Cammiel"
+        headshotAlt="Dr. Cammie"
       />
 
       <HeroFeatureBar items={copy.heroFeatures} />

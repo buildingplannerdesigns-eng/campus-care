@@ -140,7 +140,7 @@ export function PwaRegister() {
     <div className="fixed inset-x-0 bottom-0 z-[60] p-4 sm:p-5">
       <div className="mx-auto flex max-w-xl flex-col gap-3 border border-[#d7dfda] bg-white p-4 shadow-[0_18px_40px_rgba(17,63,108,0.18)] sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:p-5">
         <div className="text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0e4f88]">Install Campus Care</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0e4f88]">Install ACT Campus Care</p>
           <p className="mt-1 text-sm leading-relaxed text-parchment/75">
             {iosHint
               ? "On iPhone: tap Share, then Add to Home Screen."

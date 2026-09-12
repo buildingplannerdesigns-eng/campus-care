@@ -51,9 +51,11 @@ const scriptHand = Great_Vibes({
 
 const seoKeywords = [
   "ACT Healing",
-  "Campus Care 2.0",
+  "ACT Campus Care",
   "Dr. Cammie Connor",
+  "Dr. Cammie",
   "Dr. Connor",
+  "Become a Partner",
   "intergenerational trauma",
   "HBCU mental health",
   "culturally grounded wellness",
@@ -72,13 +74,13 @@ const seoKeywords = [
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Campus Care 2.0 — The VR Sanctuary | ACT Healing",
-    template: "%s | Campus Care 2.0",
+    default: "ACT Campus Care — The VR Sanctuary | ACT Healing",
+    template: "%s | ACT Campus Care",
   },
   description:
-    "Campus Care 2.0 is a culturally-grounded, bio-responsive virtual reality platform helping HBCU students regulate stress and build resilience, from ACT Healing and Dr. Connor.",
+    "ACT Campus Care is a culturally-grounded, bio-responsive virtual reality platform helping HBCU students regulate stress and build resilience, from ACT Healing and Dr. Connor.",
   keywords: seoKeywords,
-  applicationName: "Campus Care 2.0",
+  applicationName: "ACT Campus Care",
   authors: [{ name: "ACT Healing", url: siteUrl }],
   creator: "ACT Healing",
   publisher: "ACT Healing",
@@ -101,8 +103,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Campus Care 2.0",
-    title: "Campus Care 2.0 — The VR Sanctuary",
+    siteName: "ACT Campus Care",
+    title: "ACT Campus Care — The VR Sanctuary",
     description:
       "An immersive, bio-responsive VR platform built to regulate the nervous system and cultivate resilience for HBCU students.",
     images: [
@@ -110,13 +112,13 @@ export const metadata: Metadata = {
         url: "/images/logo.jpg",
         width: 1200,
         height: 1200,
-        alt: "ACT Healing — Campus Care 2.0 logo",
+        alt: "ACT Healing — ACT Campus Care logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Campus Care 2.0 — The VR Sanctuary",
+    title: "ACT Campus Care — The VR Sanctuary",
     description:
       "Culturally grounded, bio-responsive VR wellness for HBCU students from ACT Healing.",
     images: ["/images/logo.jpg"],
@@ -136,7 +138,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Campus Care",
+    title: "ACT Campus Care",
   },
   formatDetection: {
     telephone: true,
@@ -164,8 +166,8 @@ const jsonLd = {
     {
       // Use NGO once nonprofit status is confirmed; otherwise Organization / Corporation.
       "@type": "NGO",
-      name: "ACT Healing / Campus Care 2.0",
-      alternateName: ["ACT Healing", "Campus Care 2.0"],
+      name: "ACT Healing / ACT Campus Care",
+      alternateName: ["ACT Healing", "ACT Campus Care"],
       url: siteUrl,
       logo: `${siteUrl}/images/logo.jpg`,
       description:
@@ -186,13 +188,13 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      name: "Campus Care 2.0",
+      name: "ACT Campus Care",
       url: siteUrl,
       description:
         "Culturally-grounded, bio-responsive virtual reality wellness for HBCU campuses and communities.",
       publisher: {
         "@type": "Organization",
-        name: "ACT Healing / Campus Care 2.0",
+        name: "ACT Healing / ACT Campus Care",
       },
       potentialAction: {
         "@type": "SearchAction",

@@ -228,7 +228,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: "Blog Post Not Found - Campus Care 2.0",
+      title: "Blog Post Not Found - ACT Campus Care",
       robots: { index: false, follow: false },
     };
   }
@@ -236,16 +236,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonical = `${siteUrl}/blog/${post.slug}`;
 
   return {
-    title: `${post.title} - Blog - Campus Care 2.0`,
+    title: `${post.title} - Blog - ACT Campus Care`,
     description: post.excerpt,
-    keywords: [post.category, "Campus Care blog", "HBCU wellness", "ACT Healing"],
+    keywords: [post.category, "ACT Campus Care blog", "HBCU wellness", "ACT Healing"],
     alternates: { canonical },
     openGraph: {
       type: "article",
       url: canonical,
       title: post.title,
       description: post.excerpt,
-      siteName: "Campus Care 2.0",
+      siteName: "ACT Campus Care",
       publishedTime: post.publishedAt,
       authors: [post.author],
       images: [{ url: post.imageUrl, alt: post.title }],
@@ -297,7 +297,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     author: { "@type": "Person", name: post.author },
     publisher: {
       "@type": "Organization",
-      name: "Campus Care 2.0",
+      name: "ACT Campus Care",
       url: siteUrl,
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },

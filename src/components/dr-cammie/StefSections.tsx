@@ -37,7 +37,7 @@ export function StefIntro({ copy }: { copy: typeof import("@/data/drCammie").drC
             <OffsetImageFrame aspectClassName="aspect-[4/5]">
               <Image
                 src="/images/act/portrait-polka-front.jpeg"
-                alt="Dr. Cammiel"
+                alt="Dr. Cammie"
                 fill
                 className="object-cover object-center"
                 sizes="(max-width: 768px) 90vw, 40vw"

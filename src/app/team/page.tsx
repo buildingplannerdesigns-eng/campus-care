@@ -8,7 +8,7 @@ import { team, pointOfContact } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Meet the Team",
-  description: "The people behind ACT Healing and Campus Care 2.0.",
+  description: "The people behind ACT Healing and ACT Campus Care.",
 };
 
 export default function TeamPage() {
@@ -18,7 +18,7 @@ export default function TeamPage() {
     <>
       <PageIntro
         label="Team"
-        heading="The people shaping Campus Care 2.0"
+        heading="The people shaping ACT Campus Care"
         body="A focused group of clinicians, strategists, and builders working to make student support feel human, practical, and easy to access."
       />
 

@@ -5,12 +5,12 @@ import { faqItems } from "@/data/faq";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "FAQ — Campus Care 2.0 & ACT Healing",
+  title: "FAQ — ACT Campus Care & ACT Healing",
   description:
-    "Answers about Campus Care 2.0, student access, the 5 Core Elements, donations, and working with ACT Healing and Dr. Connor.",
+    "Answers about ACT Campus Care, student access, the 5 Core Elements, donations, and working with ACT Healing and Dr. Connor.",
   path: "/faq",
   keywords: [
-    "Campus Care FAQ",
+    "ACT Campus Care FAQ",
     "HBCU wellness FAQ",
     "VR Sanctuary",
     "ACT Healing questions",
@@ -42,7 +42,7 @@ export default function FaqPage() {
       <PageIntro
         label="FAQ"
         heading="Frequently asked questions"
-        body="Clear answers about Campus Care 2.0, student access, ACT Healing services, and how to get involved."
+        body="Clear answers about ACT Campus Care, student access, ACT Healing services, and how to get involved."
       />
 
       <section className="border-b border-sanctuary-700/40 bg-sage px-6 py-16 md:py-20">
@@ -86,7 +86,7 @@ export default function FaqPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <PrimaryButton href="/contact">Contact Us</PrimaryButton>
-            <SecondaryButton href="/campus-care">Explore Campus Care</SecondaryButton>
+            <SecondaryButton href="/campus-care">Explore ACT Campus Care</SecondaryButton>
           </div>
         </div>
       </section>

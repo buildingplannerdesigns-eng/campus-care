@@ -22,11 +22,11 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "About Us",
   description:
-    "Campus Care 2.0 is an immersive, culturally grounded VR sanctuary helping HBCU students and communities heal, connect, and thrive.",
+    "ACT Campus Care is an immersive, culturally grounded VR sanctuary helping HBCU students and communities heal, connect, and thrive.",
   path: "/about",
   keywords: [
-    "about Campus Care",
-    "Campus Care 2.0",
+    "about ACT Campus Care",
+    "ACT Campus Care",
     "VR Sanctuary",
     "HBCU wellness",
     "culturally grounded care",
@@ -66,7 +66,7 @@ const coreGoals: {
   {
     number: "05",
     title: "Cultivate Future Leaders",
-    body: "Empower individuals to become advocates for mental wellness, community healing, and positive social change by inspiring collective responsibility and transformational leadership through Campus Care.",
+    body: "Empower individuals to become advocates for mental wellness, community healing, and positive social change by inspiring collective responsibility and transformational leadership through ACT Campus Care.",
     icon: GraduationCap,
   },
 ];
@@ -79,11 +79,11 @@ export default async function AboutPage() {
       <PageIntro
         label="About"
         size="lg"
-        heading="Campus Care is an immersive healing experience for students and communities."
-        body="Campus Care 2.0 — the VR Sanctuary — is a culturally grounded virtual reality platform that supports mental well-being by tackling stress, anxiety, and depression, so students can connect, care, and belong."
+        heading="ACT Campus Care is an immersive healing experience for students and communities."
+        body="ACT Campus Care — the VR Sanctuary — is a culturally grounded virtual reality platform that supports mental well-being by tackling stress, anxiety, and depression, so students can connect, care, and belong."
         aside={
           <div className="flex justify-center lg:justify-end">
-            <BrandLogo size="xl" priority alt="Campus Care 2.0 logo" />
+            <BrandLogo size="xl" priority alt="ACT Campus Care logo" />
           </div>
         }
       />
@@ -128,7 +128,7 @@ export default async function AboutPage() {
             <div className="mt-5 h-px w-14 bg-white/35" aria-hidden />
             <p className="mt-6 text-sm leading-relaxed text-white/85 md:text-base">
               Our vision is to become a nationally recognized leader in culturally grounded
-              behavioral health and transformational counseling, coaching, and Campus Care by
+              behavioral health and transformational counseling, coaching, and ACT Campus Care by
               creating safe spaces where healing, belonging, and personal growth flourish. We
               envision communities where mental wellness is accessible, stigma is reduced, families
               are strengthened, and every individual recognizes their capacity to become an Agent of

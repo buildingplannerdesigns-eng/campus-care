@@ -19,7 +19,7 @@ export function pageMetadata({
   keywords?: string[];
   /** Optional Twitter card description when it should differ from the meta description. */
   twitterDescription?: string;
-  /** When true, skip the root layout title template (`%s | Campus Care 2.0`). */
+  /** When true, skip the root layout title template (`%s | ACT Campus Care`). */
   absoluteTitle?: boolean;
 }): Metadata {
   const url = `${SITE_URL}${path}`;
@@ -30,8 +30,11 @@ export function pageMetadata({
     description,
     keywords: [
       "ACT Healing",
-      "Campus Care 2.0",
+      "ACT Campus Care",
+      "Dr. Cammie Connor",
+      "Dr. Cammie",
       "Dr. Connor",
+      "Become a Partner",
       ...keywords,
     ],
     alternates: { canonical: path },
@@ -40,7 +43,7 @@ export function pageMetadata({
       description,
       url,
       type: "website",
-      images: [{ url: "/images/logo.jpg", alt: "ACT Healing — Campus Care 2.0" }],
+      images: [{ url: "/images/logo.jpg", alt: "ACT Healing — ACT Campus Care" }],
     },
     twitter: {
       card: "summary_large_image",

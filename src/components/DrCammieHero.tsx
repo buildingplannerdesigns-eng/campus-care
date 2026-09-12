@@ -48,7 +48,7 @@ export function DrCammieHero({
   secondaryCta,
   secondaryCtaHref,
   headshotSrc = "/images/attachments/image002.jpg",
-  headshotAlt = "Dr. Cammiel",
+  headshotAlt = "Dr. Cammie",
 }: DrCammieHeroProps) {
   const { videoRef, ready: videoReady } = useTrimmedLoopVideo({
     start: ACT_HERO_TRIM_START,
@@ -61,7 +61,7 @@ export function DrCammieHero({
       <div className="relative min-h-[100svh] overflow-hidden bg-[#2a5559]">
         <div className="absolute inset-0" aria-hidden>
           <div
-            className="absolute inset-0 bg-cover bg-[center_18%] transition-opacity duration-700 lg:bg-[70%_center]"
+            className="absolute inset-0 bg-cover bg-[center_18%] transition-opacity duration-500 lg:bg-[70%_center]"
             style={{
               backgroundImage: `url(${ACT_HERO_POSTER})`,
               opacity: videoReady ? 0 : 1,
@@ -69,11 +69,12 @@ export function DrCammieHero({
           />
           <video
             ref={videoRef}
-            className={`absolute inset-0 h-full w-full object-cover object-[center_18%] transition-opacity duration-700 lg:object-[70%_center] ${
+            className={`absolute inset-0 h-full w-full object-cover object-[center_18%] transition-opacity duration-500 lg:object-[70%_center] ${
               videoReady ? "opacity-100" : "opacity-0"
             }`}
             muted
             playsInline
+            autoPlay
             preload="auto"
             poster={ACT_HERO_POSTER}
           >
@@ -86,7 +87,7 @@ export function DrCammieHero({
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pb-36 pt-28 sm:px-10 sm:pb-40 lg:px-16 lg:pb-44">
           <div className="max-w-xl text-left lg:max-w-3xl">
             <p className="home-hero-fade font-body text-[11px] font-medium uppercase tracking-[0.38em] text-white sm:text-xs sm:tracking-[0.46em]">
-              Dr. Cammiel
+              Dr. Cammie
             </p>
 
             <h1 className="home-hero-fade-delay-1 mt-5 font-hero text-[2.15rem] font-normal leading-[1.12] text-[#E8C4B0] sm:text-5xl md:text-[3.25rem] lg:text-[3.65rem] lg:leading-[1.08]">

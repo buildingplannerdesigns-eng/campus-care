@@ -78,7 +78,7 @@ function normalizePost(post: RawBlogPost, index: number): BlogPost {
   const excerpt =
     post.excerpt?.trim() ||
     paragraphs[0] ||
-    "A new update from Campus Care 2.0 is available. Open to read the full article and details.";
+    "A new update from ACT Campus Care is available. Open to read the full article and details.";
 
   return {
     id: post._id ?? `sanity-${index}`,
@@ -94,7 +94,7 @@ function normalizePost(post: RawBlogPost, index: number): BlogPost {
           ],
     bodyBlocks: normalizePortableBlocks(post.body),
     publishedAt: post.publishedAt || new Date().toISOString(),
-    author: post.author?.trim() || "Campus Care Team",
+    author: post.author?.trim() || "ACT Campus Care Team",
     category: post.category?.trim() || "Update",
     imageUrl:
       urlForImage(post.mainImage as never) ||
@@ -114,7 +114,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       "slug": slug.current,
       excerpt,
       "publishedAt": coalesce(publishedAt, _createdAt),
-      "author": coalesce(author->name, "Campus Care Team"),
+      "author": coalesce(author->name, "ACT Campus Care Team"),
       "category": coalesce(category->title, "Update"),
       mainImage,
       coverImage,
@@ -141,7 +141,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
           "slug": slug.current,
           excerpt,
           "publishedAt": coalesce(publishedAt, _createdAt),
-          "author": coalesce(author->name, "Campus Care Team"),
+          "author": coalesce(author->name, "ACT Campus Care Team"),
           "category": coalesce(category->title, "Update"),
           mainImage,
           coverImage,

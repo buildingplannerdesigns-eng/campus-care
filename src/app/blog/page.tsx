@@ -10,9 +10,9 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "Blog",
   description:
-    "Insights, stories, and research updates from Campus Care 2.0 and the VR Sanctuary.",
+    "Insights, stories, and research updates from ACT Campus Care and the VR Sanctuary.",
   path: "/blog",
-  keywords: ["Campus Care blog", "HBCU wellness", "ACT Healing insights"],
+  keywords: ["ACT Campus Care blog", "HBCU wellness", "ACT Healing insights"],
 });
 
 const siteUrl = SITE_URL;
@@ -307,7 +307,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <div className="mb-8 flex items-end justify-between gap-4 border-b border-[#dde3df] pb-4">
             <h3 className="font-display text-3xl italic text-[#113f6c]">Latest Articles</h3>
             <p className="text-xs uppercase tracking-[0.18em] text-[#4e6f95]">
-              {activeCategory ? `Category: ${activeCategory}` : "Fresh Campus Care Updates"}
+              {activeCategory ? `Category: ${activeCategory}` : "Fresh ACT Campus Care Updates"}
             </p>
           </div>
 

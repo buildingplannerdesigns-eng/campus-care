@@ -2,7 +2,7 @@
   "name": "campus-care-2.0",
   "version": "0.1.0",
   "private": true,
-  "description": "Campus Care 2.0 — The Diaspora VR Sanctuary. Culturally-grounded, bio-responsive VR wellness platform for HBCU students.",
+  "description": "ACT Campus Care — The Diaspora VR Sanctuary. Culturally-grounded, bio-responsive VR wellness platform for HBCU students.",
   "scripts": {
     "dev": "node scripts/clean-image-cache.mjs && next dev",
     "clean:image-cache": "node scripts/clean-image-cache.mjs",

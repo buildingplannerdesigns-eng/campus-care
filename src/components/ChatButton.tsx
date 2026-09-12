@@ -63,7 +63,7 @@ export function ChatButton() {
       >
         <div className="shrink-0 bg-[#1a3c40] px-5 py-5">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A87C]">
-            Campus Care 2.0
+            ACT Campus Care
           </p>
           <h2
             id={`${panelId}-title`}
@@ -82,7 +82,7 @@ export function ChatButton() {
               compact
               idPrefix="chat-"
               submitLabel="Send message"
-              successMessage="Thank you — the Campus Care team will be in touch soon."
+              successMessage="Thank you — the ACT Campus Care team will be in touch soon."
             />
           ) : null}
         </div>

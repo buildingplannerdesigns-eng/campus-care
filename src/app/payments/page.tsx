@@ -4,7 +4,7 @@ import { Shield, RefreshCcw, Globe2, FileText } from "lucide-react";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Donate to Campus Care 2.0 | Support HBCU Student Wellness",
+  title: "Become a Partner | Support HBCU Student Wellness",
   description:
     "Your gift funds culturally grounded VR wellness sessions for HBCU students. Give once or monthly through secure Stripe checkout.",
   path: "/payments",
@@ -33,13 +33,13 @@ const trustItems = [
   },
   {
     Icon: Globe2,
-    label: "International donors welcome",
+    label: "International partners welcome",
     description: "Supports major cards and wallets",
   },
   {
     Icon: FileText,
-    label: "Donation receipt emailed automatically",
-    description: "A Campus Care 2.0 receipt is sent after payment",
+    label: "Receipt emailed automatically",
+    description: "An ACT Campus Care receipt is sent after payment",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function PaymentsPage() {
   return (
     <>
       <PageIntro
-        label="Donate"
+        label="Become a Partner"
         heading="Support the VR Sanctuary"
         body="Every contribution brings culturally grounded mental wellness to more HBCU students. Give once or give monthly — every amount makes a real difference."
       />
@@ -55,10 +55,10 @@ export default function PaymentsPage() {
       <section className="bg-sage px-6 py-20">
         <div className="mx-auto max-w-2xl">
           <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-parchment/45">
-            Secure giving
+            Secure partnership
           </p>
           <h2 className="mt-3 text-center font-display text-3xl text-parchment md:text-4xl">
-            Make your donation
+            Become a Partner
           </h2>
           <p className="mx-auto mt-3 max-w-md text-center text-sm text-parchment/60">
             Complete your gift securely with Stripe. You&apos;ll receive an emailed receipt after

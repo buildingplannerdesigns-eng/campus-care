@@ -7,7 +7,7 @@ export const HERO_VIDEO_TRIM_START = 2.75;
 export const HERO_VIDEO_TRIM_END = 2.75;
 
 /** ACT clip is ~97s fragmented MP4; the last ~15s is a contact end-card. */
-export const ACT_HERO_TRIM_START = 2.5;
+export const ACT_HERO_TRIM_START = 0.35;
 export const ACT_HERO_END_AT = 78;
 
 export function heroVideoSrc(path: string, start = HERO_VIDEO_TRIM_START) {
@@ -58,13 +58,20 @@ export function useTrimmedLoopVideo({
         }).catch(() => undefined);
       };
 
+      // Reveal as soon as a frame is available — don't wait on seek/play alone.
+      if (video.readyState >= 2) setReady(true);
+
       if (Math.abs(video.currentTime - from) > 0.2) {
         const onSeeked = () => {
           video.removeEventListener("seeked", onSeeked);
           play();
         };
         video.addEventListener("seeked", onSeeked);
-        video.currentTime = from;
+        try {
+          video.currentTime = from;
+        } catch {
+          play();
+        }
         return;
       }
 
@@ -81,19 +88,26 @@ export function useTrimmedLoopVideo({
     };
 
     const onPlaying = () => setReady(true);
+    const onCanPlay = () => {
+      if (!cancelled) setReady(true);
+      startPlayback();
+    };
     const onError = () => setReady(false);
 
     video.addEventListener("loadedmetadata", startPlayback);
+    video.addEventListener("canplay", onCanPlay);
     video.addEventListener("playing", onPlaying);
     video.addEventListener("error", onError);
     raf = window.requestAnimationFrame(keepInWindow);
 
     if (video.readyState >= 1) startPlayback();
+    if (video.readyState >= 2) setReady(true);
 
     return () => {
       cancelled = true;
       window.cancelAnimationFrame(raf);
       video.removeEventListener("loadedmetadata", startPlayback);
+      video.removeEventListener("canplay", onCanPlay);
       video.removeEventListener("playing", onPlaying);
       video.removeEventListener("error", onError);
     };

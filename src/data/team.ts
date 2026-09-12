@@ -4,7 +4,7 @@ export const team: TeamMember[] = [
   {
     name: "Dr. Cammie Connor",
     role: "Founder · Speaker, Workshops & Coaching",
-    bio: "Dr. Cammie's expertise in intergenerational trauma helps break the thought patterns that no longer serve a person's purpose — the clinical foundation behind ACT Healing and Campus Care 2.0.",
+    bio: "Dr. Cammie's expertise in intergenerational trauma helps break the thought patterns that no longer serve a person's purpose — the clinical foundation behind ACT Healing and ACT Campus Care.",
     image: "/images/team/dr.cammie.jpg",
     email: "cconnor@actcampuscare.com",
   },
@@ -18,7 +18,7 @@ export const team: TeamMember[] = [
   {
     name: "Yaov",
     role: "Technology & Product",
-    bio: "Yaov leads platform execution and helps shape reliable, user-centered digital experiences for Campus Care 2.0.",
+    bio: "Yaov leads platform execution and helps shape reliable, user-centered digital experiences for ACT Campus Care.",
   },
 ];
 

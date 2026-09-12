@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Thank You for Your Gift",
   description:
-    "Your donation to Campus Care 2.0 was received. A receipt is on its way to your inbox.",
+    "Your donation to ACT Campus Care was received. A receipt is on its way to your inbox.",
   path: "/payments/thank-you",
   keywords: ["donation thank you", "Stripe receipt"],
 });
@@ -28,9 +28,9 @@ export default async function ThankYouPage({
   return (
     <Section className="py-32 text-center">
       <p className="font-mono text-xs uppercase tracking-widest text-ember">Donation received</p>
-      <h1 className="mt-4 font-display text-4xl">Thank you for supporting Campus Care 2.0</h1>
+      <h1 className="mt-4 font-display text-4xl">Thank you for supporting ACT Campus Care</h1>
       <p className="mx-auto mt-6 max-w-xl text-parchment/70">
-        A receipt is on its way to your inbox from Campus Care 2.0. Your gift helps bring the VR Sanctuary
+        A receipt is on its way to your inbox from ACT Campus Care. Your gift helps bring the VR Sanctuary
         to more HBCU students.
       </p>
       <div className="mt-8 flex justify-center">

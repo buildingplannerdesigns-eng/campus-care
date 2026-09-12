@@ -8,7 +8,7 @@ const variantMap: Record<"dark" | "outline" | "light", SiteCtaVariant> = {
 };
 
 export function DonateButton({
-  children = "Donate to Support",
+  children = "Become a Partner",
   href = "/payments",
   variant = "dark",
   className = "",

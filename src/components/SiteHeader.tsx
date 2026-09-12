@@ -12,10 +12,10 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/act", label: "ACT" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/campus-care", label: "Campus Care" },
+  { href: "/campus-care", label: "ACT Campus Care" },
   { href: "/courses", label: "Courses", comingSoon: true },
   { href: "/blog", label: "Blog" },
-  { href: "/payments", label: "Payments" },
+  { href: "/payments", label: "Become a Partner" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -131,7 +131,7 @@ export function SiteHeader() {
             <BrandLogo
               size="sm"
               priority
-              alt="Campus Care 2.0 logo"
+              alt="ACT Campus Care logo"
               className={`ring-2 ring-transparent transition group-hover:ring-ember/40 ${
                 isHeroRoute
                   ? "!h-14 !w-14 sm:!h-16 sm:!w-16 md:!h-[4.75rem] md:!w-[4.75rem]"

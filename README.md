@@ -1,4 +1,4 @@
-# Campus Care 2.0 — Website
+# ACT Campus Care — Website
 
 **The Diaspora VR Sanctuary**, from ACT Healing (Dr. Cammie Connor).
 Built by **Celestial Web Solutions** — Next.js 15, React 19, TypeScript, Tailwind CSS.
@@ -34,15 +34,15 @@ src/
 
 | Route          | Purpose                                                    |
 |----------------|-------------------------------------------------------------|
-| `/`            | Home — hero, mission, Campus Care 2.0 intro, evidence       |
+| `/`            | Home — hero, mission, ACT Campus Care intro, evidence       |
 | `/about`       | About Us — mission, guiding statement, therapeutic services |
 | `/act`         | ACT — Dr. Cammie Connor                                     |
 | `/solutions`   | Solutions dropdown targets: `#therapy`, `#interventions`    |
-| `/courses`     | Courses — Campus Care 2.0 deep dive                         |
+| `/courses`     | Courses — ACT Campus Care deep dive                         |
 | `/blog`        | Blog (Sanity CMS + fallback posts)                          |
 | `/studio`      | Embedded Sanity Studio (edit site content)                  |
-| `/payments`    | Donations via Stripe                                           |
-| `/campus-care` | Campus Care immersive platform                              |
+| `/payments`    | Become a Partner via Stripe                                 |
+| `/campus-care` | ACT Campus Care immersive platform                          |
 | `/contact`     | Contact form → Resend notification                           |
 
 ## Integrations

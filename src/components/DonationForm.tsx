@@ -41,7 +41,7 @@ export function DonationForm() {
   return (
     <div className="space-y-7">
       <DonateButton href={STRIPE_PAYMENT_LINK} className="w-full px-6 py-4 sm:px-6 sm:py-4">
-        Donate to Support
+        Become a Partner
       </DonateButton>
 
       <div className="flex flex-wrap items-center justify-center gap-5 border-t border-gray-100 pt-6">

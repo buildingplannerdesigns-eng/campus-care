@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Campus Care 2.0 — ACT Healing",
-    short_name: "Campus Care",
+    name: "ACT Campus Care — ACT Healing",
+    short_name: "ACT Campus Care",
     description:
-      "Culturally grounded wellness from ACT Healing — therapy, workshops, and Campus Care 2.0 for campuses and communities.",
+      "Culturally grounded wellness from ACT Healing — therapy, workshops, and ACT Campus Care for campuses and communities.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

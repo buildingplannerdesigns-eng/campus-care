@@ -9,7 +9,7 @@ const configuredProjectId = projectId || "placeholder";
 
 export default defineConfig({
   name: "campus-care",
-  title: "Campus Care 2.0 CMS",
+  title: "ACT Campus Care CMS",
   projectId: configuredProjectId,
   dataset,
   basePath: "/studio",

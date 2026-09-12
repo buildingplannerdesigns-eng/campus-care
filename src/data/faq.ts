@@ -5,19 +5,19 @@ export type FaqItem = {
 
 export const faqItems: FaqItem[] = [
   {
-    question: "Does it cost anything for students to use Campus Care?",
+    question: "Does it cost anything for students to use ACT Campus Care?",
     answer:
-      "Campus Care 2.0 is designed to be offered through partner HBCU campuses and institutions. When a campus adopts the VR Sanctuary, enrolled students typically access sessions through that partnership at no individual session fee. Contact us to learn how your campus can bring Campus Care to students.",
+      "ACT Campus Care is designed to be offered through partner HBCU campuses and institutions. When a campus adopts the VR Sanctuary, enrolled students typically access sessions through that partnership at no individual session fee. Contact us to learn how your campus can bring ACT Campus Care to students.",
   },
   {
-    question: "What is Campus Care 2.0?",
+    question: "What is ACT Campus Care?",
     answer:
-      "Campus Care 2.0 — the VR Sanctuary — is a culturally grounded, bio-responsive virtual reality platform that helps HBCU students regulate stress, ease minority stress, and build psychological resilience through immersive, strengths-based wellness experiences.",
+      "ACT Campus Care — the VR Sanctuary — is a culturally grounded, bio-responsive virtual reality platform that helps HBCU students regulate stress, ease minority stress, and build psychological resilience through immersive, strengths-based wellness experiences.",
   },
   {
-    question: "Who is Campus Care designed for?",
+    question: "Who is ACT Campus Care designed for?",
     answer:
-      "Campus Care is built for HBCU students and the campuses that serve them. It also supports clinicians, student-affairs teams, and wellness partners seeking culturally affirming tools that honor students’ lived experiences.",
+      "ACT Campus Care is built for HBCU students and the campuses that serve them. It also supports clinicians, student-affairs teams, and wellness partners seeking culturally affirming tools that honor students’ lived experiences.",
   },
   {
     question: "What are the 5 Core Elements™?",
@@ -25,24 +25,24 @@ export const faqItems: FaqItem[] = [
       "In indigenous Dagara cosmology, every person belongs to a clan tied to one of five elements — Water (Reconciliation & Peace), Fire (Spirit & Vision), Earth (Identity & Grounding), Mineral (Memory & Purpose), and Nature (Transformation & Authenticity). Together they frame health as an integrated ecosystem of mind, body, spirit, and community.",
   },
   {
-    question: "How is Campus Care different from traditional counseling?",
+    question: "How is ACT Campus Care different from traditional counseling?",
     answer:
-      "Instead of a problem-focused clinical office alone, Campus Care offers an anonymous, strengths-based, interactive VR environment. It complements campus counseling by giving students a calming, culturally welcoming space they can return to whenever they need restorative support.",
+      "Instead of a problem-focused clinical office alone, ACT Campus Care offers an anonymous, strengths-based, interactive VR environment. It complements campus counseling by giving students a calming, culturally welcoming space they can return to whenever they need restorative support.",
   },
   {
-    question: "How can my campus bring Campus Care 2.0?",
+    question: "How can my campus bring ACT Campus Care?",
     answer:
       "Reach out through our Contact page to start a campus conversation. We partner with institutions to deploy the VR Sanctuary and align it with existing student wellness goals.",
   },
   {
     question: "What services does ACT Healing offer?",
     answer:
-      "ACT Healing — Agents of Change and Transformation — offers therapy and interventions, workshops and trainings, speaking engagements, coaching, and Campus Care 2.0 for campuses. Work is led by Dr. Connor with a focus on intergenerational trauma, resilience, and culturally grounded wellness.",
+      "ACT Healing — Agents of Change and Transformation — offers therapy and interventions, workshops and trainings, speaking engagements, coaching, and ACT Campus Care for campuses. Work is led by Dr. Connor with a focus on intergenerational trauma, resilience, and culturally grounded wellness.",
   },
   {
-    question: "How can I support Campus Care financially?",
+    question: "How can I support ACT Campus Care financially?",
     answer:
-      "You can give once or monthly through our secure Payments page. Gifts help fund culturally grounded VR wellness sessions and expand access for HBCU students. Receipts are emailed automatically after checkout.",
+      "You can Become a Partner through our secure giving page — give once or monthly. Gifts help fund culturally grounded VR wellness sessions and expand access for HBCU students. Receipts are emailed automatically after checkout.",
   },
   {
     question: "How do I book a consultation, workshop, or speaking engagement?",

@@ -9,7 +9,7 @@ export const revalidate = 60;
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Reach Dr. Cammie Connor for therapy, speaking, workshops, coaching, and Campus Care partnerships.",
+    "Reach Dr. Cammie Connor for therapy, speaking, workshops, coaching, and ACT Campus Care partnerships.",
   path: "/contact",
   keywords: ["contact Dr. Cammie Connor", "book consultation", "ACT Healing"],
 });
@@ -35,7 +35,7 @@ export default async function ContactPage() {
       <PageIntro
         label="Contact"
         heading="Let's start the conversation"
-        body="Whether you're seeking therapy, planning a workshop, booking a speaker, or bringing Campus Care to your campus — share a few details and Dr. Cammiel's team will be in touch personally."
+        body="Whether you're seeking therapy, planning a workshop, booking a speaker, or bringing ACT Campus Care to your campus — share a few details and Dr. Cammie's team will be in touch personally."
       />
 
       {/* Contact details — above the form */}

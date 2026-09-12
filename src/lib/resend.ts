@@ -13,7 +13,7 @@ function getResendClient(): Resend {
 function fromAddress() {
   const email =
     process.env.RESEND_FROM_EMAIL?.trim() || "info@actcampuscare.com";
-  return email.includes("<") ? email : `Campus Care 2.0 <${email}>`;
+  return email.includes("<") ? email : `ACT Campus Care <${email}>`;
 }
 
 function staffInbox() {
@@ -45,7 +45,7 @@ function emailLayout(title: string, bodyHtml: string) {
           <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid #e6e0d6;">
             <tr>
               <td style="background:#0e4f88;padding:20px 28px;color:#ffffff;font-family:Arial,sans-serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;">
-                Campus Care 2.0 · ACT Healing
+                ACT Campus Care · ACT Healing
               </td>
             </tr>
             <tr>
@@ -105,7 +105,7 @@ export async function sendContactNotification(values: ContactFormValues) {
   const subject =
     values.target === "dr-cammie"
       ? `New Dr. Cammie enquiry: ${values.subject} — ${name}`
-      : `New Campus Care 2.0 contact: ${values.subject} — ${name}`;
+      : `New ACT Campus Care contact: ${values.subject} — ${name}`;
   const text = [
     `Name: ${name}`,
     `Email: ${values.email}`,
@@ -129,7 +129,7 @@ export async function sendContactNotification(values: ContactFormValues) {
 
   await sendEmail({
     to: values.email,
-    subject: "We received your message — Campus Care 2.0",
+    subject: "We received your message — ACT Campus Care",
     text: [
       `Dear ${values.firstName},`,
       "",
@@ -161,11 +161,11 @@ export async function sendDonationReceipt(params: {
 
   await sendEmail({
     to: params.to,
-    subject: "Thank you for supporting Campus Care 2.0",
+    subject: "Thank you for supporting ACT Campus Care",
     text: [
       `Dear ${greeting},`,
       "",
-      `Thank you for your ${cadence} of ${amountLabel} to Campus Care 2.0.`,
+      `Thank you for your ${cadence} of ${amountLabel} to ACT Campus Care.`,
       `Reference: ${params.reference}`,
       `Processed by Stripe.`,
       "",
@@ -174,7 +174,7 @@ export async function sendDonationReceipt(params: {
     html: emailLayout(
       "Thank you for your gift",
       `<p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(greeting)},</p>
-      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for your ${escapeHtml(cadence)} of <strong>${escapeHtml(amountLabel)}</strong> to Campus Care 2.0.</p>
+      <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for your ${escapeHtml(cadence)} of <strong>${escapeHtml(amountLabel)}</strong> to ACT Campus Care.</p>
       <p style="margin:0 0 16px;font-size:14px;color:#6b6460;">Reference: ${escapeHtml(params.reference)} · Stripe</p>
       <p style="margin:0;font-size:15px;line-height:1.6;">Your generosity directly supports culturally grounded mental wellness for HBCU students.</p>`,
     ),

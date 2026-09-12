@@ -55,7 +55,7 @@ export default async function HomePage() {
           {/* Large lead statement — like Patrice’s purpose question */}
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#0e4f88]/75">
-              ACT Campus Care 2.0
+              ACT Campus Care
             </p>
             <h2 className="mt-5 font-display text-[2rem] italic leading-[1.15] text-[#113f6c] sm:text-4xl md:text-5xl lg:text-[3.35rem]">
               {fallbackMission.heading}
@@ -95,7 +95,7 @@ export default async function HomePage() {
                 <p className="text-base leading-relaxed text-parchment/75 md:text-lg">
                   A woman of purpose, I help individuals put their life back together one piece at a
                   time — and empower you to ACT on your purpose through counseling, coaching, and
-                  Campus Care.
+                  ACT Campus Care.
                 </p>
               </div>
 
@@ -120,7 +120,7 @@ export default async function HomePage() {
           </h2>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-parchment/70 md:text-base">
-            Book ACT Healing for therapy, coaching, workshops, and speaking — or bring Campus Care
+            Book ACT Healing for therapy, coaching, workshops, and speaking — or bring ACT Campus Care
             interventions to your campus and community.
           </p>
 
@@ -129,7 +129,7 @@ export default async function HomePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef3]">
                 <Image
                   src="/images/team/consellor.jpg"
-                  alt="Dr. Cammiel — Counseling"
+                  alt="Dr. Cammie — Counseling"
                   fill
                   className="object-cover object-[center_20%]"
                   sizes="(max-width: 640px) 90vw, 360px"
@@ -141,7 +141,7 @@ export default async function HomePage() {
                   Individual, Couples, Family and Coaching Sessions
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-parchment/70">
-                  Culturally grounded, relational work led by Dr. Cammiel.
+                  Culturally grounded, relational work led by Dr. Cammie.
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default async function HomePage() {
               <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef3]">
                 <Image
                   src="/images/campus-care/solutions-new.jpeg"
-                  alt="Campus Care interventions"
+                  alt="ACT Campus Care interventions"
                   fill
                   className="origin-top object-cover object-[center_12%] scale-[1.45]"
                   sizes="(max-width: 640px) 90vw, 360px"
@@ -160,7 +160,7 @@ export default async function HomePage() {
                   Interventions
                 </p>
                 <h3 className="mt-3 font-display text-xl leading-snug text-parchment md:text-2xl">
-                  Campus Care and Community Programs
+                  ACT Campus Care and Community Programs
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-parchment/70">
                   Bio-responsive VR wellness for HBCU campuses at scale.
@@ -175,17 +175,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Campus Care */}
+      {/* ACT Campus Care */}
       <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <SectionEyebrow>Campus Care</SectionEyebrow>
+          <SectionEyebrow>ACT Campus Care</SectionEyebrow>
           <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
             Immersive wellness for campuses and care teams
           </h2>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
           <div className="mx-auto mt-6 max-w-2xl space-y-4">
             <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
-              Campus Care 2.0 — the VR Sanctuary — is an immersive wellness platform designed to
+              ACT Campus Care — the VR Sanctuary — is an immersive wellness platform designed to
               support student mental health with culturally affirming digital experiences.
             </p>
             <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
@@ -197,7 +197,7 @@ export default async function HomePage() {
             <div className="relative aspect-[4/3] bg-[#e8eef3]">
               <Image
                 src="/images/attachments/image005.jpeg"
-                alt="Dr. Cammiel presenting Campus Care 2.0"
+                alt="Dr. Cammie presenting ACT Campus Care"
                 fill
                 className="object-cover object-[center_20%]"
                 sizes="(max-width: 768px) 90vw, 672px"
@@ -205,7 +205,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="mt-9 flex justify-center">
-            <HomeCta href="/campus-care">Explore Campus Care</HomeCta>
+            <HomeCta href="/campus-care">Explore ACT Campus Care</HomeCta>
           </div>
         </div>
       </section>
@@ -288,17 +288,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Payments */}
+      {/* Become a Partner */}
       <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <SectionEyebrow>Payments</SectionEyebrow>
+          <SectionEyebrow>Become a Partner</SectionEyebrow>
           <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
             Support the work of healing and campus wellness
           </h2>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
           <div className="mx-auto mt-6 max-w-2xl space-y-4">
             <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
-              Your gift helps expand ACT Healing programs and bring Campus Care 2.0 to more students
+              Your gift helps expand ACT Healing programs and bring ACT Campus Care to more students
               and communities.
             </p>
             <p className="text-sm leading-relaxed text-parchment/70 md:text-base">
@@ -333,7 +333,7 @@ export default async function HomePage() {
               Contact Us
             </HomeCta>
             <HomeCta href="/act" variant="ghost">
-              Meet Dr. Cammiel
+              Meet Dr. Cammie
             </HomeCta>
             <DonateButton variant="outline" />
           </div>
