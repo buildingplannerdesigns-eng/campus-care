@@ -12,7 +12,7 @@ import {
   StefStorySection,
 } from "@/components/dr-cammie/StefSections";
 import { drCammieCopy } from "@/data/drCammie";
-import { pointOfContact } from "@/data/team";
+import { CONTACT_PHONE, pointOfContact } from "@/data/team";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -31,6 +31,7 @@ export const metadata = pageMetadata({
 
 export default function DrCammieConnorPage() {
   const copy = drCammieCopy;
+  const bookPhoneHref = `tel:${CONTACT_PHONE.replace(/[^\d+]/g, "")}`;
 
   return (
     <>
@@ -39,8 +40,8 @@ export default function DrCammieConnorPage() {
         subhead={copy.hero.subhead}
         primaryCta={copy.hero.primaryCta}
         primaryCtaHref="#show-me-how"
-        secondaryCta={`Book Dr. Cammie · ${pointOfContact.phone}`}
-        secondaryCtaHref={`tel:${pointOfContact.phone.replace(/[^\d+]/g, "")}`}
+        secondaryCta={`Book Dr. Cammie · ${CONTACT_PHONE}`}
+        secondaryCtaHref={bookPhoneHref}
         headshotSrc="/images/attachments/image002.jpg"
         headshotAlt="Dr. Cammie"
       />
