@@ -141,7 +141,7 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop nav — flat, no dropdowns */}
-          <nav className="hidden items-center gap-3 xl:gap-5 lg:flex">
+          <nav className="hidden min-w-0 items-center gap-2 xl:gap-4 lg:flex">
             {navLinks.map((link) =>
               link.href === "/contact" ? (
                 <SiteCta
@@ -149,6 +149,7 @@ export function SiteHeader() {
                   href={link.href}
                   size="sm"
                   variant={overHero && !isActive(link.href) ? "ghost" : "peach"}
+                  className="shrink-0 whitespace-nowrap tracking-[0.16em]"
                 >
                   {link.label}
                 </SiteCta>

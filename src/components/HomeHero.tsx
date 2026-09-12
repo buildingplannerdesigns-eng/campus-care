@@ -48,11 +48,13 @@ export function HomeHero() {
             <span className="block whitespace-nowrap text-[1.65rem] leading-[1.08] sm:text-[2.35rem] md:text-[2.85rem] lg:text-[3.15rem]">
               Dr. Cammie Connor
             </span>
-            <span className="mt-2 block font-body text-base font-medium lowercase tracking-[0.14em] text-[#E8C4B0]/90 sm:mt-3 sm:text-lg md:text-xl">
-              is
+            <span className="mt-2 block sm:mt-3">
+              <span className="font-body text-[0.42em] font-medium lowercase tracking-[0.08em] text-[#E8C4B0]/90">
+                is{" "}
+              </span>
+              Redefining
             </span>
-            <span className="mt-2 block sm:mt-3">Redefining</span>
-            <span className="mt-1 block sm:mt-2">ACT Campus Care</span>
+            <span className="mt-1 block whitespace-nowrap sm:mt-2">ACT Campus Care</span>
           </h1>
 
           <div className="home-hero-fade-delay-1 mt-10">

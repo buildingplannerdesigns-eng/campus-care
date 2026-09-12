@@ -5,7 +5,7 @@ export type SiteCtaVariant = "peach" | "teal" | "outline" | "ghost";
 export type SiteCtaSize = "sm" | "md";
 
 const sizeClass: Record<SiteCtaSize, string> = {
-  sm: "px-4 py-2 text-[11px] sm:text-[11px]",
+  sm: "px-3.5 py-2 text-[10px] tracking-[0.14em] xl:px-4 xl:text-[11px]",
   md: "px-8 py-3.5 sm:px-10 sm:py-3.5 text-[11px] sm:text-xs",
 };
 
@@ -47,7 +47,7 @@ export function siteCtaClassName({
   size?: SiteCtaSize;
   className?: string;
 } = {}) {
-  return `group inline-flex items-center justify-center rounded-sm font-semibold uppercase tracking-[0.22em] transition-all duration-200 ${sizeClass[size]} ${variantClass[variant]} ${className}`.trim();
+  return `group inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm font-semibold uppercase tracking-[0.18em] transition-all duration-200 ${sizeClass[size]} ${variantClass[variant]} ${className}`.trim();
 }
 
 type SiteCtaProps = {
