@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HomeHero } from "@/components/HomeHero";
 import { DonateButton } from "@/components/DonateButton";
 import { OffsetImageFrame } from "@/components/OffsetImageFrame";
+import { PedalTheCauseFeature } from "@/components/PedalTheCauseFeature";
 import { SiteCta } from "@/components/SiteCta";
 import { siteCopy } from "@/data/copy";
 import { getBlogPosts } from "@/lib/blog";
@@ -39,6 +40,8 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
+
+      <PedalTheCauseFeature />
 
       {/* Post-hero — Patrice-style editorial welcome */}
       <section className="relative overflow-hidden border-b border-[#cfdcd6] bg-sage">

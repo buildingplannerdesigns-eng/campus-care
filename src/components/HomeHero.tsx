@@ -43,18 +43,20 @@ export function HomeHero() {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pb-16 pt-28 sm:px-10 lg:px-16">
-        <div className="max-w-xl text-left lg:max-w-2xl">
-          <h1 className="home-hero-fade font-hero text-[2.85rem] font-normal leading-[0.94] text-[#E8C4B0] sm:text-6xl md:text-7xl lg:text-[5.35rem] lg:leading-[0.92]">
-            <span className="block whitespace-nowrap text-[1.65rem] leading-[1.08] sm:text-[2.35rem] md:text-[2.85rem] lg:text-[3.15rem]">
+        <div className="w-full max-w-xl text-left lg:max-w-2xl">
+          <h1 className="home-hero-fade font-hero text-[2.45rem] font-normal leading-[0.96] text-[#E8C4B0] sm:text-6xl md:text-7xl lg:text-[5.1rem] lg:leading-[0.94]">
+            <span className="block text-[clamp(1.45rem,6.2vw,3.15rem)] leading-[1.08]">
               Dr. Cammie Connor
             </span>
             <span className="mt-2 block sm:mt-3">
-              <span className="font-body text-[0.42em] font-medium lowercase tracking-[0.08em] text-[#E8C4B0]/90">
+              <span className="font-body text-[0.38em] font-medium lowercase tracking-[0.08em] text-[#E8C4B0]/90 sm:text-[0.42em]">
                 is{" "}
               </span>
               Redefining
             </span>
-            <span className="mt-1 block whitespace-nowrap sm:mt-2">ACT Campus Care</span>
+            <span className="mt-1 block text-[clamp(2rem,9vw,5.1rem)] leading-[0.98] sm:mt-2">
+              ACT Campus Care
+            </span>
           </h1>
 
           <div className="home-hero-fade-delay-1 mt-10">
