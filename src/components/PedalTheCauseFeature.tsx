@@ -42,15 +42,12 @@ export function PedalTheCauseFeature() {
             participant-raised gifts fund cancer research at Siteman Cancer Center and Siteman Kids.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-parchment/70 md:text-base">
-            To give to this cancer ride, use the Pedal the Cause button below (not Campus Care
-            partnership giving).
+            If you would like to support this cause, give through ACT Campus Care payments — your gift
+            helps honor this ride for Barb Brison-Brown.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
-            {/* Hardcoded external URLs — must NOT use SiteCta/DonateButton (/payments). */}
             <a
-              href="https://pedalthecause.org/donate/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/payments"
               className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm border border-transparent bg-gradient-to-b from-[#f7efe8] to-[#ead5c6] px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1a3c40] shadow-[0_10px_32px_rgba(232,196,176,0.32)] transition-all duration-200 hover:from-white hover:to-[#f3e4d8] sm:px-10 sm:text-xs"
             >
               Support Pedal the Cause
