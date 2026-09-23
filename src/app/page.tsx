@@ -291,12 +291,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Become a Partner */}
+      {/* Become a Partner — Campus Care giving (not Pedal the Cause) */}
       <section className="border-t border-[#cfdcd6] bg-sage py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <SectionEyebrow>Become a Partner</SectionEyebrow>
           <h2 className="mt-4 font-display text-3xl leading-snug text-parchment md:text-4xl lg:text-[2.75rem]">
-            Support the work of healing and campus wellness
+            Partner with ACT Campus Care
           </h2>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
           <div className="mx-auto mt-6 max-w-2xl space-y-4">
@@ -310,7 +310,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-9 flex justify-center">
-            <DonateButton />
+            <DonateButton>Become a Partner</DonateButton>
           </div>
         </div>
       </section>

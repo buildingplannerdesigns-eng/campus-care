@@ -1,19 +1,15 @@
 import Image from "next/image";
-import { CtaArrow, siteCtaClassName } from "@/components/SiteCta";
 
-/** Temporary homepage feature — remove after this date (local). */
-export const PEDAL_THE_CAUSE_UNTIL = new Date("2026-09-30T23:59:59-05:00");
+/**
+ * Temporary homepage feature for Pedal the Cause.
+ * Set PEDAL_THE_CAUSE_ENABLED to false (or delete this component) after ~1 week / after 2026-09-30.
+ */
+const PEDAL_THE_CAUSE_ENABLED = true;
 
-const DONATE_URL = "https://pedalthecause.org/donate/";
-const ABOUT_URL = "https://pedalthecause.org/about/";
 const PHOTO_SRC = "/images/Cancer_Cause_Picture.jpg";
 
-export function isPedalTheCauseActive(now = new Date()) {
-  return now.getTime() <= PEDAL_THE_CAUSE_UNTIL.getTime();
-}
-
 export function PedalTheCauseFeature() {
-  if (!isPedalTheCauseActive()) return null;
+  if (!PEDAL_THE_CAUSE_ENABLED) return null;
 
   return (
     <section
@@ -46,26 +42,26 @@ export function PedalTheCauseFeature() {
             participant-raised gifts fund cancer research at Siteman Cancer Center and Siteman Kids.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-parchment/70 md:text-base">
-            If you would like to support this cause, please donate through Pedal the Cause.
+            To give to this cancer ride, use the Pedal the Cause button below (not Campus Care
+            partnership giving).
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+            {/* Hardcoded external URLs — must NOT use SiteCta/DonateButton (/payments). */}
             <a
-              href={DONATE_URL}
+              href="https://pedalthecause.org/donate/"
               target="_blank"
               rel="noopener noreferrer"
-              className={siteCtaClassName({})}
+              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm border border-transparent bg-gradient-to-b from-[#f7efe8] to-[#ead5c6] px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1a3c40] shadow-[0_10px_32px_rgba(232,196,176,0.32)] transition-all duration-200 hover:from-white hover:to-[#f3e4d8] sm:px-10 sm:text-xs"
             >
               Support Pedal the Cause
-              <CtaArrow />
             </a>
             <a
-              href={ABOUT_URL}
+              href="https://pedalthecause.org/about/"
               target="_blank"
               rel="noopener noreferrer"
-              className={siteCtaClassName({ variant: "outline" })}
+              className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm border border-[#1a3c40] bg-transparent px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1a3c40] transition-all duration-200 hover:bg-[#1a3c40] hover:text-[#f7efe8] sm:px-10 sm:text-xs"
             >
               About the Event
-              <CtaArrow />
             </a>
           </div>
         </div>
