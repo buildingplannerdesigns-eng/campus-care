@@ -4,7 +4,7 @@ import Image from "next/image";
  * Temporary homepage feature for Pedal the Cause.
  * Set PEDAL_THE_CAUSE_ENABLED to false (or delete this component) after ~1 week / after 2026-09-30.
  */
-const PEDAL_THE_CAUSE_ENABLED = true;
+const PEDAL_THE_CAUSE_ENABLED = false;
 
 const PHOTO_SRC = "/images/Cancer_Cause_Picture.jpg";
 

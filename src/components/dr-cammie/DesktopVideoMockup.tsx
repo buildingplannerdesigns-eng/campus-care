@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ACT_HERO_END_AT, ACT_HERO_TRIM_START, heroVideoSrc, useTrimmedLoopVideo } from "@/lib/useTrimmedLoopVideo";
+import {
+  ACT_HERO_END_AT,
+  ACT_HERO_TRIM_START,
+  HERO_VIDEO_TRIM_END,
+  HERO_VIDEO_TRIM_START,
+  heroVideoSrc,
+  useTrimmedLoopVideo,
+} from "@/lib/useTrimmedLoopVideo";
 
 type DesktopVideoMockupProps = {
   title?: string;
@@ -11,6 +18,15 @@ type DesktopVideoMockupProps = {
   urlBar?: string;
   /** Crop the bottom edge to hide burned-in lower-third captions in the source video. */
   hideLowerThird?: boolean;
+  /** Override default hero trim (seconds from start). */
+  trimStart?: number;
+  /** Override default hero end pad (seconds cropped from the end). */
+  trimEndPad?: number;
+  /** How the video fills the screen. Use contain for portrait / rotated clips. */
+  objectFit?: "cover" | "contain";
+  /** Skip hero trimming and use native loop/autoplay (best for short clips). */
+  simpleLoop?: boolean;
+  className?: string;
 };
 
 export function DesktopVideoMockup({
@@ -19,18 +35,32 @@ export function DesktopVideoMockup({
   embedUrl,
   poster,
   hideLowerThird = false,
+  trimStart,
+  trimEndPad,
+  objectFit = "cover",
+  simpleLoop = false,
+  className,
 }: DesktopVideoMockupProps) {
   const frameRef = useRef<HTMLDivElement>(null);
+  const simpleVideoRef = useRef<HTMLVideoElement>(null);
   const [inView, setInView] = useState(false);
+  const [simpleReady, setSimpleReady] = useState(false);
   const isActVideo = (videoSrc ?? "").includes("act-hero");
-  const { videoRef, ready } = useTrimmedLoopVideo({
-    enabled: inView,
-    start: isActVideo ? ACT_HERO_TRIM_START : undefined,
-    endAt: isActVideo ? ACT_HERO_END_AT : undefined,
-    endPad: isActVideo ? 16 : undefined,
+  const start =
+    trimStart ?? (isActVideo ? ACT_HERO_TRIM_START : HERO_VIDEO_TRIM_START);
+  const endPad = trimEndPad ?? (isActVideo ? 16 : HERO_VIDEO_TRIM_END);
+  const endAt = isActVideo && trimStart === undefined ? ACT_HERO_END_AT : undefined;
+  const { videoRef: trimmedVideoRef, ready: trimmedReady } = useTrimmedLoopVideo({
+    enabled: inView && !simpleLoop,
+    start,
+    endAt,
+    endPad,
   });
   const resolvedEmbed = embedUrl?.trim() || "";
   const resolvedVideo = videoSrc?.trim() || "";
+  const ready = simpleLoop ? simpleReady : trimmedReady;
+  const videoRef = simpleLoop ? simpleVideoRef : trimmedVideoRef;
+  const fitClass = objectFit === "contain" ? "object-contain" : "object-cover";
 
   useEffect(() => {
     const node = frameRef.current;
@@ -50,8 +80,30 @@ export function DesktopVideoMockup({
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!simpleLoop || !inView) return;
+    const video = simpleVideoRef.current;
+    if (!video) return;
+
+    const markReady = () => setSimpleReady(true);
+    const tryPlay = () => {
+      void video.play().then(markReady).catch(() => undefined);
+    };
+
+    video.addEventListener("loadeddata", markReady);
+    video.addEventListener("playing", markReady);
+    video.addEventListener("canplay", tryPlay);
+    tryPlay();
+
+    return () => {
+      video.removeEventListener("loadeddata", markReady);
+      video.removeEventListener("playing", markReady);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, [inView, simpleLoop, resolvedVideo]);
+
   return (
-    <div ref={frameRef} className="mx-auto w-full max-w-[860px]">
+    <div ref={frameRef} className={`mx-auto w-full max-w-[860px] ${className ?? ""}`}>
       {/* Silver iMac-style chassis */}
       <div
         className="rounded-[1.15rem] p-[11px] sm:rounded-[1.4rem] sm:p-[14px]"
@@ -80,17 +132,19 @@ export function DesktopVideoMockup({
             ) : inView && resolvedVideo ? (
               <video
                 ref={videoRef}
-                key={resolvedVideo}
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                key={`${resolvedVideo}-${simpleLoop ? "simple" : "trim"}`}
+                className={`absolute inset-0 h-full w-full bg-black transition-opacity duration-500 ${fitClass} ${
                   hideLowerThird ? "scale-[1.14] origin-top object-[center_20%]" : ""
                 } ${ready ? "opacity-100" : "opacity-0"}`}
                 muted
                 playsInline
-                preload="metadata"
+                autoPlay={simpleLoop}
+                loop={simpleLoop}
+                preload="auto"
                 poster={poster}
               >
                 <source
-                  src={heroVideoSrc(resolvedVideo, isActVideo ? ACT_HERO_TRIM_START : undefined)}
+                  src={simpleLoop ? resolvedVideo : heroVideoSrc(resolvedVideo, start)}
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
