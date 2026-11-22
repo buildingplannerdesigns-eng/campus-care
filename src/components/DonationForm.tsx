@@ -37,11 +37,15 @@ const paymentLogos = [
   },
 ];
 
-export function DonationForm() {
+export function DonationForm({
+  buttonLabel = "Become a Partner",
+}: {
+  buttonLabel?: string;
+}) {
   return (
     <div className="space-y-7">
       <DonateButton href={STRIPE_PAYMENT_LINK} className="w-full px-6 py-4 sm:px-6 sm:py-4">
-        Become a Partner
+        {buttonLabel}
       </DonateButton>
 
       <div className="flex flex-wrap items-center justify-center gap-5 border-t border-gray-100 pt-6">

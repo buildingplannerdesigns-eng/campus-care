@@ -23,7 +23,7 @@ const PHOTOS = [
 
 const VIDEO_SRC = "/marathon/every-womans-marathon.mp4";
 const EVENT_URL = "https://www.everywomansmarathon.com";
-const DONATE_HREF = "/payments";
+const DONATE_HREF = "/payments?campaign=marathon";
 const SECTION_ID = "every-womans-marathon";
 /** Race day — local midnight Feb 28, 2027 */
 const EVENT_AT = new Date(2027, 1, 28, 0, 0, 0, 0).getTime();
@@ -143,6 +143,9 @@ export function EveryWomansMarathonFeature() {
           </p>
           <div className="mx-auto mt-5 h-px w-14 bg-[#0e4f88]/35" aria-hidden />
           <MarathonCountdown />
+          <p className="mt-6 font-display text-2xl italic leading-snug text-[#0e4f88] md:text-3xl">
+            26.2 Miles for Healing
+          </p>
         </div>
 
         {/* Photos flanking the desktop mockup */}
@@ -220,7 +223,9 @@ export function EveryWomansMarathonFeature() {
               support, this intervention tool will allow students across the nation to experience a
               Mental Health journey to wellness.
             </p>
-            <p className="font-medium text-parchment/85">Will you donate?</p>
+            <p className="font-medium text-parchment/85">
+              Will you participate in the journey?
+            </p>
           </div>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -228,7 +233,7 @@ export function EveryWomansMarathonFeature() {
               href={DONATE_HREF}
               className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-sm border border-transparent bg-gradient-to-b from-[#f7efe8] to-[#ead5c6] px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1a3c40] shadow-[0_10px_32px_rgba(232,196,176,0.32)] transition-all duration-200 hover:from-white hover:to-[#f3e4d8] sm:px-10 sm:text-xs"
             >
-              Support the Marathon Journey
+              Donate Here
             </a>
             <a
               href={EVENT_URL}
