@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { coreElements } from "@/data/elements";
 
 const MILE_CHALLENGES = [
   { label: "Sponsor 1 mile", amount: "$26.20" },
@@ -9,28 +8,7 @@ const MILE_CHALLENGES = [
   { label: "Sponsor the entire Marathon", amount: "$686.84" },
 ] as const;
 
-const ELEMENT_IMAGES: Record<string, { src: string; alt: string }> = {
-  water: {
-    src: "/images/elements/water.jpeg",
-    alt: "Water — Reconciliation & Peace",
-  },
-  fire: {
-    src: "/images/elements/fire.jpeg",
-    alt: "Fire — Spirit & Vision",
-  },
-  earth: {
-    src: "/images/elements/earth.jpeg",
-    alt: "Earth — Identity & Grounding",
-  },
-  mineral: {
-    src: "/images/elements/mineral.jpeg",
-    alt: "Mineral — Memory & Purpose",
-  },
-  nature: {
-    src: "/images/elements/nature.jpeg",
-    alt: "Nature — Transformation & Authenticity",
-  },
-};
+const HEALING_ENVIRONMENTS_SRC = "/images/campus-care/healing-environments.png";
 
 export function MarathonJourneyChallenge() {
   return (
@@ -70,27 +48,16 @@ export function MarathonJourneyChallenge() {
           I invite Corporate partners to become Founding Sponsors of one of the five immersive
           healing environments.
         </p>
-        <div className="mx-auto mt-6 grid max-w-2xl grid-cols-5 gap-2 sm:gap-3">
-          {coreElements.map((element) => {
-            const image = ELEMENT_IMAGES[element.key];
-            if (!image) return null;
-            return (
-              <figure key={element.key} className="text-center">
-                <div className="relative aspect-square overflow-hidden border border-[#d9d2c6] bg-[#e8e4df]">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 18vw, 96px"
-                  />
-                </div>
-                <figcaption className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#5b6d7f] sm:text-[10px]">
-                  {element.key === "mineral" ? "Minerals" : element.key}
-                </figcaption>
-              </figure>
-            );
-          })}
+        <div className="relative mx-auto mt-6 w-full max-w-xl overflow-hidden border border-[#d9d2c6] bg-white">
+          <Image
+            src={HEALING_ENVIRONMENTS_SRC}
+            alt="Campus Care 2.0 five immersive healing environments — Fire, Water, Nature, Earth, and Minerals"
+            width={1200}
+            height={1500}
+            className="h-auto w-full"
+            sizes="(max-width: 768px) 100vw, 576px"
+            priority
+          />
         </div>
       </div>
     </div>
